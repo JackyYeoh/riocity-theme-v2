@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Center - RioCity</title>
+    <link rel="icon" href="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" type="image/png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/auth-pages.css">
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/home-refactor.css">
+    <link rel="stylesheet" href="css/info-center.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RioCity Logo"
+                        class="logo-img">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">RIOCITY</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="live-casino.html" class="nav-link">Live Casino</a>
+                    <a href="sports.html" class="nav-link">Sports</a>
+                    <a href="slots.html" class="nav-link">Slots</a>
+                    <a href="promotions.html" class="nav-link">Promotions</a>
+                    <a href="vip.html" class="nav-link">VIP</a>
+                    <div class="nav-dropdown" id="moreGamesDropdown">
+                        <div class="nav-link nav-dropdown-toggle">
+                            <span>More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="nav-dropdown-menu">
+                            <a href="games.html" class="nav-dropdown-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Recent Games</span>
+                            </a>
+                            <a href="poker.html" class="nav-dropdown-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Poker</span>
+                            </a>
+                                <i class="fas fa-ticket-alt"></i>
+                            </a>
+                            <a href="fish-hunt.html" class="nav-dropdown-item">
+                                <i class="fas fa-fish"></i>
+                                <span>Fish Hunt</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-right">
+                <!-- Wallet Dropdown (Main + Game Wallet) -->
+                <div class="header-wallet-section" id="headerWalletSection">
+                    <div class="header-wallet-toggle">
+                        <span class="header-wallet-label">Balance:</span>
+                        <span class="header-wallet-value" id="headerWalletBalance">89.41</span>
+                        <i class="fas fa-chevron-down header-wallet-chevron"></i>
+                    </div>
+                    <div class="header-wallet-dropdown">
+                        <button class="header-wallet-refresh" onclick="refreshWalletBalances(event)"
+                            aria-label="Refresh"><i class="fas fa-sync-alt"></i></button>
+                        <div class="header-wallet-row">
+                            <span>Main Wallet :</span>
+                            <span class="header-wallet-amount" id="mainWalletAmount">89.41</span>
+                        </div>
+                        <div class="header-wallet-row">
+                            <i class="fas fa-info-circle header-wallet-info"
+                                title="Used for placing bets. Transfer from Main Wallet to play."></i>
+                            <span>Game Wallet :</span>
+                            <span class="header-wallet-amount white" id="gameWalletAmount">0.00</span>
+                        </div>
+                    </div>
+                    <a href="account-details.html#financeSection" class="btn-deposit-header"><i
+                            class="fas fa-dollar-sign"></i> Deposit</a>
+                </div>
+                <button onclick="openAuthModal('loginModal')" class="btn btn-ghost">Log In</button>
+                <button onclick="openAuthModal('registerModal')" class="btn btn-primary">Join Now</button>
+
+                <button class="apk-download-btn desktop-only" onclick="downloadAPK()" aria-label="Download APK"
+                    title="Download APK">
+                    <i class="fab fa-android"></i>
+                </button>
+
+                <button type="button" class="btn btn-ghost theme-toggle-btn desktop-only" data-theme-toggle aria-label="Toggle theme" title="Switch to light mode">
+                    <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
+                </button>
+
+                <!-- Language Pill -->
+                <div class="language-selector">
+                    <img src="images/flags/en.svg" alt="EN" class="flag-icon">
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <button class="mobile-info-btn" aria-label="Information">
+                    <i class="fas fa-info"></i>
+                </button>
+
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png"
+                    alt="RioCity Logo" class="logo-img">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">RIOCITY</span>
+            </a>
+            <button class="mobile-menu-close" aria-label="Close mobile menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <div id="mobileUserSection"></div>
+            <button type="button" class="mobile-nav-link mobile-theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
+            </button>
+            <!-- Bonus Items -->
+            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('spinWheelModal')">
+                <div class="mobile-bonus-icon">
+                    <img src="https://pksoftcdn.azureedge.net/media/spin wheel button-202501021417106102.svg"
+                        alt="Spin Wheel">
+                </div>
+                <span>Spin Wheel Bonus</span>
+            </button>
+            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('voucherScratchModal')">
+                <div class="mobile-bonus-icon">
+                    <img src="https://pksoftcdn.azureedge.net/media/voucher-scratch-202510101415238782.png"
+                        alt="Voucher Scratch">
+                </div>
+                <span>Voucher Scratch Bonus</span>
+            </button>
+            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('prizeBoxModal')">
+                <div class="mobile-bonus-icon">
+                    <img src="https://pksoftcdn.azureedge.net/media/prize-box-202510101415447518.png" alt="Prize Box">
+                </div>
+                <span>Prize Box Bonus</span>
+            </button>
+            <div class="mobile-nav-divider"></div>
+            <a href="live-casino.html" class="mobile-nav-link">
+                <i class="fas fa-play-circle"></i>
+                <span>Live Casino</span>
+            </a>
+            <a href="sports.html" class="mobile-nav-link">
+                <i class="fas fa-futbol"></i>
+                <span>Sports</span>
+            </a>
+            <a href="slots.html" class="mobile-nav-link">
+                <i class="fas fa-dice"></i>
+                <span>Slots</span>
+            </a>
+                <i class="fas fa-crow"></i>
+                <span>Cockfight</span>
+            </a>
+            <a href="promotions.html" class="mobile-nav-link">
+                <i class="fas fa-gift"></i>
+                <span>Promotions</span>
+            </a>
+            <a href="vip.html" class="mobile-nav-link">
+                <i class="fas fa-crown"></i>
+                <span>VIP</span>
+            </a>
+            <a href="#" class="mobile-nav-link" onclick="downloadAPK()">
+                <i class="fab fa-android"></i>
+                <span>Download App</span>
+            </a>
+            <div class="mobile-nav-divider"></div>
+            <a href="games.html" class="mobile-nav-link">
+                <i class="fas fa-clock"></i>
+                <span>Recent Games</span>
+            </a>
+            <a href="poker.html" class="mobile-nav-link">
+                <i class="fas fa-dice"></i>
+                <span>Poker</span>
+            </a>
+                <i class="fas fa-ticket-alt"></i>
+            </a>
+            <a href="fish-hunt.html" class="mobile-nav-link">
+                <i class="fas fa-fish"></i>
+                <span>Fish Hunt</span>
+            </a>
+            <div class="mobile-nav-divider"></div>
+            <button class="mobile-nav-link btn-login">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Log In</span>
+            </button>
+            <button class="mobile-nav-link btn-signup">
+                <i class="fas fa-user-plus"></i>
+                <span>Join Now</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Quick Access Dashboard -->
+    <div class="quick-dashboard" id="quickDashboard">
+        <!-- Bonus Toggle Buttons -->
+        <div class="bonus-toggles-container">
+            <button class="bonus-toggle-btn" onclick="openBonusModal('spinWheelModal')" aria-label="Spin Wheel Bonus">
+                <i class="fas fa-dharmachakra"></i>
+            </button>
+            <button class="bonus-toggle-btn" onclick="openBonusModal('voucherScratchModal')"
+                aria-label="Voucher Scratch Bonus">
+                <i class="fas fa-ticket-alt"></i>
+            </button>
+            <button class="bonus-toggle-btn" onclick="openBonusModal('prizeBoxModal')" aria-label="Prize Box Bonus">
+                <i class="fas fa-gift"></i>
+            </button>
+        </div>
+
+        <div class="dashboard-panel">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <img src="images/home/tan-xuan-triton-poker.webp" alt="User Avatar">
+                    </div>
+                    <div class="user-details">
+                        <h4>Welcome back!</h4>
+                        <p>Player ID: RIOCITY2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Balance</span>
+                        <span class="stat-value">MYR 1,250.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Today's Win</span>
+                        <span class="stat-value text-positive">+MYR 450.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Active Bets</span>
+                        <span class="stat-value">3</span>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Deposit</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-minus"></i>
+                        <span>Withdraw</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Favorites</span>
+                    </button>
+                </div>
+
+                <div class="recent-games">
+                    <h5>Recent Games</h5>
+                    <div class="game-history">
+                        <div class="history-item">
+                            <div class="game-icon">
+                                <i class="fas fa-dice"></i>
+                            </div>
+                            <div class="game-info">
+                                <span class="game-name">Fortune Tiger</span>
+                                <span class="game-time">2 hours ago</span>
+                            </div>
+                            <span class="game-result positive">+MYR 125</span>
+                        </div>
+                        <div class="history-item">
+                            <div class="game-icon">
+                                <i class="fas fa-spade"></i>
+                            </div>
+                            <div class="game-info">
+                                <span class="game-name">Baccarat</span>
+                                <span class="game-time">5 hours ago</span>
+                            </div>
+                            <span class="game-result negative">-MYR 50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+    <main class="info-center-pro">
+        <!-- Hero Section -->
+        <section class="info-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">How can we help?</h1>
+                    <p class="hero-subtitle">Search for answers or browse topics below</p>
+                    <div class="search-box-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="help-search-input"
+                            placeholder="Search for help (e.g. 'Deposit', 'Bonus')...">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-bg-glow"></div>
+        </section>
+
+        <!-- Navigation & Content -->
+        <section class="info-body">
+            <div class="container info-container-centered">
+                <!-- Top Navigation Tabs -->
+                <nav class="info-top-nav" id="infoTopNav">
+                    <button class="info-nav-pill active" data-tab="rules">
+                        <i class="fas fa-book"></i>
+                        <span>Rules</span>
+                    </button>
+                    <button class="info-nav-pill" data-tab="faq">
+                        <i class="fas fa-question-circle"></i>
+                        <span>FAQ</span>
+                    </button>
+                    <button class="info-nav-pill" data-tab="video">
+                        <i class="fas fa-play"></i>
+                        <span>Video Guides</span>
+                    </button>
+                    <button class="info-nav-pill" data-tab="security">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security & Privacy</span>
+                    </button>
+                </nav>
+
+                <!-- Sub Navigation (Pills) - default Rules sub-tabs (JS may replace when initInfoCenter runs) -->
+                <div class="info-sub-nav-wrapper">
+                    <div class="info-tabs-sub" id="infoSubTabs">
+                        <button type="button" class="tab-pill active" onclick="typeof switchInfoSubTab==='function'&&switchInfoSubTab(this,'General')">General</button>
+                        <button type="button" class="tab-pill" onclick="typeof switchInfoSubTab==='function'&&switchInfoSubTab(this,'Account')">Account</button>
+                        <button type="button" class="tab-pill" onclick="typeof switchInfoSubTab==='function'&&switchInfoSubTab(this,'Deposits')">Deposits</button>
+                        <button type="button" class="tab-pill" onclick="typeof switchInfoSubTab==='function'&&switchInfoSubTab(this,'Withdrawals')">Withdrawals</button>
+                        <button type="button" class="tab-pill" onclick="typeof switchInfoSubTab==='function'&&switchInfoSubTab(this,'Betting')">Betting</button>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="info-content-card animate-fade-up">
+                    <div class="info-header-row">
+                        <h2 id="infoMainTitle">Rules & Regulations</h2>
+                        <span class="info-category-badge" id="infoMainSubtitle">General</span>
+                    </div>
+
+                    <div class="info-content-body" id="infoContentArea">
+                        <!-- Default content (replaced by JS when initInfoCenter runs) -->
+                        <div class="info-text-block">
+                            <p>Welcome to RioCity. By accessing or using our platform, you agree to be bound by the following terms and conditions. These rules are in place to ensure a fair and secure gaming environment for all our members.</p>
+                            <ul class="info-clean-list">
+                                <li>You must be at least 18 years of age or the legal age of majority in your jurisdiction.</li>
+                                <li>Only one account per person, household, IP address, and device is permitted.</li>
+                                <li>We reserve the right to request identity verification documents (KYC) at any time.</li>
+                                <li>RioCity reserves the right to amend these terms without prior notice.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Live Chat Button -->
+    <div class="live-chat-wrapper" id="liveChatWrapper">
+        <button class="live-chat-btn" onclick="toggleChatIcons()" aria-label="Open live chat">
+            <div class="live-chat-icon-close" onclick="closeLiveChat(event)" aria-label="Close live chat">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="live-chat-btn-content">
+                <i class="fas fa-headset"></i>
+            </div>
+        </button>
+
+        <!-- Floating Chat Icons -->
+        <div class="chat-floating-icons" id="chatFloatingIcons">
+            <div class="chat-floating-icon chat-icon" onclick="openChatSupport(event)" title="Live Chat">
+                <button class="chat-icon-close" onclick="closeChatIcon('chat', event)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://pksoftcdn.azureedge.net/media/chat-202502210949454324.png" alt="Live Chat">
+            </div>
+            <div class="chat-floating-icon facebook-icon" onclick="openFacebookSupport(event)" title="Facebook">
+                <button class="chat-icon-close" onclick="closeChatIcon('facebook', event)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://riocity-cdn.azureedge.net/riocity/facebook-202311071538524131-202312131542408405.png"
+                    alt="Facebook">
+            </div>
+            <div class="chat-floating-icon instagram-icon" onclick="openInstagramSupport(event)" title="Instagram">
+                <button class="chat-icon-close" onclick="closeChatIcon('instagram', event)">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="https://pksoftcdn.azureedge.net/media/icons8-instagram-202502191650004796-202503110934428578.svg"
+                    alt="Instagram">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RIOCITY"
+                            class="footer-logo-img">
+                    </a>
+                    <p class="footer-about">
+                        Experience the pinnacle of online gaming. RioCity offers a secure, fair, and exhilarating
+                        platform for slots, live casino, and sports betting.
+                    </p>
+                </div>
+
+                <!-- Column 2: Platform -->
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="slots.html">Slots Games</a></li>
+                        <li><a href="live-casino.html">Live Casino</a></li>
+                        <li><a href="sports.html">Sports Betting</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="vip.html">VIP Club</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Information -->
+                <div class="footer-col">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="info-center.html">Information Center</a></li>
+                        <li><a href="info-center.html?tab=rules">Rules & Regulations</a></li>
+                        <li><a href="info-center.html?tab=faq">FAQ</a></li>
+                        <li><a href="info-center.html?tab=video">Video Guide</a></li>
+                        <li><a href="info-center.html?tab=security">Security & Privacy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Payment -->
+                <div class="footer-col">
+                    <span class="footer-section-title">Payment Methods</span>
+                    <div class="footer-logos-row">
+                        <!-- Placeholder images -->
+                        <div class="payment-method-placeholder">Generic Pay</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 RioCity. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="auth-modal-overlay" id="loginModal">
+        <div class="auth-modal-content">
+            <button class="auth-modal-close" onclick="closeAuthModal('loginModal')" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="auth-modal-form">
+                <div class="auth-card-header">
+                    <h2>Log In</h2>
+                    <p>Enter your credentials to access your account</p>
+                </div>
+
+                <form id="loginForm" class="auth-form" autocomplete="off">
+                    <!-- Username -->
+                    <div class="auth-form-group">
+                        <div class="auth-input-container">
+                            <i class="fas fa-user auth-input-icon"></i>
+                            <input type="text" id="username" class="auth-input" placeholder=" " value="demo">
+                            <label class="auth-label" for="username">Username</label>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="auth-form-group">
+                        <div class="auth-input-container">
+                            <i class="fas fa-lock auth-input-icon"></i>
+                            <input type="password" id="password" class="auth-input" placeholder=" " value="demo123">
+                            <label class="auth-label" for="password">Password</label>
+                            <button type="button" class="auth-toggle-pass" onclick="togglePassword('password', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="auth-form-footer">
+                        <label class="auth-remember">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="auth-forgot" onclick="handleForgot(); return false;">Forgot password?</a>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="auth-submit-btn">
+                        <span>Sign In</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div class="auth-switch-text">
+                        Don't have an account? <a
+                            onclick="closeAuthModal('loginModal'); openAuthModal('registerModal');">Join RioCity Now</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="auth-modal-overlay" id="registerModal">
+        <div class="auth-modal-content">
+            <button class="auth-modal-close" onclick="closeAuthModal('registerModal')" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="auth-modal-form register-mode">
+                <div class="auth-card-header">
+                    <h2>Create Account</h2>
+                    <p>Fill in the details below to join the elite</p>
+                </div>
+
+                <form id="registerForm" class="auth-form" autocomplete="off">
+                    <div class="register-grid">
+                        <div class="auth-form-group">
+                            <div class="auth-input-container">
+                                <i class="fas fa-user auth-input-icon"></i>
+                                <input type="text" name="username" class="auth-input" placeholder=" " required>
+                                <label class="auth-label">Username</label>
+                            </div>
+                        </div>
+                        <div class="auth-form-group">
+                            <div class="auth-input-container">
+                                <i class="fas fa-envelope auth-input-icon"></i>
+                                <input type="email" name="email" class="auth-input" placeholder=" " required>
+                                <label class="auth-label">Email</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="auth-form-group">
+                        <label class="auth-select-label">Mobile Number</label>
+                        <div class="phone-input-group">
+                            <select class="auth-input phone-country-select" required>
+                                <option value="+60">🇲🇾 +60</option>
+                                <option value="+65">🇸🇬 +65</option>
+                                <option value="+62">🇮🇩 +62</option>
+                            </select>
+                            <input type="tel" name="phone" class="auth-input phone-number-input"
+                                placeholder="Your number" required>
+                        </div>
+                    </div>
+
+                    <div class="register-grid">
+                        <div class="auth-form-group">
+                            <div class="auth-input-container">
+                                <i class="fas fa-lock auth-input-icon"></i>
+                                <input type="password" id="regPassword" class="auth-input" placeholder=" " required
+                                    oninput="checkPasswordStrength(this.value)">
+                                <label class="auth-label">Password</label>
+                                <button type="button" class="auth-toggle-pass"
+                                    onclick="togglePassword('regPassword', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="reg-strength">
+                                <div class="strength-bar-bg">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <span class="strength-text" id="strengthText">Min. 8 characters</span>
+                            </div>
+                        </div>
+                        <div class="auth-form-group">
+                            <div class="auth-input-container">
+                                <i class="fas fa-shield-alt auth-input-icon"></i>
+                                <input type="password" id="confirmPassword" class="auth-input" placeholder=" " required>
+                                <label class="auth-label">Confirm</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">
+                        <span>Join Now</span>
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+
+                    <div class="auth-switch-text">
+                        Already a member? <a onclick="closeAuthModal('registerModal'); openAuthModal('loginModal');">Log
+                            In Here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="forgot-modal-overlay" id="forgotModal">
+        <div class="forgot-modal-content">
+            <div class="forgot-modal-icon">
+                <i class="fas fa-exclamation"></i>
+            </div>
+            <p class="forgot-modal-text">
+                To reset your password, please contact our Customer Support. Would you like to proceed?
+            </p>
+            <div class="forgot-modal-buttons">
+                <button class="forgot-btn forgot-btn-continue" onclick="continueForgot()">Continue</button>
+                <button class="forgot-btn forgot-btn-cancel" onclick="closeForgotModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/auth-modals.js"></script>
+    <script src="js/live-chat.js"></script>
+    <script>
+        // Auto-initialize info center so content shows and spinner is replaced (reliable on refresh)
+        function runInitInfoCenter() {
+            if (typeof initInfoCenter === 'function') {
+                initInfoCenter();
+            }
+        }
+        function tryInit() {
+            runInitInfoCenter();
+            var area = document.getElementById('infoContentArea');
+            if (area && area.querySelector && area.querySelector('.loading-spinner')) {
+                setTimeout(runInitInfoCenter, 150);
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', tryInit);
+        } else {
+            tryInit();
+        }
+    </script>
+</body>
+
+</html>

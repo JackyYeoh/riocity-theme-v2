@@ -1,0 +1,563 @@
+/* ============================================
+   INFORMATION CENTER - PREMIUM REDESIGN
+   ============================================ */
+
+/* Root Variables */
+:root {
+    --info-bg-dark: #0f1219;
+    --info-bg-page: radial-gradient(circle at top center, #1f2937 0%, #0f1219 100%);
+    --info-bg-card: #151922;
+    --info-accent: #ffd700;
+    /* Richer Gold */
+    --info-text-main: #ffffff;
+    --info-text-muted: #9ca3af;
+    --info-border-color: rgba(255, 255, 255, 0.08);
+    --info-glass-bg: rgba(255, 255, 255, 0.03);
+    --info-glass-border: rgba(255, 255, 255, 0.06);
+    --info-shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --info-glow: 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+html[data-theme='light'] {
+    --info-bg-dark: var(--color-bg-primary);
+    --info-bg-page: radial-gradient(circle at top center, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    --info-bg-card: var(--color-bg-card);
+    --info-text-main: var(--color-text-primary);
+    --info-text-muted: var(--color-text-muted);
+    --info-border-color: var(--color-border-soft);
+    --info-glass-bg: rgba(255, 255, 255, 0.85);
+    --info-glass-border: var(--color-border-soft);
+    --info-shadow-lg: var(--shadow-xl);
+}
+
+/* Page Background */
+body {
+    background: var(--info-bg-page) no-repeat fixed;
+    background-color: var(--info-bg-dark);
+    color: var(--info-text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html[data-theme='light'] .hero-title {
+    background: linear-gradient(to right, var(--color-text-primary), var(--color-text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+html[data-theme='light'] .help-search-input {
+    background: var(--color-bg-card);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.info-hero {
+    position: relative;
+    padding: 120px 20px 140px;
+    /* Adjusted bottom padding for overlap */
+    background: transparent;
+    overflow: hidden;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Background Glow Effect */
+.hero-bg-glow {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #fff, #9ca3af);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--info-text-muted);
+    margin-bottom: 32px;
+    font-weight: 400;
+}
+
+/* Glass Search Box */
+.search-box-wrapper {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.help-search-input {
+    width: 100%;
+    padding: 20px 24px 20px 60px;
+    border-radius: 20px;
+    border: 1px solid var(--info-glass-border);
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 1.1rem;
+    backdrop-filter: blur(16px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.help-search-input:focus {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 215, 0, 0.5);
+    /* Gold tint on focus */
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--info-text-muted);
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+/* ============================================
+   BODY & NAVIGATION
+   ============================================ */
+.info-body {
+    position: relative;
+    z-index: 10;
+    margin-top: -80px;
+    /* Adjusted Overlap */
+    padding-bottom: 60px;
+}
+
+.info-container-centered {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Overflow: allow filter/sub-nav to scroll instead of clipping (override global .container) */
+body .info-body .container.info-container-centered {
+    overflow-x: visible !important;
+}
+
+/* Ensure no ancestor clips the sub-nav on mobile (info-center page only) */
+@media (max-width: 768px) {
+    .info-center-pro,
+    .info-center-pro .info-body {
+        overflow-x: visible !important;
+    }
+}
+
+/* Top Navigation Pills */
+.info-top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.info-nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: rgba(21, 25, 34, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--info-border-color);
+    border-radius: 100px;
+    /* Full pill shape */
+    color: var(--info-text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-nav-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.info-nav-pill.active {
+    background: var(--info-accent);
+    color: #000;
+    border-color: var(--info-accent);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    font-weight: 700;
+}
+
+.info-nav-pill i {
+    font-size: 1.1rem;
+}
+
+/* Sub Navigation (Text Tabs) */
+.info-sub-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    min-height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info-tabs-sub {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+    min-width: 0;
+}
+
+.tab-pill {
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-pill:hover {
+    color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.tab-pill.active {
+    background: rgba(255, 255, 255, 0.08);
+    /* Light glass */
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   CONTENT CARD
+   ============================================ */
+.info-content-card {
+    background: var(--info-bg-card);
+    border: 1px solid var(--info-border-color);
+    border-radius: 24px;
+    padding: 0;
+    /* Remove default padding to control inner layout */
+    box-shadow: var(--info-shadow-lg);
+    overflow: hidden;
+    position: relative;
+    min-height: 400px;
+}
+
+/* Card Header */
+.info-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px 20px;
+    border-bottom: 1px solid var(--info-border-color);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent);
+}
+
+.info-header-row h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.info-category-badge {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--info-accent);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Card Body */
+.info-content-body {
+    padding: 32px;
+    color: #d1d5db;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.info-text-block p {
+    margin-bottom: 24px;
+    color: #9ca3af;
+}
+
+/* Clean List Styling */
+.info-clean-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-clean-list li {
+    position: relative;
+    padding-left: 32px;
+    color: #e5e7eb;
+}
+
+.info-clean-list li::before {
+    content: '\f058';
+    /* FontAwesome Check Circle */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--info-accent);
+    font-size: 1rem;
+}
+
+/* Accordion (FAQ) items */
+.info-accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-accordion-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--info-border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.info-accordion-item:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.info-accordion-header {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.info-accordion-header i {
+    color: var(--info-text-muted);
+    transition: transform 0.3s ease;
+}
+
+.info-accordion-content {
+    display: none;
+    /* Hidden by default */
+    padding: 0 24px 24px;
+    color: var(--info-text-muted);
+    font-size: 1rem;
+    border-top: 1px solid var(--info-border-color);
+    padding-top: 20px;
+    margin-top: 0;
+}
+
+/* Active State for Accordion (Handled via JS class toggle typically) */
+.info-accordion-item.active .info-accordion-header i {
+    transform: rotate(180deg);
+    color: var(--info-accent);
+}
+
+.info-accordion-item.active .info-accordion-content {
+    display: block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Tighter left padding to remove gap; keep safe-area on right for balance */
+    .info-body .info-container-centered {
+        padding-left: max(12px, env(safe-area-inset-left)) !important;
+        padding-right: max(20px, env(safe-area-inset-right)) !important;
+    }
+
+    .info-hero {
+        padding: 100px 20px 40px;
+        /* Reduced padding */
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        /* Smaller title */
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    .help-search-input {
+        padding: 16px 20px 16px 50px;
+        font-size: 1rem;
+    }
+
+    .search-icon {
+        left: 20px;
+        font-size: 1rem;
+    }
+
+    /* Top nav - scroll instead of overflow clipping */
+    .info-top-nav {
+        gap: 8px;
+        margin-bottom: 16px;
+        width: 100%;
+        min-width: 0;
+        flex-wrap: nowrap;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        padding: 0 12px 10px 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        box-sizing: border-box;
+    }
+
+    .info-top-nav::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .info-nav-pill {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Sub Navigation - horizontal scroll only; prevent any parent from clipping (overflow fix) */
+    .info-sub-nav-wrapper {
+        margin-bottom: 16px;
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        justify-content: flex-start;
+        align-items: center;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 12px 8px 8px;
+        scrollbar-width: none;
+        min-height: 44px;
+        box-sizing: border-box;
+    }
+
+    .info-sub-nav-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Padding INSIDE scrollable row so first/last pills (ACCOUNT, WITHDRAWAL) are never cut off */
+    .info-sub-nav-wrapper .info-tabs-sub {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        min-width: min-content;
+        padding-left: max(8px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        gap: 8px;
+    }
+
+    .tab-pill {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Content Card */
+    .info-body {
+        margin-top: -20px;
+        /* Less overlap */
+        padding-bottom: 40px;
+    }
+
+    .info-content-card {
+        border-radius: 16px;
+        min-height: 300px;
+    }
+
+    .info-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 24px 20px;
+    }
+
+    .info-header-row h2 {
+        font-size: 1.5rem;
+    }
+
+    .info-category-badge {
+        align-self: flex-start;
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+
+    .info-content-body {
+        padding: 20px;
+        font-size: 0.95rem;
+    }
+
+    /* Accordion adjustments */
+    .info-accordion-header {
+        padding: 16px 20px;
+        font-size: 1rem;
+    }
+
+    /* ... existing 768px styles ... */
+}
+
+/* Footer: use global styles from styles.css for consistency across all pages */
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .info-content-card {
+        border-radius: 12px;
+    }
+}

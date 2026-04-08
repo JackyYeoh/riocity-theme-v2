@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - RioCity Casino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/auth-pages.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div class="auth-modal-overlay" id="loginModal">
+        <div class="auth-modal-content">
+            <!-- Close Button -->
+            <button class="auth-modal-close" onclick="closeAuthModal('loginModal')" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Left Side: Branding -->
+            <div class="auth-modal-brand">
+                <div class="auth-brand-top">
+                    <img src="images/GM88.png" alt="RioCity" class="auth-brand-logo">
+                    <span class="auth-brand-tag"><i class="fa-solid fa-shield"></i> Trusted Platform</span>
+                    <h3 class="auth-brand-title">Welcome back to RioCity</h3>
+                    <p class="auth-brand-copy">Access your account, manage your wallet, and jump right back into your favorite games.</p>
+                </div>
+                <div class="auth-brand-bottom">
+                    <ul class="auth-brand-points">
+                        <li><i class="fa-solid fa-check"></i> Fast deposits and withdrawals</li>
+                        <li><i class="fa-solid fa-check"></i> Safe and encrypted login</li>
+                        <li><i class="fa-solid fa-check"></i> 24/7 dedicated support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side: Login Form -->
+            <div class="auth-modal-form">
+                <div class="auth-card-header">
+                    <span class="auth-chip"><i class="fa-solid fa-right-to-bracket"></i> Member Access</span>
+                    <h2>Log In</h2>
+                    <p>Enter your credentials to continue your RioCity journey.</p>
+                </div>
+
+                <form id="loginForm" class="auth-form" autocomplete="off">
+                    <!-- Username -->
+                    <div class="auth-form-group">
+                        <label class="auth-static-label">Username</label>
+                        <div class="auth-input-container">
+                            <input type="text" id="username" class="auth-input-static" placeholder="Enter your username" required>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="auth-form-group">
+                        <label class="auth-static-label">Password</label>
+                        <div class="auth-input-container">
+                            <input type="password" id="password" class="auth-input-static" placeholder="Enter your password" required>
+                            <button type="button" class="auth-toggle-pass" onclick="togglePassword('password', this)">
+                                <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="auth-form-footer">
+                        <label class="auth-remember">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                            </label>
+                        <a href="#" class="auth-forgot" onclick="handleForgot(); return false;">Forgot password?</a>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="auth-submit-btn">
+                        <span>Sign In</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div class="auth-switch-text">
+                        Don't have an account? <a onclick="switchToRegister()">Join RioCity Now</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="forgot-modal-overlay" id="forgotModal">
+        <div class="forgot-modal-content">
+            <div class="forgot-modal-icon">
+                <i class="fas fa-exclamation"></i>
+            </div>
+            <p class="forgot-modal-text">
+                To reset your password, please contact our Customer Support. Would you like to proceed?
+            </p>
+            <div class="forgot-modal-buttons">
+                <button class="forgot-btn forgot-btn-continue" onclick="continueForgot()">Continue</button>
+                <button class="forgot-btn forgot-btn-cancel" onclick="closeForgotModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Sidebar Icons -->
+    <div class="floating-sidebar" id="floatingSidebar">
+        <div class="floating-icon spin-wheel-icon" title="Spin Wheel" data-icon-id="spin-wheel">
+            <button class="floating-icon-close" onclick="closeFloatingIcon('spin-wheel', event)" aria-label="Close Spin Wheel">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="floating-icon-content" onclick="openBonusModal('spinWheelModal')">
+                <img src="https://pksoftcdn.azureedge.net/media/spin wheel button-202501021417106102.svg" alt="Spin Wheel">
+            </div>
+        </div>
+        <div class="floating-icon voucher-scratch-icon" title="Voucher Scratch" data-icon-id="voucher-scratch">
+            <button class="floating-icon-close" onclick="closeFloatingIcon('voucher-scratch', event)" aria-label="Close Voucher Scratch">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="floating-icon-content" onclick="openBonusModal('voucherScratchModal')">
+                <img src="https://pksoftcdn.azureedge.net/media/voucher-scratch-202510101415238782.png" alt="Voucher Scratch">
+            </div>
+        </div>
+        <div class="floating-icon prize-box-icon" title="Prize Box" data-icon-id="prize-box">
+            <button class="floating-icon-close" onclick="closeFloatingIcon('prize-box', event)" aria-label="Close Prize Box">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="floating-icon-content" onclick="openBonusModal('prizeBoxModal')">
+                <img src="https://pksoftcdn.azureedge.net/media/prize-box-202510101415447518.png" alt="Prize Box">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AUTH_STORAGE_KEY = 'riocity_auth_state';
+        const LEGACY_LOGIN_KEY = 'isLoggedIn';
+        const LEGACY_USER_KEY = 'username';
+
+        function getSafeReturnTo() {
+            const params = new URLSearchParams(window.location.search);
+            const returnTo = params.get('returnTo');
+            if (!returnTo) return 'index.html';
+            if (returnTo.startsWith('http://') || returnTo.startsWith('https://') || returnTo.startsWith('//')) {
+                return 'index.html';
+            }
+            return returnTo;
+        }
+
+        function saveMockAuthState(username) {
+            const normalizedName = (username || 'Player').trim() || 'Player';
+            const state = {
+                isAuthenticated: true,
+                user: {
+                    id: 'mock-user',
+                    username: normalizedName,
+                    displayName: normalizedName
+                },
+                wallet: {
+                    balance: 0
+                }
+            };
+            localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(state));
+            localStorage.setItem(LEGACY_LOGIN_KEY, 'true');
+            localStorage.setItem(LEGACY_USER_KEY, normalizedName);
+        }
+
+        function isAlreadyAuthenticated() {
+            const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+            if (raw) {
+                try {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && parsed.isAuthenticated) return true;
+                } catch (error) {
+                    // ignore malformed localStorage and continue to legacy check
+                }
+            }
+            return localStorage.getItem(LEGACY_LOGIN_KEY) === 'true';
+        }
+
+        // Show modal on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (isAlreadyAuthenticated()) {
+                window.location.href = getSafeReturnTo();
+                return;
+            }
+            document.body.classList.add('modal-open');
+            document.getElementById('loginModal').classList.add('active');
+        });
+
+        // Close modal
+        function closeAuthModal(modalId) {
+            const modal = document.getElementById(modalId);
+            document.body.classList.remove('modal-open');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                window.location.href = getSafeReturnTo();
+            }, 300);
+        }
+
+        // Close on overlay click
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAuthModal('loginModal');
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAuthModal('loginModal');
+            }
+        });
+
+        // Switch to register
+        function switchToRegister() {
+            window.location.href = `register.html?returnTo=${encodeURIComponent(getSafeReturnTo())}`;
+        }
+
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        function handleForgot() {
+            document.getElementById('forgotModal').classList.add('active');
+        }
+
+        function closeForgotModal() {
+            document.getElementById('forgotModal').classList.remove('active');
+        }
+
+        function continueForgot() {
+            // Redirect to customer support or open support chat
+            window.open('https://your-support-url.com', '_blank');
+            closeForgotModal();
+        }
+
+        // Close forgot modal on overlay click
+        document.getElementById('forgotModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForgotModal();
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.auth-submit-btn');
+            const usernameInput = document.getElementById('username');
+            const username = usernameInput && usernameInput.value ? usernameInput.value : 'Player';
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                saveMockAuthState(username);
+                window.location.href = getSafeReturnTo();
+            }, 1500);
+        });
+    </script>
+    <!-- Live Chat -->
+    <div class="live-chat-wrapper" id="liveChatWrapper">
+        <button class="live-chat-btn" onclick="toggleChatIcons()" aria-label="Open live chat">
+            <div class="live-chat-icon-close" onclick="closeLiveChat(event)" aria-label="Close live chat"><i
+                    class="fas fa-times"></i></div>
+            <div class="live-chat-btn-content"><i class="fas fa-headset"></i></div>
+        </button>
+        <div class="chat-floating-icons" id="chatFloatingIcons">
+            <div class="chat-floating-icon chat-icon" onclick="openChatSupport(event)" title="Live Chat">
+                <button class="chat-icon-close" onclick="closeChatIcon('chat', event)"><i
+                        class="fas fa-times"></i></button>
+                <img src="https://pksoftcdn.azureedge.net/media/chat-202502210949454324.png" alt="Live Chat">
+            </div>
+            <div class="chat-floating-icon facebook-icon" onclick="openFacebookSupport(event)" title="Facebook">
+                <button class="chat-icon-close" onclick="closeChatIcon('facebook', event)"><i
+                        class="fas fa-times"></i></button>
+                <img src="https://riocity-cdn.azureedge.net/riocity/facebook-202311071538524131-202312131542408405.png"
+                    alt="Facebook">
+            </div>
+            <div class="chat-floating-icon instagram-icon" onclick="openInstagramSupport(event)" title="Instagram">
+                <button class="chat-icon-close" onclick="closeChatIcon('instagram', event)"><i
+                        class="fas fa-times"></i></button>
+                <img src="https://pksoftcdn.azureedge.net/media/icons8-instagram-202502191650004796-202503110934428578.svg"
+                    alt="Instagram">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

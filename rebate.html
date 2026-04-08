@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebate - RioCity Casino</title>
+    <meta name="description"
+        content="A polished white-label iGaming lobby template with sports betting, live casino, slots, fishing, and reusable shared assets.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .provider-dropdown.active .dropdown-menu {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 99999 !important;
+            background: white !important;
+            .logos-slider-page {
+    min-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 columns per page */
+    grid-template-rows: repeat(3, auto); /* 3 rows per page */
+    gap: 12px 10px;
+    padding: 15px 0;
+    align-items: center;
+}
+
+@keyframes pageSlide {
+    0%, 45% { transform: translateX(0); }
+    50%, 95% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+.logos-slider-page img {
+    max-width: 85% !important;
+    height: 28px !important; /* Smaller height for 4x3 density fit */
+    object-fit: contain !important;
+    filter: brightness(0.95);
+    margin: 0 auto;
+}
+        border: 2px solid #1677FF !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+        }
+    </style>
+</head>
+
+<body class="light-theme" data-page="rebate">
+
+    <div id="site-header"></div>
+    <main class="rebate-page">
+        <div class="container page-top">
+
+        <!-- 1. Massive 3D Hero Claim Center -->
+        
+        <!-- 1. Ultra-Clean Corporate Claim Header -->
+        <div class="corporate-rebate-header">
+            <div class="header-titles">
+                <h1 class="title">Rebate</h1>
+                <p class="subtitle">Automatic daily cashback based on your VIP level.</p>
+            </div>
+            <div class="corporate-claim-card">
+                <div class="claim-stats-inline">
+                    <div class="stat-col">
+                        <span class="stat-label">Claimable Rebate</span>
+                        <span class="stat-val text-blue">PKR 0.128</span>
+                    </div>
+                    <div class="vertical-divider"></div>
+                    <div class="stat-col">
+                        <span class="stat-label">Total Lifetime Rebate</span>
+                        <span class="stat-val">PKR 0.000</span>
+                    </div>
+                    <div class="vertical-divider"></div>
+                    <div class="stat-col">
+                        <span class="stat-label">My Individual Sales</span>
+                        <span class="stat-val">PKR 163.590</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary corporate-claim-btn" onclick="this.innerHTML='<i class=\'fa-solid fa-spinner fa-spin\'></i> Claiming...'">
+                    Claim
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. App-Like Horizontal Tabs -->
+        <div class="rebate-tabs-container">
+            <button class="rebate-tab active" data-target="tab-rates">Membership Rates</button>
+            <button class="rebate-tab" data-target="tab-providers">Provider Rebates</button>
+            <button class="rebate-tab" data-target="tab-history">My History</button>
+        </div>
+
+        <!-- 3. Tab Contents -->
+        <div class="rebate-tab-contents">
+            
+            <!-- Tab 1: The Membership Grid -->
+            <div class="tab-pane active" id="tab-rates">
+                <div class="table-wrap">
+                    <table class="rebate-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>IRON</th>
+                                <th>BRONZE</th>
+                                <th>SILVER</th>
+                                <th>GOLD</th>
+                                <th>PLATINUM</th>
+                                <th>DIAMOND</th>
+                                <th>RUBY</th>
+                                <th>TITANIUM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-dice cat-icon"></i> <strong>Slots</strong></td>
+                                <td>0.40%</td>
+                                <td>0.50%</td>
+                                <td>0.60%</td>
+                                <td>0.70%</td>
+                                <td>0.80%</td>
+                                <td>0.90%</td>
+                                <td>1.00%</td>
+                                <td class="top-val">1.10%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-video cat-icon"></i> <strong>Live Casino</strong></td>
+                                <td>0.30%</td>
+                                <td>0.40%</td>
+                                <td>0.50%</td>
+                                <td>0.60%</td>
+                                <td>0.70%</td>
+                                <td>0.80%</td>
+                                <td>0.90%</td>
+                                <td class="top-val">1.00%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-futbol cat-icon"></i> <strong>Sports</strong></td>
+                                <td>0.30%</td>
+                                <td>0.40%</td>
+                                <td>0.50%</td>
+                                <td>0.60%</td>
+                                <td>0.70%</td>
+                                <td>0.80%</td>
+                                <td>0.90%</td>
+                                <td class="top-val">1.00%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-fish cat-icon"></i> <strong>Fish Hunt</strong></td>
+                                <td>0.20%</td>
+                                <td>0.25%</td>
+                                <td>0.30%</td>
+                                <td>0.35%</td>
+                                <td>0.40%</td>
+                                <td>0.45%</td>
+                                <td>0.50%</td>
+                                <td class="top-val">0.60%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 2: Provider Visual Grid -->
+            <div class="tab-pane" id="tab-providers">
+                
+                <h3 class="provider-category-title"><i class="fas fa-dice text-blue"></i> Slots</h3>
+                <div class="provider-cards-grid">
+                    <!-- Card 1 -->
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/pragmaticplay_bk.png" alt="Pragmatic" class="provider-logo">
+                        <div class="rate-badge">1.0%</div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/pgsoft.png" alt="PG Soft" class="provider-logo">
+                        <div class="rate-badge">1.0%</div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/JILI.png" alt="JILI" class="provider-logo">
+                        <div class="rate-badge">1.0%</div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/spadegaming-202412121054336747.png" alt="Spade" class="provider-logo">
+                        <div class="rate-badge">0.8%</div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/playtech-202406041113250508.png" alt="Playtech" class="provider-logo">
+                        <div class="rate-badge">0.8%</div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/netent-202410220745331179.png" alt="NetEnt" class="provider-logo">
+                        <div class="rate-badge">0.9%</div>
+                    </div>
+                </div>
+
+                <h3 class="provider-category-title mt-4"><i class="fas fa-video text-blue"></i> Live Casino</h3>
+                <div class="provider-cards-grid">
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/enlogo2-202504210819440598.png" alt="Evolution" class="provider-logo">
+                        <div class="rate-badge">0.5%</div>
+                    </div>
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/sexybaccarat (1)-202411061155483524.png" alt="Sexy Baccarat" class="provider-logo">
+                        <div class="rate-badge">0.5%</div>
+                    </div>
+                </div>
+
+                <h3 class="provider-category-title mt-4"><i class="fas fa-futbol text-blue"></i> Sports</h3>
+                <div class="provider-cards-grid">
+                    <div class="provider-rate-card">
+                        <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="Sbobet" class="provider-logo">
+                        <div class="rate-badge">0.5%</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tab 3: History (App feel) -->
+            <div class="tab-pane" id="tab-history">
+                <div class="empty-history-state">
+                    <div class="empty-icon-circle">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>No Recent Claims</h3>
+                    <p>Play your favorite games to earn automatic cashback rewards.</p>
+                </div>
+            </div>
+
+        </div>
+
+    <script>
+        // Tab switching logic for the new app structure
+        document.querySelectorAll('.rebate-tab').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active from all tabs
+                document.querySelectorAll('.rebate-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                
+                // Add active to clicked tab and its content
+                button.classList.add('active');
+                document.getElementById(button.dataset.target).classList.add('active');
+            });
+        });
+    </script>
+        </div>
+</main>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Info Links -->
+                <div class="footer-col">
+                    <h4>SITE MAPS</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Responsible Gaming</a></li>
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Condition</a></li>
+                    </ul>
+                    <!-- Branding at Bottom Left -->
+                    <div class="footer-logo-main">
+                        <img src="images/GM88.png" alt="GM88 Logo">
+                    </div>
+                </div>
+
+                <!-- Licences -->
+                <div class="footer-col">
+                    <h4 class="footer-title">LICENCE</h4>
+                    <div class="footer-license-grid">
+                        <div class="footer-license-item"><span>EGBA</span></div>
+                        <div class="footer-license-item"><span>18+</span></div>
+                        <div class="footer-license-item"><span>eCOGRA</span></div>
+                        <div class="footer-license-item"><span>MGA</span></div>
+                        <div class="footer-license-item"><span>GAMCARE</span></div>
+                        <div class="footer-license-item"><span>RGA</span></div>
+                    </div>
+                </div>
+
+                <!-- Providers Section (4x3 Side-Slider) -->
+                <div class="footer-col footer-providers-full">
+                    <h4 class="footer-title">PROVIDERS</h4>
+                    <div class="footer-slider-wrapper">
+                        <div class="logos-slider-track" style="animation: pageSlide 16s infinite cubic-bezier(0.85, 0, 0.15, 1);">
+                            <!-- Page 1 (4x3 Grid) -->
+                            <div class="logos-slider-page">
+                                <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="SBOBET">
+                                <img src="images/provider logo/pragmaticplay_bk.png" alt="PRAGMATIC">
+                                <img src="images/provider logo/enlogo2-202504210819440598.png" alt="EVOLUTION">
+                                <img src="images/provider logo/pgsoft.png" alt="PG SOFT">
+                                <img src="images/provider logo/JILI.png" alt="JILI">
+                                <img src="images/provider logo/spadegaming-202412121054336747.png" alt="SPADE">
+                                <img src="images/provider logo/sexybaccarat (1)-202411061155483524.png" alt="SEXY">
+                                <img src="images/provider logo/nextspin (3)-202508071057105641.png" alt="NEXTSPIN">
+                                <img src="images/provider logo/mega888-202504251105386724.png" alt="MEGA888">
+                                <img src="images/provider logo/pussy888-202505161346066923.png" alt="PUSSY888">
+                                <img src="images/provider logo/redtiger-202402021533126156.png" alt="RED TIGER">
+                                <img src="images/provider logo/netent-202410220745331179.png" alt="NETENT">
+                            </div>
+                            <!-- Page 2 (4x3 Grid) -->
+                            <div class="logos-slider-page">
+                                <img src="images/provider logo/allbet-202503131406399821.png" alt="ALLBET">
+                                <img src="images/provider logo/cq9-202411271059545342.png" alt="CQ9">
+                                <img src="images/provider logo/fachai-202411061132262463.png" alt="FACHAI">
+                                <img src="images/provider logo/microgaming-202503200856328105.png" alt="MICROGAMING">
+                                <img src="images/provider logo/playtech-202406041113250508.png" alt="PLAYTECH">
+                                <img src="images/provider logo/wmcasino-202503190825567381.png" alt="WMCASINO">
+                                <img src="images/provider logo/yblive-202503071029391162.png" alt="YBLIVE">
+                                <img src="images/provider logo/jdb-202411281450014263.png" alt="JDB">
+                                <img src="images/provider logo/hacksawgaming-202411121150277106.png" alt="HACKSAW">
+                                <img src="images/provider logo/play'n go-202410220759136600.png" alt="PLAYNGO">
+                                <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="SBOBET">
+                                <img src="images/provider logo/pragmaticplay_bk.png" alt="PRAGMATIC">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div class="container">
+                <p>COPYRIGHT &copy; GM88 2026. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/header.js?v=1.0.1"></script>
+    <script src="js/main.js?v=1.0.1"></script>
+</body>
+
+</html>

@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details - RioCity Casino</title>
+    <link rel="stylesheet" href="css/style.css?v=2.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="light-theme" data-page="account-details">
+    <div id="site-header"></div>
+
+    <!-- Mobile Account Navigation (visible < 1024px only) -->
+    <div class="mobile-account-nav">
+        <div class="mobile-account-nav-scroll">
+            <button class="mobile-account-tab active" onclick="showSection('profile')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+            <button class="mobile-account-tab" onclick="showSection('finance')">
+                <i class="fas fa-wallet"></i>
+                <span>Finance</span>
+            </button>
+            <button class="mobile-account-tab" onclick="showSection('history')">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </button>
+            <button class="mobile-account-tab" onclick="showSection('referral')">
+                <i class="fas fa-users"></i>
+                <span>Referral</span>
+            </button>
+            <button class="mobile-account-tab" onclick="showSection('password')">
+                <i class="fas fa-lock"></i>
+                <span>Security</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="account-page">
+        <div class="account-container">
+
+            <!-- Sidebar -->
+            <aside class="account-sidebar">
+                <div class="profile-summary-card">
+                    <div class="profile-avatar-large">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="profile-summary-name-row">
+                        <h3 class="profile-summary-name">vin77</h3>
+                        <span class="profile-summary-id">ID: 880123456721</span>
+                    </div>
+                    <div class="profile-summary-info">
+                        <div class="profile-summary-rank-row">
+                            <span class="profile-rank-label">Normal</span>
+                            <span class="profile-rank-next">Target: <span class="highlight-bronze">Bronze</span></span>
+                        </div>
+                        <div class="profile-progress-bar">
+                            <div class="profile-progress-fill" style="width: 10%;"></div>
+                        </div>
+                        <span class="profile-progress-percent">Progress to next tier: 10%</span>
+                    </div>
+                </div>
+
+                <nav class="account-nav">
+                    <a href="javascript:void(0)" class="account-nav-item active" onclick="showSection('profile')">
+                        <i class="fas fa-user-circle"></i>
+                        <span>My Profile</span>
+                        <i class="fas fa-chevron-right nav-arrow"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="account-nav-item" onclick="showSection('finance')">
+                        <i class="fas fa-wallet"></i>
+                        <span>Deposit / Withdrawal</span>
+                        <i class="fas fa-chevron-right nav-arrow"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="account-nav-item" onclick="showSection('history')">
+                        <i class="fas fa-history"></i>
+                        <span>History Record</span>
+                        <i class="fas fa-chevron-right nav-arrow"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="account-nav-item" onclick="showSection('referral')">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Referral / Downlines</span>
+                        <i class="fas fa-chevron-right nav-arrow"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="account-nav-item" onclick="showSection('language')">
+                        <i class="fas fa-globe-asia"></i>
+                        <span>Change Language</span>
+                        <i class="fas fa-chevron-right nav-arrow"></i>
+                    </a>
+                    <a href="javascript:void(0)" class="account-nav-item" onclick="showSection('password')">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                        <i class="fas fa-chevron-right nav-arrow"></i>
+                    </a>
+                </nav>
+
+                <div class="secure-logout-wrapper">
+                    <button class="btn-logout-sidebar" onclick="logout()">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>SECURE LOGOUT</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <section class="account-main-content">
+
+                <!-- PROFILE CONTENT -->
+                <div id="profileSection">
+                    <div class="account-header-box">
+                        <div class="account-title-group">
+                            <h1 id="mainTitle">Personal Profile</h1>
+                            <p id="mainSubtitle">Verify and manage your account credentials</p>
+                        </div>
+                        <div class="tab-pill-group" id="profileTabs">
+                            <button type="button" class="tab-pill active" data-profile-tab="overview"
+                                onclick="switchTab(this, 'overview')">
+                                <span class="tab-text-desktop">Overview</span>
+                                <span class="tab-text-mobile">Overview</span>
+                            </button>
+                            <button type="button" class="tab-pill" data-profile-tab="personal"
+                                onclick="switchTab(this, 'personal')">
+                                <span class="tab-text-desktop">Personal</span>
+                                <span class="tab-text-mobile">Personal</span>
+                            </button>
+                            <button type="button" class="tab-pill" data-profile-tab="address"
+                                onclick="switchTab(this, 'address')">
+                                <span class="tab-text-desktop">Residential Address</span>
+                                <span class="tab-text-mobile">Address</span>
+                            </button>
+                        </div>
+                        <div class="finance-nav-toggles" id="financeTabs" style="display: none;">
+                            <button class="finance-toggle active" onclick="switchFinanceView('deposit')">
+                                <i class="fas fa-wallet"></i>
+                                <span>Deposit</span>
+                            </button>
+                            <button class="finance-toggle" onclick="switchFinanceView('withdrawal')">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <span>Withdrawal</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Overview (Basic Information) -->
+                    <div class="form-section-card profile-overview-card" id="profileOverview">
+                        <h2 class="profile-overview-title">Basic Information</h2>
+                        <dl class="profile-kv-list">
+                            <div class="profile-kv-row">
+                                <dt class="profile-kv-label">Account</dt>
+                                <dd class="profile-kv-value"><span id="overviewAccountName">vin77</span></dd>
+                            </div>
+                            <div class="profile-kv-row profile-kv-row-referral">
+                                <dt class="profile-kv-label">Referral link</dt>
+                                <dd class="profile-kv-value profile-kv-value-with-action">
+                                    <span class="profile-kv-url"
+                                        title="https://staging.riocity9.com/e...">https://staging.riocity9.com/e...</span>
+                                    <button type="button" class="btn-copy-referral btn-copy-referral-overview"
+                                        onclick="copyToClipboard('https://staging.riocity9.com/e...', 'Referral Link')"
+                                        aria-label="Copy referral link">
+                                        <i class="fas fa-copy"></i><span class="btn-copy-label">Copy</span>
+                                    </button>
+                                </dd>
+                            </div>
+                            <div class="profile-kv-row">
+                                <dt class="profile-kv-label">E-mail</dt>
+                                <dd class="profile-kv-value" id="overviewEmailDisplay">nineteq@gmail.com</dd>
+                            </div>
+                            <div class="profile-kv-row">
+                                <dt class="profile-kv-label">Phone</dt>
+                                <dd class="profile-kv-value profile-kv-value-with-action">
+                                    <span id="overviewPhoneDisplay">+60 12-345 6789</span>
+                                    <button type="button" class="btn-profile-edit" onclick="editProfilePhone()"
+                                        aria-label="Edit phone number">
+                                        <i class="fas fa-pen"></i><span class="btn-edit-label">Edit</span>
+                                    </button>
+                                </dd>
+                            </div>
+                            <div class="profile-kv-row">
+                                <dt class="profile-kv-label">Withdrawal bank account</dt>
+                                <dd class="profile-kv-value profile-kv-muted">—</dd>
+                            </div>
+                            <div class="profile-kv-row">
+                                <dt class="profile-kv-label">Withdrawal bank number</dt>
+                                <dd class="profile-kv-value profile-kv-muted">—</dd>
+                            </div>
+                            <div class="profile-kv-row">
+                                <dt class="profile-kv-label">Withdrawal bank</dt>
+                                <dd class="profile-kv-value profile-kv-muted">—</dd>
+                            </div>
+                            <div class="profile-kv-row profile-kv-row-balance">
+                                <dt class="profile-kv-label">Main balance (MYR)</dt>
+                                <dd class="profile-kv-value"><span class="profile-balance-value">0.00</span></dd>
+                            </div>
+                        </dl>
+                        <div class="profile-quick-actions">
+                            <button type="button" class="btn-profile-quick" onclick="showSection('referral');">
+                                <i class="fas fa-user-plus"></i>
+                                Referral program
+                            </button>
+                            <a href="promotions.html" class="btn-profile-quick btn-profile-quick-outline">
+                                <i class="fas fa-gift"></i>
+                                Promotions &amp; bonuses
+                            </a>
+                        </div>
+                        <div class="profile-meta-strip">
+                            <span><strong>Registration</strong> 12/01/2026 10:30</span>
+                            <span><strong>Last login</strong> 11/03/2026 09:15</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section-card" id="personalFormCard" style="display: none;">
+                        <form class="account-grid-form" id="personalForm">
+                            <!-- ... existing form fields ... -->
+                            <div class="form-group">
+                                <label class="field-label">Username</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-user-tag field-icon"></i>
+                                    <input type="text" class="field-input" value="vin77" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Full Name</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-user field-icon"></i>
+                                    <input type="text" class="field-input" value="Yer"
+                                        placeholder="Enter your full name">
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="field-label">Email Address</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-envelope field-icon"></i>
+                                    <input type="email" class="field-input" id="profileEmailInput"
+                                        value="nineteq@gmail.com" placeholder="Enter your email">
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="field-label">Phone Number</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-phone field-icon"></i>
+                                    <input type="tel" class="field-input" id="profilePhoneInput" value="+60 12-345 6789"
+                                        placeholder="Enter your phone number" autocomplete="tel">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Date of Birth</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-calendar field-icon"></i>
+                                    <input type="date" class="field-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Gender</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-venus-mars field-icon"></i>
+                                    <select class="field-input">
+                                        <option value="" disabled>Choose gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other" selected>Other</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down field-select-arrow"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Registration Date</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-clock field-icon"></i>
+                                    <input type="text" class="field-input" value="12/01/2026" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Default Currency</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-coins field-icon"></i>
+                                    <input type="text" class="field-input" value="MYR" readonly>
+                                </div>
+                            </div>
+                            <div class="form-actions full-width">
+                                <button type="button" class="btn-save">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="form-section-card" id="addressFormCard" style="display: none;">
+                        <form class="account-grid-form" id="addressForm">
+                            <div class="form-group full-width">
+                                <label class="field-label">Residential Address</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-map-marker-alt field-icon"></i>
+                                    <input type="text" class="field-input" placeholder="Enter your full address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">City</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-city field-icon"></i>
+                                    <input type="text" class="field-input" placeholder="Enter your city">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Country</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-globe field-icon"></i>
+                                    <input type="text" class="field-input" value="Malaysia" readonly>
+                                </div>
+                            </div>
+                            <div class="form-actions full-width">
+                                <button type="button" class="btn-save">Update Address</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- FINANCE CONTENT (Deposit & Withdrawal Combined) -->
+                <div id="financeSection" class="finance-section" style="display: none;">
+                    <!-- DEPOSIT VIEW -->
+                    <div id="depositView">
+                        <div class="finance-workspace finance-workspace-deposit">
+                            <aside class="finance-methods-pane">
+                                <div class="finance-pane-head">
+                                    <h3>Deposit Methods</h3>
+                                    <p>Select a provider to continue instantly.</p>
+                                </div>
+                                <div class="payment-methods-list">
+                                    <!-- BANK -->
+                                    <div class="payment-group expanded">
+                                        <div class="payment-group-header" onclick="togglePaymentGroup(this)">
+                                            <div class="payment-group-icon">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">Bank</span>
+                                                <span class="payment-group-subtitle">Normal Bank Transfer</span>
+                                            </div>
+                                            <i class="fas fa-chevron-down payment-chevron"></i>
+                                        </div>
+                                        <div class="payment-group-content">
+                                            <div class="payment-sub-options">
+                                                <div class="payment-card active"
+                                                    onclick="showProviderDepositForm('bank', 'Normal Bank Transfer', {min: 1, max: 10}, this)">
+                                                    <div class="bank-logo-box">
+                                                        <img src="https://pksoftcdn.azureedge.net/media/maybank-202502061059022856.png"
+                                                            alt="Maybank">
+                                                    </div>
+                                                    <div class="bank-info">
+                                                        <span class="bank-name">MayBank</span>
+                                                        <span class="bank-limits">1 - 10</span>
+                                                    </div>
+                                                </div>
+                                                <div class="payment-card"
+                                                    onclick="showProviderDepositForm('bank', 'Normal Bank Transfer', {min: 2, max: 60000}, this)">
+                                                    <div class="bank-logo-box">
+                                                        <img src="https://pksoftcdn.azureedge.net/media/rhb-202502070213463958.png"
+                                                            alt="RHB">
+                                                    </div>
+                                                    <div class="bank-info">
+                                                        <span class="bank-name">RHB</span>
+                                                        <span class="bank-limits">2 - 60000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- E-WALLET -->
+                                    <div class="payment-group">
+                                        <div class="payment-group-header" onclick="togglePaymentGroup(this)">
+                                            <div class="payment-group-icon">
+                                                <i class="fas fa-wallet"></i>
+                                            </div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">E-Wallet</span>
+                                                <span class="payment-group-subtitle">E-Wallet (Manual)</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                        <div class="payment-group-content">
+                                            <div class="payment-sub-options">
+                                                <div class="payment-card"
+                                                    onclick="showProviderDepositForm('ewallet', 'Jazzcash', {min: 100, max: 10000}, this)">
+                                                    <div class="bank-logo-box">
+                                                        <img src="https://pksoftcdn.azureedge.net/media/jazzcash_wicon-202505081346058397.png"
+                                                            alt="Jazzcash">
+                                                    </div>
+                                                    <div class="bank-info">
+                                                        <span class="bank-name">Jazzcash</span>
+                                                        <span class="bank-limits">100 - 10000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CRYPTO -->
+                                    <div class="payment-group">
+                                        <div class="payment-group-header" onclick="togglePaymentGroup(this)">
+                                            <div class="payment-group-icon">
+                                                <i class="fas fa-coins"></i>
+                                            </div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">Cryptocurrency</span>
+                                                <span class="payment-group-subtitle">Cryptocurrency (Manual)</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                        <div class="payment-group-content">
+                                            <div class="payment-sub-options">
+                                                <div class="payment-card"
+                                                    onclick="showProviderDepositForm('crypto', 'USDT', {min: 2, max: 500}, this)">
+                                                    <div class="bank-logo-box">
+                                                        <img src="https://pksoftcdn.azureedge.net/media/tether-1-202506181156249007.svg"
+                                                            alt="USDT">
+                                                    </div>
+                                                    <div class="bank-info">
+                                                        <span class="bank-name">USDT</span>
+                                                        <span class="bank-limits">2 - 500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pay Providers -->
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('takapay', 'TakaPay Direct', {min: 500, max: 25000, hasPresets: true, presets: [50, 100, 1000, 2000, 5000, 30000]}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-bolt"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">TakaPay Direct</span>
+                                                <span class="payment-group-subtitle">BKash</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('marspay', 'MarsPay', {min: 1, max: 2}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-rocket"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">MarsPay</span>
+                                                <span class="payment-group-subtitle">Instant Transfer</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('timipay', 'TimiPay', {min: 100, max: 25000}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-clock"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">TimiPay</span>
+                                                <span class="payment-group-subtitle">24/7 Processing</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('bdpay', 'BDPay', {min: 200, max: 25000, hasPresets: true, presets: [50, 100, 1000, 2000, 5000, 30000]}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-shield-alt"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">BDPay</span>
+                                                <span class="payment-group-subtitle">Secure Gateway</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('fpay', 'FPay', {min: 100, max: 25000, requiresPhone: true}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-credit-card"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">FPay</span>
+                                                <span class="payment-group-subtitle">Fast Checkout</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('trustpay', 'TrustPay', {min: 100, max: 25000}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-check-circle"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">TrustPay</span>
+                                                <span class="payment-group-subtitle">Verified Provider</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('lelipay', 'LeLiPay', {min: 100, max: 25000}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-link"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">LeLiPay</span>
+                                                <span class="payment-group-subtitle">Direct Link</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-group">
+                                        <div class="payment-group-header"
+                                            onclick="showProviderDepositForm('aeepay', 'AeePay', {min: 100, max: 25000}, this)">
+                                            <div class="payment-group-icon"><i class="fas fa-star"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">AeePay</span>
+                                                <span class="payment-group-subtitle">Premium Gateway</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+
+                            <section class="finance-action-pane">
+                                <!-- DEPOSIT FORM VIEW (default: first method in list) -->
+                                <div id="depositFormView">
+                                    <div class="finance-form-header">
+                                        <button class="back-to-methods" onclick="toggleFinanceStep(false)">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <h3 id="depositFormTitle">Normal Bank Transfer</h3>
+                                    </div>
+
+                                    <div class="info-box-card">
+                                        <div class="info-row">
+                                            <span class="info-label">Balance</span>
+                                            <span class="info-value">78.91</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <span class="info-label">Min Deposit</span>
+                                            <span class="info-value" id="minDepositValue">1</span>
+                                        </div>
+                                        <div class="info-notes" id="notesSection">
+                                            <span class="notes-label">Notes :</span>
+                                            <p class="notes-content">
+                                                Upload a screenshot of your payment receipt to notify us of your
+                                                payment.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top: 40px;" id="bankSelectionSection">
+                                        <h4 class="form-section-title">Select Bank</h4>
+                                        <div class="payment-sub-options" style="margin-top: 16px;">
+                                            <div class="payment-card active"
+                                                onclick="selectBankCard(this, {min: 1, max: 10})">
+                                                <div class="bank-logo-box">
+                                                    <img src="https://pksoftcdn.azureedge.net/media/maybank-202502061059022856.png"
+                                                        alt="Maybank">
+                                                </div>
+                                                <div class="bank-info">
+                                                    <span class="bank-name">MayBank</span>
+                                                    <span class="bank-limits">1 - 10</span>
+                                                </div>
+                                            </div>
+                                            <div class="payment-card"
+                                                onclick="selectBankCard(this, {min: 2, max: 60000})">
+                                                <div class="bank-logo-box">
+                                                    <img src="https://pksoftcdn.azureedge.net/media/rhb-202502070213463958.png"
+                                                        alt="RHB">
+                                                </div>
+                                                <div class="bank-info">
+                                                    <span class="bank-name">RHB</span>
+                                                    <span class="bank-limits">2 - 60000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="amount-entry-section" style="margin-top: 40px;">
+                                        <h4 class="form-section-title" id="amountSectionTitle">Please Enter Amount</h4>
+                                        <div class="payment-sub-options" id="paymentMethodSelector"
+                                            style="margin-top: 16px; display: none;">
+                                            <div class="payment-card active"><span class="bank-name">Primary
+                                                    Method</span></div>
+                                        </div>
+                                        <div class="form-group" id="phoneNumberSection"
+                                            style="margin-top: 16px; display: none;">
+                                            <label class="field-label">Phone Number</label>
+                                            <div class="field-input-wrapper">
+                                                <i class="fas fa-phone field-icon"></i>
+                                                <input type="text" class="field-input"
+                                                    placeholder="Enter your phone number">
+                                            </div>
+                                        </div>
+                                        <div id="presetAmounts" style="margin-top: 16px; display: none;">
+                                            <div class="preset-amounts-grid"></div>
+                                        </div>
+                                        <div class="amount-entry-card" style="margin-top: 16px;">
+                                            <div class="amount-input-group">
+                                                <div class="currency-label">PKR</div>
+                                                <input type="number" class="amount-main-input" id="depositAmountInput"
+                                                    placeholder="Enter amount">
+                                            </div>
+                                            <div class="amount-range-info" id="amountRangeInfo">PKR 1 - PKR 10</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top: 40px; text-align: center;">
+                                        <button class="btn-next-step" onclick="submitDeposit()">Next</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- WITHDRAWAL VIEW -->
+                    <div id="withdrawalView" style="display: none;">
+                        <div class="finance-workspace finance-workspace-withdrawal">
+                            <aside class="finance-methods-pane">
+                                <div class="finance-pane-head">
+                                    <h3>Withdrawal Methods</h3>
+                                    <p>Pick your withdrawal channel to prefill account requirements.</p>
+                                </div>
+                                <div class="payment-methods-list">
+                                    <div class="payment-group">
+                                        <div class="payment-group-header active"
+                                            onclick="showWithdrawForm('bank', '', this)">
+                                            <div class="payment-group-icon"><i class="fas fa-university"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">Bank Transfer</span>
+                                                <span class="payment-group-subtitle">Normal Bank Transfer</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                    </div>
+                                    <div class="payment-group">
+                                        <div class="payment-group-header" onclick="togglePaymentGroup(this)">
+                                            <div class="payment-group-icon"><i class="fas fa-wallet"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">E-Wallet</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                        <div class="payment-group-content">
+                                            <div class="payment-sub-options">
+                                                <div class="payment-card"
+                                                    onclick="showWithdrawForm('ewallet', 'Jazzcash', this)">
+                                                    <div class="bank-logo-box"><img
+                                                            src="https://pksoftcdn.azureedge.net/media/jazzcash_wicon-202505081346058397.png"
+                                                            alt="Jazzcash"></div>
+                                                    <span class="bank-name">Jazzcash</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="payment-group">
+                                        <div class="payment-group-header" onclick="togglePaymentGroup(this)">
+                                            <div class="payment-group-icon"><i class="fas fa-coins"></i></div>
+                                            <div class="payment-group-info">
+                                                <span class="payment-group-title">Cryptocurrency</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right payment-chevron"></i>
+                                        </div>
+                                        <div class="payment-group-content">
+                                            <div class="payment-sub-options">
+                                                <div class="payment-card"
+                                                    onclick="showWithdrawForm('crypto', 'USDT', this)">
+                                                    <div class="bank-logo-box"><img
+                                                            src="https://pksoftcdn.azureedge.net/media/tether-1-202506181156249007.svg"
+                                                            alt="USDT"></div>
+                                                    <span class="bank-name">USDT</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+
+                            <section class="finance-action-pane">
+                                <!-- Withdrawal form (default: first method — Bank Transfer) -->
+                                <div id="withdrawalFormView">
+                                    <div class="finance-form-header">
+                                        <button class="back-to-methods" onclick="toggleFinanceStep(false)">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <h3 id="withdrawFormTitle">Normal Bank Transfer</h3>
+                                    </div>
+
+                                    <div class="info-box-card">
+                                        <div class="info-row">
+                                            <span class="info-label">Balance</span>
+                                            <span class="info-value">78.91</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <span class="info-label">Min Withdrawal</span>
+                                            <span class="info-value">-</span>
+                                        </div>
+                                        <div class="info-notes">
+                                            <span class="notes-label">Notes :</span>
+                                            <p class="notes-content">
+                                                Bank transfer takes up to 24 hours to reflect in your bank
+                                                account.<br><br>
+                                                If the entered and bank account are inconsistent, the company reserves
+                                                the right to reject the application..
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top: 40px;">
+                                        <h4 class="form-section-title" id="formSubTitle">Bank Account Info</h4>
+                                        <div class="withdrawal-form-container">
+                                            <div class="withdraw-field-group">
+                                                <label class="withdraw-field-label">Bank Name</label>
+                                                <select class="withdraw-input-box" style="appearance: auto;">
+                                                    <option value="">Please Select Bank</option>
+                                                    <option value="maybank">MayBank</option>
+                                                    <option value="rhb">RHB</option>
+                                                </select>
+                                            </div>
+                                            <div class="withdraw-field-group">
+                                                <label class="withdraw-field-label">Account Name</label>
+                                                <input type="text" class="withdraw-input-box"
+                                                    placeholder="Enter Your Account Name">
+                                            </div>
+                                            <div class="withdraw-field-group">
+                                                <label class="withdraw-field-label">Account Number</label>
+                                                <input type="text" class="withdraw-input-box"
+                                                    placeholder="Enter Your Account Number">
+                                            </div>
+                                            <div class="withdraw-field-group">
+                                                <label class="withdraw-field-label">Amount</label>
+                                                <div class="amount-input-wrapper">
+                                                    <span class="currency-tag">PKR</span>
+                                                    <input type="number" class="amount-input"
+                                                        placeholder="Please Enter Amount">
+                                                </div>
+                                            </div>
+                                            <button class="btn-withdraw-action">Withdraw</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HISTORY CONTENT -->
+                <div id="historySection" class="finance-section" style="display: none;">
+                    <div class="history-container">
+                        <!-- Record Type Selector -->
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label class="field-label">Record Type</label>
+                            <div class="field-input-wrapper">
+                                <i class="fas fa-list field-icon"></i>
+                                <select class="field-input" id="historyRecordType"
+                                    onchange="updateHistoryView(this.value)">
+                                    <option value="transaction">Transaction Record</option>
+                                    <option value="bet">Bet Record</option>
+                                    <option value="commission">Commission Record</option>
+                                    <option value="rebate">Rebate Record</option>
+                                    <option value="promotion">Promotion Record</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Title -->
+                        <h3 id="historyTypeTitle"
+                            style="font-size: 16px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">
+                            Transaction Record</h3>
+
+                        <!-- Statistics Filter (Only for Bet Record) -->
+                        <div id="betStatisticsFilter" style="display: none; margin-bottom: 24px;">
+                            <label class="field-label">Statistics</label>
+                            <div class="field-input-wrapper">
+                                <i class="fas fa-chart-bar field-icon"></i>
+                                <select class="field-input">
+                                    <option value="all">All</option>
+                                    <option value="slots">Slots</option>
+                                    <option value="live">Live Casino</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Date Filters -->
+                        <div class="date-filter-grid" style="margin-bottom: 16px;">
+                            <div class="form-group">
+                                <label class="field-label">Start Date</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-calendar field-icon"></i>
+                                    <input type="date" class="field-input" id="startDate" value="2026-01-12"
+                                        onchange="filterTransactions()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">End Date</label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-calendar field-icon"></i>
+                                    <input type="date" class="field-input" id="endDate" value="2026-01-14"
+                                        onchange="filterTransactions()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Date Buttons -->
+                        <div class="quick-date-buttons" style="margin-bottom: 24px;">
+                            <button class="date-btn" onclick="setQuickDate('today', this)">Today</button>
+                            <button class="date-btn" onclick="setQuickDate('yesterday', this)">Yesterday</button>
+                            <button class="date-btn active" onclick="setQuickDate('thisWeek', this)">This Week</button>
+                            <button class="date-btn" onclick="setQuickDate('lastWeek', this)">Last Week</button>
+                            <button class="date-btn" onclick="setQuickDate('thisMonth', this)">This Month</button>
+                            <button class="date-btn" onclick="setQuickDate('lastMonth', this)">Last Month</button>
+                        </div>
+
+                        <!-- Sub-tabs (Only for Transaction Record) -->
+                        <div id="transactionSubTabs" class="finance-nav-toggles" style="margin-bottom: 20px;">
+                            <button class="finance-toggle active"
+                                onclick="switchTransactionType('deposits', this)">Deposits</button>
+                            <button class="finance-toggle"
+                                onclick="switchTransactionType('withdrawals', this)">Withdrawals</button>
+                        </div>
+
+                        <!-- History Table -->
+                        <div class="info-box-card history-table-wrapper"
+                            style="padding: 0; overflow: hidden; border-radius: 12px;">
+                            <table class="history-table" id="historyDataTable">
+                                <thead>
+                                    <tr id="historyTableHead">
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2026-03-24 14:30</td>
+                                        <td>PKR 5,000</td>
+                                        <td><span class="status-completed">Success</span></td>
+                                        <td>Deposit via Maybank</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026-03-23 09:15</td>
+                                        <td>PKR 12,000</td>
+                                        <td><span class="status-pending">Pending</span></td>
+                                        <td>Withdrawal to RHB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026-03-22 18:45</td>
+                                        <td>PKR 3,500</td>
+                                        <td><span class="status-failed">Failed</span></td>
+                                        <td>Deposit via TrustPay</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="empty-data-state" id="historyTableEmptyState" style="display: none;">
+                                <img src="img/empty-data.png" alt="No data" class="empty-icon"
+                                    onerror="this.src='https://cdn-icons-png.flaticon.com/512/7486/7486744.png'">
+                                <span class="empty-text">No Transactions Found</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REFERRAL / DOWNLINES CONTENT -->
+                <div id="referralSection" class="finance-section" style="display: none;">
+                    <div class="account-header-box">
+                        <div class="account-title-group">
+                            <h1 id="referralTitle">Referral Program</h1>
+                            <p id="referralSubtitle">Invite friends and earn rewards</p>
+                        </div>
+                        <div class="tab-pill-group referral-nav-toggles" id="referralTabs">
+                            <button class="tab-pill active" data-tab="referral"
+                                onclick="switchReferralTab(this, 'referral')">Invite</button>
+                            <button class="tab-pill" data-tab="rewards" onclick="switchReferralTab(this, 'rewards')">My
+                                Rewards</button>
+                            <button class="tab-pill" data-tab="downlines"
+                                onclick="switchReferralTab(this, 'downlines')">Downlines</button>
+                        </div>
+                    </div>
+
+                    <!-- Referral Info Tab Content (Invite) -->
+                    <div id="referralTabContent" class="referral-content-wrapper referral-workspace">
+                        <!-- Share workspace: single card -->
+                        <div class="form-section-card referral-share-card enhanced-share-card">
+                            <div class="referral-share-header">
+                                <h3 class="referral-share-title">Invite Your Friends</h3>
+                                <p class="referral-share-subtitle">Share your unique code or link to start earning
+                                    lifetime rewards together.</p>
+                            </div>
+
+                            <div class="share-options-grid">
+                                <!-- Referral Link Block -->
+                                <div class="share-option-box">
+                                    <label class="share-option-label">Referral Link</label>
+                                    <div class="share-input-wrapper">
+                                        <i class="fas fa-link share-input-icon"></i>
+                                        <input type="text" class="share-readonly-input"
+                                            value="https://staging.riocity9.com/e..." readonly />
+                                        <button type="button" class="btn-share-copy"
+                                            onclick="copyToClipboard('https://staging.riocity9.com/e...', 'Referral Link')">
+                                            <span>Copy</span><i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Referral Code Block -->
+                                <div class="share-option-box">
+                                    <label class="share-option-label">Referral Code</label>
+                                    <div class="share-input-wrapper">
+                                        <i class="fas fa-ticket-alt share-input-icon"></i>
+                                        <input type="text" class="share-readonly-input code-input" value="913953"
+                                            readonly />
+                                        <button type="button" class="btn-share-copy"
+                                            onclick="copyToClipboard('913953', 'Referral Code')">
+                                            <span>Copy</span><i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="enhanced-social-share">
+                                <span class="share-label-glow">Or share directly via</span>
+                                <div class="social-icons-row glow-icons">
+                                    <a href="#" class="social-icon-btn facebook"
+                                        onclick="shareToFacebook('https://staging.riocity9.com/e...'); return false;"
+                                        aria-label="Share on Facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="social-icon-btn telegram"
+                                        onclick="shareToTelegram('https://staging.riocity9.com/e...'); return false;"
+                                        aria-label="Share on Telegram">
+                                        <i class="fab fa-telegram-plane"></i>
+                                    </a>
+                                    <a href="#" class="social-icon-btn whatsapp"
+                                        onclick="shareToWhatsApp('https://staging.riocity9.com/e...'); return false;"
+                                        aria-label="Share on WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings snapshot: two stat tiles + Downlines CTA -->
+                        <div class="referral-stat-grid enhanced-stat-grid">
+                            <div class="referral-stat-tile enhanced-stat-commission">
+                                <div class="stat-icon-bg"><i class="fas fa-chart-line"></i></div>
+                                <div class="stat-content-wrapper">
+                                    <div class="referral-stat-tile-header">
+                                        <span>Commission Bonus</span>
+                                        <i class="fas fa-info-circle"
+                                            title="Earn from referrals' betting. Credited to Main Wallet."
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <div class="referral-stat-tile-value">PKR 0.000</div>
+                                    <span class="referral-stat-tile-note">Main Wallet</span>
+                                </div>
+                            </div>
+                            <div class="referral-stat-tile enhanced-stat-deposit">
+                                <div class="stat-icon-bg"><i class="fas fa-hand-holding-usd"></i></div>
+                                <div class="stat-content-wrapper">
+                                    <div class="referral-stat-tile-header">
+                                        <span>Deposit Bonus</span>
+                                        <i class="fas fa-info-circle"
+                                            title="Earn when referrals deposit. Credited to Bonus Wallet."
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <div class="referral-stat-tile-value">PKR 0.000</div>
+                                    <span class="referral-stat-tile-note">Bonus Wallet</span>
+                                </div>
+                            </div>
+                            <div class="referral-stat-tile referral-stat-tile-cta enhanced-stat-cta">
+                                <button class="btn-downlines-wide enhanced-btn-downlines"
+                                    onclick="showSection('referral'); switchReferralTab(document.querySelector('#referralTabs .tab-pill[data-tab=&quot;downlines&quot;]'), 'downlines');">
+                                    <i class="fas fa-users-viewfinder"></i> Explore Downline Network
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Steps: horizontal stepper -->
+                        <div class="passive-income-section">
+                            <span class="section-divider-title">How it works</span>
+                            <div class="steps-container enhanced-steps-container">
+                                <div class="step-card enhanced-step-card">
+                                    <div class="enhanced-step-icon"><i class="fas fa-link"></i></div>
+                                    <span class="enhanced-step-number">Step 01</span>
+                                    <p class="enhanced-step-text">Share your code or trackable link</p>
+                                </div>
+                                <div class="step-card enhanced-step-card">
+                                    <div class="enhanced-step-icon"><i class="fas fa-user-check"></i></div>
+                                    <span class="enhanced-step-number">Step 02</span>
+                                    <p class="enhanced-step-text">Friends register and start playing</p>
+                                </div>
+                                <div class="step-card enhanced-step-card">
+                                    <div class="enhanced-step-icon"><i class="fas fa-gift"></i></div>
+                                    <span class="enhanced-step-number">Step 03</span>
+                                    <p class="enhanced-step-text">Earn lifetime bonus commissions</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Commission Tables -->
+                        <div class="commission-tables-container">
+                            <div class="rate-table-box">
+                                <div class="rate-table-header">
+                                    <div class="rate-table-title"><i class="fas fa-percentage"></i> Deposit Commission
+                                        Rate</div>
+                                    <span class="min-deposit-tag">
+                                        <span class="min-deposit-label">Minimum Deposit</span>
+                                        <span class="min-deposit-value">MYR 30.00</span>
+                                    </span>
+                                </div>
+                                <div class="tier-grid-wrapper">
+                                    <div class="tier-grid">
+                                        <div class="tier-item"><span class="tier-label">Tier 1</span><span
+                                                class="tier-value">MYR 2</span></div>
+                                        <div class="tier-item"><span class="tier-label">Tier 2</span><span
+                                                class="tier-value">3%</span></div>
+                                        <div class="tier-item"><span class="tier-label">Tier 3</span><span
+                                                class="tier-value">4%</span></div>
+                                        <div class="tier-item"><span class="tier-label">Tier 4</span><span
+                                                class="tier-value">MYR 5</span></div>
+                                        <div class="tier-item"><span class="tier-label">Tier 5</span><span
+                                                class="tier-value">MYR 8</span></div>
+                                        <div class="tier-item"><span class="tier-label">Tier 6</span><span
+                                                class="tier-value">7%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="rate-table-box">
+                                <div class="rate-table-header">
+                                    <div class="rate-table-title"><i class="fas fa-gamepad"></i> Game Commission Rate
+                                    </div>
+                                </div>
+                                <div class="rate-table-description">
+                                    <p>Commission rates from downlines' bets by game type and provider.</p>
+                                </div>
+                                <div class="game-commission-accordion referral-commission-accordion">
+                                    <!-- Slots -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <span class="game-type-icon slots-icon">777</span>
+                                            </div>
+                                            <span class="game-type-name">Slots</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Pragmatic Play Slot</td>
+                                                            <td>39%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PGSoft</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>FaChai Slot</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PlayTech Slots</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>RedTiger</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CrowdPlay</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>888King</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Wazdan</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>EVO888</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Nextspin</td>
+                                                            <td>7%</td>
+                                                            <td>0.6%</td>
+                                                            <td>0.4%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Live Casino -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <i class="fas fa-dice game-type-icon live-casino-icon"></i>
+                                            </div>
+                                            <span class="game-type-name">Live Casino</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Evolution</td>
+                                                            <td>0.4%</td>
+                                                            <td>0.2%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Pragmatic Play Live</td>
+                                                            <td>0.5%</td>
+                                                            <td>0.3%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Ezugi</td>
+                                                            <td>0.4%</td>
+                                                            <td>0.2%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fish Hunt -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <i class="fas fa-fish game-type-icon fish-hunt-icon"></i>
+                                            </div>
+                                            <span class="game-type-name">Fish Hunt</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>JILI</td>
+                                                            <td>0.5%</td>
+                                                            <td>0.3%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>FA Chai</td>
+                                                            <td>0.4%</td>
+                                                            <td>0.2%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sports -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <i class="fas fa-futbol game-type-icon sports-icon"></i>
+                                            </div>
+                                            <span class="game-type-name">Sports</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Sportsbook</td>
+                                                            <td>0.3%</td>
+                                                            <td>0.2%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- All -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <i class="fas fa-gamepad game-type-icon all-icon"></i>
+                                            </div>
+                                            <span class="game-type-name">All</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>All Providers</td>
+                                                            <td>0.5%</td>
+                                                            <td>0.3%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- E-Games -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <i class="fas fa-dice-d20 game-type-icon egames-icon"></i>
+                                            </div>
+                                            <span class="game-type-name">E-Games</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>E-Games Provider</td>
+                                                            <td>0.5%</td>
+                                                            <td>0.3%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Poker -->
+                                    <div class="game-type-item">
+                                        <button class="game-type-header" onclick="toggleGameType(this)">
+                                            <div class="game-type-icon-wrapper">
+                                                <i class="fas fa-heart game-type-icon poker-icon"></i>
+                                            </div>
+                                            <span class="game-type-name">Poker</span>
+                                            <i class="fas fa-chevron-down game-type-chevron"></i>
+                                        </button>
+                                        <div class="game-type-content">
+                                            <div class="info-box-card history-table-wrapper referral-commission-table-wrap"
+                                                style="padding: 0; border: none; border-radius: 0;">
+                                                <table class="history-table game-commission-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Provider</th>
+                                                            <th>Downline L1</th>
+                                                            <th>Downline L2</th>
+                                                            <th>Downline L3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Poker Provider</td>
+                                                            <td>0.5%</td>
+                                                            <td>0.3%</td>
+                                                            <td>0.1%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- My Rewards Tab Content -->
+                    <div id="rewardsTabContent" class="referral-content-wrapper referral-rewards-workspace"
+                        style="display: none;">
+                        <div class="reward-cards-grid referral-reward-cards enhanced-rewards-grid">
+                            <div class="reward-summary-card enhanced-reward-card enhanced-reward-commission">
+                                <div class="reward-glow-bg"></div>
+                                <div class="reward-content-wrapper">
+                                    <h3 class="reward-card-title"><i class="fas fa-chart-line"></i> Commission Bonus
+                                    </h3>
+                                    <div class="reward-stats-list">
+                                        <div class="reward-stat-row"><span class="reward-stat-label">Today:</span><span
+                                                class="reward-stat-val">MYR 0.00</span></div>
+                                        <div class="reward-stat-row"><span class="reward-stat-label">This
+                                                Month:</span><span class="reward-stat-val">MYR 0.00</span></div>
+                                        <div class="reward-stat-row"><span class="reward-stat-label">Total
+                                                Claimed:</span><span class="reward-stat-val">MYR 0.00</span></div>
+                                    </div>
+                                    <div class="claim-action-box enhanced-claim-box">
+                                        <div class="unclaimed-amount">
+                                            <span class="unclaimed-label">Unclaimed Amount</span>
+                                            <span class="unclaimed-val">MYR 0.00</span>
+                                        </div>
+                                        <button class="btn-claim-reward enhanced-btn-claim pulse-emerald">Claim</button>
+                                    </div>
+                                    <div class="reward-card-footer"><i class="fas fa-check-circle"></i> Bonus will be
+                                        credited to Main Wallet.</div>
+                                </div>
+                            </div>
+
+                            <div class="reward-summary-card enhanced-reward-card enhanced-reward-deposit">
+                                <div class="reward-glow-bg"></div>
+                                <div class="reward-content-wrapper">
+                                    <h3 class="reward-card-title"><i class="fas fa-hand-holding-usd"></i> Deposit Bonus
+                                    </h3>
+                                    <div class="reward-stats-list">
+                                        <div class="reward-stat-row"><span class="reward-stat-label">Today:</span><span
+                                                class="reward-stat-val">MYR 0.00</span></div>
+                                        <div class="reward-stat-row"><span class="reward-stat-label">This
+                                                Month:</span><span class="reward-stat-val">MYR 0.00</span></div>
+                                        <div class="reward-stat-row"><span class="reward-stat-label">Total
+                                                Claimed:</span><span class="reward-stat-val">MYR 0.00</span></div>
+                                    </div>
+                                    <div class="claim-action-box enhanced-claim-box">
+                                        <div class="unclaimed-amount">
+                                            <span class="unclaimed-label">Unclaimed Amount</span>
+                                            <span class="unclaimed-val">MYR 0.00</span>
+                                        </div>
+                                        <button class="btn-claim-reward enhanced-btn-claim pulse-amber">Claim</button>
+                                    </div>
+                                    <div class="reward-card-footer"><i class="fas fa-check-circle"></i> Bonus will be
+                                        credited to Bonus Wallet (Coin).</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reward-history-section">
+                            <div class="reward-history-subtabs referral-reward-subtabs">
+                                <button class="reward-subtab active"
+                                    onclick="switchRewardHistoryTab(this, 'commission')">Commission Bonus</button>
+                                <button class="reward-subtab" onclick="switchRewardHistoryTab(this, 'deposit')">Deposit
+                                    Bonus</button>
+                            </div>
+                            <div class="form-section-card history-table-wrapper"
+                                style="padding: 0; overflow: hidden; border-radius: 16px;">
+                                <table class="history-table" id="rewardHistoryTable" style="display: none;">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Commission</th>
+                                            <th>Status</th>
+                                            <th>Claimed Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rewardHistoryTableBody">
+                                        <!-- Data will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                                <div class="empty-data-state" id="rewardHistoryEmptyState" style="display: flex;">
+                                    <img src="img/empty-data.png" alt="No data" class="empty-icon"
+                                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/7486/7486744.png'">
+                                    <span class="empty-text">Oops! There is no data yet!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Downlines Tab Content -->
+                    <div id="downlinesTabContent" class="referral-content-wrapper referral-downlines-workspace"
+                        style="display: none;">
+                        <div class="form-section-card referral-downlines-card">
+                            <div class="referral-downlines-header">
+                                <h3 class="referral-downlines-title">Your referral network</h3>
+                                <p class="referral-downlines-subtitle">Members who joined through your code or link.</p>
+                            </div>
+                            <div class="history-table-wrapper referral-downlines-table-wrap">
+                                <table class="history-table" id="downlinesRosterTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Member</th>
+                                            <th>Level</th>
+                                            <th>Registered</th>
+                                            <th>Status</th>
+                                            <th>Total Deposit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="downlinesRosterBody">
+                                        <tr>
+                                            <td><span class="downline-username">user_abc123</span></td>
+                                            <td><span class="downline-level-badge level-1">L1</span></td>
+                                            <td>2026-01-15</td>
+                                            <td><span class="status-completed">Active</span></td>
+                                            <td>PKR 2,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="downline-username">player_xyz</span></td>
+                                            <td><span class="downline-level-badge level-1">L1</span></td>
+                                            <td>2026-01-18</td>
+                                            <td><span class="status-completed">Active</span></td>
+                                            <td>PKR 800</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="downline-username">new_member_99</span></td>
+                                            <td><span class="downline-level-badge level-2">L2</span></td>
+                                            <td>2026-01-22</td>
+                                            <td><span class="status-pending">Pending</span></td>
+                                            <td>PKR 0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="empty-data-state referral-downlines-empty" id="downlinesEmptyState"
+                                    style="display: none;">
+                                    <img src="img/empty-data.png" alt="No data" class="empty-icon"
+                                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/7486/7486744.png'">
+                                    <span class="empty-text">No downlines yet. Share your referral link to grow your
+                                        network!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Help & Support: single collapsible card -->
+                    <div class="help-support-section form-section-card referral-help-card">
+                        <div class="help-category">
+                            <div class="help-category-header" onclick="toggleHelpCategory(this)">
+                                <div class="help-category-title">
+                                    <i class="fas fa-question-circle"></i>
+                                    <span>Need help? FAQ &amp; Terms</span>
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="help-category-content">
+                                <div class="referral-help-inner">
+                                    <h4 class="referral-help-subtitle">Frequently Asked Questions</h4>
+                                    <div class="faq-accordion">
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaqItem(this)">
+                                                <span>How does our Referral Program work?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>You can earn cash rewards up to three referral tiers when you refer
+                                                    your friends. Invite your friends to join together and be entitled
+                                                    for lifetime cash rewards each time your friends Deposit BIJOY21.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaqItem(this)">
+                                                <span>What Should You Do?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>Simply share your unique referral code or link with your friends.
+                                                    Once they register and make their first deposit, you'll start
+                                                    earning commissions based on their activity.</p>
+                                            </div>
+                                        </div>
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaqItem(this)">
+                                                <span>How do I withdraw my referral earnings?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>Go to the "My Rewards" tab and click "Claim" next to your unclaimed
+                                                    earnings. Funds are transferred to your wallet instantly.</p>
+                                            </div>
+                                        </div>
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaqItem(this)">
+                                                <span>Is there a limit to how many friends I can refer?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p>No limit. Refer as many friends as you like and earn unlimited
+                                                    rewards.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4 class="referral-help-subtitle">Terms &amp; Conditions</h4>
+                                    <div class="terms-section">
+                                        <ol class="terms-list">
+                                            <li>'Referral Code' or 'Referral Link' is only valid for the same currency.
+                                            </li>
+                                            <li>Minimum cash reward payout is 0.01 BDT. There is no maximum payout
+                                                amount.</li>
+                                            <li>If referees did not use your code/link during registration, they cannot
+                                                add it later.</li>
+                                            <li>All accounts must have at least one deposit record before making the
+                                                first withdrawal.</li>
+                                            <li>Suspended or fraudulent accounts are not eligible for referral rewards.
+                                            </li>
+                                            <li>Offer limited to one person/account per family, address, payment method,
+                                                IP, or shared device. Provider may withdraw the offer if abuse is
+                                                identified.</li>
+                                            <li>BIJOY21 reserves the right to make the final decision.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LANGUAGE CONTENT -->
+                <div id="languageSection" class="finance-section" style="display: none;">
+                    <div class="language-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px;">
+                        <div class="lang-card active">
+                            <span class="flag">🇺🇸</span>
+                            <span class="lang-name">English</span>
+                        </div>
+                        <div class="lang-card">
+                            <span class="flag">🇨🇳</span>
+                            <span class="lang-name">中文</span>
+                        </div>
+                        <div class="lang-card">
+                            <span class="flag">🇲🇾</span>
+                            <span class="lang-name">Malay</span>
+                        </div>
+                        <div class="lang-card">
+                            <span class="flag">🇹🇭</span>
+                            <span class="lang-name">Thai</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASSWORD CONTENT -->
+                <div id="passwordSection" class="finance-section" style="display: none;">
+                    <div class="form-section-card" style="margin: 0 auto;">
+                        <form class="account-grid-form" style="grid-template-columns: 1fr; gap: 24px;">
+                            <div class="form-group">
+                                <label class="field-label">Current Password <span
+                                        style="color: #ef4444;">*</span></label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-lock field-icon"></i>
+                                    <input type="password" class="field-input" placeholder="Enter Your Current Password"
+                                        id="currentPassword">
+                                    <i class="fas fa-eye-slash toggle-password-visibility" data-target="currentPassword"
+                                        style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); cursor: pointer; font-size: 14px; transition: color 0.2s; z-index: 10;"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="field-label">New Password <span style="color: #ef4444;">*</span></label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-key field-icon"></i>
+                                    <input type="password" class="field-input" placeholder="Enter New Password"
+                                        id="newPassword">
+                                    <i class="fas fa-eye-slash toggle-password-visibility" data-target="newPassword"
+                                        style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); cursor: pointer; font-size: 14px; transition: color 0.2s; z-index: 10;"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="field-label">Confirm New Password <span
+                                        style="color: #ef4444;">*</span></label>
+                                <div class="field-input-wrapper">
+                                    <i class="fas fa-check-circle field-icon"></i>
+                                    <input type="password" class="field-input" placeholder="Confirm New Password"
+                                        id="confirmPassword">
+                                    <i class="fas fa-eye-slash toggle-password-visibility" data-target="confirmPassword"
+                                        style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); cursor: pointer; font-size: 14px; transition: color 0.2s; z-index: 10;"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width" style="margin-top: 8px;">
+                                <div class="password-requirements"
+                                    style="padding: 20px; background: rgba(16, 185, 129, 0.05); border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.1);">
+                                    <ul
+                                        style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; margin: 0;">
+                                        <li
+                                            style="color: var(--text-secondary); font-size: 13px; display: flex; align-items: flex-start; gap: 12px; font-weight: 500; line-height: 1.5;">
+                                            <i class="fas fa-check-circle"
+                                                style="font-size: 16px; color: #10b981; margin-top: 2px; flex-shrink: 0;"></i>
+                                            <span>Include at least 8 characters, containing both a letter and a number,
+                                                with no symbols allowed.</span>
+                                        </li>
+                                        <li
+                                            style="color: var(--text-secondary); font-size: 13px; display: flex; align-items: flex-start; gap: 12px; font-weight: 500; line-height: 1.5;">
+                                            <i class="fas fa-check-circle"
+                                                style="font-size: 16px; color: #10b981; margin-top: 2px; flex-shrink: 0;"></i>
+                                            <span>Only letters (A-Z, a-z) and numbers (0-9).</span>
+                                        </li>
+                                        <li
+                                            style="color: var(--text-secondary); font-size: 13px; display: flex; align-items: flex-start; gap: 12px; font-weight: 500; line-height: 1.5;">
+                                            <i class="fas fa-check-circle"
+                                                style="font-size: 16px; color: #10b981; margin-top: 2px; flex-shrink: 0;"></i>
+                                            <span>No special characters / symbols.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-actions full-width">
+                                <button type="button" class="btn-save">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Note -->
+                <div class="account-footer-note">
+                    <div class="note-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="note-text">
+                        For security reasons, certain fields cannot be changed directly. If you need to update your
+                        username, registration date, or currency, please <a href="#">Contact Support</a>.
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script src="js/header.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function switchTab(btn, tabName) {
+            document.querySelectorAll('#profileTabs .tab-pill').forEach(t => t.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const overview = document.getElementById('profileOverview');
+            const personalCard = document.getElementById('personalFormCard');
+            const addressCard = document.getElementById('addressFormCard');
+            if (overview) overview.style.display = tabName === 'overview' ? 'block' : 'none';
+            if (personalCard) personalCard.style.display = tabName === 'personal' ? 'block' : 'none';
+            if (addressCard) addressCard.style.display = tabName === 'address' ? 'block' : 'none';
+        }
+
+        function resetProfileTabToOverview() {
+            const ovBtn = document.querySelector('#profileTabs .tab-pill[data-profile-tab="overview"]');
+            if (ovBtn) switchTab(ovBtn, 'overview');
+        }
+
+        function editProfilePhone() {
+            const personalBtn = document.querySelector('#profileTabs .tab-pill[data-profile-tab="personal"]');
+            if (personalBtn) switchTab(personalBtn, 'personal');
+            setTimeout(function () {
+                const el = document.getElementById('profilePhoneInput');
+                if (el) {
+                    el.focus();
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 80);
+        }
+
+        function switchReferralTab(btn, tabName) {
+            document.querySelectorAll('#referralTabs .tab-pill').forEach(t => t.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            var referralTitle = document.getElementById('referralTitle');
+            var referralSubtitle = document.getElementById('referralSubtitle');
+            var referralTabContent = document.getElementById('referralTabContent');
+            var rewardsTabContent = document.getElementById('rewardsTabContent');
+            var downlinesTabContent = document.getElementById('downlinesTabContent');
+
+            if (referralTabContent) referralTabContent.style.display = 'none';
+            if (rewardsTabContent) rewardsTabContent.style.display = 'none';
+            if (downlinesTabContent) downlinesTabContent.style.display = 'none';
+
+            if (tabName === 'referral') {
+                if (referralTabContent) referralTabContent.style.display = 'flex';
+                if (referralTitle) referralTitle.textContent = 'Invite & Share';
+                if (referralSubtitle) referralSubtitle.textContent = 'Share your code or link and earn rewards';
+            } else if (tabName === 'rewards') {
+                if (rewardsTabContent) rewardsTabContent.style.display = 'block';
+                if (referralTitle) referralTitle.textContent = 'My Rewards';
+                if (referralSubtitle) referralSubtitle.textContent = 'Track and claim your referral earnings';
+                switchRewardHistoryTab(document.querySelector('.reward-subtab.active'), 'commission');
+            } else if (tabName === 'downlines') {
+                if (downlinesTabContent) downlinesTabContent.style.display = 'block';
+                if (referralTitle) referralTitle.textContent = 'Downlines';
+                if (referralSubtitle) referralSubtitle.textContent = 'Your referral network and member activity';
+            }
+        }
+
+        // Sample data for reward history
+        const rewardHistoryData = {
+            commission: [
+                { date: '2026-01-25', commission: 'MYR 125.50', status: 'Claimed', claimedTime: '2026-01-25 14:30' },
+                { date: '2026-01-24', commission: 'MYR 89.20', status: 'Claimed', claimedTime: '2026-01-24 16:45' },
+                { date: '2026-01-23', commission: 'MYR 156.80', status: 'Claimed', claimedTime: '2026-01-23 10:15' },
+                { date: '2026-01-22', commission: 'MYR 203.40', status: 'Claimed', claimedTime: '2026-01-22 09:20' },
+                { date: '2026-01-21', commission: 'MYR 98.60', status: 'Claimed', claimedTime: '2026-01-21 15:50' },
+                { date: '2026-01-20', commission: 'MYR 142.30', status: 'Claimed', claimedTime: '2026-01-20 11:30' },
+                { date: '2026-01-19', commission: 'MYR 175.90', status: 'Claimed', claimedTime: '2026-01-19 13:25' },
+                { date: '2026-01-18', commission: 'MYR 67.40', status: 'Claimed', claimedTime: '2026-01-18 17:10' }
+            ],
+            deposit: [
+                { date: '2026-01-25', commission: 'MYR 50.00', status: 'Claimed', claimedTime: '2026-01-25 12:20' },
+                { date: '2026-01-24', commission: 'MYR 75.00', status: 'Claimed', claimedTime: '2026-01-24 14:35' },
+                { date: '2026-01-23', commission: 'MYR 100.00', status: 'Claimed', claimedTime: '2026-01-23 08:45' },
+                { date: '2026-01-22', commission: 'MYR 60.00', status: 'Claimed', claimedTime: '2026-01-22 16:20' },
+                { date: '2026-01-21', commission: 'MYR 80.00', status: 'Claimed', claimedTime: '2026-01-21 10:15' },
+                { date: '2026-01-20', commission: 'MYR 45.00', status: 'Claimed', claimedTime: '2026-01-20 15:40' },
+                { date: '2026-01-19', commission: 'MYR 90.00', status: 'Claimed', claimedTime: '2026-01-19 11:25' },
+                { date: '2026-01-18', commission: 'MYR 55.00', status: 'Claimed', claimedTime: '2026-01-18 13:50' }
+            ]
+        };
+
+        function switchRewardHistoryTab(btn, type) {
+            // Update active state
+            document.querySelectorAll('.reward-subtab').forEach(t => t.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            // Get table body and empty state
+            const tableBody = document.getElementById('rewardHistoryTableBody');
+            const emptyState = document.getElementById('rewardHistoryEmptyState');
+            const table = document.getElementById('rewardHistoryTable');
+
+            if (!tableBody || !emptyState) return;
+
+            // Clear existing rows
+            tableBody.innerHTML = '';
+
+            // Get data for selected type
+            const data = rewardHistoryData[type] || [];
+
+            if (data.length === 0) {
+                // Show empty state
+                emptyState.style.display = 'flex';
+                table.style.display = 'none';
+            } else {
+                // Hide empty state and show table
+                emptyState.style.display = 'none';
+                table.style.display = 'table';
+
+                // Populate table with data
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    const statusClass = item.status === 'Claimed' ? 'status-completed' : 'status-pending';
+                    row.innerHTML = `
+                        <td>${item.date}</td>
+                        <td style="font-weight: 600; color: var(--accent-primary);">${item.commission}</td>
+                        <td><span class="${statusClass}">${item.status}</span></td>
+                        <td>${item.claimedTime}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                // Update colspan for "No Data Found" message if needed (for consistency)
+                const noDataRow = tableBody.querySelector('tr td[colspan]');
+                if (noDataRow) {
+                    noDataRow.remove();
+                }
+            }
+        }
+
+        function toggleHelpCategory(element) {
+            const helpCategory = element.parentElement;
+            const helpContent = helpCategory.querySelector('.help-category-content');
+            const icon = element.querySelector('.fas.fa-chevron-down, .fas.fa-chevron-up');
+
+            helpCategory.classList.toggle('active');
+            if (helpCategory.classList.contains('active')) {
+                helpContent.style.display = 'block';
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                helpContent.style.display = 'none';
+                icon.className = 'fas fa-chevron-down';
+            }
+        }
+
+        function toggleFaqItem(element) {
+            const faqItem = element.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('i');
+
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.display = 'none';
+                    item.querySelector('.faq-question i').className = 'fas fa-chevron-down';
+                }
+            });
+
+            // Toggle current item
+            faqItem.classList.toggle('active');
+            if (faqItem.classList.contains('active')) {
+                faqAnswer.style.display = 'block';
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                faqAnswer.style.display = 'none';
+                icon.className = 'fas fa-chevron-down';
+            }
+        }
+
+        function toggleTermsItem(element) {
+            const termsItem = element.parentElement;
+            const termsContent = termsItem.querySelector('.terms-content');
+            const icon = element.querySelector('i');
+
+            termsItem.classList.toggle('active');
+            if (termsItem.classList.contains('active')) {
+                termsContent.style.display = 'block';
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                termsContent.style.display = 'none';
+                icon.className = 'fas fa-chevron-down';
+            }
+        }
+
+        function showSection(sectionName) {
+            // Update sidebar active state
+            document.querySelectorAll('.account-nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('onclick')?.includes(`'${sectionName}'`)) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Update mobile tab active state
+            document.querySelectorAll('.mobile-account-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('onclick')?.includes(`'${sectionName}'`)) {
+                    tab.classList.add('active');
+                }
+            });
+
+            // Reset finance step when entering finance section
+            if (sectionName === 'finance') {
+                toggleFinanceStep(false);
+            }
+
+            // Toggle main sections
+            const sections = ['profileSection', 'financeSection', 'historySection', 'referralSection', 'languageSection', 'passwordSection'];
+            sections.forEach(s => {
+                const el = document.getElementById(s);
+                if (el) el.style.display = s.toLowerCase().includes(sectionName) ? 'flex' : 'none';
+            });
+
+            // Update titles
+            const titles = {
+                profile: { h1: 'Personal Profile', p: 'Verify and manage your account credentials' },
+                finance: { h1: 'Financial Center', p: 'Securely manage your deposits and withdrawals' },
+                history: { h1: 'Transaction History', p: 'View your recent account activity' },
+                referral: { h1: 'Referral Program', p: 'Invite friends and earn rewards' },
+                language: { h1: 'Display Language', p: 'Choose your preferred language' },
+                password: { h1: 'Security Settings', p: 'Update your account password' }
+            };
+
+            const titleData = titles[sectionName];
+            if (titleData) {
+                document.getElementById('mainTitle').textContent = titleData.h1;
+                document.getElementById('mainSubtitle').textContent = titleData.p;
+            }
+
+            document.getElementById('profileTabs').style.display = sectionName === 'profile' ? 'flex' : 'none';
+
+            if (sectionName === 'profile') {
+                resetProfileTabToOverview();
+            }
+
+            // Initialize transactions when history section is shown
+            if (sectionName === 'history') {
+                setTimeout(() => {
+                    filterTransactions();
+                }, 100);
+            }
+
+            // Show finance tabs when finance section is active
+            const financeTabs = document.getElementById('financeTabs');
+            if (financeTabs) {
+                financeTabs.style.display = sectionName === 'finance' ? 'flex' : 'none';
+            }
+
+            // Show referral tabs when referral section is active
+            const referralTabs = document.getElementById('referralTabs');
+            if (referralTabs) {
+                referralTabs.style.display = sectionName === 'referral' ? 'flex' : 'none';
+            }
+
+            // If showing finance section, default to deposit view
+            if (sectionName === 'finance') {
+                switchFinanceView('deposit');
+            }
+
+            // If showing referral section, default to referral tab
+            if (sectionName === 'referral') {
+                const firstTab = document.querySelector('#referralTabs .tab-pill');
+                if (firstTab) {
+                    switchReferralTab(firstTab, 'referral');
+                }
+            }
+        }
+
+        function switchFinanceView(type) {
+            const depositView = document.getElementById('depositView');
+            const withdrawalView = document.getElementById('withdrawalView');
+
+            if (depositView && withdrawalView) {
+                depositView.style.display = type === 'deposit' ? 'block' : 'none';
+                withdrawalView.style.display = type === 'withdrawal' ? 'block' : 'none';
+            }
+
+            // Update toggle buttons active state
+            const toggleBtns = document.querySelectorAll('.finance-toggle');
+            toggleBtns.forEach(btn => {
+                btn.classList.remove('active');
+                // Use a more reliable way to check button type
+                const btnText = btn.innerText || btn.textContent || "";
+                if (btnText.toLowerCase().includes(type.toLowerCase())) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update subtitle
+            const titleEl = document.getElementById('mainTitle');
+            const subtitleEl = document.getElementById('mainSubtitle');
+            if (titleEl) {
+                titleEl.textContent = type === 'deposit' ? 'Deposit Center' : 'Withdrawal Center';
+            }
+            if (subtitleEl) {
+                subtitleEl.textContent = type === 'deposit' ?
+                    'Securely manage your deposits' : 'Securely manage your withdrawals';
+            }
+
+            // Deposit: show form with first method pre-selected
+            if (type === 'deposit') {
+                const form = document.getElementById('depositFormView');
+                if (form) form.style.display = 'block';
+                initDefaultDepositForm();
+            } else if (type === 'withdrawal') {
+                const form = document.getElementById('withdrawalFormView');
+                if (form) form.style.display = 'block';
+                initDefaultWithdrawForm();
+            }
+        }
+
+        function updateHistoryView(type) {
+            const titleEl = document.getElementById('historyTypeTitle');
+            const subTabs = document.getElementById('transactionSubTabs');
+            const statsFilter = document.getElementById('betStatisticsFilter');
+            const tableHead = document.getElementById('historyTableHead');
+            const tableBody = document.querySelector('#historyDataTable tbody');
+
+            // Map values to display text
+            const typeLabels = {
+                transaction: 'Transaction Record',
+                bet: 'Bet Record',
+                commission: 'Commission Record',
+                rebate: 'Rebate Record',
+                promotion: 'Promotion Record'
+            };
+
+            if (titleEl) titleEl.textContent = typeLabels[type] || 'Transaction Record';
+
+            // Toggle visibility of specific filters
+            if (subTabs) subTabs.style.display = type === 'transaction' ? 'flex' : 'none';
+            if (statsFilter) statsFilter.style.display = type === 'bet' ? 'block' : 'none';
+
+            // Update Table Headers and determine column count
+            let headers = '';
+            let columnCount = 4; // Default
+
+            if (type === 'transaction') {
+                headers = '<th>Date</th><th>Amount</th><th>Status</th><th>Description</th>';
+                columnCount = 4;
+            } else if (type === 'bet') {
+                headers = '<th>Games</th><th>Date</th><th>Bet Amount</th><th>Net Profit</th>';
+                columnCount = 4;
+            } else if (type === 'commission' || type === 'rebate') {
+                headers = '<th>Date</th><th>Rebate</th><th>Sales</th><th>Remark</th>';
+                columnCount = 4;
+            } else if (type === 'promotion') {
+                headers = '<th>Date</th><th>Promotion Title</th><th>Status</th><th>Bonus Received</th><th>Completed Time</th>';
+                columnCount = 5;
+            }
+
+            if (tableHead) tableHead.innerHTML = headers;
+
+            // Update "No Data Found" colspan to match column count
+            if (tableBody) {
+                const noDataRow = tableBody.querySelector('td[colspan]');
+                if (noDataRow) {
+                    noDataRow.setAttribute('colspan', columnCount);
+                }
+            }
+        }
+
+        // Sample transaction data
+        let allTransactions = {
+            deposits: [
+                { date: '2026-01-12', amount: 'MYR 500.00', status: 'Completed', description: 'Bank Transfer - MayBank' },
+                { date: '2026-01-13', amount: 'MYR 1,200.00', status: 'Completed', description: 'Online Banking - RHB' },
+                { date: '2026-01-14', amount: 'MYR 300.00', status: 'Pending', description: 'E-Wallet - Touch n Go' },
+                { date: '2026-01-15', amount: 'MYR 800.00', status: 'Completed', description: 'Bank Transfer - CIMB' },
+                { date: '2026-01-16', amount: 'MYR 2,500.00', status: 'Completed', description: 'Online Banking - Public Bank' },
+                { date: '2026-01-17', amount: 'MYR 150.00', status: 'Failed', description: 'Bank Transfer - MayBank' },
+                { date: '2026-01-18', amount: 'MYR 1,000.00', status: 'Completed', description: 'E-Wallet - GrabPay' }
+            ],
+            withdrawals: [
+                { date: '2026-01-12', amount: 'MYR 200.00', status: 'Completed', description: 'Bank Transfer - MayBank' },
+                { date: '2026-01-13', amount: 'MYR 500.00', status: 'Completed', description: 'Online Banking - RHB' },
+                { date: '2026-01-14', amount: 'MYR 1,000.00', status: 'Pending', description: 'Bank Transfer - CIMB' },
+                { date: '2026-01-15', amount: 'MYR 300.00', status: 'Completed', description: 'E-Wallet - Touch n Go' },
+                { date: '2026-01-16', amount: 'MYR 750.00', status: 'Completed', description: 'Online Banking - Public Bank' },
+                { date: '2026-01-17', amount: 'MYR 400.00', status: 'Processing', description: 'Bank Transfer - MayBank' }
+            ]
+        };
+
+        let currentTransactionType = 'deposits';
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        function getStatusClass(status) {
+            const statusLower = status.toLowerCase();
+            if (statusLower === 'completed') return 'status-completed';
+            if (statusLower === 'pending') return 'status-pending';
+            if (statusLower === 'processing') return 'status-processing';
+            if (statusLower === 'failed') return 'status-failed';
+            return '';
+        }
+
+        function displayTransactions(transactions) {
+            const tableBody = document.querySelector('#historyDataTable tbody');
+            if (!tableBody) return;
+
+            const columnCount = document.querySelectorAll('#historyTableHead th').length;
+            tableBody.innerHTML = '';
+
+            if (transactions.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td colspan="${columnCount}" style="text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 14px; font-weight: 600;">No Data Found</td>`;
+                tableBody.appendChild(row);
+                return;
+            }
+
+            transactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                const statusClass = getStatusClass(transaction.status);
+                row.innerHTML = `
+                    <td>${formatDate(transaction.date)}</td>
+                    <td style="font-weight: 600; color: ${currentTransactionType === 'deposits' ? '#10b981' : '#3b82f6'};">
+                        ${transaction.amount}
+                    </td>
+                    <td><span class="${statusClass}">${transaction.status}</span></td>
+                    <td>${transaction.description}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function filterTransactions() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            if (!startDate || !endDate) {
+                displayTransactions(allTransactions[currentTransactionType]);
+                return;
+            }
+
+            const filtered = allTransactions[currentTransactionType].filter(transaction => {
+                return transaction.date >= startDate && transaction.date <= endDate;
+            });
+
+            displayTransactions(filtered);
+        }
+
+        function setQuickDate(period, buttonElement) {
+            // Update button active states
+            const buttons = document.querySelectorAll('.quick-date-buttons .date-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (buttonElement) buttonElement.classList.add('active');
+
+            const today = new Date();
+            let startDate, endDate;
+
+            switch (period) {
+                case 'today':
+                    startDate = endDate = today;
+                    break;
+                case 'yesterday':
+                    const yesterday = new Date(today);
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    startDate = endDate = yesterday;
+                    break;
+                case 'thisWeek':
+                    const thisWeekStart = new Date(today);
+                    thisWeekStart.setDate(today.getDate() - today.getDay());
+                    startDate = thisWeekStart;
+                    endDate = today;
+                    break;
+                case 'lastWeek':
+                    const lastWeekStart = new Date(today);
+                    lastWeekStart.setDate(today.getDate() - today.getDay() - 7);
+                    const lastWeekEnd = new Date(lastWeekStart);
+                    lastWeekEnd.setDate(lastWeekStart.getDate() + 6);
+                    startDate = lastWeekStart;
+                    endDate = lastWeekEnd;
+                    break;
+                case 'thisMonth':
+                    startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                    endDate = today;
+                    break;
+                case 'lastMonth':
+                    startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                    endDate = new Date(today.getFullYear(), today.getMonth(), 0);
+                    break;
+                default:
+                    return;
+            }
+
+            document.getElementById('startDate').value = startDate.toISOString().split('T')[0];
+            document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
+
+            filterTransactions();
+        }
+
+        function switchTransactionType(type, buttonElement) {
+            // Update button active states
+            const buttons = document.querySelectorAll('#transactionSubTabs .finance-toggle');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate clicked button
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+
+            // Update current transaction type
+            currentTransactionType = type;
+
+            // Filter and display transactions
+            filterTransactions();
+        }
+
+        // Initialize on page load if history section is visible
+        document.addEventListener('DOMContentLoaded', function () {
+            const historySection = document.getElementById('historySection');
+            if (historySection && historySection.style.display !== 'none') {
+                filterTransactions();
+            }
+            // Sync overview read-only fields from personal form (demo)
+            const phoneIn = document.getElementById('profilePhoneInput');
+            const emailIn = document.getElementById('profileEmailInput');
+            const overPhone = document.getElementById('overviewPhoneDisplay');
+            const overEmail = document.getElementById('overviewEmailDisplay');
+            if (phoneIn && overPhone) {
+                phoneIn.addEventListener('input', function () {
+                    overPhone.textContent = phoneIn.value.trim() || '—';
+                });
+            }
+            if (emailIn && overEmail) {
+                emailIn.addEventListener('input', function () {
+                    overEmail.textContent = emailIn.value.trim() || '—';
+                });
+            }
+            // Open section when landing with hash (e.g. from header dropdown)
+            const hash = window.location.hash;
+            const hashMap = { '#profileSection': 'profile', '#financeSection': 'finance', '#historySection': 'history', '#referralSection': 'referral', '#languageSection': 'language', '#passwordSection': 'password' };
+            if (hashMap[hash]) showSection(hashMap[hash]);
+        });
+
+        function toggleFinanceStep(isSelected) {
+            const workspaceD = document.querySelector('#depositView .finance-workspace');
+            const workspaceW = document.querySelector('#withdrawalView .finance-workspace');
+            if (isSelected) {
+                if (workspaceD) workspaceD.classList.add('method-selected');
+                if (workspaceW) workspaceW.classList.add('method-selected');
+            } else {
+                if (workspaceD) workspaceD.classList.remove('method-selected');
+                if (workspaceW) workspaceW.classList.remove('method-selected');
+            }
+        }
+
+        function showWithdrawForm(method, subMethod = '', triggerEl, isUserClick = true) {
+            document.getElementById('withdrawalFormView').style.display = 'block';
+            if (isUserClick) toggleFinanceStep(true);
+
+            const pane = document.querySelector('#withdrawalView .finance-methods-pane');
+            if (pane) {
+                pane.querySelectorAll('.payment-card').forEach(function (c) { c.classList.remove('active'); });
+                pane.querySelectorAll('.payment-group-header').forEach(function (h) { h.classList.remove('active'); });
+                if (triggerEl) {
+                    if (triggerEl.classList.contains('payment-card')) {
+                        triggerEl.classList.add('active');
+                    } else if (triggerEl.classList.contains('payment-group-header')) {
+                        triggerEl.classList.add('active');
+                    }
+                }
+            }
+
+            const titleEl = document.getElementById('withdrawFormTitle');
+            const subTitleEl = document.getElementById('formSubTitle');
+
+            if (method === 'bank') {
+                titleEl.textContent = 'Normal Bank Transfer';
+                subTitleEl.textContent = 'Bank Account Info';
+            } else if (method === 'ewallet') {
+                titleEl.textContent = subMethod + ' Withdrawal';
+                subTitleEl.textContent = subMethod + ' Account Info';
+            } else if (method === 'crypto') {
+                titleEl.textContent = subMethod + ' Withdrawal';
+                subTitleEl.textContent = subMethod + ' Wallet Info';
+            }
+        }
+
+        /** First withdrawal option in the list (Bank Transfer header). */
+        function initDefaultWithdrawForm() {
+            var bankHeader = document.querySelector('#withdrawalView .finance-methods-pane .payment-methods-list > .payment-group:first-child .payment-group-header');
+            if (bankHeader) {
+                showWithdrawForm('bank', '', bankHeader, false);
+            }
+        }
+
+        function showDepositForm(title, subtitle) {
+            document.getElementById('depositFormView').style.display = 'block';
+            document.getElementById('depositFormTitle').textContent = subtitle;
+        }
+
+        /** First payment card in the deposit methods list (default selection). */
+        function initDefaultDepositForm() {
+            const firstCard = document.querySelector('#depositView .finance-methods-pane .payment-card');
+            if (firstCard) {
+                showProviderDepositForm('bank', 'Normal Bank Transfer', { min: 1, max: 10 }, firstCard, false);
+            }
+        }
+
+        // Provider-specific deposit form handler
+        function showProviderDepositForm(providerId, providerName, config, cardEl, isUserClick = true) {
+            document.getElementById('depositFormView').style.display = 'block';
+            if (isUserClick) toggleFinanceStep(true);
+
+            const pane = document.querySelector('#depositView .finance-methods-pane');
+            if (pane) {
+                pane.querySelectorAll('.payment-card').forEach(function (c) { c.classList.remove('active'); });
+                if (cardEl && cardEl.classList && cardEl.classList.contains('payment-card')) {
+                    cardEl.classList.add('active');
+                }
+            }
+
+            // Set title
+            document.getElementById('depositFormTitle').textContent = providerName;
+
+            // Set min deposit
+            document.getElementById('minDepositValue').textContent = config.min.toFixed(2);
+
+            // Show/hide bank selection (only for bank transfers)
+            const bankSection = document.getElementById('bankSelectionSection');
+            if (providerId === 'bank') {
+                bankSection.style.display = 'block';
+            } else {
+                bankSection.style.display = 'none';
+            }
+
+            // Show/hide notes section (only for bank transfers and some providers)
+            const notesSection = document.getElementById('notesSection');
+            if (providerId === 'bank' || providerId === 'takapay' || providerId === 'fpay') {
+                notesSection.style.display = 'block';
+            } else {
+                notesSection.style.display = 'none';
+            }
+
+            // Show/hide payment method selector
+            const methodSelector = document.getElementById('paymentMethodSelector');
+            if (providerId === 'takapay' || providerId === 'bdpay' || providerId === 'fpay') {
+                methodSelector.style.display = 'block';
+            } else {
+                methodSelector.style.display = 'none';
+            }
+
+            // Show/hide phone number input (for FPay)
+            const phoneSection = document.getElementById('phoneNumberSection');
+            if (config.requiresPhone) {
+                phoneSection.style.display = 'block';
+            } else {
+                phoneSection.style.display = 'none';
+            }
+
+            // Show/hide preset amount buttons
+            const presetSection = document.getElementById('presetAmounts');
+            if (config.hasPresets && config.presets) {
+                presetSection.style.display = 'block';
+                // Update preset buttons
+                const presetGrid = presetSection.querySelector('.preset-amounts-grid');
+                presetGrid.innerHTML = '';
+                config.presets.forEach(amount => {
+                    const btn = document.createElement('button');
+                    btn.className = 'preset-amount-btn';
+                    btn.textContent = amount >= 1000 ? (amount / 1000) + 'k' : amount.toString();
+                    btn.onclick = () => setPresetAmount(amount);
+                    presetGrid.appendChild(btn);
+                });
+            } else {
+                presetSection.style.display = 'none';
+            }
+
+            // Update amount input placeholder and range
+            const amountInput = document.getElementById('depositAmountInput');
+            const rangeInfo = document.getElementById('amountRangeInfo');
+            amountInput.placeholder = `Enter amount`;
+            rangeInfo.textContent = `PKR ${config.min.toFixed(2)} - PKR ${config.max.toLocaleString()}`;
+            amountInput.min = config.min;
+            amountInput.max = config.max;
+            amountInput.value = '';
+
+            // Update section title
+            const titleEl = document.getElementById('amountSectionTitle');
+            if (config.hasPresets) {
+                titleEl.textContent = 'Please Select or Enter Deposit Amount';
+            } else {
+                titleEl.textContent = 'Please Enter Amount';
+            }
+
+            // Store current config
+            window.currentDepositConfig = config;
+        }
+
+        function selectBankCard(card, config) {
+            // Remove active class from all cards
+            document.querySelectorAll('#bankSelectionSection .payment-card').forEach(c => c.classList.remove('active'));
+            // Add active to clicked card
+            card.classList.add('active');
+            // Update config
+            window.currentDepositConfig = config;
+            // Update min deposit and amount range
+            document.getElementById('minDepositValue').textContent = config.min.toFixed(2);
+            const amountInput = document.getElementById('depositAmountInput');
+            const rangeInfo = document.getElementById('amountRangeInfo');
+            amountInput.placeholder = `Enter amount`;
+            rangeInfo.textContent = `PKR ${config.min.toFixed(2)} - PKR ${config.max.toLocaleString()}`;
+            amountInput.min = config.min;
+            amountInput.max = config.max;
+        }
+
+        function setPresetAmount(amount) {
+            document.getElementById('depositAmountInput').value = amount;
+            // Highlight selected button
+            document.querySelectorAll('.preset-amount-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.textContent.replace('k', '')) * (btn.textContent.includes('k') ? 1000 : 1) === amount) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function submitDeposit() {
+            const amount = document.getElementById('depositAmountInput').value;
+            if (!amount || amount < window.currentDepositConfig.min || amount > window.currentDepositConfig.max) {
+                alert(`Please enter an amount between PKR ${window.currentDepositConfig.min.toFixed(2)} and PKR ${window.currentDepositConfig.max.toLocaleString()}`);
+                return;
+            }
+            // Here you would normally submit to your backend
+            alert('Deposit request submitted successfully!');
+        }
+
+        function togglePaymentGroup(header) {
+            const group = header.closest('.payment-group');
+            const icon = header.querySelector('.payment-chevron');
+
+            group.classList.toggle('expanded');
+
+            if (group.classList.contains('expanded')) {
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-right');
+            }
+        }
+
+        function toggleGameType(button) {
+            const gameTypeItem = button.closest('.game-type-item');
+            const gameTypeContent = gameTypeItem.querySelector('.game-type-content');
+            const chevron = button.querySelector('.game-type-chevron');
+
+            // Toggle active state
+            const isActive = button.classList.contains('active');
+
+            // Close all other items
+            document.querySelectorAll('.game-type-item').forEach(item => {
+                if (item !== gameTypeItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.game-type-header').classList.remove('active');
+                    item.querySelector('.game-type-content').classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            gameTypeItem.classList.toggle('active');
+            button.classList.toggle('active');
+            gameTypeContent.classList.toggle('active');
+        }
+
+        // Password visibility toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.toggle-password-visibility').forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (input) {
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            this.classList.remove('fa-eye-slash');
+                            this.classList.add('fa-eye');
+                        } else {
+                            input.type = 'password';
+                            this.classList.remove('fa-eye');
+                            this.classList.add('fa-eye-slash');
+                        }
+                    }
+                });
+            });
+        });
+
+        function copyToClipboard(text, label) {
+            navigator.clipboard.writeText(text).then(function () {
+                alert(`${label} copied to clipboard!`);
+            }).catch(function (err) {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert(`${label} copied to clipboard!`);
+            });
+        }
+
+        function shareToFacebook(url) {
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+        function shareToTelegram(url) {
+            const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+        function shareToWhatsApp(url) {
+            const shareUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+    </script>
+</body>
+
+</html>

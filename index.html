@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM88 - White Label Casino & Sports Lobby</title>
+    <meta name="description"
+        content="A polished white-label iGaming lobby template with sports betting, live casino, slots, fishing, and reusable shared assets.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .provider-dropdown.active .dropdown-menu {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 99999 !important;
+            background: white !important;
+            .logos-slider-page {
+    min-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 columns per page */
+    grid-template-rows: repeat(3, auto); /* 3 rows per page */
+    gap: 12px 10px;
+    padding: 15px 0;
+    align-items: center;
+}
+
+@keyframes pageSlide {
+    0%, 45% { transform: translateX(0); }
+    50%, 95% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+.logos-slider-page img {
+    max-width: 85% !important;
+    height: 28px !important; /* Smaller height for 4x3 density fit */
+    object-fit: contain !important;
+    filter: brightness(0.95);
+    margin: 0 auto;
+}
+        border: 2px solid #1677FF !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+        }
+    </style>
+</head>
+
+<body class="light-theme" data-page="index">
+
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-carousel-container">
+            <div class="hero-track">
+                <div class="hero-slide">
+                    <div class="hero-bg"
+                        style="background-image: url('https://wendyyap.com/pngimages/FB_banner/FB04.png');"></div>
+                </div>
+                <div class="hero-slide active">
+                    <div class="hero-bg"
+                        style="background-image: url('https://wendyyap.com/pngimages/FB_banner/FB05.png');"></div>
+                </div>
+                <div class="hero-slide">
+                    <div class="hero-bg"
+                        style="background-image: url('https://wendyyap.com/pngimages/FB_banner/FB08.png');"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-pagination">
+            <span class="dot"></span>
+            <span class="dot active"></span>
+            <span class="dot"></span>
+        </div>
+
+        <button class="hero-prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="hero-next"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <div class="marquee-wrapper">
+            <div class="container marquee-inner">
+                <div class="marquee-label"><i class="fa-solid fa-microphone"></i></div>
+                <div class="marquee">
+                    <p>Welcome To GM88 • Claim your welcome bonus up to 250% today • Explore Live Casino, Sports, Slots,
+                        Poker, Fish Hunt and Rebate in one lobby • Spin Wheel, Voucher Scratch and Prize Box rewards
+                        available now</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Bar / Wheel -->
+    <div class="floating-wheel">
+        <div class="wheel-icon pulse-animation">
+            <img src="https://cdn-icons-png.flaticon.com/512/3593/3593022.png" alt="Lucky Wheel">
+        </div>
+    </div>
+
+    <!-- Game Categories Banner -->
+    <section class="game-categories-banner container home-categories-clean" aria-label="Game categories">
+        <a href="sports.html" class="cat-card cat-card-sports">
+            <img class="cat-art" src="images/cat-banner/sport-cat.png" alt="Sports">
+        </a>
+        <a href="live-casino.html" class="cat-card cat-card-live">
+            <img class="cat-art" src="images/cat-banner/casino-cat.png" alt="Live Casino">
+        </a>
+        <a href="slots.html" class="cat-card cat-card-slots">
+            <img class="cat-art" src="images/cat-banner/slot-cat.png" alt="Slots">
+        </a>
+        <a href="fish-hunt.html" class="cat-card cat-card-fish">
+            <img class="cat-art" src="images/cat-banner/lottery-cat.png" alt="Lottery">
+        </a>
+        <a href="poker.html" class="cat-card cat-card-poker">
+            <img class="cat-art" src="images/cat-banner/poker-cat.png" alt="Poker">
+        </a>
+    </section>
+
+    <!-- Feature Bonuses Row -->
+    <section class="features-section container">
+        <div class="features-box">
+            <!-- Spin Wheel -->
+            <a href="javascript:void(0)" onclick="openBonusModal('spinWheelModal')" class="feature-box-link">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-dharmachakra"></i></div>
+                    <div class="feature-text">
+                        <h3>SPIN WHEEL BONUS</h3>
+                        <p>DAILY REWARDS & LUCKY SPINS</p>
+                    </div>
+                    <div class="feature-action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Voucher Scratch -->
+            <a href="javascript:void(0)" onclick="openBonusModal('voucherScratchModal')" class="feature-box-link">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-ticket-simple"></i></div>
+                    <div class="feature-text">
+                        <h3>VOUCHER SCRATCH</h3>
+                        <p>INSTANT CLAIMABLE BONUSES</p>
+                    </div>
+                    <div class="feature-action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Prize Box -->
+            <a href="javascript:void(0)" onclick="openBonusModal('prizeBoxModal')" class="feature-box-link">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>
+                    <div class="feature-text">
+                        <h3>PRIZE BOX</h3>
+                        <p>EXCLUSIVE MEMBER GIFT DROPS</p>
+                    </div>
+                    <div class="feature-action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Continue Playing Section -->
+    <section class="continue-playing container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-clock-rotate-left header-icon"></i>
+                <h2>Continue Playing</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <div class="continue-carousel">
+            <!-- Game 1 -->
+            <div class="continue-card">
+                <div class="game-thumb" style="background-image: url('images/game/sweet-bonanza.png');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Sweet Bonanza</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.48% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <!-- Game 2 -->
+            <div class="continue-card">
+                <div class="game-thumb" style="background-image: url('images/game/Baccarat Control Squeeze.webp');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Baccarat Squeeze</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 97.30%</div>
+                </div>
+            </div>
+            <!-- Game 3 -->
+            <div class="continue-card">
+                <div class="game-thumb" style="background-image: url('images/game/BlackJack Atrium C.webp');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>BlackJack Atrium</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 99.28%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Transactions Section -->
+    <section class="live-transactions container">
+        <div class="section-header">
+            <div class="header-left">
+                <div class="live-pulse-container">
+                    <i class="fa-solid fa-money-bill-transfer header-icon"></i>
+                    <span class="live-indicator-dot"></span>
+                </div>
+                <h2>Transactions</h2>
+            </div>
+            <div class="tx-tabs">
+                <button class="tx-tab active" data-filter="all">TRANSACTIONS</button>
+                <button class="tx-tab" data-filter="deposit">DEPOSIT</button>
+                <button class="tx-tab" data-filter="withdraw">WITHDRAW</button>
+            </div>
+        </div>
+
+        <div class="tx-pills-container">
+            <!-- Initial placeholders shown on first load -->
+            <div class="tx-pill" data-type="deposit">
+                <div class="tx-avatar-wrapper">
+                    <img src="https://i.pravatar.cc/150?u=11" class="tx-avatar" alt="User">
+                    <div class="tx-status-indicator"></div>
+                </div>
+                <div class="tx-info">
+                    <span class="tx-user">J***n</span>
+                    <span class="tx-type">Deposit</span>
+                </div>
+                <div class="tx-amount-section">
+                    <span class="tx-amount">+MYR 5,000</span>
+                    <span class="tx-time">Just Now</span>
+                </div>
+            </div>
+            <div class="tx-pill" data-type="withdraw">
+                <div class="tx-avatar-wrapper">
+                    <img src="https://i.pravatar.cc/150?u=22" class="tx-avatar" alt="User">
+                    <div class="tx-status-indicator"></div>
+                </div>
+                <div class="tx-info">
+                    <span class="tx-user">S***a</span>
+                    <span class="tx-type">Withdrawal</span>
+                </div>
+                <div class="tx-amount-section">
+                    <span class="tx-amount">-MYR 1,200</span>
+                    <span class="tx-time">Just Now</span>
+                </div>
+            </div>
+            <div class="tx-pill" data-type="deposit">
+                <div class="tx-avatar-wrapper">
+                    <img src="https://i.pravatar.cc/150?u=33" class="tx-avatar" alt="User">
+                    <div class="tx-status-indicator"></div>
+                </div>
+                <div class="tx-info">
+                    <span class="tx-user">M***k</span>
+                    <span class="tx-type">Deposit</span>
+                </div>
+                <div class="tx-amount-section">
+                    <span class="tx-amount">+MYR 8,500</span>
+                    <span class="tx-time">Just Now</span>
+                </div>
+            </div>
+            <div class="tx-pill" data-type="withdraw">
+                <div class="tx-avatar-wrapper">
+                    <img src="https://i.pravatar.cc/150?u=44" class="tx-avatar" alt="User">
+                    <div class="tx-status-indicator"></div>
+                </div>
+                <div class="tx-info">
+                    <span class="tx-user">A***i</span>
+                    <span class="tx-type">Withdrawal</span>
+                </div>
+                <div class="tx-amount-section">
+                    <span class="tx-amount">-MYR 2,300</span>
+                    <span class="tx-time">Just Now</span>
+                </div>
+            </div>
+            <div class="tx-pill" data-type="withdraw">
+                <div class="tx-avatar-wrapper">
+                    <img src="https://i.pravatar.cc/150?u=55" class="tx-avatar" alt="User">
+                    <div class="tx-status-indicator"></div>
+                </div>
+                <div class="tx-info">
+                    <span class="tx-user">K***o</span>
+                    <span class="tx-type">Withdrawal</span>
+                </div>
+                <div class="tx-amount-section">
+                    <span class="tx-amount">-MYR 5,400</span>
+                    <span class="tx-time">Just Now</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Hot Providers Section -->
+    <section class="hot-providers-section container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-fire header-icon"></i>
+                <h2>Hot Providers</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <div class="provider-filters">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> All
+                    Games</button>
+                <button class="filter-btn" data-filter="slots"><i class="fa-solid fa-table-cells"></i> Slots</button>
+                <button class="filter-btn" data-filter="live"><i class="fa-solid fa-dice"></i> Live Casino</button>
+                <button class="filter-btn" data-filter="table"><i class="fa-solid fa-diamond"></i> Table</button>
+                <button class="filter-btn" data-filter="jackpot"><i class="fa-solid fa-trophy"></i> Jackpot</button>
+            </div>
+
+            <div class="provider-dropdown" id="homeProviderDropdown">
+                <div class="dropdown-trigger" style="cursor: pointer; position: relative; z-index: 10;">
+                    <span id="currentProviderName" style="pointer-events: none;">Pragmatic Play</span>
+                    <i class="fa-solid fa-chevron-down" style="pointer-events: none;"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item" data-value="all">All Providers</div>
+                    <div class="dropdown-item active" data-value="pragmatic">Pragmatic Play</div>
+                    <div class="dropdown-item" data-value="pgsoft">PG Soft</div>
+                    <div class="dropdown-item" data-value="playtech">Playtech</div>
+                    <div class="dropdown-item" data-value="spadegaming">Spadegaming</div>
+                    <div class="dropdown-item" data-value="jili">JILI</div>
+                    <div class="dropdown-item" data-value="habanero">Habanero</div>
+                    <div class="dropdown-item" data-value="evolution">Evolution Gaming</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-cards-grid" id="homeGamesGrid">
+            <!-- New Game Card Pattern -->
+            <div class="game-item" data-category="slots" data-provider="pragmatic">
+                <div class="game-thumb" style="background-image: url('images/game/sweet-bonanza.png');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Sweet Bonanza</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.48% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="slots" data-provider="pragmatic">
+                <div class="game-thumb" style="background-image: url('images/game/gate-of-olympus.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Gates of Olympus</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="slots" data-provider="pragmatic">
+                <div class="game-thumb" style="background-image: url('images/game/starlight.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Starlight Princess</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="slots" data-provider="pragmatic">
+                <div class="game-thumb" style="background-image: url('images/game/rush.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Sugar Rush</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="slots" data-provider="pragmatic">
+                <div class="game-thumb" style="background-image: url('images/game/wild-west.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Wild West Gold</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.51% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="live" data-provider="pragmatic">
+                <div class="game-thumb" style="background-image: url('images/game/DragonTiger_Pragmatic.webp');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Dragon Tiger</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.27% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Payout Gallery (Inspired Design) -->
+    <section class="big-wins-section container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-trophy header-icon" style="color: var(--status-warning);"></i>
+                <h2>Recent Payouts</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="payout-gallery-wrapper">
+            <div class="win-cards-container">
+                <!-- Set 1 -->
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/Buffalo Gold Canyon.jpg');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">A*****7</span>
+                        <div class="payout-amount">MYR 125,450</div>
+                        <span class="payout-game-name">Buffalo Gold</span>
+                    </div>
+                </div>
+                <!-- Payout 2 -->
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/Mahjong Self-Drawn Win 3.webp');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">L*****8</span>
+                        <div class="payout-amount">MYR 89,900</div>
+                        <span class="payout-game-name">Mahjong Win 3</span>
+                    </div>
+                </div>
+                <!-- Payout 3 -->
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/super speed.jpg');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">R*****G</span>
+                        <div class="payout-amount">MYR 42,500</div>
+                        <span class="payout-game-name">Super Speed</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/starlight.jpg');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">B*****S</span>
+                        <div class="payout-amount">MYR 32,100</div>
+                        <span class="payout-game-name">Starlight Princess</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/DragonTiger_Pragmatic.webp');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">D*****T</span>
+                        <div class="payout-amount">MYR 55,000</div>
+                        <span class="payout-game-name">Dragon Tiger</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/Coin Craze Jackpot.webp');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">C*****Z</span>
+                        <div class="payout-amount">MYR 12,500</div>
+                        <span class="payout-game-name">Coin Craze Jackpot</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/No Commission Baccarat A.png');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">B*****A</span>
+                        <div class="payout-amount">MYR 78,900</div>
+                        <span class="payout-game-name">Baccarat No Comm</span>
+                    </div>
+                </div>
+
+                <!-- Set 2 (Duplicate for Seamless Loop) -->
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/Buffalo Gold Canyon.jpg');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">A*****7</span>
+                        <div class="payout-amount">MYR 125,450</div>
+                        <span class="payout-game-name">Buffalo Gold</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/Mahjong Self-Drawn Win 3.webp');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">L*****8</span>
+                        <div class="payout-amount">MYR 89,900</div>
+                        <span class="payout-game-name">Mahjong Win 3</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/super speed.jpg');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">R*****G</span>
+                        <div class="payout-amount">MYR 42,500</div>
+                        <span class="payout-game-name">Super Speed</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/starlight.jpg');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">B*****S</span>
+                        <div class="payout-amount">MYR 32,100</div>
+                        <span class="payout-game-name">Starlight Princess</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/DragonTiger_Pragmatic.webp');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">D*****T</span>
+                        <div class="payout-amount">MYR 55,000</div>
+                        <span class="payout-game-name">Dragon Tiger</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/Coin Craze Jackpot.webp');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">C*****Z</span>
+                        <div class="payout-amount">MYR 12,500</div>
+                        <span class="payout-game-name">Coin Craze Jackpot</span>
+                    </div>
+                </div>
+                <div class="payout-card">
+                    <div class="payout-game-art" style="background-image: url('images/game/No Commission Baccarat A.png');"></div>
+                    <div class="payout-info">
+                        <span class="payout-username">B*****A</span>
+                        <div class="payout-amount">MYR 78,900</div>
+                        <span class="payout-game-name">Baccarat No Comm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Generic Game Grids -->
+
+    <!-- Live Casino Section -->
+    <section class="hot-providers-section container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-dice header-icon"></i>
+                <h2>Live Casino</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="game-cards-grid">
+            <!-- Game 1 -->
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Baccarat Control Squeeze.webp');">
+                    <div class="game-badge badge-left badge-hot">HOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 1000X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Baccarat Squeeze</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 97.30%</div>
+                </div>
+            </div>
+            <!-- Game 2 -->
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/BlackJack Atrium C.webp');">
+                    <div class="game-badge badge-left badge-new">NEW</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 500X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>BlackJack Atrium</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 99.28%</div>
+                </div>
+            </div>
+            <!-- Game 3 -->
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/DragonTiger_Pragmatic.webp');">
+                    <div class="game-badge badge-left badge-jackpot">JACKPOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 400X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Dragon Tiger</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 96.40%</div>
+                </div>
+            </div>
+            <!-- Game 4 -->
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Always 9 Baccarat.jpg');">
+                    <div class="game-badge badge-left badge-hot">HOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 2500X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Always 9 Baccarat</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 98.23%</div>
+                </div>
+            </div>
+            <!-- Game 5 -->
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/No Commission Baccarat A.png');">
+                    <div class="game-badge badge-left badge-new">NEW</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 39000X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>No Comm. Baccarat</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 98.76%</div>
+                </div>
+            </div>
+            <!-- Game 6 -->
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Tao Yuan Baccarat 8.jpg');">
+                    <div class="game-badge badge-left badge-jackpot">JACKPOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 51000X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Tao Yuan Baccarat</h4>
+                    <span class="provider-label">WM Casino</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 98.90%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slots Section -->
+    <section class="hot-providers-section container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-table-cells header-icon"></i>
+                <h2>Slots</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="game-cards-grid">
+            <!-- Game 1 -->
+            <div class="game-item" data-category="slots">
+                <div class="game-thumb" style="background-image: url('images/game/Buffalo Gold Canyon.jpg');">
+                    <div class="game-badge badge-left badge-hot">HOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 8800X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Buffalo Gold Canyon</h4>
+                    <span class="provider-label">Aristocrat</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 96.21%</div>
+                </div>
+            </div>
+            <!-- Game 2 -->
+            <div class="game-item" data-category="slots">
+                <div class="game-thumb" style="background-image: url('images/game/Coin Craze Jackpot.webp');">
+                    <div class="game-badge badge-left badge-jackpot">JACKPOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 15000X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Coin Craze Jackpot</h4>
+                    <span class="provider-label">PG Soft</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 96.09%</div>
+                </div>
+            </div>
+            <!-- Game 3 -->
+            <div class="game-item" data-category="slots">
+                <div class="game-thumb" style="background-image: url('images/game/Mega Mammoth Multiplier.webp');">
+                    <div class="game-badge badge-left badge-new">NEW</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 5000X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Mega Mammoth</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 95.97%</div>
+                </div>
+            </div>
+            <!-- Game 4 -->
+            <div class="game-item" data-category="slots">
+                <div class="game-thumb" style="background-image: url('images/game/dog-house.jpg');">
+                    <div class="game-badge badge-left badge-hot">HOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 6750X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>The Dog House</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 96.51%</div>
+                </div>
+            </div>
+            <!-- Game 5 -->
+            <div class="game-item" data-category="slots">
+                <div class="game-thumb" style="background-image: url('images/game/big bass.webp');">
+                    <div class="game-badge badge-left badge-jackpot">JACKPOT</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 2100X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Big Bass Bonanza</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 96.71%</div>
+                </div>
+            </div>
+            <!-- Game 6 -->
+            <div class="game-item" data-category="slots">
+                <div class="game-thumb" style="background-image: url('images/game/starlight.jpg');">
+                    <div class="game-badge badge-left badge-new">NEW</div>
+                    <div class="game-badge badge-right badge-multiplier"><i class="fa-solid fa-bolt"></i> 5000X</div>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Starlight Princess</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge"><i class="fa-solid fa-arrow-trend-up"></i> 96.50%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Games Section -->
+    <section class="hot-providers-section container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-star header-icon" style="color: var(--status-warning);"></i>
+                <h2>New Games</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="game-cards-grid">
+            <div class="game-item">
+                <div class="game-thumb"
+                    style="background-image: url('images/game/Le_Bandit_Slot_Review_6608bfcebe.avif');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Le Bandit</h4>
+                    <span class="provider-label">Hacksaw</span>
+                    <div class="rtp-badge">RTP 96.22% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item">
+                <div class="game-thumb" style="background-image: url('images/game/chicken-pirate-logo.webp');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Chicken Pirate</h4>
+                    <span class="provider-label">PG Soft</span>
+                    <div class="rtp-badge">RTP 96.92% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item">
+                <div class="game-thumb"
+                    style="background-image: url('images/game/circle-of-life-resized-to-large-1.jpeg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Circle of Life</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.71% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item">
+                <div class="game-thumb" style="background-image: url('images/game/madame-destiny.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Madame Destiny</h4>
+                    <span class="provider-label">Pragmatic Play</span>
+                    <div class="rtp-badge">RTP 96.56% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item">
+                <div class="game-thumb" style="background-image: url('images/game/Red Dragon Ways.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Red Dragon Ways</h4>
+                    <span class="provider-label">CQ9</span>
+                    <div class="rtp-badge">RTP 97.00% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item">
+                <div class="game-thumb" style="background-image: url('images/game/Buffalo Gold Canyon.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Buffalo Gold Canyon</h4>
+                    <span class="provider-label">Aristocrat</span>
+                    <div class="rtp-badge">RTP 96.21% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baccarat Section -->
+    <section class="hot-providers-section container">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-diamond header-icon"></i>
+                <h2>Baccarat</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="game-cards-grid">
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Always 9 Baccarat.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Always 9 Baccarat</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge">RTP 98.94% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Baccarat Control Squeeze.webp');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Baccarat Control Squeeze</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge">RTP 98.76% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/No Commission Baccarat A.png');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>No Commission Baccarat</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge">RTP 98.76% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Shangri La Baccarat 6.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Shangri La Baccarat</h4>
+                    <span class="provider-label">Allbet</span>
+                    <div class="rtp-badge">RTP 98.94% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Tao Yuan Baccarat 8.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Tao Yuan Baccarat</h4>
+                    <span class="provider-label">WM Casino</span>
+                    <div class="rtp-badge">RTP 98.90% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+            <div class="game-item" data-category="live">
+                <div class="game-thumb" style="background-image: url('images/game/Always 9 Baccarat.jpg');">
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="game-details">
+                    <h4>Always 9 Baccarat 2</h4>
+                    <span class="provider-label">Evolution</span>
+                    <div class="rtp-badge">RTP 98.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Member Benefits Row -->
+    <section class="features-section container">
+        <div class="features-box">
+            <!-- Rewards -->
+            <a href="exchange.html" class="feature-box-link">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-regular fa-gem"></i></div>
+                    <div class="feature-text">
+                        <h3>REWARDS</h3>
+                        <p>COLLECT POINTS & CLAIM REWARDS</p>
+                    </div>
+                    <div class="feature-action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- VIP -->
+            <a href="vip.html" class="feature-box-link">
+                <div class="feature-box feature-vip">
+                    <div class="feature-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="feature-text">
+                        <h3>MEMBER VIP</h3>
+                        <p>EXCLUSIVE PERKS & STATUS</p>
+                    </div>
+                    <div class="feature-action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Mini Game -->
+            <a href="games.html" class="feature-box-link">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <div class="feature-text">
+                        <h3>MINI GAME</h3>
+                        <p>FUN PLAY & INSTANT BONUSES</p>
+                    </div>
+                    <div class="feature-action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <section class="seo-content-section container">
+        <div class="seo-box">
+            <div class="seo-text">
+                <h3>Welcome to the Best Casino Experience!</h3>
+                <p>Enjoy a trusted and exciting gaming platform built for sports betting, live casino, slots, poker and
+                    fish hunt entertainment. Discover premium providers, fast transactions, rewarding promotions and
+                    dedicated VIP experiences designed to give members more reasons to play every day.</p>
+                <a href="#" class="btn-read-more">Read More</a>
+            </div>
+            <div class="seo-image">
+                <img src="images/hero_banner_messi_1772600305612.png" alt="Casino Promo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Info Links -->
+                <div class="footer-col">
+                    <h4>SITE MAPS</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Responsible Gaming</a></li>
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Condition</a></li>
+                    </ul>
+                    <!-- Branding at Bottom Left -->
+                    <div class="footer-logo-main">
+                        <img src="images/GM88.png" alt="GM88 Logo">
+                    </div>
+                </div>
+
+                <!-- Licences -->
+                <div class="footer-col">
+                    <h4 class="footer-title">LICENCE</h4>
+                    <div class="footer-license-grid">
+                        <div class="footer-license-item"><span>EGBA</span></div>
+                        <div class="footer-license-item"><span>18+</span></div>
+                        <div class="footer-license-item"><span>eCOGRA</span></div>
+                        <div class="footer-license-item"><span>MGA</span></div>
+                        <div class="footer-license-item"><span>GAMCARE</span></div>
+                        <div class="footer-license-item"><span>RGA</span></div>
+                    </div>
+                </div>
+
+                <!-- Providers Section (4x3 Side-Slider) -->
+                <div class="footer-col footer-providers-full">
+                    <h4 class="footer-title">PROVIDERS</h4>
+                    <div class="footer-slider-wrapper">
+                        <div class="logos-slider-track" style="animation: pageSlide 16s infinite cubic-bezier(0.85, 0, 0.15, 1);">
+                            <!-- Page 1 (4x3 Grid) -->
+                            <div class="logos-slider-page">
+                                <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="SBOBET">
+                                <img src="images/provider logo/pragmaticplay_bk.png" alt="PRAGMATIC">
+                                <img src="images/provider logo/enlogo2-202504210819440598.png" alt="EVOLUTION">
+                                <img src="images/provider logo/pgsoft.png" alt="PG SOFT">
+                                <img src="images/provider logo/JILI.png" alt="JILI">
+                                <img src="images/provider logo/spadegaming-202412121054336747.png" alt="SPADE">
+                                <img src="images/provider logo/sexybaccarat (1)-202411061155483524.png" alt="SEXY">
+                                <img src="images/provider logo/nextspin (3)-202508071057105641.png" alt="NEXTSPIN">
+                                <img src="images/provider logo/mega888-202504251105386724.png" alt="MEGA888">
+                                <img src="images/provider logo/pussy888-202505161346066923.png" alt="PUSSY888">
+                                <img src="images/provider logo/redtiger-202402021533126156.png" alt="RED TIGER">
+                                <img src="images/provider logo/netent-202410220745331179.png" alt="NETENT">
+                            </div>
+                            <!-- Page 2 (4x3 Grid) -->
+                            <div class="logos-slider-page">
+                                <img src="images/provider logo/allbet-202503131406399821.png" alt="ALLBET">
+                                <img src="images/provider logo/cq9-202411271059545342.png" alt="CQ9">
+                                <img src="images/provider logo/fachai-202411061132262463.png" alt="FACHAI">
+                                <img src="images/provider logo/microgaming-202503200856328105.png" alt="MICROGAMING">
+                                <img src="images/provider logo/playtech-202406041113250508.png" alt="PLAYTECH">
+                                <img src="images/provider logo/wmcasino-202503190825567381.png" alt="WMCASINO">
+                                <img src="images/provider logo/yblive-202503071029391162.png" alt="YBLIVE">
+                                <img src="images/provider logo/jdb-202411281450014263.png" alt="JDB">
+                                <img src="images/provider logo/hacksawgaming-202411121150277106.png" alt="HACKSAW">
+                                <img src="images/provider logo/play'n go-202410220759136600.png" alt="PLAYNGO">
+                                <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="SBOBET">
+                                <img src="images/provider logo/pragmaticplay_bk.png" alt="PRAGMATIC">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div class="container">
+                <p>COPYRIGHT &copy; GM88 2026. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/header.js?v=1.0.1"></script>
+    <script src="js/main.js?v=1.0.1"></script>
+</body>
+
+</html>

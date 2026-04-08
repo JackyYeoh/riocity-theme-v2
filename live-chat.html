@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Chat Support - RioCity Casino</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/auth-pages.css">
+    <link rel="stylesheet" href="css/live-chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="live-chat-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">RIOCITY</span>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Connecting to support...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header (Simplified for Chat Page) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RioCity Logo"
+                        class="logo-img">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">RIOCITY</span>
+                </a>
+            </div>
+            <div class="header-right">
+                <button type="button" class="btn btn-ghost theme-toggle-btn" data-theme-toggle aria-label="Toggle theme" title="Switch to light mode">
+                    <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
+                </button>
+                <a href="index.html" class="btn btn-ghost"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Interface -->
+    <main class="chat-main-section">
+        <!-- Animated Background -->
+        <div class="chat-bg-blobs">
+            <div class="chat-blob blob-1"></div>
+            <div class="chat-blob blob-2"></div>
+            <div class="chat-blob blob-3"></div>
+        </div>
+
+        <div class="chat-container">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div class="chat-agent-info">
+                    <div class="agent-avatar-wrapper">
+                        <img src="images/home/tan-xuan-triton-poker.webp" alt="Support Agent" class="agent-avatar">
+                        <span class="agent-status-indicator"></span>
+                    </div>
+                    <div class="agent-details">
+                        <h3>RioCity Support</h3>
+                        <span class="agent-status-text">Online • Typically replies instantly</span>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <button class="chat-action-btn" title="Minimize"><i class="fas fa-minus"></i></button>
+                    <button class="chat-action-btn" title="End Chat"><i class="fas fa-power-off"></i></button>
+                </div>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-date-divider">
+                    <span class="chat-date-pill">Today</span>
+                </div>
+
+                <!-- System Welcome Message -->
+                <div class="message-wrapper system">
+                    <div class="message-header">
+                        <span class="message-sender system">System</span>
+                        <span class="message-time">09:18</span>
+                    </div>
+                    <div class="message-bubble">
+                        <div class="message-content">
+                            <h4>Welcome to RioCity!</h4>
+                            <p>🎰 🎲 🃏</p>
+                            <p>The most trusted and biggest casino on earth!</p>
+                            <p>💎 💎 💎</p>
+                            <br>
+                            <p><strong>This text is bold</strong></p>
+                            <p><em>This text is italic</em></p>
+                            <p>This is <sub>subscript</sub> and <sup>superscript</sup></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent Message Example -->
+                <div class="message-wrapper agent">
+                    <div class="message-header">
+                        <span class="message-sender agent">Sarah</span>
+                        <span class="message-time">09:19</span>
+                    </div>
+                    <div class="message-bubble">
+                        Hello! 👋 How can I help you today?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <!-- Suggested Pills -->
+                <div class="suggested-pills-scroll" id="suggestedPills">
+                    <button class="suggest-pill">I'm New Here</button>
+                    <button class="suggest-pill">Forgot Username/Password</button>
+                    <button class="suggest-pill">Account Verification Issue</button>
+                    <button class="suggest-pill">怎样充值</button> <!-- "How to deposit" in Chinese, per screenshot -->
+                    <button class="suggest-pill">Hi</button>
+                </div>
+
+                <!-- Input Field -->
+                <div class="input-wrapper">
+                    <button class="chat-tool-btn" title="Attach File"><i class="fas fa-paperclip"></i></button>
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..."
+                        autocomplete="off">
+                    <button class="chat-tool-btn" title="Insert Emoji" style="margin-right: 4px;"><i
+                            class="fas fa-smile"></i></button>
+                    <button class="btn-send" id="btnSend" title="Send Message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/live-chat.js"></script>
+</body>
+
+</html>

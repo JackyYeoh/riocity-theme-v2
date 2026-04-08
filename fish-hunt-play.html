@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Fish Hunt - RioCity</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/game-pages.css">
+    <link rel="stylesheet" href="css/auth-pages.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="game-page sports-provider-content-page fish-hunt-content-page">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">RIOCITY</span>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Loading amazing games...</span>
+            </div>
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RioCity Logo" class="logo-img">
+                    <span class="logo-icon">◆</span>
+                    <span class="logo-text">RIOCITY</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="live-casino.html" class="nav-link">Live Casino</a>
+                    <a href="sports.html" class="nav-link">Sports</a>
+                    <a href="slots.html" class="nav-link">Slots</a>
+                    <a href="promotions.html" class="nav-link">Promotions</a>
+                    <a href="vip.html" class="nav-link">VIP</a>
+                    <div class="nav-dropdown" id="moreGamesDropdown">
+                        <div class="nav-link nav-dropdown-toggle">
+                            <span>More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="nav-dropdown-menu">
+                            <a href="games.html" class="nav-dropdown-item"><i class="fas fa-clock"></i><span>Recent Games</span></a>
+                            <a href="poker.html" class="nav-dropdown-item"><i class="fas fa-heart"></i><span>Poker</span></a>
+                            <a href="fish-hunt.html" class="nav-dropdown-item"><i class="fas fa-fish"></i><span>Fish Hunt</span></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="header-wallet-section" id="headerWalletSection">
+                    <div class="header-wallet-toggle">
+                        <span class="header-wallet-label">Balance:</span>
+                        <span class="header-wallet-value" id="headerWalletBalance">89.41</span>
+                        <i class="fas fa-chevron-down header-wallet-chevron"></i>
+                    </div>
+                    <div class="header-wallet-dropdown">
+                        <button class="header-wallet-refresh" onclick="refreshWalletBalances(event)" aria-label="Refresh"><i class="fas fa-sync-alt"></i></button>
+                        <div class="header-wallet-row">
+                            <span>Main Wallet :</span>
+                            <span class="header-wallet-amount" id="mainWalletAmount">89.41</span>
+                        </div>
+                        <div class="header-wallet-row">
+                            <i class="fas fa-info-circle header-wallet-info" title="Used for placing bets. Transfer from Main Wallet to play."></i>
+                            <span>Game Wallet :</span>
+                            <span class="header-wallet-amount white" id="gameWalletAmount">0.00</span>
+                        </div>
+                    </div>
+                    <a href="account-details.html#financeSection" class="btn-deposit-header"><i class="fas fa-dollar-sign"></i> Deposit</a>
+                </div>
+                <button onclick="openAuthModal('loginModal')" class="btn btn-ghost">Log In</button>
+                <button onclick="openAuthModal('registerModal')" class="btn btn-primary">Join Now</button>
+                <button class="apk-download-btn desktop-only" onclick="downloadAPK()" aria-label="Download APK" title="Download APK"><i class="fab fa-android"></i></button>
+                <button type="button" class="btn btn-ghost theme-toggle-btn desktop-only" data-theme-toggle aria-label="Toggle theme" title="Switch to light mode">
+                    <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
+                </button>
+                <div class="language-selector">
+                    <img src="images/flags/en.svg" alt="EN" class="flag-icon">
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <button class="mobile-info-btn" aria-label="Information"><i class="fas fa-info"></i></button>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RioCity Logo" class="logo-img">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">RIOCITY</span>
+            </a>
+            <button class="mobile-menu-close" aria-label="Close mobile menu"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="mobile-nav">
+            <div id="mobileUserSection"></div>
+            <button type="button" class="mobile-nav-link mobile-theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
+            </button>
+            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('spinWheelModal')">
+                <div class="mobile-bonus-icon"><img src="https://pksoftcdn.azureedge.net/media/spin wheel button-202501021417106102.svg" alt="Spin Wheel"></div>
+                <span>Spin Wheel Bonus</span>
+            </button>
+            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('voucherScratchModal')">
+                <div class="mobile-bonus-icon"><img src="https://pksoftcdn.azureedge.net/media/voucher-scratch-202510101415238782.png" alt="Voucher Scratch"></div>
+                <span>Voucher Scratch Bonus</span>
+            </button>
+            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('prizeBoxModal')">
+                <div class="mobile-bonus-icon"><img src="https://pksoftcdn.azureedge.net/media/prize-box-202510101415447518.png" alt="Prize Box"></div>
+                <span>Prize Box Bonus</span>
+            </button>
+            <div class="mobile-nav-divider"></div>
+            <a href="live-casino.html" class="mobile-nav-link"><i class="fas fa-play-circle"></i><span>Live Casino</span></a>
+            <a href="sports.html" class="mobile-nav-link"><i class="fas fa-futbol"></i><span>Sports</span></a>
+            <a href="slots.html" class="mobile-nav-link"><i class="fas fa-dice"></i><span>Slots</span></a>
+            <a href="promotions.html" class="mobile-nav-link"><i class="fas fa-gift"></i><span>Promotions</span></a>
+            <a href="vip.html" class="mobile-nav-link"><i class="fas fa-crown"></i><span>VIP</span></a>
+            <a href="#" class="mobile-nav-link" onclick="downloadAPK()"><i class="fab fa-android"></i><span>Download App</span></a>
+            <div class="mobile-nav-divider"></div>
+            <a href="games.html" class="mobile-nav-link"><i class="fas fa-clock"></i><span>Recent Games</span></a>
+            <a href="poker.html" class="mobile-nav-link"><i class="fas fa-dice"></i><span>Poker</span></a>
+            <a href="fish-hunt.html" class="mobile-nav-link"><i class="fas fa-fish"></i><span>Fish Hunt</span></a>
+            <div class="mobile-nav-divider"></div>
+            <button class="mobile-nav-link btn-login"><i class="fas fa-sign-in-alt"></i><span>Log In</span></button>
+            <button class="mobile-nav-link btn-signup"><i class="fas fa-user-plus"></i><span>Join Now</span></button>
+        </nav>
+    </div>
+
+    <main class="sports-provider-content">
+        <div class="container">
+        <div class="sports-provider-name-bar">
+            <a href="fish-hunt.html" class="sports-provider-back-btn" id="fishHuntPlayBackBtn" aria-label="Back to Fish Hunt">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="sports-provider-name-title" id="fishHuntGameNameDisplay">Fish Hunt Game</h1>
+        </div>
+
+        <section class="sports-provider-live-section" id="fishHuntGameSection">
+            <button type="button" class="sports-provider-fullscreen-btn" onclick="toggleFishHuntGameFullscreen()" aria-label="Toggle fullscreen" title="Fullscreen">
+                <i class="fas fa-expand" id="fishHuntFullscreenIcon"></i>
+            </button>
+            <div class="sports-provider-game-screen" id="fishHuntGameScreen">
+                <iframe
+                    id="fishHuntGameFrame"
+                    src="about:blank"
+                    title="Fish Hunt Game"
+                    frameborder="0"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </section>
+
+        <section class="sports-provider-ranking-section">
+            <div class="sports-provider-ranking-header">
+                <h3 class="sports-provider-ranking-title" id="fishHuntGameRankingTitle">Fish Hunt Game Ranking</h3>
+                <div class="sports-provider-ranking-tabs">
+                    <button class="sports-provider-ranking-tab active">Ranking</button>
+                </div>
+            </div>
+            <div class="sports-provider-ranking-table-wrap">
+                <table class="sports-provider-ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Username</th>
+                            <th>Date</th>
+                            <th>Bet Amount</th>
+                            <th>Payout</th>
+                            <th>Win Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="sports-provider-rank-badge rank-1">1</span></td>
+                            <td>***</td>
+                            <td>04 Feb 2026</td>
+                            <td>500.00</td>
+                            <td>2.50</td>
+                            <td class="text-win">+1,250.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="sports-provider-rank-badge rank-2">2</span></td>
+                            <td>***</td>
+                            <td>04 Feb 2026</td>
+                            <td>350.00</td>
+                            <td>2.80</td>
+                            <td class="text-win">+980.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="sports-provider-rank-badge rank-3">3</span></td>
+                            <td>***</td>
+                            <td>03 Feb 2026</td>
+                            <td>280.00</td>
+                            <td>1.95</td>
+                            <td class="text-win">+546.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="sports-provider-rank-badge">4</span></td>
+                            <td>***</td>
+                            <td>03 Feb 2026</td>
+                            <td>200.00</td>
+                            <td>2.10</td>
+                            <td class="text-win">+420.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="sports-provider-rank-badge">5</span></td>
+                            <td>***</td>
+                            <td>02 Feb 2026</td>
+                            <td>150.00</td>
+                            <td>3.20</td>
+                            <td class="text-win">+480.00</td>
+                        </tr>
+                        <tr class="sports-provider-no-data" style="display:none;">
+                            <td colspan="6"><i class="fas fa-folder-open"></i><span>No Data Found</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="provider-games-section sports-provider-recommended games-section">
+            <div class="section-header-unified">
+                <h2><i class="fas fa-fish"></i><span class="recommended-title-full">Recommended Fish Hunt Games</span><span class="recommended-title-short">Recommended</span></h2>
+                <div class="section-controls-unified">
+                    <a href="fish-hunt.html" class="view-all-btn-unified">All <i class="fas fa-chevron-right"></i></a>
+                    <div class="nav-arrows-unified">
+                        <button type="button" class="nav-arrow-unified carousel-prev" aria-label="Scroll games left"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="nav-arrow-unified carousel-next" aria-label="Scroll games right"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="games-grid game-carousel-track">
+                <a href="fish-hunt-play.html?game=Ocean%20King&provider=FaChai&image=https%3A%2F%2Fasset.marioclub.me%2Fimages%2Fthumb%2Fsquare%2FAG001.jpg" class="game-card">
+                    <div class="game-image">
+                        <img src="https://asset.marioclub.me/images/thumb/square/AG001.jpg" alt="Ocean King" class="game-img" loading="lazy">
+                        <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
+                        <span class="game-badge hot">HOT</span>
+                    </div>
+                    <div class="game-info"><h4>Ocean King</h4><p class="rtp">RTP: 96.50%</p></div>
+                </a>
+                <a href="fish-hunt-play.html?game=Ocean%20Legend&provider=FaChai&image=https%3A%2F%2Fasset.marioclub.me%2Fimages%2Fthumb%2Fsquare%2FAG002.jpg" class="game-card">
+                    <div class="game-image">
+                        <img src="https://asset.marioclub.me/images/thumb/square/AG002.jpg" alt="Ocean Legend" class="game-img" loading="lazy">
+                        <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
+                        <span class="game-badge new">NEW</span>
+                    </div>
+                    <div class="game-info"><h4>Ocean Legend</h4><p class="rtp">RTP: 95.80%</p></div>
+                </a>
+                <a href="fish-hunt-play.html?game=Golden%20Dragon&provider=JILI&image=https%3A%2F%2Fasset.marioclub.me%2Fimages%2Fthumb%2Fsquare%2FAG009.jpg" class="game-card">
+                    <div class="game-image">
+                        <img src="https://asset.marioclub.me/images/thumb/square/AG009.jpg" alt="Golden Dragon" class="game-img" loading="lazy">
+                        <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
+                    </div>
+                    <div class="game-info"><h4>Golden Dragon</h4><p class="rtp">RTP: 96.20%</p></div>
+                </a>
+                <a href="fish-hunt-play.html?game=Lucky%20Catch&provider=JILI&image=https%3A%2F%2Fasset.marioclub.me%2Fimages%2Fthumb%2Fsquare%2FAG010.jpg" class="game-card">
+                    <div class="game-image">
+                        <img src="https://asset.marioclub.me/images/thumb/square/AG010.jpg" alt="Lucky Catch" class="game-img" loading="lazy">
+                        <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
+                        <span class="game-badge jackpot">JACKPOT</span>
+                    </div>
+                    <div class="game-info"><h4>Lucky Catch</h4><p class="rtp">RTP: 96.00%</p></div>
+                </a>
+                <a href="fish-hunt-play.html?game=Deep%20Sea&provider=SpadeGaming&image=https%3A%2F%2Fasset.marioclub.me%2Fimages%2Fthumb%2Fsquare%2FAG013.jpg" class="game-card">
+                    <div class="game-image">
+                        <img src="https://asset.marioclub.me/images/thumb/square/AG013.jpg" alt="Deep Sea" class="game-img" loading="lazy">
+                        <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
+                        <span class="game-badge hot">HOT</span>
+                    </div>
+                    <div class="game-info"><h4>Deep Sea</h4><p class="rtp">RTP: 95.50%</p></div>
+                </a>
+                <a href="fish-hunt-play.html?game=Treasure%20Reef&provider=SpadeGaming&image=https%3A%2F%2Fasset.marioclub.me%2Fimages%2Fthumb%2Fsquare%2FAG014.jpg" class="game-card">
+                    <div class="game-image">
+                        <img src="https://asset.marioclub.me/images/thumb/square/AG014.jpg" alt="Treasure Reef" class="game-img" loading="lazy">
+                        <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
+                        <span class="game-badge new">NEW</span>
+                    </div>
+                    <div class="game-info"><h4>Treasure Reef</h4><p class="rtp">RTP: 96.80%</p></div>
+                </a>
+            </div>
+        </section>
+
+        <section class="sports-provider-latest-bets">
+            <div class="sports-provider-latest-bets-header">
+                <div class="sports-provider-latest-bets-title-wrap">
+                    <i class="fas fa-history"></i>
+                    <h3>Latest Bets</h3>
+                </div>
+            </div>
+            <div class="sports-provider-bets-table-wrap">
+                <table class="sports-provider-bets-table">
+                    <thead>
+                        <tr>
+                            <th>Bet ID</th>
+                            <th>Username</th>
+                            <th>Date/Time</th>
+                            <th>Bet Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="sports-provider-bet-id">150402</span></td>
+                            <td>*******</td>
+                            <td>04-Feb-2026 08:15:22 AM</td>
+                            <td class="sports-provider-bet-amount">12.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="sports-provider-bet-id">150401</span></td>
+                            <td>*******</td>
+                            <td>04-Feb-2026 07:41:42 AM</td>
+                            <td class="sports-provider-bet-amount">8.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="sports-provider-bet-id">150400</span></td>
+                            <td>*******</td>
+                            <td>03-Feb-2026 11:58:03 PM</td>
+                            <td class="sports-provider-bet-amount">25.00</td>
+                        </tr>
+                        <tr class="sports-provider-no-data" style="display:none;">
+                            <td colspan="4"><i class="fas fa-receipt"></i><span>No bets yet</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+        
+            
+                                <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RIOCITY" class="footer-logo-img">
+                    </a>
+                    <p class="footer-about">
+                        Experience the pinnacle of online gaming. RioCity offers a secure, fair, and exhilarating platform for slots, live casino, and sports betting.
+                    </p>
+                </div>
+
+                <!-- Column 2: Platform -->
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="slots.html">Slots Games</a></li>
+                        <li><a href="live-casino.html">Live Casino</a></li>
+                        <li><a href="sports.html">Sports Betting</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="vip.html">VIP Club</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Information -->
+                <div class="footer-col">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Information Center</a></li>
+                        <li><a href="#">Rules & Regulations</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Video Guide</a></li>
+                        <li><a href="#">Security & Privacy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Payment, Social & Certs -->
+                <div class="footer-col">
+                    <span class="footer-section-title">Payment Methods</span>
+                    <div class="footer-logos-row">
+                        <img src="images/footer/duitnow.svg" alt="DuitNow" class="footer-payment-img">
+                        <img src="images/footer/surepay.svg" alt="SurePay" class="footer-payment-img">
+                        <img src="images/footer/tng.svg" alt="Touch 'n Go" class="footer-payment-img">
+                    </div>
+
+                    <span class="footer-section-title">Follow Us</span>
+                    <div class="footer-social-grid">
+                        <a href="#" class="footer-social-card" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="footer-social-card" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="footer-social-card" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="footer-social-card" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="footer-social-card" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+                    <span class="footer-section-title">Certifications</span>
+                    <div class="footer-logos-row" style="margin-bottom: 0;">
+                        <img src="images/footer/certifite.svg" alt="Certified" class="footer-cert-img">
+                        <img src="images/footer/18+.svg" alt="18+" class="footer-cert-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="legal-text">
+                    RioCity is operated by Grand Entertainment Ltd., a company registered and established under the laws of Curacao, with registration number 147155. Licensed and regulated for fair gaming. Players must be 18+ to participate and reside in a jurisdiction where online gaming is legal.
+                </p>
+                <div class="footer-copyright">
+                    Â© 2018 - 2026 RioCity Â® All Rights Reserved. V.5.012
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modals (minimal) -->
+    <div class="auth-modal-overlay" id="loginModal">
+        <div class="auth-modal-content">
+            <button class="auth-modal-close" onclick="closeAuthModal('loginModal')" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="auth-modal-form">
+                <div class="auth-card-header"><h2>Log In</h2><p>Enter credentials</p></div>
+                <form id="loginForm" class="auth-form">
+                    <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-user auth-input-icon"></i><input type="text" id="username" class="auth-input" placeholder=" " value="demo"><label class="auth-label">Username</label></div></div>
+                    <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-lock auth-input-icon"></i><input type="password" id="password" class="auth-input" placeholder=" " value="demo123"><label class="auth-label">Password</label></div></div>
+                    <button type="submit" class="auth-submit-btn"><span>Sign In</span><i class="fas fa-arrow-right"></i></button>
+                    <div class="auth-switch-text">Don't have an account? <a onclick="closeAuthModal('loginModal'); openAuthModal('registerModal');">Join Now</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="auth-modal-overlay" id="registerModal">
+        <div class="auth-modal-content">
+            <button class="auth-modal-close" onclick="closeAuthModal('registerModal')" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="auth-modal-form register-mode">
+                <div class="auth-card-header"><h2>Create Account</h2></div>
+                <form id="registerForm" class="auth-form">
+                    <div class="register-grid">
+                        <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-user auth-input-icon"></i><input type="text" name="username" class="auth-input" placeholder=" " required><label class="auth-label">Username</label></div></div>
+                        <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-envelope auth-input-icon"></i><input type="email" name="email" class="auth-input" placeholder=" " required><label class="auth-label">Email</label></div></div>
+                    </div>
+                    <button type="submit" class="auth-submit-btn"><span>Join Now</span><i class="fas fa-user-plus"></i></button>
+                    <div class="auth-switch-text">Already a member? <a onclick="closeAuthModal('registerModal'); openAuthModal('loginModal');">Log In</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-sidebar" id="floatingSidebar">
+        <div class="floating-icon spin-wheel-icon" title="Spin Wheel" data-icon-id="spin-wheel">
+            <button class="floating-icon-close" onclick="closeFloatingIcon('spin-wheel', event)" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="floating-icon-content" onclick="openBonusModal('spinWheelModal')">
+                <img src="https://pksoftcdn.azureedge.net/media/spin wheel button-202501021417106102.svg" alt="Spin Wheel">
+            </div>
+        </div>
+        <div class="floating-icon voucher-scratch-icon" title="Voucher Scratch" data-icon-id="voucher-scratch">
+            <button class="floating-icon-close" onclick="closeFloatingIcon('voucher-scratch', event)" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="floating-icon-content" onclick="openBonusModal('voucherScratchModal')">
+                <img src="https://pksoftcdn.azureedge.net/media/voucher-scratch-202510101415238782.png" alt="Voucher Scratch">
+            </div>
+        </div>
+        <div class="floating-icon prize-box-icon" title="Prize Box" data-icon-id="prize-box">
+            <button class="floating-icon-close" onclick="closeFloatingIcon('prize-box', event)" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="floating-icon-content" onclick="openBonusModal('prizeBoxModal')">
+                <img src="https://pksoftcdn.azureedge.net/media/prize-box-202510101415447518.png" alt="Prize Box">
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/auth-modals.js"></script>
+    <script src="js/game-pages.js"></script>
+    <script>
+        function toggleFishHuntGameFullscreen() {
+            var section = document.getElementById('fishHuntGameSection');
+            var icon = document.getElementById('fishHuntFullscreenIcon');
+            if (!section) return;
+            var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+            var requestFs = section.requestFullscreen || section.webkitRequestFullscreen;
+            var exitFs = document.exitFullscreen || document.webkitExitFullscreen;
+            if (!fsEl) {
+                if (requestFs) {
+                    requestFs.call(section).then(function() {
+                        if (icon) icon.classList.replace('fa-expand', 'fa-compress');
+                        if (window.screen && screen.orientation && typeof screen.orientation.lock === 'function' && window.innerWidth <= 768) {
+                            screen.orientation.lock('landscape').catch(function() {});
+                        }
+                    }).catch(function(err) { console.log('Fullscreen error:', err); });
+                }
+            } else {
+                if (window.screen && screen.orientation && typeof screen.orientation.unlock === 'function') {
+                    screen.orientation.unlock();
+                }
+                if (exitFs) exitFs.call(document).then(function() {
+                    if (icon) icon.classList.replace('fa-compress', 'fa-expand');
+                });
+            }
+        }
+        function onFishHuntFullscreenChange() {
+            var icon = document.getElementById('fishHuntFullscreenIcon');
+            var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+            if (icon && !fsEl) {
+                icon.classList.replace('fa-compress', 'fa-expand');
+                if (window.screen && screen.orientation && typeof screen.orientation.unlock === 'function') {
+                    screen.orientation.unlock();
+                }
+            }
+        }
+        document.addEventListener('fullscreenchange', onFishHuntFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', onFishHuntFullscreenChange);
+
+        function openBonusModal(modalId) {
+            var el = document.getElementById(modalId);
+            if (el) { el.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        }
+        function closeBonusModal(modalId) {
+            var el = document.getElementById(modalId);
+            if (el) { el.classList.remove('active'); document.body.style.overflow = ''; }
+        }
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('bonus-modal-overlay')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        (function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var game = urlParams.get('game') || 'Fish Hunt Game';
+            var provider = urlParams.get('provider') || '';
+            var image = urlParams.get('image') || '';
+
+            var nameEl = document.getElementById('fishHuntGameNameDisplay');
+            if (nameEl) nameEl.textContent = game;
+
+            var rankingTitle = document.getElementById('fishHuntGameRankingTitle');
+            if (rankingTitle) rankingTitle.textContent = game + ' Ranking';
+
+            document.title = game + ' - RioCity Fish Hunt';
+
+            if (typeof trackRecentGame === 'function') {
+                trackRecentGame({
+                    name: game,
+                    image: image,
+                    provider: provider,
+                    category: 'fishhunt',
+                    rtp: '',
+                    tag: '',
+                    playUrl: 'fish-hunt-play.html?game=' + encodeURIComponent(game) + (provider ? '&provider=' + encodeURIComponent(provider) : '') + (image ? '&image=' + encodeURIComponent(image) : '')
+                });
+            }
+
+            // Fish hunt game canvas – AG001 Ocean King (same game for all fish hunt entries)
+            var fishHuntGameUrl = 'https://demo.marioclub88.online/gameFolder/AG001_v5.01/';
+            var iframe = document.getElementById('fishHuntGameFrame');
+            if (iframe) {
+                iframe.src = fishHuntGameUrl;
+            }
+        })();
+    </script>
+    <!-- Live Chat -->
+    <div class="live-chat-wrapper" id="liveChatWrapper">
+        <button class="live-chat-btn" onclick="toggleChatIcons()" aria-label="Open live chat">
+            <div class="live-chat-icon-close" onclick="closeLiveChat(event)" aria-label="Close live chat"><i
+                    class="fas fa-times"></i></div>
+            <div class="live-chat-btn-content"><i class="fas fa-headset"></i></div>
+        </button>
+        <div class="chat-floating-icons" id="chatFloatingIcons">
+            <div class="chat-floating-icon chat-icon" onclick="openChatSupport(event)" title="Live Chat">
+                <button class="chat-icon-close" onclick="closeChatIcon('chat', event)"><i
+                        class="fas fa-times"></i></button>
+                <img src="https://pksoftcdn.azureedge.net/media/chat-202502210949454324.png" alt="Live Chat">
+            </div>
+            <div class="chat-floating-icon facebook-icon" onclick="openFacebookSupport(event)" title="Facebook">
+                <button class="chat-icon-close" onclick="closeChatIcon('facebook', event)"><i
+                        class="fas fa-times"></i></button>
+                <img src="https://riocity-cdn.azureedge.net/riocity/facebook-202311071538524131-202312131542408405.png"
+                    alt="Facebook">
+            </div>
+            <div class="chat-floating-icon instagram-icon" onclick="openInstagramSupport(event)" title="Instagram">
+                <button class="chat-icon-close" onclick="closeChatIcon('instagram', event)"><i
+                        class="fas fa-times"></i></button>
+                <img src="https://pksoftcdn.azureedge.net/media/icons8-instagram-202502191650004796-202503110934428578.svg"
+                    alt="Instagram">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,123 @@
+<!-- Mobile Header (Visible < 1024px) -->
+<div class="mobile-header">
+    <div class="mobile-header-left">
+        <button type="button" class="btn-hamburger" id="mobileMenuToggle" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+    <div class="mobile-header-center">
+        <a href="index.html" class="mobile-brand-logo">
+            <img src="images/GM88.png" alt="GM88 Logo">
+        </a>
+    </div>
+    <div class="mobile-header-right">
+        <!-- Auth state will be injected here by JS -->
+        <div class="auth-guest-controls" data-auth-role="guest">
+            <a class="btn btn-login btn-mobile-login" href="login.html">LOGIN</a>
+        </div>
+        <div class="auth-member-controls" data-auth-role="member" style="display:none;">
+            <div class="mobile-balance-box">
+                <span class="currency">0.00</span>
+            </div>
+            <a href="account-details.html" class="mobile-profile-btn"><i class="fa-solid fa-user-circle"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Side Drawer -->
+<div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+<aside class="mobile-side-drawer" id="mobileSideDrawer">
+    <div class="mobile-drawer-header">
+        <div class="mobile-drawer-user" data-auth-role="guest">
+            <i class="fa-solid fa-user-circle"></i>
+            <span class="welcome-text">Welcome <strong>Guest</strong></span>
+        </div>
+        <button type="button" class="btn-drawer-close" id="mobileDrawerClose" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="mobile-drawer-content">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-home"></i> HOME</a></li>
+            <li><a href="live-casino.html"><i class="fa-solid fa-dice"></i> LIVE CASINO</a></li>
+            <li><a href="sports.html"><i class="fa-solid fa-futbol"></i> SPORTS</a></li>
+            <li><a href="slots.html"><i class="fa-solid fa-table-cells"></i> SLOTS</a></li>
+            <li><a href="promotions.html"><i class="fa-solid fa-gift"></i> PROMOTIONS</a></li>
+            <li><a href="vip.html"><i class="fa-solid fa-crown"></i> VIP</a></li>
+            <li><a href="games.html"><i class="fa-solid fa-clock-rotate-left"></i> RECENT</a></li>
+            <li><a href="poker.html"><i class="fa-solid fa-diamond"></i> POKER</a></li>
+            <li><a href="fish-hunt.html"><i class="fa-solid fa-fish"></i> FISH HUNT</a></li>
+            <li><a href="rebate.html"><i class="fa-solid fa-percent"></i> REBATE</a></li>
+        </ul>
+        <div class="mobile-drawer-footer">
+            <div class="language-selector mobile-lang">
+                <img src="https://flagcdn.com/w20/gb.png" alt="English">
+                <span>EN</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div data-auth-role="member" style="display:none;">
+                <button class="btn btn-logout mobile-logout-btn">LOGOUT</button>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Top Header Bar (Desktop Only) -->
+<header class="top-header">
+    <div class="container top-header-inner">
+        <div class="top-left">
+            <span class="welcome-text">Welcome <strong data-auth-username>Guest</strong></span>
+            <div class="notification">
+                <i class="fa-solid fa-bell"></i>
+                <span class="badge">0</span>
+            </div>
+        </div>
+
+        <div class="top-right">
+            <div class="auth-guest-controls" data-auth-role="guest">
+                <a class="btn btn-login" href="login.html">LOGIN</a>
+                <a class="btn btn-register" href="register.html">REGISTER</a>
+            </div>
+
+            <div class="auth-member-controls" data-auth-role="member" style="display:none;">
+                <div class="balance-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2953/2953536.png" class="coin-icon" alt="Coins">
+                    <span class="currency">0.00</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <i class="fa-solid fa-rotate balance-refresh"></i>
+                </div>
+                <a class="btn btn-fund" href="account-details.html#financeSection">FUND MANAGEMENT</a>
+                <button class="btn btn-logout">LOGOUT</button>
+            </div>
+
+            <div class="language-selector">
+                <img src="https://flagcdn.com/w20/gb.png" alt="English">
+                <span>EN</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Navigation -->
+<nav class="main-nav">
+    <div class="container main-nav-inner">
+        <a href="index.html" class="brand-logo">
+            <img src="images/GM88.png" alt="GM88 Logo"
+                style="height: 55px; width: auto; object-fit: contain; margin-bottom: 8px;">
+        </a>
+        <ul class="nav-links">
+            <li data-nav="index"><a href="index.html"><i class="fa-solid fa-home"></i><span>HOME</span></a></li>
+            <li data-nav="sports"><a href="sports.html"><i class="fa-solid fa-futbol"></i><span>SPORTS</span></a></li>
+            <li data-nav="hot-games"><a href="#"><i class="fa-solid fa-fire"></i><span>HOT GAMES</span></a></li>
+            <li data-nav="live-casino"><a href="live-casino.html"><i class="fa-solid fa-dice"></i><span>LIVE
+                        CASINO</span></a></li>
+            <li data-nav="slots"><a href="slots.html"><i class="fa-solid fa-table-cells"></i><span>SLOTS</span></a></li>
+            <li data-nav="number"><a href="#"><i class="fa-solid fa-hashtag"></i><span>NUMBER</span></a></li>
+            <li data-nav="fishing"><a href="fishing.html"><i class="fa-solid fa-fish"></i><span>FISHING</span></a></li>
+            <li data-nav="poker"><a href="#"><i class="fa-solid fa-diamond"></i><span>POKER</span></a></li>
+            <li data-nav="promotions"><a href="#"><i class="fa-solid fa-gift"></i><span>PROMOTIONS</span></a></li>
+            <li data-nav="rewards"><a href="#"><i class="fa-solid fa-gem"></i><span>REWARDS</span></a></li>
+        </ul>
+    </div>
+</nav>

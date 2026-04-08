@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Games - RioCity</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="light-theme" data-page="games">
+    <!-- Header Placeholder -->
+    <div id="site-header"></div>
+
+    <main class="recent-games-page-main">
+        <div class="container--banner-edge">
+            <!-- Breadcrumb Path -->
+            <div class="breadcrumb-nav-corporate">
+                <a href="index.html">Main Lobby</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <span>Recent Activity</span>
+            </div>
+
+            <!-- Original Corporate Header Section -->
+            <div class="account-header-box" id="recentStatsBar">
+                <div class="account-header-top">
+                    <div class="account-title-group">
+                        <h1 id="mainTitle">Recent Activity</h1>
+                        <p id="mainSubtitle">Overview of your most recently played games and sessions</p>
+                    </div>
+
+                    <div class="header-stats-corporate">
+                        <div class="corp-stat-item">
+                            <span class="corp-stat-label">Total Titles</span>
+                            <span class="corp-stat-value" id="statTotalGames">0</span>
+                        </div>
+                        <div class="corp-stat-item">
+                            <span class="corp-stat-label">Top Favorite</span>
+                            <span class="corp-stat-value" id="statMostPlayed">--</span>
+                        </div>
+                        <div class="corp-stat-item">
+                            <span class="corp-stat-label">Last Played</span>
+                            <span class="corp-stat-value" id="statLastSession">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unified Action Bar -->
+                <div class="recent-action-bar">
+                    <!-- Left: Category Tabs as Segmented Control -->
+                    <div class="tab-pill-group" id="recentCategoryTabs">
+                        <button class="tab-pill active" data-filter="all"><i class="fa-solid fa-border-all"></i> All</button>
+                        <button class="tab-pill" data-filter="slots"><i class="fa-solid fa-table-cells"></i> Slots</button>
+                        <button class="tab-pill" data-filter="live-casino"><i class="fa-solid fa-dice"></i> Live</button>
+                        <button class="tab-pill" data-filter="jackpot"><i class="fa-solid fa-trophy"></i> Jackpot</button>
+                    </div>
+
+                    <!-- Right: Search, Filter, Actions -->
+                    <div class="header-actions-group">
+                        <!-- Provider Filter -->
+                        <div class="provider-select-group">
+                            <select id="recentProviderFilter" class="provider-select-minimal">
+                                <option value="all">All Providers</option>
+                                <option value="Pragmatic Play">Pragmatic Play</option>
+                                <option value="Evolution">Evolution</option>
+                                <option value="SpadeGaming">SpadeGaming</option>
+                                <option value="JILI">JILI</option>
+                            </select>
+                        </div>
+
+                        <!-- Search Field -->
+                        <div class="search-field-wrapper">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="recentGamesSearch" placeholder="Search activity...">
+                        </div>
+                        
+                        <!-- Clear History -->
+                        <button type="button" class="btn-clear-minimal" id="recentClearBtn"
+                            title="Clear all history" aria-label="Clear all recent activity">
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid Section -->
+        <div class="recent-records-wrapper">
+            <div class="recent-games-grid" id="recentGamesGrid">
+                <!-- Cards rendered by initRecentGamesPage() -->
+            </div>
+
+            <!-- Empty State Corporate -->
+            <div class="empty-state-corporate" id="recentEmptyState" style="display:none;">
+                <div class="empty-icon-box">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <h3>No recent activity found</h3>
+                <p>Start playing your favorite titles to see your history and stats here.</p>
+                <a href="index.html" class="btn btn-corporate-primary">Explore Lobby</a>
+            </div>
+        </div>
+
+        <!-- Modal Backdrop (Fixed Version) -->
+        <div class="modal-backdrop-fixed" id="recentConfirmOverlay">
+            <div class="modal-card-corporate">
+                <div class="modal-title-row">
+                    <i class="fas fa-exclamation-circle text-warning"></i>
+                    <h3>Clear Activity History?</h3>
+                </div>
+                <p>Are you sure you want to permanently remove your recent game records? This action cannot be
+                    undone.</p>
+                <div class="modal-actions-corporate">
+                    <button class="btn btn-corporate-ghost" id="recentConfirmCancel">Cancel</button>
+                    <button class="btn btn-corporate-danger" id="recentConfirmDelete">Clear Records</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="site-footer"></div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/game-pages.js"></script>
+</body>
+
+</html>
