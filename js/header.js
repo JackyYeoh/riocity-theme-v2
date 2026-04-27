@@ -23,21 +23,45 @@
         document.body.classList.remove('drawer-open');
     }
 
-    /* Capture phase: runs even if bubble is stopped; avoids missed taps on the menu control */
-    document.addEventListener('click', function (e) {
-        if (!e.target || !e.target.closest) return;
-        if (e.target.closest('#mobileMenuToggle')) {
+    /** event.target can be a Text/Comment node; those have no .closest() — was skipping the drawer open on mobile. */
+    function getNearestElementFromEvent(ev) {
+        var t = ev && ev.target;
+        if (!t) return null;
+        if (t.nodeType === 1) return t;
+        if (t.parentElement) return t.parentElement;
+        return null;
+    }
+
+    /**
+     * Bind open on the real #mobileMenuToggle node after each renderHeader() (innerHTML replaces the button).
+     * Document delegation can lose taps to stacking/capture on some mobile WebViews; direct + capture is reliable.
+     */
+    function bindMobileMenuToggle() {
+        var btn = document.getElementById('mobileMenuToggle');
+        if (!btn) return;
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation();
             openMobileDrawer();
-            return;
-        }
-        if (e.target.closest('#mobileDrawerClose')) {
+        }, true);
+        btn.addEventListener('touchend', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openMobileDrawer();
+        }, { capture: true, passive: false });
+    }
+
+    /* drawer close + overlay: delegated (ids stable within a render) */
+    document.addEventListener('click', function (e) {
+        var el = getNearestElementFromEvent(e);
+        if (!el || typeof el.closest !== 'function') return;
+        if (el.closest('#mobileDrawerClose')) {
             e.preventDefault();
             closeMobileDrawer();
             return;
         }
         var overlay = document.getElementById('mobileDrawerOverlay');
-        if (overlay && e.target === overlay) {
+        if (overlay && (e.target === overlay || el === overlay)) {
             closeMobileDrawer();
         }
     }, true);
@@ -531,7 +555,7 @@
             });
         }
 
-        // Mobile drawer open/close: delegated on document (capture) — see top of IIFE
+        bindMobileMenuToggle();
 
         var mobileLoginBtn = document.getElementById('mobileHeaderLoginBtn');
         if (mobileLoginBtn) {

@@ -1767,8 +1767,14 @@ function initLazyLoading() {
    PERFORMANCE MONITORING
    ============================================ */
 function initPerformanceMonitoring() {
+    // Opt-in only — long tasks during initial paint/JS are common; console.warn looks like a bug to authors.
+    var perfDebug =
+        typeof location !== 'undefined' &&
+        (/\bperfDebug=1\b/.test(location.search) ||
+            (typeof localStorage !== 'undefined' && localStorage.getItem('RIO_PERF_DEBUG') === '1'));
+
     // Monitor Core Web Vitals
-    if ('web-vitals' in window) {
+    if (perfDebug && 'web-vitals' in window) {
         import('https://unpkg.com/web-vitals@3.1.1/dist/web-vitals.es5.min.js').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
             getCLS(console.log);
             getFID(console.log);
@@ -1778,29 +1784,35 @@ function initPerformanceMonitoring() {
         });
     }
 
-    // Monitor long tasks
-    if ('PerformanceObserver' in window) {
-        const observer = new PerformanceObserver((list) => {
-            for (const entry of list.getEntries()) {
-                if (entry.duration > 50) { // Tasks longer than 50ms
-                    console.warn('Long task detected:', entry);
+    if (perfDebug && 'PerformanceObserver' in window) {
+        try {
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.duration > 50) {
+                        console.debug('Long task:', entry);
+                    }
                 }
-            }
-        });
-        observer.observe({ entryTypes: ['longtask'] });
+            });
+            observer.observe({ entryTypes: ['longtask'] });
+        } catch (e) {
+            /* longtask not supported in some environments */
+        }
     }
 
     // Resource loading performance
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            console.log('Page load performance:', {
-                domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
-                loadComplete: perfData.loadEventEnd - perfData.loadEventStart,
-                totalTime: perfData.loadEventEnd - perfData.fetchStart
-            });
-        }, 0);
-    });
+    if (perfDebug) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (!perfData) return;
+                console.log('Page load performance:', {
+                    domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+                    loadComplete: perfData.loadEventEnd - perfData.loadEventStart,
+                    totalTime: perfData.loadEventEnd - perfData.fetchStart
+                });
+            }, 0);
+        });
+    }
 }
 
 /* ============================================

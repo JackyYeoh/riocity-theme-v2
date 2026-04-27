@@ -164,6 +164,13 @@
     --theme-mobile-link-active-bg: rgba(22, 119, 255, 0.12);
     --theme-ghost-border: rgba(11, 18, 32, 0.10);
     --theme-ghost-bg-hover: rgba(11, 18, 32, 0.05);
+
+    /* Mobile side drawer (semantic aliases — match GM88 / theme-mobile-*) */
+    --drawer-surface: var(--theme-mobile-menu-bg);
+    --drawer-header-surface: var(--bg-alt);
+    --drawer-divider: var(--border-color);
+    --drawer-shadow: var(--shadow-lg);
+    --drawer-overlay-scrim: rgba(11, 18, 32, 0.52);
 }
 
 * {
@@ -375,12 +382,14 @@ ul {
     padding: 20px;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.24s ease, visibility 0.24s ease;
 }
 
 .site-auth-modal-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .site-auth-modal {
@@ -2846,7 +2855,6 @@ body[data-page="vip"] .vip-page-main {
 
 /* Premium Filter Tabs */
 .filter-tabs {
-    background: #fff;
     padding: 6px;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
@@ -10267,12 +10275,22 @@ body[data-page="account-details"] .field-input-wrapper input {
    GLOBAL MOBILE HEADER REDESIGN
 ========================================================= */
 
-/* Hide by default on Desktop */
+/* Injected header mount: raise above main content so taps hit the bar, not underlying layers */
+#site-header {
+    position: relative;
+    z-index: 11000;
+}
+
+/* Hide mobile shell on desktop. Do NOT use display:none !important on .mobile-side-drawer / .mobile-drawer-overlay:
+   that blocks the max-width:1024px rules (display:flex / block) from ever applying — the drawer stays permanently off. */
 .mobile-header,
-.mobile-side-drawer,
-.mobile-drawer-overlay,
 .mobile-bottom-nav {
     display: none !important;
+}
+
+.mobile-side-drawer,
+.mobile-drawer-overlay {
+    display: none;
 }
 
 @media (max-width: 1024px) {
@@ -10415,16 +10433,21 @@ body[data-page="account-details"] .field-input-wrapper input {
         overflow: hidden;
     }
 
-    /* Hamburger & Brand */
+    /* Hamburger & Brand — left column must stack above the absolutely centered logo, or the logo
+       overlaps the tap target on narrow widths and steals all touches (hamburger "dead"). */
     .mobile-header-left {
         display: flex;
         align-items: center;
+        position: relative;
+        z-index: 2;
     }
 
     .mobile-header-right {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        position: relative;
+        z-index: 2;
     }
 
     .mobile-header-center {
@@ -10433,6 +10456,8 @@ body[data-page="account-details"] .field-input-wrapper input {
         transform: translateX(-50%);
         display: flex;
         justify-content: center;
+        z-index: 1;
+        pointer-events: auto;
     }
 
     .mobile-brand-logo img {
@@ -10442,6 +10467,8 @@ body[data-page="account-details"] .field-input-wrapper input {
     }
 
     .btn-hamburger {
+        position: relative;
+        z-index: 3;
         background: transparent;
         border: none;
         font-size: 20px;
@@ -10451,6 +10478,8 @@ body[data-page="account-details"] .field-input-wrapper input {
         display: flex;
         align-items: center;
         justify-content: center;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Mobile Auth Buttons */
@@ -10497,17 +10526,19 @@ body[data-page="account-details"] .field-input-wrapper input {
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(15, 23, 42, 0.6);
+        background: var(--drawer-overlay-scrim);
         backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
         z-index: 1002;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
+    /* Must exceed .mobile-bottom-nav (z-index: 10000) so the scrim and panel sit above the tab bar */
     .mobile-drawer-overlay.active {
-        z-index: 1004;
+        z-index: 10050;
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
@@ -10522,12 +10553,15 @@ body[data-page="account-details"] .field-input-wrapper input {
         left: 0;
         width: 280px;
         height: 100vh;
-        background: #ffffff;
-        z-index: 1005;
+        max-height: 100dvh;
+        background: var(--drawer-surface);
+        z-index: 10051;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 4px 0 24px rgba(15, 23, 42, 0.1);
+        box-shadow: var(--drawer-shadow);
         pointer-events: none;
+        font-family: var(--font-body);
+        border-right: 1px solid var(--drawer-divider);
     }
 
     .mobile-side-drawer.active {
@@ -10540,57 +10574,73 @@ body[data-page="account-details"] .field-input-wrapper input {
         overflow: hidden !important;
     }
 
+    body.drawer-open .mobile-bottom-nav {
+        pointer-events: none;
+    }
+
     /* Drawer Header */
     .mobile-drawer-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 24px;
-        background: #f8fafc;
-        border-bottom: 1px solid #e2e8f0;
+        padding: var(--space-lg) var(--space-lg);
+        background: var(--drawer-header-surface);
+        border-bottom: 1px solid var(--drawer-divider);
+        flex-shrink: 0;
     }
 
     .mobile-drawer-user {
         display: flex;
         align-items: center;
-        gap: 12px;
-        font-size: 15px;
-        color: #0f172a;
+        gap: var(--space-sm);
+        font-size: var(--text-base);
+        font-family: var(--font-heading);
+        color: var(--text-primary);
     }
 
     .mobile-drawer-user i {
-        font-size: 28px;
-        color: #2563eb;
+        font-size: 1.75rem;
+        color: var(--accent-primary);
     }
 
     .mobile-drawer-user .welcome-text {
-        color: #64748b;
+        color: var(--text-muted);
     }
 
     .mobile-drawer-user strong {
-        color: #0f172a;
+        color: var(--text-primary);
         font-weight: 700;
     }
 
     .btn-drawer-close {
-        background: rgba(15, 23, 42, 0.05);
-        border: none;
+        flex-shrink: 0;
+        background: transparent;
+        border: 1px solid var(--theme-ghost-border);
         width: 32px;
         height: 32px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #0f172a;
+        color: var(--text-secondary);
         font-size: 16px;
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .btn-drawer-close:hover,
+    .btn-drawer-close:active {
+        background: var(--theme-ghost-bg-hover);
+        color: var(--text-primary);
     }
 
     /* Drawer Content (Links) */
     .mobile-drawer-content {
         flex: 1;
         overflow-y: auto;
-        padding: 12px 0;
+        -webkit-overflow-scrolling: touch;
+        padding: var(--space-sm) 0;
         display: flex;
         flex-direction: column;
     }
@@ -10609,64 +10659,85 @@ body[data-page="account-details"] .field-input-wrapper input {
     .mobile-nav-links a {
         display: flex;
         align-items: center;
-        gap: 16px;
-        padding: 16px 24px;
-        color: #334155;
-        font-size: 15px;
+        gap: var(--space-md);
+        padding: var(--space-md) var(--space-lg);
+        color: var(--text-secondary);
+        font-size: var(--text-base);
         font-weight: 600;
+        font-family: var(--font-heading);
         text-decoration: none;
-        transition: background 0.2s;
+        transition: color var(--transition-fast), background var(--transition-fast);
     }
 
     .mobile-nav-links a:hover,
     .mobile-nav-links a:active {
-        background: #f8fafc;
-        color: #2563eb;
+        background: var(--theme-mobile-link-hover-bg);
+        color: var(--accent-primary);
     }
 
     .mobile-nav-links a:hover i,
     .mobile-nav-links a:active i {
-        color: #2563eb;
+        color: var(--accent-primary);
+    }
+
+    .mobile-nav-links li.active a {
+        color: var(--accent-primary);
+        background: var(--grad-primary-soft);
+    }
+
+    .mobile-nav-links li.active a i {
+        color: var(--accent-primary);
     }
 
     .mobile-nav-links a i {
         width: 20px;
         text-align: center;
-        font-size: 18px;
-        color: #94a3b8;
-        transition: color 0.2s;
+        font-size: var(--text-lg);
+        color: var(--icon-neutral);
+        transition: color var(--transition-fast);
     }
 
     /* Drawer Footer */
     .mobile-drawer-footer {
-        padding: 24px;
-        border-top: 1px solid #e2e8f0;
+        padding: var(--space-lg);
+        border-top: 1px solid var(--drawer-divider);
         margin-top: auto;
+        flex-shrink: 0;
     }
 
     .mobile-lang {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: var(--space-sm);
         padding: 12px;
-        background: #f8fafc;
-        border-radius: 8px;
+        background: var(--input-bg);
+        border-radius: var(--radius-md);
         font-weight: 600;
-        color: #0f172a;
-        border: 1px solid #e2e8f0;
-        margin-bottom: 16px;
+        color: var(--text-primary);
+        border: 1px solid var(--drawer-divider);
+        margin-bottom: var(--space-md);
         justify-content: center;
     }
 
     .mobile-logout-btn {
         width: 100%;
         padding: 14px !important;
-        font-size: 14px !important;
+        font-size: var(--text-sm) !important;
         font-weight: 700 !important;
-        background: #0f172a;
+        font-family: var(--font-heading);
+        background: var(--grad-navy);
         color: #fff;
         border: none;
-        border-radius: 8px;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: filter var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .mobile-logout-btn:hover,
+    .mobile-logout-btn:active {
+        background: var(--grad-navy-hover);
+        filter: brightness(1.02);
     }
 
     /* 8. Referral & Rewards Stacking */
@@ -10998,7 +11069,6 @@ body[data-page="account-details"] .field-input-wrapper input {
 
     /* 4. Section headers & secondary actions (readable + tappable) */
     body[data-page="index"] .section-header {
-        padding: 0 var(--mobile-side-pad) !important;
         margin-bottom: 10px !important;
         min-height: 40px !important;
         height: auto !important;
@@ -11109,7 +11179,6 @@ body[data-page="account-details"] .field-input-wrapper input {
     }
 
     body[data-page="index"] .provider-filters {
-        padding: 4px var(--mobile-side-pad) !important;
         margin-bottom: 8px !important;
         display: flex !important;
         flex-direction: column !important;
@@ -11198,7 +11267,6 @@ body[data-page="account-details"] .field-input-wrapper input {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 12px !important;
-        padding-bottom: 15px !important;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
     }
 
@@ -11439,7 +11507,6 @@ body[data-page="index"] .logos-slider-page img:hover {
 @media (max-width: 991px) {
     .section-header {
         margin-bottom: 20px;
-        padding: 0 var(--mobile-side-pad);
     }
 
     .game-cards-grid {
@@ -11465,8 +11532,8 @@ body[data-page="index"] .logos-slider-page img:hover {
 
     .game-item {
         flex: 0 0 160px !important; /* Fixed width to force scroll */
-        min-width: 160px !important;
-        width: 160px !important;
+        min-width: 141px !important;
+        width: 141px !important;
         scroll-snap-align: start !important;
         border-radius: 14px !important;
     }
@@ -13655,10 +13722,15 @@ body[data-page="games"] .top-header-inner {
     z-index: 10000;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity .25s ease, visibility .25s ease;
     padding: 20px;
 }
-.bonus-modal-overlay.active { opacity: 1; visibility: visible; }
+.bonus-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 .bonus-modal {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);

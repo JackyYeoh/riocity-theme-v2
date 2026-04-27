@@ -12,8 +12,6 @@
         body[data-page="index"] #homeHotProviders .hot-provider-showcase {
             display: grid !important;
             grid-template-columns: 70px 1fr !important;
-            /* Fixed sidebar, flexible content */
-            gap: 8px !important;
             align-items: flex-start !important;
             width: 100% !important;
             max-width: 100% !important;
@@ -23,7 +21,7 @@
 
         /* 左側分類導航 */
         body[data-page="index"] #homeHotProviders .hot-provider-side-tabs {
-            width: 70px !important;
+            width: 60px !important;
             display: flex !important;
             flex-direction: column !important;
             gap: 8px !important;
@@ -73,7 +71,6 @@
             min-width: 0 !important;
             max-width: 100% !important;
             border-radius: 16px !important;
-            padding: 8px !important;
             border: none !important;
             display: flex !important;
             flex-direction: column !important;
@@ -154,7 +151,7 @@
 
         body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-thumb {
             width: 100% !important;
-            aspect-ratio: 1 / 1.1 !important;
+            aspect-ratio: 1 / 1 !important;
             overflow: hidden !important;
             background: #fff !important;
             position: relative !important;
