@@ -1,32 +1,29 @@
-/* Auth Modal Styles - Login & Register */
+/* Auth Modal Styles - Login & Register
+   Aligned with the GM88 cold-blue light theme (style.css). */
 
 :root {
-    --auth-bg: #050810;
-    --auth-card: #0a0e1a;
-    --auth-overlay-bg: rgba(2, 4, 10, 0.95);
-    --auth-border: rgba(255, 255, 255, 0.06);
-    --auth-blue: #3b82f6;
-    --auth-gold: #facc15;
-    --auth-gold-hover: #eab308;
-    --auth-gold-glow: rgba(250, 204, 21, 0.2);
-    --auth-error: #ef4444;
-    --auth-text-primary: #ffffff;
-    --auth-text-secondary: #94a3b8;
-    --auth-text-muted: #4b5563;
-    --auth-input-bg: rgba(255, 255, 255, 0.02);
-    --auth-input-border: rgba(255, 255, 255, 0.08);
-}
+    /* Surfaces */
+    --auth-bg: #F6F8FC;
+    --auth-card: #FFFFFF;
+    --auth-overlay-bg: rgba(11, 18, 32, 0.55);
+    --auth-border: rgba(11, 18, 32, 0.08);
 
-html[data-theme='light'] {
-    --auth-bg: var(--color-bg-primary);
-    --auth-card: var(--color-bg-card);
-    --auth-overlay-bg: var(--color-overlay-soft);
-    --auth-border: var(--color-border-soft);
-    --auth-text-primary: var(--color-text-primary);
-    --auth-text-secondary: var(--color-text-secondary);
-    --auth-text-muted: var(--color-text-muted);
-    --auth-input-bg: var(--theme-ghost-bg-hover);
-    --auth-input-border: var(--theme-ghost-border);
+    /* Brand accents (kept under --auth-* names for backward compatibility,
+       but mapped to the GM88 blue-led palette). */
+    --auth-blue: #1677FF;
+    --auth-gold: #1677FF;
+    --auth-gold-hover: #0F5FE0;
+    --auth-gold-glow: rgba(22, 119, 255, 0.18);
+    --auth-error: #EF4444;
+
+    /* Text */
+    --auth-text-primary: #0B1220;
+    --auth-text-secondary: #44506A;
+    --auth-text-muted: #7B87A2;
+
+    /* Inputs */
+    --auth-input-bg: #F3F6FB;
+    --auth-input-border: rgba(11, 18, 32, 0.10);
 }
 
 /* Modal Overlay */
@@ -1105,5 +1102,168 @@ body {
 
     .auth-country-code {
         width: 100% !important;
+    }
+}
+
+/* Live chat float (login/register load auth-pages only — same rules as style.css) */
+.live-chat-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9991;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.live-chat-btn {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #f4c542 0%, #d4a52a 100%);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(244, 197, 66, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1001;
+}
+
+.live-chat-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(244, 197, 66, 0.6);
+}
+
+.live-chat-btn-content {
+    font-size: 1.5rem;
+    color: #0a0e1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.live-chat-icon-close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #ef4444;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: none;
+}
+
+.chat-floating-icons {
+    position: absolute;
+    bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 998;
+}
+
+.chat-floating-icons.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.chat-floating-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--auth-card);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.chat-floating-icon:hover {
+    transform: scale(1.1);
+    border-color: #f4c542;
+    box-shadow: 0 0 15px rgba(244, 197, 66, 0.3);
+}
+
+.chat-floating-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.chat-icon-close {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s ease;
+}
+
+.chat-floating-icon:hover .chat-icon-close {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 767px) {
+    .live-chat-wrapper {
+        bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+        right: 16px;
+    }
+
+    .live-chat-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .live-chat-btn-content {
+        font-size: 1.25rem;
+    }
+
+    .chat-floating-icons {
+        bottom: 60px;
+        gap: 12px;
+    }
+
+    .chat-floating-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-floating-icon img {
+        width: 20px;
+        height: 20px;
     }
 }

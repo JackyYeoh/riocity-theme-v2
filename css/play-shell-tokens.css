@@ -1,0 +1,90 @@
+/* =============================================================================
+   Play shell pages — bridge game-pages.css token names → GM88 (style.css)
+   Use: body.play-shell + listing page body flags (and legacy alias below)
+   ============================================================================= */
+body.play-shell.sports-provider-content-page,
+body.play-shell.live-casino-content-page,
+body.play-shell.poker-content-page,
+body.play-shell.fish-hunt-content-page,
+body.sports-provider-shell.sports-provider-content-page {
+    --color-bg-primary: var(--bg-main);
+    --color-bg-secondary: var(--bg-secondary);
+    --color-bg-tertiary: var(--bg-alt);
+    --color-bg-card: var(--bg-secondary);
+    --color-bg-card-hover: #f8fafc;
+    --color-bg-elevated: #ffffff;
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-border-soft: color-mix(in srgb, var(--border-color) 90%, transparent);
+    --color-overlay-soft: rgba(11, 18, 32, 0.45);
+    --color-icon-subtle: var(--icon-neutral);
+    --color-accent-primary: var(--accent-primary);
+    --color-accent-primary-hover: var(--accent-hover);
+    --color-accent-green: var(--status-success);
+    --color-accent-secondary: var(--status-info);
+    --color-accent-tertiary: var(--status-danger);
+    --gradient-gold: var(--grad-primary);
+    --gradient-card: var(--grad-steel);
+    --shadow-sm: 0 1px 3px rgba(11, 18, 32, 0.06);
+    --shadow-md: 0 4px 14px rgba(11, 18, 32, 0.08);
+    --shadow-lg: 0 10px 30px rgba(11, 18, 32, 0.1);
+    --shadow-glow: 0 0 24px rgba(22, 119, 255, 0.22);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --transition-fast: 150ms ease;
+    --font-primary: var(--font-body);
+    --theme-mobile-link-bg: color-mix(in srgb, var(--accent-primary) 8%, var(--bg-secondary));
+    --theme-mobile-link-hover-bg: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-secondary));
+    --theme-mobile-link-active-bg: color-mix(in srgb, var(--accent-primary) 18%, var(--bg-secondary));
+    --theme-ghost-border: var(--border-color);
+    --theme-ghost-bg-hover: var(--bg-alt);
+}
+
+body.play-shell.sports-provider-content-page .sports-provider-content,
+body.play-shell.live-casino-content-page .sports-provider-content,
+body.play-shell.poker-content-page .sports-provider-content,
+body.play-shell.fish-hunt-content-page .sports-provider-content,
+body.sports-provider-shell.sports-provider-content-page .sports-provider-content {
+    padding-top: 1.25rem !important;
+    padding-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+
+    body.play-shell.sports-provider-content-page .sports-provider-content,
+    body.play-shell.sports-provider-content-page .sports-provider-content .container,
+    body.play-shell.live-casino-content-page .sports-provider-content,
+    body.play-shell.live-casino-content-page .sports-provider-content .container,
+    body.play-shell.poker-content-page .sports-provider-content,
+    body.play-shell.poker-content-page .sports-provider-content .container,
+    body.play-shell.fish-hunt-content-page .sports-provider-content,
+    body.play-shell.fish-hunt-content-page .sports-provider-content .container,
+    body.sports-provider-shell.sports-provider-content-page .sports-provider-content,
+    body.sports-provider-shell.sports-provider-content-page .sports-provider-content .container {
+        padding-top: 0.5rem !important;
+    }
+}
+
+body.play-shell .sports-provider-ranking-tab.active,
+body.sports-provider-shell .sports-provider-ranking-tab.active {
+    color: #fff;
+}
+
+body.play-shell .sports-provider-name-logo,
+.sports-provider-name-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+body.play-shell .sports-provider-name-logo[hidden],
+.sports-provider-name-logo[hidden] {
+    display: none !important;
+}

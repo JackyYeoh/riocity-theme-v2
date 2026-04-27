@@ -1,405 +1,493 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Poker - RioCity</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <meta name="description" content="Sports betting provider — play in-browser with rankings and activity.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/play-shell-tokens.css">
     <link rel="stylesheet" href="css/game-pages.css">
-    <link rel="stylesheet" href="css/auth-pages.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link rel="stylesheet" href="css/play-shell.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="game-page sports-provider-content-page poker-content-page" id="pokerPlayPage">
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <span class="logo-icon">◆</span>
-                <span class="logo-text">RIOCITY</span>
-            </div>
-            <div class="loading-progress">
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                <span class="progress-text">Loading amazing games...</span>
-            </div>
-            <div class="loading-spinner">
-                <div class="spinner"></div>
-            </div>
-        </div>
-    </div>
+<body class="gm88-play-theme light-theme game-page play-shell sports-provider-content-page" data-page="sports">
 
-    <!-- Header -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-left">
-                <a href="index.html" class="logo">
-                    <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RioCity Logo"
-                        class="logo-img">
-                    <span class="logo-icon">◆</span>
-                    <span class="logo-text">RIOCITY</span>
-                </a>
-                <nav class="main-nav">
-                    <a href="live-casino.html" class="nav-link">Live Casino</a>
-                    <a href="sports.html" class="nav-link">Sports</a>
-                    <a href="slots.html" class="nav-link">Slots</a>
-                    <a href="promotions.html" class="nav-link">Promotions</a>
-                    <a href="vip.html" class="nav-link">VIP</a>
-                    <div class="nav-dropdown" id="moreGamesDropdown">
-                        <div class="nav-link nav-dropdown-toggle">
-                            <span>More</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="nav-dropdown-menu">
-                            <a href="games.html" class="nav-dropdown-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Recent Games</span>
-                            </a>
-                            <a href="poker.html" class="nav-dropdown-item">
-                                <i class="fas fa-heart"></i>
-                                <span>Poker</span>
-                            </a>
-                                <i class="fas fa-ticket-alt"></i>
-                            </a>
-                            <a href="fish-hunt.html" class="nav-dropdown-item">
-                                <i class="fas fa-fish"></i>
-                                <span>Fish Hunt</span>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="header-right">
-                <div class="header-wallet-section" id="headerWalletSection">
-                    <div class="header-wallet-toggle">
-                        <span class="header-wallet-label">Balance:</span>
-                        <span class="header-wallet-value" id="headerWalletBalance">89.41</span>
-                        <i class="fas fa-chevron-down header-wallet-chevron"></i>
-                    </div>
-                    <div class="header-wallet-dropdown">
-                        <button class="header-wallet-refresh" onclick="refreshWalletBalances(event)"
-                            aria-label="Refresh"><i class="fas fa-sync-alt"></i></button>
-                        <div class="header-wallet-row">
-                            <span>Main Wallet :</span>
-                            <span class="header-wallet-amount" id="mainWalletAmount">89.41</span>
-                        </div>
-                        <div class="header-wallet-row">
-                            <i class="fas fa-info-circle header-wallet-info"
-                                title="Used for placing bets. Transfer from Main Wallet to play."></i>
-                            <span>Game Wallet :</span>
-                            <span class="header-wallet-amount white" id="gameWalletAmount">0.00</span>
-                        </div>
-                    </div>
-                    <a href="account-details.html#financeSection" class="btn-deposit-header"><i
-                            class="fas fa-dollar-sign"></i> Deposit</a>
-                </div>
-                <button onclick="openAuthModal('loginModal')" class="btn btn-ghost">Log In</button>
-                <button onclick="openAuthModal('registerModal')" class="btn btn-primary">Join Now</button>
-
-                <button class="apk-download-btn desktop-only" onclick="downloadAPK()" aria-label="Download APK"
-                    title="Download APK">
-                    <i class="fab fa-android"></i>
-                </button>
-
-                <button type="button" class="btn btn-ghost theme-toggle-btn desktop-only" data-theme-toggle aria-label="Toggle theme" title="Switch to light mode">
-                    <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
-                </button>
-
-                <div class="language-selector">
-                    <img src="images/flags/en.svg" alt="EN" class="flag-icon">
-                    <span>EN</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-
-                <button class="mobile-info-btn" aria-label="Information">
-                    <i class="fas fa-info"></i>
-                </button>
-
-                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png"
-                    alt="RioCity Logo" class="logo-img">
-                <span class="logo-icon">◆</span>
-                <span class="logo-text">RIOCITY</span>
-            </a>
-            <button class="mobile-menu-close" aria-label="Close mobile menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-nav">
-            <div id="mobileUserSection"></div>
-            <button type="button" class="mobile-nav-link mobile-theme-toggle" data-theme-toggle aria-label="Toggle theme">
-                <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
-            </button>
-            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('spinWheelModal')">
-                <div class="mobile-bonus-icon">
-                    <img src="https://pksoftcdn.azureedge.net/media/spin wheel button-202501021417106102.svg" alt="Spin Wheel">
-                </div>
-                <span>Spin Wheel Bonus</span>
-            </button>
-            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('voucherScratchModal')">
-                <div class="mobile-bonus-icon">
-                    <img src="https://pksoftcdn.azureedge.net/media/voucher-scratch-202510101415238782.png" alt="Voucher Scratch">
-                </div>
-                <span>Voucher Scratch Bonus</span>
-            </button>
-            <button class="mobile-nav-link mobile-bonus-link" onclick="openBonusModal('prizeBoxModal')">
-                <div class="mobile-bonus-icon">
-                    <img src="https://pksoftcdn.azureedge.net/media/prize-box-202510101415447518.png" alt="Prize Box">
-                </div>
-                <span>Prize Box Bonus</span>
-            </button>
-            <div class="mobile-nav-divider"></div>
-            <a href="live-casino.html" class="mobile-nav-link"><i class="fas fa-play-circle"></i><span>Live Casino</span></a>
-            <a href="sports.html" class="mobile-nav-link"><i class="fas fa-futbol"></i><span>Sports</span></a>
-            <a href="slots.html" class="mobile-nav-link"><i class="fas fa-dice"></i><span>Slots</span></a>
-            <a href="promotions.html" class="mobile-nav-link"><i class="fas fa-gift"></i><span>Promotions</span></a>
-            <a href="vip.html" class="mobile-nav-link"><i class="fas fa-crown"></i><span>VIP</span></a>
-            <a href="#" class="mobile-nav-link" onclick="downloadAPK()"><i class="fab fa-android"></i><span>Download App</span></a>
-            <div class="mobile-nav-divider"></div>
-            <a href="games.html" class="mobile-nav-link"><i class="fas fa-clock"></i><span>Recent Games</span></a>
-            <a href="poker.html" class="mobile-nav-link"><i class="fas fa-dice"></i><span>Poker</span></a>
-            <a href="fish-hunt.html" class="mobile-nav-link"><i class="fas fa-fish"></i><span>Fish Hunt</span></a>
-            <div class="mobile-nav-divider"></div>
-            <button class="mobile-nav-link btn-login"><i class="fas fa-sign-in-alt"></i><span>Log In</span></button>
-            <button class="mobile-nav-link btn-signup"><i class="fas fa-user-plus"></i><span>Join Now</span></button>
-        </nav>
-    </div>
+    <div id="site-header"></div>
 
     <main class="sports-provider-content">
         <div class="container">
-            <!-- Provider Name Header -->
-            <div class="sports-provider-name-bar">
-                <a href="poker.html" class="sports-provider-back-btn" aria-label="Back to Poker">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                <h1 class="sports-provider-name-title">Poker</h1>
+            <div class="play-shell-inner">
+                <nav class="play-breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="play-breadcrumb__sep" aria-hidden="true">&gt;</span>
+                    <a href="sports.html">Sports</a>
+                    <span class="play-breadcrumb__sep" aria-hidden="true">&gt;</span>
+                    <span class="play-breadcrumb__current" id="pokerGameNameDisplayCrumb">Game</span>
+                </nav>
+
+                <div class="play-stage-shell">
+                <div class="play-theatre">
+                    <header class="play-strip">
+                        <div class="play-strip__left">
+                            <a href="sports.html" class="play-strip__back" aria-label="Back to Sports">
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                            <img id="sportsProviderLogo" class="sports-provider-name-logo"
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="" width="44" height="44" hidden>
+                            <h1 class="play-strip__title" id="pokerGameNameDisplay">Game</h1>
+                        </div>
+                        <div class="play-strip__actions">
+                            <button type="button" class="play-strip__fs" onclick="togglePokerGameFullscreen()"
+                                aria-label="Fullscreen">
+                                <i class="fas fa-expand" id="pokerFullscreenIconStrip"></i>
+                                <span class="play-strip__fs-label">Fullscreen</span>
+                            </button>
+                        </div>
+                    </header>
+                    <div class="play-provider-chrome">
+                        
+                            <div class="play-provider-chrome__stage">
+                                
+                                <section class="sports-provider-live-section" id="pokerGameSection">
+                                    <button type="button" class="sports-provider-fullscreen-btn" onclick="togglePokerGameFullscreen()"
+                                        aria-label="Toggle fullscreen" title="Fullscreen">
+                                        <i class="fas fa-expand" id="pokerFullscreenIcon"></i>
+                                    </button>
+                                    <div class="sports-provider-game-screen" id="sportsGameScreen">
+                                        <iframe id="pokerGameFrame"
+                                            src="https://pc.st-newsports.com/index.html#/?token=tt_nS6txy2NabxIwnS33ky1oN1BtOAxFaTE.60f3a9ad3073442cc371b89d4b850d5c&nickname=FBS00137807&apiSrc=https://api.st-newsports.com&pushSrc=wss://sptph.server.st-newsports.com&language=ENG"
+                                            title="Sports Betting" allowfullscreen></iframe>
+                                    </div>
+                                </section>
+                            </div>
+                            
+                        </div>
+                    </div>
+                <div class="play-wallet-bar">
+                    <div class="play-wallet-bar__balance">
+                        <p class="play-wallet-bar__text"><span class="play-wallet-bar__label">Your Wallet Balance:</span> <strong id="playWalletBalanceDisplay">$ 9.88</strong></p>
+                    </div>
+                    <div class="play-wallet-bar__deposit">
+                        <a href="account-details.html#financeSection" class="play-wallet-bar__btn play-wallet-bar__btn--primary">Quick deposit</a>
+                    </div>
+                    <button type="button" class="play-wallet-bar__fav" title="Add to favourites" aria-label="Add to favourites"><i class="far fa-star" aria-hidden="true"></i><span class="play-wallet-bar__fav-text">Add to Favourites</span></button>
+                </div>
+                </div>
+                </div>
+
+                <div class="play-below">
+                    <div class="play-below__grid">
+                        <div class="play-below__main">
+                            <nav class="play-activity-tabs" role="tablist" aria-label="Activity">
+                                <button type="button" role="tab" data-play-tab="ranking" aria-selected="true">Ranking</button>
+                                <button type="button" role="tab" data-play-tab="bets" aria-selected="false">Latest bets</button>
+                                <button type="button" class="play-activity-tabs__tab--games" role="tab" data-play-tab="recommended" aria-selected="false">More games</button>
+                            </nav>
+                            <div id="play-panel-ranking" class="play-panel play-panel--ranking is-active" role="tabpanel" aria-labelledby="tab-ranking">
+                                <section class="sports-provider-ranking-section">
+                                    
+        
+
+            <div class="sports-provider-ranking-header">
+                                        <div class="sports-provider-ranking-heading">
+                                            <span class="sports-provider-ranking-icon" aria-hidden="true"><i class="fas fa-trophy"></i></span>
+                                            <div class="sports-provider-ranking-title-block">
+                                                <h3 class="sports-provider-ranking-title" id="pokerGameRankingTitle">Ranking</h3>
+                                                <p class="sports-provider-ranking-sub">Top wins from the community</p>
+                                            </div>
+                                        </div>
+                                        <div class="sports-provider-ranking-tabs">
+                                            <button type="button" class="sports-provider-ranking-tab active">Ranking</button>
+                                        </div>
+                                    </div>
+                                    <div class="sports-provider-ranking-table-wrap">
+                                        <table class="sports-provider-ranking-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Rank</th>
+                                                    <th>Username</th>
+                                                    <th>Date</th>
+                                                    <th>Bet Amount</th>
+                                                    <th>Payout</th>
+                                                    <th>Win Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="play-ranking-row play-ranking-row--top1">
+                                                    <td><span class="sports-provider-rank-badge rank-1">1</span></td>
+                                                    <td>
+                                                        <span class="play-ranking-user">
+                                                            <span class="play-ranking-avatar play-ranking-avatar--1" role="img" aria-hidden="true"></span>
+                                                            <span class="play-ranking-user__name">i***</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>04 Feb 2026</td>
+                                                    <td>500.00</td>
+                                                    <td>2.50</td>
+                                                    <td class="text-win play-ranking-win"><span class="play-ranking-win__cell"><i class="fas fa-futbol play-ranking-win__icon" aria-hidden="true"></i><span class="play-ranking-win__amt">+1,250.00</span></span></td>
+                                                </tr>
+                                                <tr class="play-ranking-row play-ranking-row--top2">
+                                                    <td><span class="sports-provider-rank-badge rank-2">2</span></td>
+                                                    <td>
+                                                        <span class="play-ranking-user">
+                                                            <span class="play-ranking-avatar play-ranking-avatar--2" role="img" aria-hidden="true"></span>
+                                                            <span class="play-ranking-user__name">p***</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>04 Feb 2026</td>
+                                                    <td>350.00</td>
+                                                    <td>2.80</td>
+                                                    <td class="text-win play-ranking-win"><span class="play-ranking-win__cell"><i class="fas fa-basketball play-ranking-win__icon" aria-hidden="true"></i><span class="play-ranking-win__amt">+980.00</span></span></td>
+                                                </tr>
+                                                <tr class="play-ranking-row play-ranking-row--top3">
+                                                    <td><span class="sports-provider-rank-badge rank-3">3</span></td>
+                                                    <td>
+                                                        <span class="play-ranking-user">
+                                                            <span class="play-ranking-avatar play-ranking-avatar--3" role="img" aria-hidden="true"></span>
+                                                            <span class="play-ranking-user__name">k***</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>03 Feb 2026</td>
+                                                    <td>280.00</td>
+                                                    <td>1.95</td>
+                                                    <td class="text-win play-ranking-win"><span class="play-ranking-win__cell"><i class="fas fa-futbol play-ranking-win__icon" aria-hidden="true"></i><span class="play-ranking-win__amt">+546.00</span></span></td>
+                                                </tr>
+                                                <tr class="play-ranking-row">
+                                                    <td><span class="sports-provider-rank-badge rank-4">4</span></td>
+                                                    <td>
+                                                        <span class="play-ranking-user">
+                                                            <span class="play-ranking-avatar play-ranking-avatar--4" role="img" aria-hidden="true"></span>
+                                                            <span class="play-ranking-user__name">m***</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>03 Feb 2026</td>
+                                                    <td>200.00</td>
+                                                    <td>2.10</td>
+                                                    <td class="text-win play-ranking-win"><span class="play-ranking-win__cell"><i class="fas fa-futbol play-ranking-win__icon" aria-hidden="true"></i><span class="play-ranking-win__amt">+420.00</span></span></td>
+                                                </tr>
+                                                <tr class="play-ranking-row">
+                                                    <td><span class="sports-provider-rank-badge">5</span></td>
+                                                    <td>
+                                                        <span class="play-ranking-user">
+                                                            <span class="play-ranking-avatar play-ranking-avatar--5" role="img" aria-hidden="true"></span>
+                                                            <span class="play-ranking-user__name">s***</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>02 Feb 2026</td>
+                                                    <td>150.00</td>
+                                                    <td>3.20</td>
+                                                    <td class="text-win play-ranking-win"><span class="play-ranking-win__cell"><i class="fas fa-basketball play-ranking-win__icon" aria-hidden="true"></i><span class="play-ranking-win__amt">+480.00</span></span></td>
+                                                </tr>
+                                                <tr class="sports-provider-no-data" style="display:none;">
+                                                    <td colspan="6">
+                                                        <i class="fas fa-folder-open"></i>
+                                                        <span>No Data Found</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="play-panel-bets" class="play-panel play-panel--bets" role="tabpanel">
+                                <section class="sports-provider-latest-bets">
+                                    <div class="sports-provider-latest-bets-header">
+                                        <div class="sports-provider-latest-bets-heading">
+                                            <div class="sports-provider-latest-bets-title-wrap">
+                                                <i class="fas fa-history" aria-hidden="true"></i>
+                                                <h3>Latest Bets</h3>
+                                            </div>
+                                            <p class="sports-provider-panel-sub">Recent stakes on this game</p>
+                                        </div>
+                                    </div>
+                                    <div class="sports-provider-bets-table-wrap">
+                                        <table class="sports-provider-bets-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Bet ID</th>
+                                                    <th>Username</th>
+                                                    <th>Date/Time</th>
+                                                    <th>Bet Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><span class="sports-provider-bet-id">150402</span></td>
+                                                    <td>*******</td>
+                                                    <td>19-Jan-2026 07:41:42 AM</td>
+                                                    <td class="sports-provider-bet-amount">8.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="sports-provider-bet-id">150401</span></td>
+                                                    <td>*******</td>
+                                                    <td>19-Jan-2026 06:22:15 AM</td>
+                                                    <td class="sports-provider-bet-amount">25.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="sports-provider-bet-id">150400</span></td>
+                                                    <td>*******</td>
+                                                    <td>18-Jan-2026 11:58:03 PM</td>
+                                                    <td class="sports-provider-bet-amount">12.50</td>
+                                                </tr>
+                                                <tr class="sports-provider-no-data" style="display:none;">
+                                                    <td colspan="4">
+                                                        <i class="fas fa-receipt"></i>
+                                                        <span>No bets yet</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <aside class="play-below__aside" aria-label="Recommended games">
+                            <section class="provider-games-section sports-provider-recommended games-section">
+                                <div class="section-header-unified">
+                                    <h2><i class="fas fa-dice play-rec-panel__dice" aria-hidden="true"></i><span class="recommended-title-full">Recommended</span><span class="recommended-title-short">Games</span></h2>
+                                    <div class="section-controls-unified">
+                                        <a href="slots.html" class="view-all-btn-unified">All Slots &gt;</a>
+                                        <div class="nav-arrows-unified">
+                                            <button type="button" class="nav-arrow-unified carousel-prev" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                                            <button type="button" class="nav-arrow-unified carousel-next" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="games-grid game-carousel-track">
+                                    <a href="slot-play.html?game=Gates%20of%20Olympus" class="game-card game-card--featured">
+                                        <div class="game-image">
+                                            <img src="images/game/gate-of-olympus.jpg" alt="Gates of Olympus" class="game-img" loading="lazy">
+                                        </div>
+                                        <div class="game-info">
+                                            <h4>Gates of Olympus</h4>
+                                            <p class="rtp">RTP- 96.51% <i class="fas fa-star play-rec-panel__rtp-ico" aria-hidden="true"></i></p>
+                                            <span class="game-card__playrow">PLAY NOW</span>
+                                        </div>
+                                    </a>
+                                    <a href="slot-play.html?game=Chicken%20Pirate" class="game-card">
+                                        <div class="game-image">
+                                            <img src="images/game/chicken-pirate-logo.webp" alt="Chicken Pirate" class="game-img" loading="lazy">
+                                            <span class="game-badge new">NEW</span>
+                                            <div class="game-overlay" aria-hidden="true">
+                                                <span class="play-btn play-btn--label"><span class="play-btn__ico" aria-hidden="true"><i class="fas fa-play"></i></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="game-info">
+                                            <h4>Chicken Pirate</h4>
+                                            <p class="rtp">RTP- 96.52% <i class="fas fa-bolt play-rec-panel__rtp-ico" aria-hidden="true"></i></p>
+                                        </div>
+                                    </a>
+                                    <a href="slot-play.html?game=Red%20Dragon%20Ways" class="game-card">
+                                        <div class="game-image">
+                                            <img src="images/game/Red Dragon Ways.jpg" alt="Red Dragon Ways" class="game-img" loading="lazy">
+                                            <span class="game-badge hot">HOT</span>
+                                            <div class="game-overlay" aria-hidden="true">
+                                                <span class="play-btn play-btn--label"><span class="play-btn__ico" aria-hidden="true"><i class="fas fa-play"></i></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="game-info">
+                                            <h4>Red Dragon Ways</h4>
+                                            <p class="rtp">RTP- 96.48% <i class="fas fa-bolt play-rec-panel__rtp-ico" aria-hidden="true"></i></p>
+                                        </div>
+                                    </a>
+                                    <a href="slot-play.html?game=Sweet%20Bonanza" class="game-card">
+                                        <div class="game-image">
+                                            <img src="images/game/sweet-bonanza.png" alt="Sweet Bonanza" class="game-img" loading="lazy">
+                                            <span class="game-badge jackpot">JACKPOT</span>
+                                            <div class="game-overlay" aria-hidden="true">
+                                                <span class="play-btn play-btn--label"><span class="play-btn__ico" aria-hidden="true"><i class="fas fa-play"></i></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="game-info">
+                                            <h4>Sweet Bonanza</h4>
+                                            <p class="rtp">RTP- 96.48% <i class="fas fa-bolt play-rec-panel__rtp-ico" aria-hidden="true"></i></p>
+                                        </div>
+                                    </a>
+                                    <a href="slot-play.html?game=Mega%20Mammoth%20Multiplier" class="game-card">
+                                        <div class="game-image">
+                                            <img src="images/game/Mega Mammoth Multiplier.webp" alt="Mega Mammoth Multiplier" class="game-img" loading="lazy">
+                                            <div class="game-overlay" aria-hidden="true">
+                                                <span class="play-btn play-btn--label"><span class="play-btn__ico" aria-hidden="true"><i class="fas fa-play"></i></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="game-info">
+                                            <h4>Mega Mammoth Multiplier</h4>
+                                            <p class="rtp">RTP- 96.50% <i class="fas fa-bolt play-rec-panel__rtp-ico" aria-hidden="true"></i></p>
+                                        </div>
+                                    </a>
+                                    <a href="slot-play.html?game=Le%20Bandit" class="game-card">
+                                        <div class="game-image">
+                                            <img src="images/game/Le_Bandit_Slot_Review_6608bfcebe.avif" alt="Le Bandit" class="game-img" loading="lazy">
+                                            <div class="game-overlay" aria-hidden="true">
+                                                <span class="play-btn play-btn--label"><span class="play-btn__ico" aria-hidden="true"><i class="fas fa-play"></i></span></span>
+                                            </div>
+                                        </div>
+                                        <div class="game-info">
+                                            <h4>Le Bandit</h4>
+                                            <p class="rtp">RTP- 96.42% <i class="fas fa-bolt play-rec-panel__rtp-ico" aria-hidden="true"></i></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
+                </div>
             </div>
-
-            <!-- Poker Game Section - Game Screen (iframe) -->
-            <section class="sports-provider-live-section" id="pokerGameSection">
-                <button type="button" class="sports-provider-fullscreen-btn" onclick="togglePokerFullscreen()"
-                    aria-label="Toggle fullscreen" title="Fullscreen">
-                    <i class="fas fa-expand" id="pokerFullscreenIcon"></i>
-                </button>
-                <div class="sports-provider-game-screen" id="pokerGameScreen">
-                    <iframe id="pokerGameFrame"
-                        src="about:blank"
-                        title="Poker" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </section>
-
-            <!-- Ranking Section -->
-            <section class="sports-provider-ranking-section">
-                <div class="sports-provider-ranking-header">
-                    <h3 class="sports-provider-ranking-title" id="pokerRankingTitle">Poker Ranking</h3>
-                    <div class="sports-provider-ranking-tabs">
-                        <button class="sports-provider-ranking-tab active">Ranking</button>
-                    </div>
-                </div>
-                <div class="sports-provider-ranking-table-wrap">
-                    <table class="sports-provider-ranking-table">
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Username</th>
-                                <th>Date</th>
-                                <th>Bet Amount</th>
-                                <th>Payout</th>
-                                <th>Win Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="sports-provider-rank-badge rank-1">1</span></td>
-                                <td>***</td>
-                                <td>04 Feb 2026</td>
-                                <td>1,200.00</td>
-                                <td>3.50</td>
-                                <td class="text-win">+4,200.00</td>
-                            </tr>
-                            <tr>
-                                <td><span class="sports-provider-rank-badge rank-2">2</span></td>
-                                <td>***</td>
-                                <td>04 Feb 2026</td>
-                                <td>800.00</td>
-                                <td>2.80</td>
-                                <td class="text-win">+2,240.00</td>
-                            </tr>
-                            <tr>
-                                <td><span class="sports-provider-rank-badge rank-3">3</span></td>
-                                <td>***</td>
-                                <td>03 Feb 2026</td>
-                                <td>650.00</td>
-                                <td>2.10</td>
-                                <td class="text-win">+1,365.00</td>
-                            </tr>
-                            <tr>
-                                <td><span class="sports-provider-rank-badge">4</span></td>
-                                <td>***</td>
-                                <td>03 Feb 2026</td>
-                                <td>450.00</td>
-                                <td>1.90</td>
-                                <td class="text-win">+855.00</td>
-                            </tr>
-                            <tr>
-                                <td><span class="sports-provider-rank-badge">5</span></td>
-                                <td>***</td>
-                                <td>02 Feb 2026</td>
-                                <td>300.00</td>
-                                <td>2.50</td>
-                                <td class="text-win">+750.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Recommended Games -->
-            <section class="provider-games-section sports-provider-recommended games-section">
-                <div class="section-header-unified">
-                    <h2><i class="fas fa-dice"></i><span class="recommended-title-full">Recommended Games</span><span
-                            class="recommended-title-short">Recommended</span></h2>
-                    <div class="section-controls-unified">
-                        <a href="slots.html" class="view-all-btn-unified">All Slots <i class="fas fa-chevron-right"></i></a>
-                        <div class="nav-arrows-unified">
-                            <button type="button" class="nav-arrow-unified carousel-prev"
-                                aria-label="Scroll games left"><i class="fas fa-chevron-left"></i></button>
-                            <button type="button" class="nav-arrow-unified carousel-next"
-                                aria-label="Scroll games right"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="games-grid game-carousel-track">
-                    <a href="slot-play.html?game=Gates%20of%20Olympus" class="game-card">
-                        <div class="game-image">
-                            <img src="images/game/gate-of-olympus.jpg" alt="Gates of Olympus" class="game-img" loading="lazy">
-                            <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
-                            <span class="game-badge jackpot">JACKPOT</span>
-                        </div>
-                        <div class="game-info">
-                            <h4>Gates of Olympus</h4>
-                            <p class="rtp">RTP: 96.51% <i class="fas fa-arrow-up rtp-arrow up"></i></p>
-                        </div>
-                    </a>
-                    <a href="live-casino-play.html?game=Super%20Speed%20Baccarat" class="game-card">
-                        <div class="game-image">
-                            <img src="images/game/super speed.jpg" alt="Super Speed Baccarat" class="game-img" loading="lazy">
-                            <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
-                            <span class="game-badge live">LIVE</span>
-                        </div>
-                        <div class="game-info">
-                            <h4>Super Speed Baccarat</h4>
-                            <p class="rtp">RTP: 98.94% <i class="fas fa-arrow-up rtp-arrow up"></i></p>
-                        </div>
-                    </a>
-                    <a href="slot-play.html?game=Sweet%20Bonanza" class="game-card">
-                        <div class="game-image">
-                            <img src="images/game/sweet-bonanza.png" alt="Sweet Bonanza" class="game-img" loading="lazy">
-                            <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
-                            <span class="game-badge hot">HOT</span>
-                        </div>
-                        <div class="game-info">
-                            <h4>Sweet Bonanza</h4>
-                            <p class="rtp">RTP: 96.48% <i class="fas fa-arrow-down rtp-arrow down"></i></p>
-                        </div>
-                    </a>
-                    <a href="live-casino-play.html?game=Dragon%20Tiger" class="game-card">
-                        <div class="game-image">
-                            <img src="images/game/DragonTiger_Pragmatic.webp" alt="Dragon Tiger" class="game-img" loading="lazy">
-                            <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
-                            <span class="game-badge live">LIVE</span>
-                        </div>
-                        <div class="game-info">
-                            <h4>Dragon Tiger</h4>
-                            <p class="rtp">RTP: 96.23% <i class="fas fa-arrow-down rtp-arrow down"></i></p>
-                        </div>
-                    </a>
-                    <a href="live-casino-play.html?game=Lightning%20Baccarat" class="game-card">
-                        <div class="game-image">
-                            <img src="images/game/Always 9 Baccarat.jpg" alt="Lightning Baccarat" class="game-img" loading="lazy">
-                            <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
-                            <span class="game-badge live">LIVE</span>
-                        </div>
-                        <div class="game-info">
-                            <h4>Lightning Baccarat</h4>
-                            <p class="rtp">RTP: 98.94% <i class="fas fa-arrow-up rtp-arrow up"></i></p>
-                        </div>
-                    </a>
-                    <a href="live-casino-play.html?game=Blackjack%20VIP" class="game-card">
-                        <div class="game-image">
-                            <img src="images/game/BlackJack Atrium C.webp" alt="Blackjack VIP" class="game-img" loading="lazy">
-                            <div class="game-overlay"><button type="button" class="play-btn"><i class="fas fa-play"></i></button></div>
-                            <span class="game-badge new">VIP</span>
-                        </div>
-                        <div class="game-info">
-                            <h4>Blackjack VIP</h4>
-                            <p class="rtp">RTP: 99.28% <i class="fas fa-arrow-up rtp-arrow up"></i></p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <!-- Latest Bets -->
-            <section class="sports-provider-latest-bets">
-                <div class="sports-provider-latest-bets-header">
-                    <div class="sports-provider-latest-bets-title-wrap">
-                        <i class="fas fa-history"></i>
-                        <h3>Latest Bets</h3>
-                    </div>
-                </div>
-                <div class="sports-provider-bets-table-wrap">
-                    <table class="sports-provider-bets-table">
-                        <thead>
-                            <tr>
-                                <th>Bet ID</th>
-                                <th>Username</th>
-                                <th>Date/Time</th>
-                                <th>Bet Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="sports-provider-bet-id">160512</span></td>
-                                <td>*******</td>
-                                <td>04-Feb-2026 08:12:33 AM</td>
-                                <td class="sports-provider-bet-amount">50.00</td>
-                            </tr>
-                            <tr>
-                                <td><span class="sports-provider-bet-id">160511</span></td>
-                                <td>*******</td>
-                                <td>04-Feb-2026 07:45:18 AM</td>
-                                <td class="sports-provider-bet-amount">120.00</td>
-                            </tr>
-                            <tr>
-                                <td><span class="sports-provider-bet-id">160510</span></td>
-                                <td>*******</td>
-                                <td>03-Feb-2026 11:22:05 PM</td>
-                                <td class="sports-provider-bet-amount">35.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
         </div>
     </main>
 
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h4>SITE MAPS</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Responsible Gaming</a></li>
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms &amp; Condition</a></li>
+                    </ul>
+                    <div class="footer-logo-main">
+                        <img src="images/GM88.png" alt="GM88 Logo">
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>LICENCE</h4>
+                    <div class="license-grid">
+                        <div class="license-img"><span>EGBA</span></div>
+                        <div class="license-img"><span>18+</span></div>
+                        <div class="license-img"><span>eCOGRA</span></div>
+                        <div class="license-img"><span>MGA</span></div>
+                        <div class="license-img"><span>GAMCARE</span></div>
+                        <div class="license-img"><span>RGA</span></div>
+                    </div>
+                </div>
+                <div class="footer-col footer-providers">
+                    <h4>PROVIDERS</h4>
+                    <div class="providers-slider-container">
+                        <div class="logos-slider-track">
+                            <div class="logos-slider-page">
+                                <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="SBOBET">
+                                <img src="images/provider logo/pragmaticplay_bk.png" alt="PRAGMATIC">
+                                <img src="images/provider logo/enlogo2-202504210819440598.png" alt="EVOLUTION">
+                                <img src="images/provider logo/pgsoft.png" alt="PG SOFT">
+                                <img src="images/provider logo/JILI.png" alt="JILI">
+                                <img src="images/provider logo/spadegaming-202412121054336747.png" alt="SPADE">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>COPYRIGHT &copy; GM88 2021. ALL RIGHTS RESERVED - Redesigned 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/game-pages.js"></script>
+    <script src="js/play-shell.js"></script>
     <script>
+        function syncSportsFullscreenIcons(isFs) {
+            var a = document.getElementById('sportsFullscreenIcon');
+            var b = document.getElementById('sportsFullscreenIconStrip');
+            [a, b].forEach(function (icon) {
+                if (!icon) return;
+                icon.classList.remove('fa-expand', 'fa-compress');
+                icon.classList.add(isFs ? 'fa-compress' : 'fa-expand');
+            });
+        }
+        function toggleSportsGameFullscreen() {
+            var section = document.getElementById('sportsGameSection');
+            if (!section) return;
+            var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+            var requestFs = section.requestFullscreen || section.webkitRequestFullscreen;
+            var exitFs = document.exitFullscreen || document.webkitExitFullscreen;
+            if (!fsEl) {
+                if (requestFs) {
+                    requestFs.call(section).then(function () {
+                        syncSportsFullscreenIcons(true);
+                        if (window.screen && screen.orientation && typeof screen.orientation.lock === 'function' && window.innerWidth <= 768) {
+                            screen.orientation.lock('landscape').catch(function () { });
+                        }
+                    }).catch(function (err) { console.log('Fullscreen error:', err); });
+                }
+            } else {
+                if (window.screen && screen.orientation && typeof screen.orientation.unlock === 'function') {
+                    screen.orientation.unlock();
+                }
+                if (exitFs) exitFs.call(document).then(function () {
+                    syncSportsFullscreenIcons(false);
+                });
+            }
+        }
+        function onSportsFullscreenChange() {
+            var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+            syncSportsFullscreenIcons(!!fsEl);
+            if (!fsEl && window.screen && screen.orientation && typeof screen.orientation.unlock === 'function') {
+                screen.orientation.unlock();
+            }
+        }
+        document.addEventListener('fullscreenchange', onSportsFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', onSportsFullscreenChange);
+
+        (function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var provider = urlParams.get('provider') || 'FB Sport';
+            var providerImage = urlParams.get('image') || '';
+
+            var nameEl = document.getElementById('sportsProviderNameDisplay');
+            if (nameEl) nameEl.textContent = provider;
+
+            var rankTitle = document.getElementById('sportsProviderRankingTitle');
+            if (rankTitle) rankTitle.textContent = provider + ' by ' + provider;
+
+            var crumb = document.getElementById('playBreadcrumbCurrent');
+            if (crumb) crumb.textContent = provider;
+
+            document.title = provider + ' - GM88 Sports';
+
+            var logoEl = document.getElementById('sportsProviderLogo');
+            if (logoEl && providerImage) {
+                try {
+                    logoEl.src = decodeURIComponent(providerImage);
+                } catch (e) {
+                    logoEl.src = providerImage;
+                }
+                logoEl.alt = provider;
+                logoEl.removeAttribute('hidden');
+            }
+
+            if (typeof trackRecentGame === 'function') {
+                trackRecentGame({
+                    name: provider,
+                    image: providerImage ? (function () {
+                        try { return decodeURIComponent(providerImage); } catch (e) { return providerImage; }
+                    })() : '',
+                    provider: provider,
+                    category: 'sports',
+                    rtp: '',
+                    tag: '',
+                    playUrl: 'sports-provider.html?provider=' + encodeURIComponent(provider) + (providerImage ? '&image=' + encodeURIComponent(providerImage) : '')
+                });
+            }
+        })();
+    </script>
+
+<script>
+
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
             const provider = urlParams.get('provider') || 'Poker';
@@ -428,191 +516,10 @@
                 });
             }
         });
-    </script>
+    
+</script>
+<script>
 
-    <!-- Info Banner -->
-        <section class="game-info-banner poker-info">
-        <div class="container">
-            <div class="info-banner-content">
-                <div class="info-icon">
-                    
-                    <i class="fas fa-info-circle"></i>
-                
-                </div>
-                <div class="info-text">
-                    <h3>Play Poker at RioCity</h3>
-                    <p>Experience the thrill of poker with real players. From Texas Hold'em to Omaha, join exciting
-                        tournaments and cash games 24/7.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        
-            
-                                <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <!-- Column 1: Brand -->
-                <div class="footer-col">
-                    <a href="index.html" class="footer-logo">
-                        <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RIOCITY" class="footer-logo-img">
-                    </a>
-                    <p class="footer-about">
-                        Experience the pinnacle of online gaming. RioCity offers a secure, fair, and exhilarating platform for slots, live casino, and sports betting.
-                    </p>
-                </div>
-
-                <!-- Column 2: Platform -->
-                <div class="footer-col">
-                    <h4>Platform</h4>
-                    <ul>
-                        <li><a href="slots.html">Slots Games</a></li>
-                        <li><a href="live-casino.html">Live Casino</a></li>
-                        <li><a href="sports.html">Sports Betting</a></li>
-                        <li><a href="promotions.html">Promotions</a></li>
-                        <li><a href="vip.html">VIP Club</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Information -->
-                <div class="footer-col">
-                    <h4>Information</h4>
-                    <ul>
-                        <li><a href="#">Information Center</a></li>
-                        <li><a href="#">Rules & Regulations</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Video Guide</a></li>
-                        <li><a href="#">Security & Privacy</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 4: Payment, Social & Certs -->
-                <div class="footer-col">
-                    <span class="footer-section-title">Payment Methods</span>
-                    <div class="footer-logos-row">
-                        <img src="images/footer/duitnow.svg" alt="DuitNow" class="footer-payment-img">
-                        <img src="images/footer/surepay.svg" alt="SurePay" class="footer-payment-img">
-                        <img src="images/footer/tng.svg" alt="Touch 'n Go" class="footer-payment-img">
-                    </div>
-
-                    <span class="footer-section-title">Follow Us</span>
-                    <div class="footer-social-grid">
-                        <a href="#" class="footer-social-card" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#" class="footer-social-card" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="footer-social-card" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="footer-social-card" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="footer-social-card" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-
-                    <span class="footer-section-title">Certifications</span>
-                    <div class="footer-logos-row" style="margin-bottom: 0;">
-                        <img src="images/footer/certifite.svg" alt="Certified" class="footer-cert-img">
-                        <img src="images/footer/18+.svg" alt="18+" class="footer-cert-img">
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p class="legal-text">
-                    RioCity is operated by Grand Entertainment Ltd., a company registered and established under the laws of Curacao, with registration number 147155. Licensed and regulated for fair gaming. Players must be 18+ to participate and reside in a jurisdiction where online gaming is legal.
-                </p>
-                <div class="footer-copyright">
-                    Â© 2018 - 2026 RioCity Â® All Rights Reserved. V.5.012
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Login/Register Modals -->
-    <div class="auth-modal-overlay" id="loginModal">
-        <div class="auth-modal-content">
-            <button class="auth-modal-close" onclick="closeAuthModal('loginModal')" aria-label="Close"><i class="fas fa-times"></i></button>
-            <div class="auth-modal-form">
-                <div class="auth-card-header"><h2>Log In</h2><p>Enter your credentials to access your account</p></div>
-                <form id="loginForm" class="auth-form" autocomplete="off">
-                    <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-user auth-input-icon"></i><input type="text" id="username" class="auth-input" placeholder=" " value="demo"><label class="auth-label" for="username">Username</label></div></div>
-                    <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-lock auth-input-icon"></i><input type="password" id="password" class="auth-input" placeholder=" " value="demo123"><label class="auth-label" for="password">Password</label><button type="button" class="auth-toggle-pass" onclick="togglePassword('password', this)"><i class="fas fa-eye"></i></button></div></div>
-                    <button type="submit" class="auth-submit-btn"><span>Sign In</span><i class="fas fa-arrow-right"></i></button>
-                    <div class="auth-switch-text">Don't have an account? <a onclick="closeAuthModal('loginModal'); openAuthModal('registerModal');">Join Now</a></div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="auth-modal-overlay" id="registerModal">
-        <div class="auth-modal-content">
-            <button class="auth-modal-close" onclick="closeAuthModal('registerModal')" aria-label="Close"><i class="fas fa-times"></i></button>
-            <div class="auth-modal-form register-mode">
-                <div class="auth-card-header"><h2>Create Account</h2><p>Join the elite</p></div>
-                <form id="registerForm" class="auth-form" autocomplete="off">
-                    <div class="register-grid">
-                        <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-user auth-input-icon"></i><input type="text" name="username" class="auth-input" placeholder=" " required><label class="auth-label">Username</label></div></div>
-                        <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-envelope auth-input-icon"></i><input type="email" name="email" class="auth-input" placeholder=" " required><label class="auth-label">Email</label></div></div>
-                    </div>
-                    <div class="register-grid">
-                        <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-lock auth-input-icon"></i><input type="password" id="regPassword" class="auth-input" placeholder=" " required><label class="auth-label">Password</label></div></div>
-                        <div class="auth-form-group"><div class="auth-input-container"><i class="fas fa-shield-alt auth-input-icon"></i><input type="password" id="confirmPassword" class="auth-input" placeholder=" " required><label class="auth-label">Confirm</label></div></div>
-                    </div>
-                    <button type="submit" class="auth-submit-btn"><span>Join Now</span><i class="fas fa-user-plus"></i></button>
-                    <div class="auth-switch-text">Already a member? <a onclick="closeAuthModal('registerModal'); openAuthModal('loginModal');">Log In</a></div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Floating Sidebar Icons -->
-    <div class="floating-sidebar" id="floatingSidebar">
-        <div class="floating-icon spin-wheel-icon" title="Spin Wheel" data-icon-id="spin-wheel">
-            <button class="floating-icon-close" onclick="closeFloatingIcon('spin-wheel', event)" aria-label="Close Spin Wheel"><i class="fas fa-times"></i></button>
-            <div class="floating-icon-content" onclick="openBonusModal('spinWheelModal')"><img src="https://pksoftcdn.azureedge.net/media/spin wheel button-202501021417106102.svg" alt="Spin Wheel"></div>
-        </div>
-        <div class="floating-icon voucher-scratch-icon" title="Voucher Scratch" data-icon-id="voucher-scratch">
-            <button class="floating-icon-close" onclick="closeFloatingIcon('voucher-scratch', event)" aria-label="Close Voucher Scratch"><i class="fas fa-times"></i></button>
-            <div class="floating-icon-content" onclick="openBonusModal('voucherScratchModal')"><img src="https://pksoftcdn.azureedge.net/media/voucher-scratch-202510101415238782.png" alt="Voucher Scratch"></div>
-        </div>
-        <div class="floating-icon prize-box-icon" title="Prize Box" data-icon-id="prize-box">
-            <button class="floating-icon-close" onclick="closeFloatingIcon('prize-box', event)" aria-label="Close Prize Box"><i class="fas fa-times"></i></button>
-            <div class="floating-icon-content" onclick="openBonusModal('prizeBoxModal')"><img src="https://pksoftcdn.azureedge.net/media/prize-box-202510101415447518.png" alt="Prize Box"></div>
-        </div>
-    </div>
-
-    <!-- Live Chat -->
-    <div class="live-chat-wrapper" id="liveChatWrapper">
-        <button class="live-chat-btn" onclick="toggleChatIcons()" aria-label="Open live chat">
-            <div class="live-chat-icon-close" onclick="closeLiveChat(event)" aria-label="Close live chat"><i class="fas fa-times"></i></div>
-            <div class="live-chat-btn-content"><i class="fas fa-headset"></i></div>
-        </button>
-        <div class="chat-floating-icons" id="chatFloatingIcons">
-            <div class="chat-floating-icon chat-icon" onclick="openChatSupport(event)" title="Live Chat">
-                <button class="chat-icon-close" onclick="closeChatIcon('chat', event)"><i class="fas fa-times"></i></button>
-                <img src="https://pksoftcdn.azureedge.net/media/chat-202502210949454324.png" alt="Live Chat">
-            </div>
-            <div class="chat-floating-icon facebook-icon" onclick="openFacebookSupport(event)" title="Facebook">
-                <button class="chat-icon-close" onclick="closeChatIcon('facebook', event)"><i class="fas fa-times"></i></button>
-                <img src="https://riocity-cdn.azureedge.net/riocity/facebook-202311071538524131-202312131542408405.png" alt="Facebook">
-            </div>
-            <div class="chat-floating-icon instagram-icon" onclick="openInstagramSupport(event)" title="Instagram">
-                <button class="chat-icon-close" onclick="closeChatIcon('instagram', event)"><i class="fas fa-times"></i></button>
-                <img src="https://pksoftcdn.azureedge.net/media/icons8-instagram-202502191650004796-202503110934428578.svg" alt="Instagram">
-            </div>
-        </div>
-    </div>
-
-    <!-- Bonus Modals -->
-    <div class="bonus-modal-overlay" id="spinWheelModal">
-        <div class="bonus-modal"><div class="bonus-modal-header"><h3 class="bonus-modal-title">Spin Wheel</h3><button class="bonus-modal-close" onclick="closeBonusModal('spinWheelModal')"><i class="fas fa-times"></i></button></div><div class="bonus-modal-content"><div class="bonus-wallet-card"><div class="bonus-wallet-left"><div class="bonus-wallet-icon"><i class="fab fa-bitcoin"></i></div><div class="bonus-wallet-info"><span class="bonus-wallet-label">Wallet Balance:</span><span class="bonus-wallet-amount">89.41</span></div></div><button class="btn-bonus-record"><i class="fas fa-redo"></i><span>Record</span></button></div><div class="bonus-warning-message"><i class="fas fa-clock"></i><span>Rewards must be completed before the token's expiry date</span></div><div class="bonus-reward-card"><div class="bonus-reward-id">Reward #4311</div><div class="bonus-reward-campaign">Campaign: Test1</div><div class="bonus-reward-expiry"><i class="fas fa-clock"></i><span>Expires in: 23hrs 36mins</span></div><div class="bonus-reward-completed"><span class="bonus-completed-label">Completed on</span><span class="bonus-completed-date">14 Jan 2026, 02:58 PM</span></div></div></div></div>
-    </div>
-    <div class="bonus-modal-overlay" id="voucherScratchModal">
-        <div class="bonus-modal"><div class="bonus-modal-header"><h3 class="bonus-modal-title">Voucher Scratch</h3><button class="bonus-modal-close" onclick="closeBonusModal('voucherScratchModal')"><i class="fas fa-times"></i></button></div><div class="bonus-modal-content"><div class="bonus-wallet-card"><div class="bonus-wallet-left"><div class="bonus-wallet-icon"><i class="fas fa-coins"></i></div><div class="bonus-wallet-info"><span class="bonus-wallet-label">Wallet Balance:</span><span class="bonus-wallet-amount">89.41</span></div></div><button class="btn-bonus-record"><i class="fas fa-redo"></i><span>Record</span></button></div><div class="bonus-warning-message"><i class="fas fa-clock"></i><span>Rewards must be completed before the token's expiry date</span></div><div class="bonus-reward-card"><div class="bonus-reward-id">Reward #4312</div><div class="bonus-reward-campaign">Campaign: Voucher test 2</div><div class="bonus-reward-expiry no-expiry"><i class="fas fa-clock"></i><span>Expires in: No Expiry</span></div><button class="btn-bonus-claim">Claim Now</button></div></div></div>
-    </div>
-    <div class="bonus-modal-overlay" id="prizeBoxModal">
-        <div class="bonus-modal"><div class="bonus-modal-header"><h3 class="bonus-modal-title">Prize Box</h3><button class="bonus-modal-close" onclick="closeBonusModal('prizeBoxModal')"><i class="fas fa-times"></i></button></div><div class="bonus-modal-content"><div class="bonus-wallet-card"><div class="bonus-wallet-left"><div class="bonus-wallet-icon"><i class="fas fa-coins"></i></div><div class="bonus-wallet-info"><span class="bonus-wallet-label">Wallet Balance:</span><span class="bonus-wallet-amount">89.41</span></div></div><button class="btn-bonus-record"><i class="fas fa-redo"></i><span>Record</span></button></div><div class="bonus-warning-message"><i class="fas fa-clock"></i><span>Rewards must be completed before the token's expiry date</span></div><div class="bonus-reward-card"><div class="bonus-reward-id">Reward #4313</div><div class="bonus-reward-campaign">Campaign: VW Shiro Test</div><div class="bonus-reward-expiry no-expiry"><i class="fas fa-clock"></i><span>Expires in: No Expiry</span></div><button class="btn-bonus-claim">Claim Now</button></div></div></div>
-    </div>
-    <script src="js/main.js"></script>
-    <script src="js/auth-modals.js"></script>
-    <script src="js/game-pages.js"></script>
-    <script>
         function togglePokerFullscreen() {
             var section = document.getElementById('pokerGameSection');
             var icon = document.getElementById('pokerFullscreenIcon');
@@ -664,9 +571,8 @@
                 document.body.style.overflow = '';
             }
         });
-    </script>
+    
+</script>
 </body>
 
 </html>
-
-

@@ -335,7 +335,7 @@ function simulateLoading() {
 document.addEventListener('DOMContentLoaded', () => {
     // Home-only: avoids console noise and work on account-details, etc.
     try {
-        if (document.getElementById('homeProviderDropdown')) {
+        if (document.getElementById('homeProviderSearch') || document.getElementById('homeProviderDropdown')) {
             initHomePageGameFilters();
         }
     } catch (e) {
@@ -1056,43 +1056,72 @@ function initCarousel() {
    HOME PAGE GAME FILTERS (Category + Provider)
    ============================================ */
 function initHomePageGameFilters() {
-    const dropdown = document.getElementById('homeProviderDropdown');
-    if (!dropdown) return;
-
-    // Use parentNode instead of closest for maximum compatibility
-    const filterSection = dropdown.parentElement;
+    const filterSection = document.querySelector('.provider-filters');
     if (!filterSection) return;
 
     const filterBtns = filterSection.querySelectorAll('.filter-btn');
-    const dropdownTrigger = dropdown.querySelector('.dropdown-trigger');
-    const dropdownItems = dropdown.querySelectorAll('.dropdown-item');
-    const providerNameSpan = document.getElementById('currentProviderName');
     const gameItems = document.querySelectorAll('#homeGamesGrid .game-item');
+    const panelTitle = document.getElementById('homeHotProviderTitle');
+    const providerChips = Array.from(document.querySelectorAll('#homeProviderQuickFilters .hot-provider-chip'));
 
-    console.log('Filter elements found:', {
-        buttons: filterBtns.length,
-        trigger: !!dropdownTrigger,
-        items: dropdownItems.length,
-        games: gameItems.length
-    });
+    const dropdown = document.getElementById('homeProviderDropdown');
+    const dropdownTrigger = dropdown ? dropdown.querySelector('.dropdown-trigger') : null;
+    const dropdownItems = dropdown ? Array.from(dropdown.querySelectorAll('.dropdown-item')) : [];
+    const providerNameSpan = document.getElementById('currentProviderName');
 
-    if (!filterBtns.length || !gameItems.length) {
-        console.warn('Filter buttons or game items missing');
-        return;
+    // Search input is now inside the dropdown menu (replaces the old "All Providers" option row)
+    const searchInput = document.getElementById('homeProviderSearch');
+    const searchClear = document.getElementById('homeProviderSearchClear');
+
+    if (!filterBtns.length || !gameItems.length) return;
+    const hasDropdown = Boolean(dropdown && dropdownTrigger && dropdownItems.length);
+
+    const initialActiveBtn = Array.from(filterBtns).find(btn => btn.classList.contains('active'));
+    let currentCategory = (initialActiveBtn?.dataset.filter || 'all').toLowerCase();
+    let providerQuery = '';
+    let currentProvider = 'all';
+
+    const categoryLabels = {
+        all: 'All',
+        slots: 'Slots',
+        casino: 'Casino',
+        live: 'Live Casino',
+        table: 'Table',
+        sports: 'Sports',
+        esports: 'E-Sports',
+        poker: 'Poker',
+        fishing: 'Fishing',
+        lottery: 'Lottery',
+        jackpot: 'Jackpot'
+    };
+
+    function getProviderTextForItem(item) {
+        return (
+            item.querySelector('.provider-label')?.textContent ||
+            item.querySelector('.hot-provider-name')?.textContent ||
+            item.querySelector('.provider-name')?.textContent ||
+            item.dataset.provider ||
+            ''
+        ).toLowerCase().trim();
     }
 
-    let currentCategory = 'all';
-    let currentProvider = dropdown.querySelector('.dropdown-item.active')?.dataset.value || 'all';
-
     function updateFilteredGames() {
+        const activeCategoryBtn = filterSection.querySelector('.filter-btn.active');
+        if (activeCategoryBtn) {
+            currentCategory = (activeCategoryBtn.dataset.filter || currentCategory || 'all').toLowerCase();
+        }
+
         let visibleCount = 0;
 
         gameItems.forEach((item) => {
-            const category = item.dataset.category;
-            const provider = item.dataset.provider;
+            const category = (item.dataset.category || '').toLowerCase();
+            const provider = (item.dataset.provider || '').toLowerCase();
 
             const categoryMatch = (currentCategory === 'all' || category === currentCategory);
-            const providerMatch = (currentProvider === 'all' || provider === currentProvider);
+            const providerMatch =
+                providerQuery
+                    ? getProviderTextForItem(item).includes(providerQuery)
+                    : (currentProvider === 'all' || provider === currentProvider);
 
             if (categoryMatch && providerMatch) {
                 item.classList.remove('hidden');
@@ -1108,55 +1137,165 @@ function initHomePageGameFilters() {
         });
     }
 
+    function syncProviderChipState() {
+        if (!providerChips.length) return;
+        providerChips.forEach(chip => {
+            const value = (chip.dataset.providerValue || 'all').toLowerCase();
+            chip.classList.toggle('active', value === currentProvider);
+        });
+    }
+
     // Category Buttons
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentCategory = btn.dataset.filter;
-            updateFilteredGames();
-        });
-    });
-
-    // Custom Dropdown Logic
-    dropdownTrigger?.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const isActive = dropdown.classList.contains('active');
-
-        // Close all other dropdowns first (if any)
-        document.querySelectorAll('.provider-dropdown.active').forEach(d => {
-            if (d !== dropdown) d.classList.remove('active');
-        });
-
-        dropdown.classList.toggle('active', !isActive);
-    });
-
-    dropdownItems?.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdownItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-
-            currentProvider = item.dataset.value;
-            if (providerNameSpan) {
-                providerNameSpan.textContent = item.textContent;
+            currentCategory = (btn.dataset.filter || 'all').toLowerCase();
+            if (panelTitle) {
+                panelTitle.textContent = categoryLabels[currentCategory] || 'Providers';
             }
-
-            dropdown.classList.remove('active');
             updateFilteredGames();
         });
     });
 
-    // Click outside to close (Standard Bubble Phase)
-    document.addEventListener('click', (e) => {
-        if (dropdown.classList.contains('active') && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
-        }
-    });
+    if (providerChips.length) {
+        providerChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                currentProvider = (chip.dataset.providerValue || 'all').toLowerCase();
+                providerQuery = '';
 
-    // Initial run to sync UI
+                if (searchInput) searchInput.value = '';
+                if (searchClear) searchClear.style.visibility = 'hidden';
+                if (providerNameSpan) {
+                    providerNameSpan.textContent = currentProvider === 'all'
+                        ? 'All Providers'
+                        : (chip.textContent?.trim() || 'All Providers');
+                }
+
+                if (dropdownItems.length) {
+                    dropdownItems.forEach(i => {
+                        const itemValue = (i.dataset.value || 'all').toLowerCase();
+                        i.classList.toggle('active', itemValue === currentProvider);
+                    });
+                }
+
+                syncProviderChipState();
+                updateFilteredGames();
+            });
+        });
+    }
+
+    // Provider search input (preferred)
+    if (hasDropdown && searchInput) {
+        const syncClearBtn = () => {
+            if (!searchClear) return;
+            searchClear.style.visibility = searchInput.value ? 'visible' : 'hidden';
+        };
+
+        syncClearBtn();
+
+        searchInput.addEventListener('input', () => {
+            providerQuery = (searchInput.value || '').toLowerCase().trim();
+            syncClearBtn();
+            // When searching, force "All Providers" mode (no specific provider selected)
+            currentProvider = 'all';
+            if (providerNameSpan) providerNameSpan.textContent = 'All Providers';
+            dropdownItems.forEach(i => i.classList.remove('active'));
+            syncProviderChipState();
+            updateFilteredGames();
+        });
+
+        if (searchClear) {
+            searchClear.addEventListener('click', () => {
+                searchInput.value = '';
+                providerQuery = '';
+                syncClearBtn();
+                currentProvider = 'all';
+                dropdownItems.forEach(i => i.classList.remove('active'));
+                if (providerNameSpan) providerNameSpan.textContent = 'All Providers';
+                syncProviderChipState();
+                updateFilteredGames();
+                searchInput.focus();
+            });
+        }
+    }
+
+    // Dropdown open/close
+    if (hasDropdown) {
+        dropdownTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isActive = dropdown.classList.contains('active');
+
+            document.querySelectorAll('.provider-dropdown.active').forEach(d => {
+                if (d !== dropdown) d.classList.remove('active');
+            });
+
+            dropdown.classList.toggle('active', !isActive);
+            if (!isActive) {
+                setTimeout(() => searchInput?.focus(), 0);
+            }
+        });
+    }
+
+    // Clicking provider options
+    if (hasDropdown) {
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                const nextValue = (item.dataset.value || 'all').toLowerCase();
+                dropdownItems.forEach(i => i.classList.toggle('active', i === item));
+                currentProvider = nextValue;
+
+                // Selecting a provider clears the text-search (so behavior is unambiguous)
+                providerQuery = '';
+                if (searchInput) searchInput.value = '';
+                if (searchClear) searchClear.style.visibility = 'hidden';
+
+                if (providerNameSpan) {
+                    providerNameSpan.textContent = item.textContent?.trim() || 'All Providers';
+                }
+
+                syncProviderChipState();
+                dropdown.classList.remove('active');
+                updateFilteredGames();
+            });
+        });
+    }
+
+    // Filter provider options list based on search query (inside dropdown)
+    if (hasDropdown && searchInput) {
+        searchInput.addEventListener('input', () => {
+            const q = (searchInput.value || '').toLowerCase().trim();
+            dropdownItems.forEach(i => {
+                const label = (i.textContent || '').toLowerCase();
+                i.style.display = !q || label.includes(q) ? '' : 'none';
+            });
+        });
+    }
+
+    // Click outside to close
+    if (hasDropdown) {
+        document.addEventListener('click', (e) => {
+            if (dropdown.classList.contains('active') && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+
+    if (panelTitle) {
+        panelTitle.textContent = categoryLabels[currentCategory] || 'Providers';
+    }
+
+    syncProviderChipState();
     updateFilteredGames();
+
+    // Re-apply after downstream normalizers mutate card classes/markup.
+    setTimeout(updateFilteredGames, 0);
+    setTimeout(updateFilteredGames, 160);
+
+    document.addEventListener('homeGamesGridNormalized', updateFilteredGames);
 }
 
 function id(name) { return document.getElementById(name); }
@@ -2046,6 +2185,11 @@ function normalizeLegacyGameGrids() {
     if (!grids.length) return;
 
     grids.forEach(grid => {
+        // Keep Hot Providers provider-card layout untouched.
+        if (grid.id === 'homeGamesGrid' && grid.closest('.hot-providers-mobile-look')) {
+            return;
+        }
+
         grid.classList.add('rio-game-grid');
         const legacyCards = Array.from(grid.querySelectorAll('.game-item'));
 
@@ -2057,6 +2201,10 @@ function normalizeLegacyGameGrids() {
             card.dataset.rioNormalized = '1';
             card.innerHTML = rioCardMarkupFromLegacy(data);
         });
+
+        if (grid.id === 'homeGamesGrid') {
+            document.dispatchEvent(new CustomEvent('homeGamesGridNormalized'));
+        }
     });
 }
 
@@ -2661,3 +2809,509 @@ function initInfoCenter() {
 }
 
 window.initInfoCenter = initInfoCenter;
+
+/* ============================================
+   GLOBAL BONUS MODAL HELPERS
+   Used by Spin Wheel / Voucher Scratch / Prize Box
+   / Daily Check-In modals across all pages.
+   ============================================ */
+(function () {
+    if (typeof window === 'undefined') return;
+
+    function openBonusModal(modalId) {
+        var el = document.getElementById(modalId);
+        if (!el) return;
+        el.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (modalId === 'dailyCheckinModal' && typeof window.renderDailyCheckin === 'function') {
+            window.renderDailyCheckin();
+        }
+    }
+
+    function closeBonusModal(modalId) {
+        var el = document.getElementById(modalId);
+        if (!el) return;
+        el.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (typeof window.openBonusModal !== 'function') window.openBonusModal = openBonusModal;
+    if (typeof window.closeBonusModal !== 'function') window.closeBonusModal = closeBonusModal;
+
+    document.addEventListener('click', function (e) {
+        var t = e.target;
+        if (t && t.classList && t.classList.contains('bonus-modal-overlay')) {
+            t.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        var openOverlays = document.querySelectorAll('.bonus-modal-overlay.active');
+        if (!openOverlays.length) return;
+        openOverlays.forEach(function (o) { o.classList.remove('active'); });
+        document.body.style.overflow = '';
+    });
+})();
+
+/* ============================================
+   DAILY CHECK-IN BONUS
+   Tracks: streak, last claim date, claimed days
+   Persists in localStorage (key: riocity_daily_checkin)
+   ============================================ */
+(function () {
+    var STORAGE_KEY = 'riocity_daily_checkin';
+    var TOTAL_DAYS = 31;
+
+    // Reward schedule: small everyday + milestone bumps at 7/14/21/30
+    var REWARDS = (function () {
+        var arr = [];
+        for (var i = 1; i <= TOTAL_DAYS; i++) {
+            if (i === 30) arr.push(30);
+            else if (i === 21) arr.push(15);
+            else if (i === 14) arr.push(8);
+            else if (i === 7) arr.push(5);
+            else arr.push(1);
+        }
+        return arr;
+    })();
+    var MILESTONES = { 7: true, 14: true, 21: true, 30: true };
+
+    function todayISO() {
+        var d = new Date();
+        var y = d.getFullYear();
+        var m = String(d.getMonth() + 1).padStart(2, '0');
+        var day = String(d.getDate()).padStart(2, '0');
+        return y + '-' + m + '-' + day;
+    }
+
+    function dayDiff(aIso, bIso) {
+        if (!aIso || !bIso) return null;
+        var a = new Date(aIso + 'T00:00:00');
+        var b = new Date(bIso + 'T00:00:00');
+        return Math.round((b - a) / 86400000);
+    }
+
+    function loadState() {
+        try {
+            var raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                var parsed = JSON.parse(raw);
+                if (parsed && typeof parsed === 'object') return parsed;
+            }
+        } catch (e) {}
+        return { currentDay: 0, lastClaim: null, claimedDays: [] };
+    }
+
+    function saveState(state) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    // Returns the day number the user is currently ON (1..31), and
+    // whether they have claimed today already.
+    function computeStatus(state) {
+        var today = todayISO();
+        if (!state.lastClaim) {
+            return { todayDay: 1, claimedToday: false };
+        }
+        var diff = dayDiff(state.lastClaim, today);
+        if (diff === 0) {
+            return { todayDay: state.currentDay, claimedToday: true };
+        }
+        if (diff === 1) {
+            var nextDay = state.currentDay + 1;
+            if (nextDay > TOTAL_DAYS) nextDay = 1;
+            return { todayDay: nextDay, claimedToday: false };
+        }
+        // Missed a day -> streak resets
+        return { todayDay: 1, claimedToday: false };
+    }
+
+    function buildDayGrid(state, status) {
+        var grid = document.getElementById('dcDayGrid');
+        if (!grid) return;
+        var html = '';
+        var claimedSet = {};
+        (state.claimedDays || []).forEach(function (d) { claimedSet[d] = true; });
+
+        for (var i = 1; i <= TOTAL_DAYS; i++) {
+            var classes = ['dc-day-card'];
+            var iconClass = 'fa-solid fa-ticket';
+
+            // Reset of claimedSet view: only days BEFORE today's day in the
+            // current cycle should appear claimed. status.todayDay is the
+            // current cursor position.
+            var isClaimed = false;
+            if (status.claimedToday && i <= status.todayDay) isClaimed = true;
+            else if (!status.claimedToday && i < status.todayDay) isClaimed = true;
+
+            var isToday = (i === status.todayDay) && !status.claimedToday;
+            var isLocked = (i > status.todayDay);
+
+            if (MILESTONES[i]) classes.push('is-milestone');
+            if (isClaimed) { classes.push('is-claimed'); iconClass = 'fa-solid fa-circle-check'; }
+            if (isToday)   { classes.push('is-today');   iconClass = 'fa-solid fa-gift'; }
+            if (isLocked)  { classes.push('is-locked');  iconClass = 'fa-solid fa-lock'; }
+
+            html += '<div class="' + classes.join(' ') + '" role="listitem" aria-label="Day ' + i + '">' +
+                        '<span class="dc-day-label">Day ' + i + '</span>' +
+                        '<i class="' + iconClass + ' dc-day-icon" aria-hidden="true"></i>' +
+                        '<span class="dc-day-amount">SGD ' + REWARDS[i - 1] + '</span>' +
+                    '</div>';
+        }
+        grid.innerHTML = html;
+    }
+
+    function buildChipRail(state, status) {
+        var rail = document.getElementById('dcJourneyStrip');
+        if (!rail) return;
+
+        // Compute a 7-day window that always includes "today" and gives
+        // context (a few days behind for sense of progress).
+        var todayDay = status.todayDay;
+        var startDay = Math.max(1, todayDay - 2);
+        if (startDay + 6 > TOTAL_DAYS) startDay = Math.max(1, TOTAL_DAYS - 6);
+
+        var html = '';
+        for (var i = 0; i < 7; i++) {
+            var day = startDay + i;
+            if (day > TOTAL_DAYS) break;
+
+            var classes = ['dc-chip'];
+            var iconClass = 'fa-solid fa-coins';
+
+            var isClaimed = false;
+            if (status.claimedToday && day <= todayDay) isClaimed = true;
+            else if (!status.claimedToday && day < todayDay) isClaimed = true;
+
+            var isToday  = (day === todayDay) && !status.claimedToday;
+            var isLocked = (day > todayDay);
+
+            if (MILESTONES[day]) classes.push('is-milestone');
+            if (isClaimed) { classes.push('is-claimed'); iconClass = 'fa-solid fa-check'; }
+            if (isToday)   { classes.push('is-today');   iconClass = 'fa-solid fa-gift'; }
+            if (isLocked)  { classes.push('is-locked');  iconClass = 'fa-solid fa-lock'; }
+
+            html += '<div class="' + classes.join(' ') + '" title="Day ' + day + ' • SGD ' + REWARDS[day - 1] + '">' +
+                        '<span class="dc-chip-num">D' + day + '</span>' +
+                        '<i class="' + iconClass + ' dc-chip-icon" aria-hidden="true"></i>' +
+                        '<span class="dc-chip-amt">' + REWARDS[day - 1] + '</span>' +
+                    '</div>';
+        }
+        rail.innerHTML = html;
+    }
+
+    function updateBanner(state, status) {
+        var banner = document.getElementById('dailyCheckinBanner');
+        var dayText = document.getElementById('dcBannerCurrentDay');
+        var amount = document.getElementById('dcBannerTodayAmount');
+        var streakText = document.getElementById('dcBannerStreak');
+        if (!banner) return;
+
+        var displayDay = status.todayDay;
+        var claimedCount = status.claimedToday ? status.todayDay : (status.todayDay - 1);
+        if (claimedCount < 0) claimedCount = 0;
+
+        if (dayText) dayText.textContent = 'Day ' + displayDay;
+        if (amount) amount.textContent = REWARDS[Math.max(0, displayDay - 1)];
+        if (streakText) streakText.textContent = claimedCount;
+
+        buildChipRail(state, status);
+
+        var cta = document.getElementById('dcBannerCta');
+        if (status.claimedToday) {
+            banner.classList.add('is-claimed');
+            if (cta) {
+                var t1 = cta.querySelector('.dc-cta-text');
+                var i1 = cta.querySelector('i');
+                if (t1) t1.textContent = 'CHECKED IN TODAY';
+                if (i1) i1.className = 'fa-solid fa-check';
+            }
+        } else {
+            banner.classList.remove('is-claimed');
+            if (cta) {
+                var t2 = cta.querySelector('.dc-cta-text');
+                var i2 = cta.querySelector('i');
+                if (t2) t2.textContent = 'CHECK IN NOW';
+                if (i2) i2.className = 'fa-solid fa-calendar-check';
+            }
+        }
+    }
+
+    /* ----- Live countdown to next reset (00:00 GMT+7) ----- */
+    function startCountdown() {
+        var el = document.getElementById('dcCountdown');
+        if (!el) return;
+
+        function tick() {
+            // Compute time until next 00:00 in GMT+7 (Asia/Bangkok zone).
+            var now = new Date();
+            var nowUtcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
+            var bangkok = new Date(nowUtcMs + (7 * 3600000));
+            var nextReset = new Date(bangkok);
+            nextReset.setHours(24, 0, 0, 0); // tomorrow midnight in Bangkok
+            var diffMs = nextReset - bangkok;
+            if (diffMs < 0) diffMs = 0;
+            var totalSec = Math.floor(diffMs / 1000);
+            var h = Math.floor(totalSec / 3600);
+            var m = Math.floor((totalSec % 3600) / 60);
+            var s = totalSec % 60;
+            var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+            el.textContent = pad(h) + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+        }
+        tick();
+        setInterval(tick, 1000);
+    }
+
+    /* ----- Social proof ticker (gently increments) ----- */
+    function startSocialProof() {
+        var el = document.getElementById('dcSocialCount');
+        if (!el) return;
+        var base = 1247 + Math.floor(Math.random() * 80);
+        function fmt(n) { return n.toLocaleString('en-US'); }
+        el.textContent = fmt(base);
+        setInterval(function () {
+            base += Math.floor(Math.random() * 3) + 1;
+            el.textContent = fmt(base);
+        }, 4500 + Math.floor(Math.random() * 3500));
+    }
+
+    function updateModalStats(state, status) {
+        var fill = document.getElementById('dcModalProgressFill');
+        var label = document.getElementById('dcModalDayLabel');
+        var streak = document.getElementById('dcStreakCount');
+        var claimed = document.getElementById('dcClaimedCount');
+        var remaining = document.getElementById('dcRemainingDays');
+        var btn = document.getElementById('dcClaimBtn');
+
+        var claimedCount = status.claimedToday ? status.todayDay : (status.todayDay - 1);
+        if (claimedCount < 0) claimedCount = 0;
+        var remainingDays = TOTAL_DAYS - claimedCount;
+        var pct = Math.round((claimedCount / TOTAL_DAYS) * 100);
+
+        if (fill) fill.style.width = pct + '%';
+        if (label) label.textContent = 'Day ' + status.todayDay + ' of ' + TOTAL_DAYS;
+        if (streak) streak.textContent = claimedCount;
+        if (claimed) claimed.textContent = claimedCount;
+        if (remaining) remaining.textContent = remainingDays;
+
+        if (btn) {
+            if (status.claimedToday) {
+                btn.disabled = true;
+                btn.classList.add('is-claimed');
+                btn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>CLAIMED — COME BACK TOMORROW</span>';
+            } else {
+                btn.disabled = false;
+                btn.classList.remove('is-claimed');
+                btn.innerHTML = '<i class="fa-solid fa-gift"></i><span>CHECK IN NOW</span>';
+            }
+        }
+    }
+
+    function render() {
+        var state = loadState();
+        var status = computeStatus(state);
+        buildDayGrid(state, status);
+        updateBanner(state, status);
+        updateModalStats(state, status);
+        return { state: state, status: status };
+    }
+
+    function claim() {
+        var state = loadState();
+        var status = computeStatus(state);
+        if (status.claimedToday) return;
+
+        var newDay = status.todayDay;
+        state.currentDay = newDay > TOTAL_DAYS ? 1 : newDay;
+        state.lastClaim = todayISO();
+        state.claimedDays = state.claimedDays || [];
+        state.claimedDays.push(state.lastClaim + ':day' + state.currentDay);
+        if (state.claimedDays.length > 200) state.claimedDays = state.claimedDays.slice(-200);
+        saveState(state);
+        render();
+
+        var btn = document.getElementById('dcClaimBtn');
+        if (btn) {
+            btn.classList.add('is-claimed');
+            btn.disabled = true;
+        }
+    }
+
+    function attachClaimHandler() {
+        var btn = document.getElementById('dcClaimBtn');
+        if (btn && !btn._dcBound) {
+            btn._dcBound = true;
+            btn.addEventListener('click', claim);
+        }
+        var bannerCta = document.getElementById('dcBannerCta');
+        if (bannerCta && !bannerCta._dcBound) {
+            bannerCta._dcBound = true;
+            bannerCta.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (typeof window.openBonusModal === 'function') {
+                    window.openBonusModal('dailyCheckinModal');
+                }
+            });
+        }
+    }
+
+    function init() {
+        if (!document.getElementById('dailyCheckinBanner') && !document.getElementById('dailyCheckinModal')) return;
+        attachClaimHandler();
+        render();
+        startCountdown();
+        startSocialProof();
+    }
+
+    window.renderDailyCheckin = render;
+    window.claimDailyCheckin = claim;
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+
+/* ============================================
+   REWARD TOKEN MODALS
+   Spin Wheel / Voucher Scratch / Prize Box
+   Handles: main <-> record view, quick date ranges.
+   ============================================ */
+(function () {
+    function formatDate(d) {
+        var y = d.getFullYear();
+        var m = String(d.getMonth() + 1).padStart(2, '0');
+        var day = String(d.getDate()).padStart(2, '0');
+        return y + '-' + m + '-' + day;
+    }
+
+    function startOfWeek(d) {
+        var nd = new Date(d);
+        var diff = (nd.getDay() + 6) % 7; // Monday = 0
+        nd.setDate(nd.getDate() - diff);
+        nd.setHours(0, 0, 0, 0);
+        return nd;
+    }
+
+    function getRange(preset) {
+        var now = new Date();
+        var start = new Date(now);
+        var end = new Date(now);
+        switch (preset) {
+            case 'today':
+                break;
+            case 'yesterday':
+                start.setDate(start.getDate() - 1);
+                end.setDate(end.getDate() - 1);
+                break;
+            case 'this-week':
+                start = startOfWeek(now);
+                break;
+            case 'last-week':
+                start = startOfWeek(now);
+                start.setDate(start.getDate() - 7);
+                end = new Date(start);
+                end.setDate(end.getDate() + 6);
+                break;
+            case 'this-month':
+                start = new Date(now.getFullYear(), now.getMonth(), 1);
+                break;
+            case 'last-month':
+                start = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+                end = new Date(now.getFullYear(), now.getMonth(), 0);
+                break;
+            default:
+                start = startOfWeek(now);
+        }
+        return { start: formatDate(start), end: formatDate(end) };
+    }
+
+    function applyRange(modal, preset) {
+        var range = getRange(preset);
+        var startInput = modal.querySelector('[data-rt-start]');
+        var endInput = modal.querySelector('[data-rt-end]');
+        if (startInput) startInput.value = range.start;
+        if (endInput) endInput.value = range.end;
+
+        modal.querySelectorAll('[data-rt-range]').forEach(function (btn) {
+            btn.classList.toggle('is-active', btn.getAttribute('data-rt-range') === preset);
+        });
+    }
+
+    function showRecordView(modal) {
+        modal.classList.add('is-record-view');
+        var activeBtn = modal.querySelector('[data-rt-range].is-active');
+        applyRange(modal, activeBtn ? activeBtn.getAttribute('data-rt-range') : 'this-week');
+
+        var typeSelect = modal.querySelector('[data-rt-type-select]');
+        if (typeSelect) {
+            var defaultType = modal.getAttribute('data-rt-type');
+            if (defaultType) typeSelect.value = defaultType;
+        }
+    }
+
+    function showMainView(modal) {
+        modal.classList.remove('is-record-view');
+    }
+
+    function initRewardTokenModals() {
+        var modals = document.querySelectorAll('.reward-token-modal');
+        if (!modals.length) return;
+
+        modals.forEach(function (modal) {
+            modal.querySelectorAll('[data-rt-open-record]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    showRecordView(modal);
+                });
+            });
+
+            modal.querySelectorAll('[data-rt-back]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    showMainView(modal);
+                });
+            });
+
+            modal.querySelectorAll('[data-rt-range]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    applyRange(modal, btn.getAttribute('data-rt-range'));
+                });
+            });
+
+            // Typing a custom date clears quick-range highlight.
+            modal.querySelectorAll('[data-rt-start], [data-rt-end]').forEach(function (input) {
+                input.addEventListener('input', function () {
+                    modal.querySelectorAll('[data-rt-range]').forEach(function (b) {
+                        b.classList.remove('is-active');
+                    });
+                });
+            });
+        });
+
+        // Reset to main view whenever a reward-token modal is closed.
+        document.addEventListener('click', function (e) {
+            var t = e.target;
+            if (t && t.classList && t.classList.contains('bonus-modal-overlay') && t.classList.contains('reward-token-modal')) {
+                t.classList.remove('is-record-view');
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') return;
+            document.querySelectorAll('.reward-token-modal.active').forEach(function (m) {
+                m.classList.remove('is-record-view');
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRewardTokenModals);
+    } else {
+        initRewardTokenModals();
+    }
+})();

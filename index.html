@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <meta name="description"
         content="A polished white-label iGaming lobby template with sports betting, live casino, slots, fishing, and reusable shared assets.">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile-hot-providers.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,31 +24,32 @@
             visibility: visible !important;
             z-index: 99999 !important;
             background: white !important;
-            .logos-slider-page {
-    min-width: 100% !important;
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important; /* 4 columns per page */
-    grid-template-rows: repeat(3, auto); /* 3 rows per page */
-    gap: 12px 10px;
-    padding: 15px 0;
-    align-items: center;
-}
-
-@keyframes pageSlide {
-    0%, 45% { transform: translateX(0); }
-    50%, 95% { transform: translateX(-100%); }
-    100% { transform: translateX(0); }
-}
-
-.logos-slider-page img {
-    max-width: 85% !important;
-    height: 28px !important; /* Smaller height for 4x3 density fit */
-    object-fit: contain !important;
-    filter: brightness(0.95);
-    margin: 0 auto;
-}
-        border: 2px solid #1677FF !important;
+            border: 2px solid #1677FF !important;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .logos-slider-page {
+            min-width: 100% !important;
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            grid-template-rows: repeat(3, auto);
+            gap: 12px 10px;
+            padding: 15px 0;
+            align-items: center;
+        }
+
+        @keyframes pageSlide {
+            0%, 45% { transform: translateX(0); }
+            50%, 95% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        .logos-slider-page img {
+            max-width: 85% !important;
+            height: 28px !important;
+            object-fit: contain !important;
+            filter: brightness(0.95);
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -96,13 +98,6 @@
         </div>
     </section>
 
-    <!-- Action Bar / Wheel -->
-    <div class="floating-wheel">
-        <div class="wheel-icon pulse-animation">
-            <img src="https://cdn-icons-png.flaticon.com/512/3593/3593022.png" alt="Lucky Wheel">
-        </div>
-    </div>
-
     <!-- Game Categories Banner -->
     <section class="game-categories-banner container home-categories-clean" aria-label="Game categories">
         <a href="sports.html" class="cat-card cat-card-sports">
@@ -120,6 +115,74 @@
         <a href="poker.html" class="cat-card cat-card-poker">
             <img class="cat-art" src="images/cat-banner/poker-cat.png" alt="Poker">
         </a>
+    </section>
+
+    <!-- Daily Check-In banner -->
+    <section class="daily-checkin-section container" aria-label="Daily check-in bonus">
+        <div class="dc-vault" id="dailyCheckinBanner" role="button" tabindex="0"
+             onclick="openBonusModal('dailyCheckinModal')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBonusModal('dailyCheckinModal');}"
+             aria-label="Open daily check-in calendar">
+
+            <!-- Decorative layers -->
+            <div class="dc-vault-bg" aria-hidden="true">
+                <span class="dc-vault-glow"></span>
+                <span class="dc-vault-shine"></span>
+            </div>
+
+            <!-- Reward summary (left column) -->
+            <div class="dc-vault-treasure">
+                <div class="dc-coin" aria-hidden="true">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <div class="dc-reward-body">
+                    <span class="dc-reward-kicker">
+                        <i class="fa-solid fa-calendar-check"></i> DAILY CHECK-IN
+                    </span>
+                    <p class="dc-reward-amount">
+                        <span class="dc-reward-currency">SGD</span>
+                        <span class="dc-reward-value" id="dcBannerTodayAmount">1</span>
+                    </p>
+                    <p class="dc-reward-hint">
+                        <span class="dc-hint-pending">Up for grabs <strong>today</strong></span>
+                        <span class="dc-hint-done">Checked in for today</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Progress column: chips + status -->
+            <div class="dc-vault-progress">
+                <div class="dc-progress-head">
+                    <span class="dc-prog-streak"><i class="fa-solid fa-fire"></i> <strong id="dcBannerStreak">0</strong>-day streak</span>
+                    <span class="dc-prog-day"><strong id="dcBannerCurrentDay">Day 1</strong> / 31</span>
+                </div>
+
+                <div class="dc-chip-rail" id="dcJourneyStrip" aria-hidden="true">
+                    <!-- 7 poker-chip medallions injected by JS -->
+                </div>
+
+                <div class="dc-prog-foot">
+                    <span class="dc-countdown" title="Time until reset">
+                        <i class="fa-regular fa-clock"></i>
+                        Resets in <strong id="dcCountdown">--h --m</strong>
+                    </span>
+                    <span class="dc-social">
+                        <span class="dc-live-dot" aria-hidden="true"></span>
+                        <strong id="dcSocialCount">1,247</strong> players claimed today
+                    </span>
+                </div>
+            </div>
+
+            <!-- Action column: check-in CTA -->
+            <div class="dc-vault-action">
+                <button type="button" class="dc-vault-cta" id="dcBannerCta" onclick="event.stopPropagation(); openBonusModal('dailyCheckinModal');">
+                    <span class="dc-vault-cta-shine" aria-hidden="true"></span>
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="dc-cta-text">CHECK IN NOW</span>
+                </button>
+                <span class="dc-cta-hint">Tap to view all 31 days</span>
+            </div>
+        </div>
     </section>
 
     <!-- Feature Bonuses Row -->
@@ -304,7 +367,7 @@
     </section>
 
     <!-- Hot Providers Section -->
-    <section class="hot-providers-section container">
+    <section class="hot-providers-section container hot-providers-mobile-look" id="homeHotProviders">
         <div class="section-header">
             <div class="header-left">
                 <i class="fa-solid fa-fire header-icon"></i>
@@ -313,94 +376,120 @@
             <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
         </div>
 
-        <div class="provider-filters">
-            <div class="filter-tabs">
-                <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> All
-                    Games</button>
-                <button class="filter-btn" data-filter="slots"><i class="fa-solid fa-table-cells"></i> Slots</button>
-                <button class="filter-btn" data-filter="live"><i class="fa-solid fa-dice"></i> Live Casino</button>
-                <button class="filter-btn" data-filter="table"><i class="fa-solid fa-diamond"></i> Table</button>
-                <button class="filter-btn" data-filter="jackpot"><i class="fa-solid fa-trophy"></i> Jackpot</button>
+        <div class="hot-provider-showcase">
+            <div class="provider-filters">
+                <div class="filter-tabs hot-provider-side-tabs">
+                    <button class="filter-btn active" data-filter="popular"><i class="fa-solid fa-fire"></i> Popular</button>
+                    <button class="filter-btn" data-filter="casino"><i class="fa-solid fa-dice"></i> Casino</button>
+                    <button class="filter-btn" data-filter="sports"><i class="fa-solid fa-trophy"></i> Sports</button>
+                    <button class="filter-btn" data-filter="esports"><i class="fa-solid fa-headset"></i> E-Sports</button>
+                    <button class="filter-btn" data-filter="slots"><i class="fa-solid fa-gamepad"></i> Slots</button>
+                    <button class="filter-btn" data-filter="fishing"><i class="fa-solid fa-fish"></i> Fishing</button>
+                    <button class="filter-btn" data-filter="lottery"><i class="fa-solid fa-ticket"></i> Lottery</button>
+                    <button class="filter-btn" data-filter="poker"><i class="fa-solid fa-spade"></i> Poker</button>
+                </div>
             </div>
 
-            <div class="provider-dropdown" id="homeProviderDropdown">
-                <div class="dropdown-trigger" style="cursor: pointer; position: relative; z-index: 10;">
-                    <span id="currentProviderName" style="pointer-events: none;">Pragmatic Play</span>
-                    <i class="fa-solid fa-chevron-down" style="pointer-events: none;"></i>
+            <div class="hot-provider-panel">
+                <div class="hot-provider-panel-head">
+                    <h3 id="homeHotProviderTitle">Popular</h3>
                 </div>
-                <div class="dropdown-menu">
-                    <div class="dropdown-item" data-value="all">All Providers</div>
-                    <div class="dropdown-item active" data-value="pragmatic">Pragmatic Play</div>
-                    <div class="dropdown-item" data-value="pgsoft">PG Soft</div>
-                    <div class="dropdown-item" data-value="playtech">Playtech</div>
-                    <div class="dropdown-item" data-value="spadegaming">Spadegaming</div>
-                    <div class="dropdown-item" data-value="jili">JILI</div>
-                    <div class="dropdown-item" data-value="habanero">Habanero</div>
-                    <div class="dropdown-item" data-value="evolution">Evolution Gaming</div>
+                
+                <div class="mobile-search-bar d-mobile-only">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search in Popular...">
                 </div>
-            </div>
-        </div>
 
-        <div class="game-cards-grid" id="homeGamesGrid">
-            <!-- New Game Card Pattern -->
-            <div class="game-item" data-category="slots" data-provider="pragmatic">
-                <div class="game-thumb" style="background-image: url('images/game/sweet-bonanza.png');">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                <div class="hot-provider-row" id="homeProviderQuickFilters" aria-label="Popular providers">
+                    <button class="hot-provider-chip active" data-provider-value="all" type="button">All</button>
+                    <button class="hot-provider-chip" data-provider-value="royalslot" type="button">Royal Slot</button>
+                    <button class="hot-provider-chip" data-provider-value="xe88" type="button">XE88</button>
+                    <button class="hot-provider-chip" data-provider-value="naga" type="button">Naga</button>
+                    <button class="hot-provider-chip" data-provider-value="kaya" type="button">Kaya</button>
+                    <button class="hot-provider-chip" data-provider-value="918kiss" type="button">918Kiss</button>
+                    <button class="hot-provider-chip" data-provider-value="pussy888" type="button">Pussy888</button>
                 </div>
-                <div class="game-details">
-                    <h4>Sweet Bonanza</h4>
-                    <span class="provider-label">Pragmatic Play</span>
-                    <div class="rtp-badge">RTP 96.48% <i class="fa-solid fa-arrow-trend-up"></i></div>
-                </div>
-            </div>
-            <div class="game-item" data-category="slots" data-provider="pragmatic">
-                <div class="game-thumb" style="background-image: url('images/game/gate-of-olympus.jpg');">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="game-details">
-                    <h4>Gates of Olympus</h4>
-                    <span class="provider-label">Pragmatic Play</span>
-                    <div class="rtp-badge">RTP 96.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
-                </div>
-            </div>
-            <div class="game-item" data-category="slots" data-provider="pragmatic">
-                <div class="game-thumb" style="background-image: url('images/game/starlight.jpg');">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="game-details">
-                    <h4>Starlight Princess</h4>
-                    <span class="provider-label">Pragmatic Play</span>
-                    <div class="rtp-badge">RTP 96.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
-                </div>
-            </div>
-            <div class="game-item" data-category="slots" data-provider="pragmatic">
-                <div class="game-thumb" style="background-image: url('images/game/rush.jpg');">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="game-details">
-                    <h4>Sugar Rush</h4>
-                    <span class="provider-label">Pragmatic Play</span>
-                    <div class="rtp-badge">RTP 96.50% <i class="fa-solid fa-arrow-trend-up"></i></div>
-                </div>
-            </div>
-            <div class="game-item" data-category="slots" data-provider="pragmatic">
-                <div class="game-thumb" style="background-image: url('images/game/wild-west.jpg');">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="game-details">
-                    <h4>Wild West Gold</h4>
-                    <span class="provider-label">Pragmatic Play</span>
-                    <div class="rtp-badge">RTP 96.51% <i class="fa-solid fa-arrow-trend-up"></i></div>
-                </div>
-            </div>
-            <div class="game-item" data-category="live" data-provider="pragmatic">
-                <div class="game-thumb" style="background-image: url('images/game/DragonTiger_Pragmatic.webp');">
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
-                </div>
-                <div class="game-details">
-                    <h4>Dragon Tiger</h4>
-                    <span class="provider-label">Pragmatic Play</span>
-                    <div class="rtp-badge">RTP 96.27% <i class="fa-solid fa-arrow-trend-up"></i></div>
+
+                <div class="game-cards-grid hot-provider-grid" id="homeGamesGrid">
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="royalslot" href="slots.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Pragmatic...</span>
+                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://pksoftcdn.azureedge.net/media/royalslotgaming_slot-202601270943159503.png" alt="Royal Slot Gaming">
+                        </div>
+                        <div class="provider-details">
+                            <h4>Royal Slot Gaming</h4>
+                            <span class="provider-name">Royal Slot</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="xe88" href="sports.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
+                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://pksoftcdn.azureedge.net/media/xe88_slot-202603030743111321.png" alt="XE88">
+                        </div>
+                        <div class="provider-details">
+                            <h4>XE88</h4>
+                            <span class="provider-name">XE88</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="riocity" href="games.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
+                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://riocity-cdn.azureedge.net/riocity/1-202312201452295687%20%281%29-202404091259347153.png" alt="RioCity Provider">
+                        </div>
+                        <div class="provider-details">
+                            <h4>RioCity</h4>
+                            <span class="provider-name">RioCity</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="naga" href="fish-hunt.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
+                            <div class="mobile-card-heart d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://pksoftcdn.azureedge.net/media/nagagames-202509081536239359.png" alt="Naga Games">
+                        </div>
+                        <div class="provider-details">
+                            <h4>Naga Games</h4>
+                            <span class="provider-name">Naga</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="slots" data-provider="pg" href="slots.html">
+                        <div class="provider-thumb"><img src="https://riocity-cdn.azureedge.net/riocity/pg-202401151452543063.png" alt="PG Provider"></div>
+                        <div class="provider-details">
+                            <h4>PG Provider</h4>
+                            <span class="provider-name">PG</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="kaya" href="live-casino.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_918kaya-202510310816424815.png" alt="918Kaya"></div>
+                        <div class="provider-details">
+                            <h4>918Kaya</h4>
+                            <span class="provider-name">Kaya</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="lottery" data-provider="918kiss" href="games.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_918kiss-202510131021491550.png" alt="918Kiss"></div>
+                        <div class="provider-details">
+                            <h4>918Kiss</h4>
+                            <span class="provider-name">918Kiss</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="poker" data-provider="pussy888" href="poker.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/pussy888_slot-202512051029432232.png" alt="Pussy888"></div>
+                        <div class="provider-details">
+                            <h4>Pussy888</h4>
+                            <span class="provider-name">Pussy888</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -931,6 +1020,462 @@
         </div>
     </section>
 
+    <!-- Daily Check-In Modal -->
+    <div class="bonus-modal-overlay daily-checkin-modal" id="dailyCheckinModal" role="dialog" aria-modal="true" aria-labelledby="dailyCheckinTitle">
+        <div class="bonus-modal dc-modal">
+            <div class="bonus-modal-header dc-modal-header">
+                <div class="dc-modal-title-wrap">
+                    <span class="dc-modal-icon"><i class="fa-solid fa-calendar-check"></i></span>
+                    <h3 class="bonus-modal-title dc-modal-title" id="dailyCheckinTitle">Daily Check-In</h3>
+                </div>
+                <button class="bonus-modal-close" type="button" onclick="closeBonusModal('dailyCheckinModal')" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="bonus-modal-content dc-modal-content">
+                <div class="dc-info-row">
+                    <span class="dc-refresh-pill"><i class="fa-regular fa-clock"></i> Refresh Time: Daily 00:00 – 23:59 GMT+7</span>
+                </div>
+
+                <div class="dc-summary">
+                    <p class="dc-summary-text">You have <strong id="dcRemainingDays">31</strong> day(s) remaining to claim.</p>
+                    <div class="dc-streak-pill" title="Consecutive check-in streak">
+                        <i class="fa-solid fa-fire"></i>
+                        <span><strong id="dcStreakCount">0</strong>-day streak</span>
+                    </div>
+                </div>
+
+                <div class="dc-progress">
+                    <div class="dc-progress-bar"><span class="dc-progress-fill" id="dcModalProgressFill" style="width: 0%"></span></div>
+                    <div class="dc-progress-meta">
+                        <span><strong id="dcClaimedCount">0</strong> claimed</span>
+                        <span id="dcModalDayLabel">Day 0 of 31</span>
+                    </div>
+                </div>
+
+                <div class="dc-day-grid" id="dcDayGrid" role="list" aria-label="31 day check-in calendar"></div>
+
+                <div class="dc-modal-actions">
+                    <button type="button" class="dc-claim-btn" id="dcClaimBtn">
+                        <i class="fa-solid fa-gift"></i>
+                        <span>CHECK IN NOW</span>
+                    </button>
+                    <button type="button" class="dc-close-link" onclick="closeBonusModal('dailyCheckinModal')">Close</button>
+                </div>
+
+                <p class="dc-fineprint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Miss a day and your streak resets. 7-day, 14-day, and 30-day milestones unlock bigger bonuses.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reward Token Modals (Spin Wheel / Voucher Scratch / Prize Box) -->
+    <!-- Spin Wheel -->
+    <div class="bonus-modal-overlay reward-token-modal" id="spinWheelModal" role="dialog" aria-modal="true" aria-labelledby="spinWheelModalTitle" data-rt-type="spinwheel">
+        <div class="bonus-modal rt-modal">
+            <!-- MAIN VIEW -->
+            <div class="rt-view rt-view-main" data-rt-view="main">
+                <div class="rt-header">
+                    <div class="rt-title-wrap">
+                        <span class="rt-modal-icon"><i class="fa-solid fa-dharmachakra"></i></span>
+                        <h3 class="rt-title" id="spinWheelModalTitle">Spin Wheel</h3>
+                    </div>
+                    <button class="rt-close bonus-modal-close" type="button" onclick="closeBonusModal('spinWheelModal')" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rt-body">
+                    <div class="rt-wallet-card">
+                        <div class="rt-wallet-left">
+                            <span class="rt-wallet-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
+                            <div class="rt-wallet-info">
+                                <span class="rt-wallet-label">Wallet Balance</span>
+                                <span class="rt-wallet-amount"><em>SGD</em> <strong class="rt-wallet-value">90.53</strong></span>
+                            </div>
+                        </div>
+                        <button type="button" class="rt-record-btn" data-rt-open-record>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <span>Record</span>
+                        </button>
+                    </div>
+                    <div class="rt-warning">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Rewards must be completed before the token's expiry date</span>
+                    </div>
+                    <div class="rt-empty">
+                        <div class="rt-empty-art" aria-hidden="true">
+                            <i class="fa-solid fa-box-open rt-empty-box"></i>
+                            <span class="rt-empty-dot rt-empty-dot--a"></span>
+                            <span class="rt-empty-dot rt-empty-dot--b"></span>
+                            <span class="rt-empty-dot rt-empty-dot--c"></span>
+                        </div>
+                        <p class="rt-empty-text">You do not have any reward tokens active.</p>
+                        <a href="#" class="rt-empty-cta">
+                            Browse promotions <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- RECORD VIEW -->
+            <div class="rt-view rt-view-record" data-rt-view="record">
+                <div class="rt-header">
+                    <div class="rt-title-wrap">
+                        <button class="rt-back" type="button" data-rt-back aria-label="Back">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <h3 class="rt-title">Claim Record</h3>
+                    </div>
+                    <button class="rt-close bonus-modal-close" type="button" onclick="closeBonusModal('spinWheelModal')" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rt-body">
+                    <div class="rt-wallet-card rt-wallet-card--compact">
+                        <div class="rt-wallet-left">
+                            <span class="rt-wallet-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
+                            <div class="rt-wallet-info">
+                                <span class="rt-wallet-label">Wallet Balance</span>
+                                <span class="rt-wallet-amount"><em>SGD</em> <strong class="rt-wallet-value">90.53</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="rt-record-heading">Reward Record</h4>
+                    <div class="rt-filter-grid">
+                        <div class="rt-field">
+                            <label class="rt-label">Type</label>
+                            <div class="rt-select">
+                                <select data-rt-type-select>
+                                    <option value="spinwheel">Spin Wheel</option>
+                                    <option value="voucher">Voucher Scratch</option>
+                                    <option value="prizebox">Prize Box</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="rt-field">
+                            <label class="rt-label">Status</label>
+                            <div class="rt-select">
+                                <select data-rt-status-select>
+                                    <option value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="claimed">Claimed</option>
+                                    <option value="expired">Expired</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rt-divider"></div>
+                    <div class="rt-date-row">
+                        <div class="rt-field">
+                            <label class="rt-label">Start Date</label>
+                            <input type="date" class="rt-date" data-rt-start>
+                        </div>
+                        <div class="rt-field">
+                            <label class="rt-label">End Date</label>
+                            <input type="date" class="rt-date" data-rt-end>
+                        </div>
+                    </div>
+                    <div class="rt-quickrange" role="tablist">
+                        <button type="button" data-rt-range="today">Today</button>
+                        <button type="button" data-rt-range="yesterday">Yesterday</button>
+                        <button type="button" data-rt-range="this-week" class="is-active">This Week</button>
+                        <button type="button" data-rt-range="last-week">Last Week</button>
+                        <button type="button" data-rt-range="this-month">This Month</button>
+                        <button type="button" data-rt-range="last-month">Last Month</button>
+                    </div>
+                    <div class="rt-table-wrap">
+                        <table class="rt-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Campaign</th>
+                                    <th>Created Date <i class="fa-solid fa-caret-down"></i></th>
+                                    <th>Status <i class="fa-solid fa-sort"></i></th>
+                                    <th>Claimed Date <i class="fa-solid fa-sort"></i></th>
+                                    <th>Reward</th>
+                                </tr>
+                            </thead>
+                            <tbody data-rt-tbody>
+                                <!-- JS renders rows; empty by default -->
+                            </tbody>
+                        </table>
+                        <p class="rt-nodata" data-rt-nodata>No Data Found</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voucher Scratch -->
+    <div class="bonus-modal-overlay reward-token-modal" id="voucherScratchModal" role="dialog" aria-modal="true" aria-labelledby="voucherScratchModalTitle" data-rt-type="voucher">
+        <div class="bonus-modal rt-modal">
+            <div class="rt-view rt-view-main" data-rt-view="main">
+                <div class="rt-header">
+                    <div class="rt-title-wrap">
+                        <span class="rt-modal-icon"><i class="fa-solid fa-ticket-simple"></i></span>
+                        <h3 class="rt-title" id="voucherScratchModalTitle">Voucher Scratch</h3>
+                    </div>
+                    <button class="rt-close bonus-modal-close" type="button" onclick="closeBonusModal('voucherScratchModal')" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rt-body">
+                    <div class="rt-wallet-card">
+                        <div class="rt-wallet-left">
+                            <span class="rt-wallet-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
+                            <div class="rt-wallet-info">
+                                <span class="rt-wallet-label">Wallet Balance</span>
+                                <span class="rt-wallet-amount"><em>SGD</em> <strong class="rt-wallet-value">90.53</strong></span>
+                            </div>
+                        </div>
+                        <button type="button" class="rt-record-btn" data-rt-open-record>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <span>Record</span>
+                        </button>
+                    </div>
+                    <div class="rt-warning">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Rewards must be completed before the token's expiry date</span>
+                    </div>
+                    <div class="rt-empty">
+                        <div class="rt-empty-art" aria-hidden="true">
+                            <i class="fa-solid fa-box-open rt-empty-box"></i>
+                            <span class="rt-empty-dot rt-empty-dot--a"></span>
+                            <span class="rt-empty-dot rt-empty-dot--b"></span>
+                            <span class="rt-empty-dot rt-empty-dot--c"></span>
+                        </div>
+                        <p class="rt-empty-text">You do not have any reward tokens active.</p>
+                        <a href="#" class="rt-empty-cta">
+                            Browse promotions <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="rt-view rt-view-record" data-rt-view="record">
+                <div class="rt-header">
+                    <div class="rt-title-wrap">
+                        <button class="rt-back" type="button" data-rt-back aria-label="Back">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <h3 class="rt-title">Claim Record</h3>
+                    </div>
+                    <button class="rt-close bonus-modal-close" type="button" onclick="closeBonusModal('voucherScratchModal')" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rt-body">
+                    <div class="rt-wallet-card rt-wallet-card--compact">
+                        <div class="rt-wallet-left">
+                            <span class="rt-wallet-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
+                            <div class="rt-wallet-info">
+                                <span class="rt-wallet-label">Wallet Balance</span>
+                                <span class="rt-wallet-amount"><em>SGD</em> <strong class="rt-wallet-value">90.53</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="rt-record-heading">Reward Record</h4>
+                    <div class="rt-filter-grid">
+                        <div class="rt-field">
+                            <label class="rt-label">Type</label>
+                            <div class="rt-select">
+                                <select data-rt-type-select>
+                                    <option value="spinwheel">Spin Wheel</option>
+                                    <option value="voucher">Voucher Scratch</option>
+                                    <option value="prizebox">Prize Box</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="rt-field">
+                            <label class="rt-label">Status</label>
+                            <div class="rt-select">
+                                <select data-rt-status-select>
+                                    <option value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="claimed">Claimed</option>
+                                    <option value="expired">Expired</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rt-divider"></div>
+                    <div class="rt-date-row">
+                        <div class="rt-field">
+                            <label class="rt-label">Start Date</label>
+                            <input type="date" class="rt-date" data-rt-start>
+                        </div>
+                        <div class="rt-field">
+                            <label class="rt-label">End Date</label>
+                            <input type="date" class="rt-date" data-rt-end>
+                        </div>
+                    </div>
+                    <div class="rt-quickrange" role="tablist">
+                        <button type="button" data-rt-range="today">Today</button>
+                        <button type="button" data-rt-range="yesterday">Yesterday</button>
+                        <button type="button" data-rt-range="this-week" class="is-active">This Week</button>
+                        <button type="button" data-rt-range="last-week">Last Week</button>
+                        <button type="button" data-rt-range="this-month">This Month</button>
+                        <button type="button" data-rt-range="last-month">Last Month</button>
+                    </div>
+                    <div class="rt-table-wrap">
+                        <table class="rt-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Campaign</th>
+                                    <th>Created Date <i class="fa-solid fa-caret-down"></i></th>
+                                    <th>Status <i class="fa-solid fa-sort"></i></th>
+                                    <th>Claimed Date <i class="fa-solid fa-sort"></i></th>
+                                    <th>Reward</th>
+                                </tr>
+                            </thead>
+                            <tbody data-rt-tbody></tbody>
+                        </table>
+                        <p class="rt-nodata" data-rt-nodata>No Data Found</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prize Box -->
+    <div class="bonus-modal-overlay reward-token-modal" id="prizeBoxModal" role="dialog" aria-modal="true" aria-labelledby="prizeBoxModalTitle" data-rt-type="prizebox">
+        <div class="bonus-modal rt-modal">
+            <div class="rt-view rt-view-main" data-rt-view="main">
+                <div class="rt-header">
+                    <div class="rt-title-wrap">
+                        <span class="rt-modal-icon"><i class="fa-solid fa-gift"></i></span>
+                        <h3 class="rt-title" id="prizeBoxModalTitle">Prize Box</h3>
+                    </div>
+                    <button class="rt-close bonus-modal-close" type="button" onclick="closeBonusModal('prizeBoxModal')" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rt-body">
+                    <div class="rt-wallet-card">
+                        <div class="rt-wallet-left">
+                            <span class="rt-wallet-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
+                            <div class="rt-wallet-info">
+                                <span class="rt-wallet-label">Wallet Balance</span>
+                                <span class="rt-wallet-amount"><em>SGD</em> <strong class="rt-wallet-value">90.53</strong></span>
+                            </div>
+                        </div>
+                        <button type="button" class="rt-record-btn" data-rt-open-record>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <span>Record</span>
+                        </button>
+                    </div>
+                    <div class="rt-warning">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Rewards must be completed before the token's expiry date</span>
+                    </div>
+                    <div class="rt-empty">
+                        <div class="rt-empty-art" aria-hidden="true">
+                            <i class="fa-solid fa-box-open rt-empty-box"></i>
+                            <span class="rt-empty-dot rt-empty-dot--a"></span>
+                            <span class="rt-empty-dot rt-empty-dot--b"></span>
+                            <span class="rt-empty-dot rt-empty-dot--c"></span>
+                        </div>
+                        <p class="rt-empty-text">You do not have any reward tokens active.</p>
+                        <a href="#" class="rt-empty-cta">
+                            Browse promotions <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="rt-view rt-view-record" data-rt-view="record">
+                <div class="rt-header">
+                    <div class="rt-title-wrap">
+                        <button class="rt-back" type="button" data-rt-back aria-label="Back">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <h3 class="rt-title">Claim Record</h3>
+                    </div>
+                    <button class="rt-close bonus-modal-close" type="button" onclick="closeBonusModal('prizeBoxModal')" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rt-body">
+                    <div class="rt-wallet-card rt-wallet-card--compact">
+                        <div class="rt-wallet-left">
+                            <span class="rt-wallet-icon" aria-hidden="true"><i class="fa-solid fa-coins"></i></span>
+                            <div class="rt-wallet-info">
+                                <span class="rt-wallet-label">Wallet Balance</span>
+                                <span class="rt-wallet-amount"><em>SGD</em> <strong class="rt-wallet-value">90.53</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="rt-record-heading">Reward Record</h4>
+                    <div class="rt-filter-grid">
+                        <div class="rt-field">
+                            <label class="rt-label">Type</label>
+                            <div class="rt-select">
+                                <select data-rt-type-select>
+                                    <option value="spinwheel">Spin Wheel</option>
+                                    <option value="voucher">Voucher Scratch</option>
+                                    <option value="prizebox">Prize Box</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="rt-field">
+                            <label class="rt-label">Status</label>
+                            <div class="rt-select">
+                                <select data-rt-status-select>
+                                    <option value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="claimed">Claimed</option>
+                                    <option value="expired">Expired</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rt-divider"></div>
+                    <div class="rt-date-row">
+                        <div class="rt-field">
+                            <label class="rt-label">Start Date</label>
+                            <input type="date" class="rt-date" data-rt-start>
+                        </div>
+                        <div class="rt-field">
+                            <label class="rt-label">End Date</label>
+                            <input type="date" class="rt-date" data-rt-end>
+                        </div>
+                    </div>
+                    <div class="rt-quickrange" role="tablist">
+                        <button type="button" data-rt-range="today">Today</button>
+                        <button type="button" data-rt-range="yesterday">Yesterday</button>
+                        <button type="button" data-rt-range="this-week" class="is-active">This Week</button>
+                        <button type="button" data-rt-range="last-week">Last Week</button>
+                        <button type="button" data-rt-range="this-month">This Month</button>
+                        <button type="button" data-rt-range="last-month">Last Month</button>
+                    </div>
+                    <div class="rt-table-wrap">
+                        <table class="rt-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Campaign</th>
+                                    <th>Created Date <i class="fa-solid fa-caret-down"></i></th>
+                                    <th>Status <i class="fa-solid fa-sort"></i></th>
+                                    <th>Claimed Date <i class="fa-solid fa-sort"></i></th>
+                                    <th>Reward</th>
+                                </tr>
+                            </thead>
+                            <tbody data-rt-tbody></tbody>
+                        </table>
+                        <p class="rt-nodata" data-rt-nodata>No Data Found</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1014,7 +1559,7 @@
     </footer>
 
     <script src="js/header.js?v=1.0.1"></script>
-    <script src="js/main.js?v=1.0.1"></script>
+    <script src="js/main.js?v=1.0.8"></script>
 </body>
 
 </html>

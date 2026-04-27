@@ -845,8 +845,14 @@ Styles removed to prevent conflict with global styles
    (header + View All + carousel arrows + horizontal RTP cards)
    ============================================ */
 .provider-games-section.sports-provider-recommended.games-section {
-    padding: 0 0 2rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    margin-bottom: 2.5rem;
     overflow: visible;
+    background: var(--gradient-card);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
 }
 
 .provider-games-section.sports-provider-recommended .section-header-unified {
@@ -858,18 +864,19 @@ Styles removed to prevent conflict with global styles
 }
 
 .provider-games-section.sports-provider-recommended .section-header-unified h2 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #fff;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
 }
 
 .provider-games-section.sports-provider-recommended .section-header-unified h2 i {
-    color: #f4c542;
-    font-size: 1.25rem;
+    color: var(--color-accent-primary);
+    font-size: 1.2rem;
 }
 
 .provider-games-section.sports-provider-recommended .recommended-title-short {
@@ -899,19 +906,19 @@ Styles removed to prevent conflict with global styles
     padding: 8px 16px;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #f4c542;
-    background: transparent;
-    border: 1px solid #f4c542;
-    border-radius: 8px;
+    color: var(--color-accent-primary);
+    background: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
 }
 
 .provider-games-section.sports-provider-recommended .view-all-btn-unified:hover {
-    background: rgba(244, 197, 66, 0.15);
-    border-color: #f4c542;
-    color: #f4c542;
+    background: color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary-hover);
 }
 
 .provider-games-section.sports-provider-recommended .nav-arrows-unified {
@@ -925,18 +932,18 @@ Styles removed to prevent conflict with global styles
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
-    color: #e2e8f0;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 10px;
+    color: var(--color-text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .provider-games-section.sports-provider-recommended .nav-arrow-unified:hover {
-    background: rgba(30, 41, 59, 0.95);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.2);
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-bg-tertiary));
+    color: var(--color-text-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
 }
 
 .provider-games-section.sports-provider-recommended .nav-arrow-unified:disabled {
@@ -966,21 +973,158 @@ Styles removed to prevent conflict with global styles
 
 .provider-games-section.sports-provider-recommended .game-carousel-track .game-card {
     scroll-snap-align: start;
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    /* Reset GM88 style.css .game-card (category / hero cards use padding + min-height) */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    background-image: none !important;
+    background-size: auto !important;
+    background-position: 0 0 !important;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    filter: none;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-image {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    flex-shrink: 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    border-radius: 12px 12px 0 0;
+    margin: 0;
+    isolation: isolate;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-image .game-img {
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    aspect-ratio: unset !important;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .play-btn {
+    width: 44px;
+    height: 44px;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .play-btn i {
+    font-size: 1rem;
+    margin-left: 2px;
+}
+
+/* Modern pseudo-element right ribbon instead of floating badge */
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card {
+    position: relative;
+    overflow: hidden !important;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-image .game-badge {
+    display: none !important;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card:not(.game-card--featured):has(.game-badge.new)::after {
+    content: "NEW";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: linear-gradient(90deg, #16a34a, #22c55e);
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    transform: rotate(45deg);
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card:not(.game-card--featured):has(.game-badge.hot)::after {
+    content: "HOT";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: linear-gradient(90deg, #ea580c, #f97316);
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    transform: rotate(45deg);
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+.provider-games-section.sports-provider-recommended .game-carousel-track .game-card:not(.game-card--featured):has(.game-badge.jackpot)::after {
+    content: "JACKPOT";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: linear-gradient(90deg, #6b21a8, #a855f7);
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    transform: rotate(45deg);
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
 }
 
 .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info {
-    background: rgba(15, 23, 42, 0.98);
-    padding: 0.5rem 0.4rem;
+    flex: 0 0 auto;
+    min-height: 3.35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.15rem;
+    background: var(--color-bg-card);
+    padding: 0.5rem 0.45rem 0.55rem;
+    text-align: left;
 }
 
 /* Override styles.css .game-info h4 (mobile) for Recommended only - keep smaller font + ellipsis */
 .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info h4 {
     font-size: 0.78rem !important;
     font-weight: 600;
-    color: #fff;
+    color: var(--color-text-primary);
     margin: 0 0 0.15rem 0 !important;
     line-height: 1.2 !important;
     text-align: left !important;
@@ -997,11 +1141,11 @@ Styles removed to prevent conflict with global styles
 .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info .rtp {
     font-size: 0.72rem !important;
     font-weight: 600;
-    color: #f4c542;
+    color: var(--color-accent-primary);
     margin: 0 !important;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 3px;
 }
 
@@ -1015,10 +1159,6 @@ Styles removed to prevent conflict with global styles
 
 .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info .rtp .rtp-arrow.down {
     color: #ef4444;
-}
-
-.provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-image {
-    border-radius: 12px 12px 0 0;
 }
 
 .provider-games-section.sports-provider-recommended .game-carousel-track .game-badge.live {
@@ -1575,16 +1715,16 @@ body.sports-provider-content-page,
 body.live-casino-content-page,
 body.poker-content-page,
 body.fish-hunt-content-page {
-    background: #0a0e1a;
+    background: var(--color-bg-primary);
     min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
-body.sports-provider-content-page .sports-provider-content,
-body.live-casino-content-page .sports-provider-content,
-body.poker-content-page .sports-provider-content,
-body.fish-hunt-content-page .sports-provider-content {
+body:not(.play-shell).sports-provider-content-page .sports-provider-content,
+body:not(.play-shell).live-casino-content-page .sports-provider-content,
+body:not(.play-shell).poker-content-page .sports-provider-content,
+body:not(.play-shell).fish-hunt-content-page .sports-provider-content {
     padding-top: 88px;
     /* Below fixed header */
 }
@@ -2139,18 +2279,18 @@ body.fish-hunt-content-page .sports-provider-content {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--theme-mobile-link-bg);
+    border: 1px solid var(--color-border-soft);
     border-radius: 10px;
-    color: #e2e8f0;
+    color: var(--color-text-secondary);
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
 .sports-provider-back-btn:hover {
-    background: rgba(244, 197, 66, 0.15);
-    color: #f4c542;
-    border-color: rgba(244, 197, 66, 0.25);
+    background: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
 }
 
 .sports-provider-back-btn i {
@@ -2161,18 +2301,22 @@ body.fish-hunt-content-page .sports-provider-content {
     margin: 0;
     font-size: 1.35rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
 }
 
 .sports-provider-live-section {
     position: relative;
     isolation: isolate;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    background: linear-gradient(165deg,
+            color-mix(in srgb, var(--color-bg-card) 92%, transparent) 0%,
+            color-mix(in srgb, var(--color-bg-primary) 88%, #000) 100%);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
     padding: 0;
     margin-bottom: 2.5rem;
     overflow: hidden;
+    box-shadow: var(--shadow-lg), 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
 }
 
 /* Fullscreen button: desktop/tablet = top right, mobile = centered */
@@ -2215,9 +2359,9 @@ body.fish-hunt-content-page .sports-provider-content {
 }
 
 .sports-provider-fullscreen-btn:hover {
-    background: rgba(244, 197, 66, 0.35);
-    color: #f4c542;
-    border-color: rgba(244, 197, 66, 0.5);
+    background: color-mix(in srgb, var(--color-accent-primary) 35%, rgba(0, 0, 0, 0.85));
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 55%, transparent);
 }
 
 /* Game view: always 16:9 on desktop and mobile */
@@ -2228,6 +2372,18 @@ body.fish-hunt-content-page .sports-provider-content {
     aspect-ratio: 16 / 9;
     height: auto;
     min-height: 0;
+    background: radial-gradient(120% 80% at 50% 0%, rgba(59, 130, 246, 0.08), transparent 55%),
+        var(--color-bg-tertiary);
+}
+
+.sports-provider-game-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text-primary) 6%, transparent),
+        inset 0 -48px 64px -32px rgba(0, 0, 0, 0.35);
 }
 
 .sports-provider-live-section:fullscreen {
@@ -2256,6 +2412,7 @@ body.fish-hunt-content-page .sports-provider-content {
     height: 100%;
     border: none;
     display: block;
+    z-index: 2;
 }
 
 .sports-provider-live-header {
@@ -2398,12 +2555,13 @@ body.fish-hunt-content-page .sports-provider-content {
 }
 
 .sports-provider-ranking-section {
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 1.5rem;
+    background: var(--gradient-card);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    padding: 1.35rem 1.5rem 1.5rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-md);
 }
 
 .sports-provider-ranking-header {
@@ -2412,54 +2570,92 @@ body.fish-hunt-content-page .sports-provider-content {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.1rem;
+}
+
+.sports-provider-ranking-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.sports-provider-ranking-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-accent-primary) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    color: var(--color-accent-primary);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+}
+
+.sports-provider-ranking-title-block {
+    min-width: 0;
 }
 
 .sports-provider-ranking-title {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-text-primary);
     letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.sports-provider-ranking-sub,
+.sports-provider-panel-sub {
+    margin: 0.2rem 0 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    line-height: 1.35;
 }
 
 .sports-provider-ranking-tabs {
     display: flex;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .sports-provider-ranking-tab {
-    padding: 0.6rem 1.25rem;
-    background: rgba(255, 255, 255, 0.06);
-    color: #94a3b8;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.55rem 1.1rem;
+    background: var(--theme-mobile-link-bg);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-soft);
     border-radius: 10px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .sports-provider-ranking-tab:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
+    background: var(--theme-mobile-link-hover-bg);
+    color: var(--color-text-primary);
 }
 
 .sports-provider-ranking-tab.active {
-    background: linear-gradient(135deg, #f4c542 0%, #d4a52a 100%);
-    color: #0a0e1a;
+    background: var(--gradient-gold);
+    color: var(--color-bg-primary);
     border-color: transparent;
-    box-shadow: 0 2px 12px rgba(244, 197, 66, 0.3);
+    box-shadow: var(--shadow-glow);
 }
 
 .sports-provider-ranking-table-wrap {
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-soft);
     max-width: 100%;
     min-width: 0;
+    background: color-mix(in srgb, var(--color-bg-primary) 55%, transparent);
 }
 
 .sports-provider-ranking-table {
@@ -2470,26 +2666,34 @@ body.fish-hunt-content-page .sports-provider-content {
 
 .sports-provider-ranking-table th,
 .sports-provider-ranking-table td {
-    padding: 1rem 1.25rem;
+    padding: 0.85rem 1rem;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--color-border-soft);
 }
 
 .sports-provider-ranking-table th {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #64748b;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.08em;
+    background: color-mix(in srgb, var(--color-bg-tertiary) 85%, transparent);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 1px 0 var(--color-border-soft);
 }
 
 .sports-provider-ranking-table tbody tr {
-    transition: background 0.2s ease;
+    transition: background var(--transition-fast);
+}
+
+.sports-provider-ranking-table tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--color-bg-tertiary) 40%, transparent);
 }
 
 .sports-provider-ranking-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
 }
 
 .sports-provider-ranking-table tbody tr:last-child td {
@@ -2497,41 +2701,78 @@ body.fish-hunt-content-page .sports-provider-content {
 }
 
 .sports-provider-ranking-table td {
-    font-size: 1rem;
-    color: #e2e8f0;
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+
+.sports-provider-ranking-table th:nth-child(2),
+.sports-provider-ranking-table td:nth-child(2),
+.sports-provider-ranking-table th:nth-child(3),
+.sports-provider-ranking-table td:nth-child(3) {
+    text-align: left;
+}
+
+.sports-provider-ranking-table th:nth-child(4),
+.sports-provider-ranking-table td:nth-child(4),
+.sports-provider-ranking-table th:nth-child(5),
+.sports-provider-ranking-table td:nth-child(5),
+.sports-provider-ranking-table th:nth-child(6),
+.sports-provider-ranking-table td:nth-child(6) {
+    text-align: right;
+}
+
+.sports-provider-ranking-table th:nth-child(1),
+.sports-provider-ranking-table td:nth-child(1) {
+    text-align: center;
 }
 
 .sports-provider-ranking-table .text-win {
-    color: #22c55e !important;
-    font-weight: 600;
+    color: var(--color-accent-green) !important;
+    font-weight: 700;
 }
 
 .sports-provider-rank-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 28px;
-    height: 28px;
+    min-width: 32px;
+    height: 32px;
     padding: 0 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.85rem;
+    background: color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-soft);
 }
 
 .sports-provider-rank-badge.rank-1 {
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-    color: #0a0e1a;
+    background: url('../images/game page/ranking_1.png') center/contain no-repeat;
+    color: transparent !important;
+    border: none;
+    box-shadow: none;
 }
 
 .sports-provider-rank-badge.rank-2 {
-    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
-    color: #fff;
+    background: url('../images/game page/ranking_2.png') center/contain no-repeat;
+    color: transparent !important;
+    border: none;
+    box-shadow: none;
 }
 
 .sports-provider-rank-badge.rank-3 {
-    background: linear-gradient(135deg, #b45309 0%, #92400e 100%);
-    color: #fff;
+    background: url('../images/game page/ranking_3.png') center/contain no-repeat;
+    color: transparent !important;
+    border: none;
+    box-shadow: none;
+}
+
+.sports-provider-rank-badge.rank-4 {
+    background: url('../images/game page/ranking_4.png') center/contain no-repeat;
+    color: transparent !important;
+    border: none;
+    box-shadow: none;
 }
 
 .sports-provider-no-data {
@@ -2548,10 +2789,6 @@ body.fish-hunt-content-page .sports-provider-content {
     font-size: 2.5rem;
     margin-bottom: 0.75rem;
     opacity: 0.4;
-}
-
-.sports-provider-recommended.provider-games-section {
-    margin-bottom: 2.5rem;
 }
 
 .sports-provider-recommended-header {
@@ -2700,19 +2937,26 @@ body.fish-hunt-content-page .sports-provider-content {
 }
 
 .sports-provider-latest-bets {
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
+    background: var(--gradient-card);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
     padding: 0;
     margin-bottom: 2.5rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    overflow: visible;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
 }
 
 .sports-provider-latest-bets-header {
-    padding: 1.25rem 1.5rem;
-    background: rgba(0, 0, 0, 0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1.15rem 1.5rem 1.2rem;
+    background: color-mix(in srgb, var(--color-bg-tertiary) 65%, transparent);
+    border-bottom: 1px solid var(--color-border-soft);
+}
+
+.sports-provider-latest-bets-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 
 .sports-provider-latest-bets-title-wrap {
@@ -2722,26 +2966,26 @@ body.fish-hunt-content-page .sports-provider-content {
 }
 
 .sports-provider-latest-bets-title-wrap i {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--color-accent-primary);
 }
 
 .sports-provider-latest-bets h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-text-primary);
     letter-spacing: -0.02em;
 }
 
 .sports-provider-bets-table-wrap {
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
-    border-radius: 0 0 16px 16px;
+    border-radius: 0;
     max-width: 100%;
     min-width: 0;
     width: 100%;
+    background: color-mix(in srgb, var(--color-bg-primary) 55%, transparent);
 }
 
 .sports-provider-bets-table {
@@ -2752,26 +2996,34 @@ body.fish-hunt-content-page .sports-provider-content {
 
 .sports-provider-bets-table th,
 .sports-provider-bets-table td {
-    padding: 1rem 1.25rem;
+    padding: 0.85rem 1rem;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--color-border-soft);
 }
 
 .sports-provider-bets-table th {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #64748b;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.08em;
+    background: color-mix(in srgb, var(--color-bg-tertiary) 85%, transparent);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 1px 0 var(--color-border-soft);
 }
 
 .sports-provider-bets-table tbody tr {
-    transition: background 0.2s ease;
+    transition: background var(--transition-fast);
+}
+
+.sports-provider-bets-table tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--color-bg-tertiary) 40%, transparent);
 }
 
 .sports-provider-bets-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
 }
 
 .sports-provider-bets-table tbody tr:last-child td {
@@ -2779,8 +3031,19 @@ body.fish-hunt-content-page .sports-provider-content {
 }
 
 .sports-provider-bets-table td {
-    font-size: 1rem;
-    color: #e2e8f0;
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+
+.sports-provider-bets-table th:nth-child(-n+3),
+.sports-provider-bets-table td:nth-child(-n+3) {
+    text-align: left;
+}
+
+.sports-provider-bets-table th:nth-child(4),
+.sports-provider-bets-table td:nth-child(4) {
+    text-align: right;
 }
 
 .sports-provider-bet-id {
@@ -2814,8 +3077,8 @@ body.fish-hunt-content-page .sports-provider-content {
    ============================================ */
 @media (max-width: 768px) {
 
-    body.sports-provider-content-page .sports-provider-content,
-    body.live-casino-content-page .sports-provider-content {
+    body:not(.play-shell).sports-provider-content-page .sports-provider-content,
+    body:not(.play-shell).live-casino-content-page .sports-provider-content {
         padding-top: 72px;
     }
 
@@ -2878,16 +3141,25 @@ body.fish-hunt-content-page .sports-provider-content {
 
     .sports-provider-ranking-header {
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 0.75rem;
         margin-bottom: 1rem;
     }
 
+    .sports-provider-ranking-heading {
+        flex: 1 1 12rem;
+    }
+
+    .sports-provider-ranking-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
     .sports-provider-ranking-title {
-        font-size: 1.1rem;
-        flex-shrink: 0;
+        font-size: 1.05rem;
     }
 
     .sports-provider-ranking-tab {
@@ -2978,12 +3250,13 @@ body.fish-hunt-content-page .sports-provider-content {
     .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info {
         padding: 0.4rem 0.35rem;
     }
+
 }
 
 @media (max-width: 576px) {
 
-    body.sports-provider-content-page .sports-provider-content,
-    body.live-casino-content-page .sports-provider-content {
+    body:not(.play-shell).sports-provider-content-page .sports-provider-content,
+    body:not(.play-shell).live-casino-content-page .sports-provider-content {
         padding-top: 64px;
     }
 
@@ -3124,12 +3397,13 @@ body.fish-hunt-content-page .sports-provider-content {
     .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info {
         padding: 0.35rem 0.3rem;
     }
+
 }
 
 @media (max-width: 380px) {
 
-    body.sports-provider-content-page .sports-provider-content,
-    body.live-casino-content-page .sports-provider-content {
+    body:not(.play-shell).sports-provider-content-page .sports-provider-content,
+    body:not(.play-shell).live-casino-content-page .sports-provider-content {
         padding-top: 60px;
     }
 
@@ -3233,6 +3507,7 @@ body.fish-hunt-content-page .sports-provider-content {
     .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info {
         padding: 0.3rem 0.25rem;
     }
+
 }
 
 /* ============================================
@@ -4298,7 +4573,8 @@ body.fish-hunt-content-page .sports-provider-content {
 
 .recent-games-grid .game-card {
     overflow: hidden;
-    min-width: 0; /* allow shrink so ellipsis works in grid */
+    min-width: 0;
+    /* allow shrink so ellipsis works in grid */
 }
 
 .recent-games-grid .game-card .game-image {
@@ -5077,4 +5353,258 @@ html[data-theme='light'] .recent-filter-tab {
 html[data-theme='light'] .recent-search-input {
     background: var(--theme-ghost-bg-hover);
     color: var(--color-text-primary);
+}
+
+/* Game play / provider pages — light theme polish */
+html[data-theme='light'] .sports-provider-ranking-section,
+html[data-theme='light'] .sports-provider-latest-bets,
+html[data-theme='light'] .provider-games-section.sports-provider-recommended.games-section {
+    box-shadow: var(--shadow-md);
+}
+
+html[data-theme='light'] .sports-provider-ranking-table-wrap,
+html[data-theme='light'] .sports-provider-bets-table-wrap {
+    background: var(--color-bg-secondary);
+}
+
+html[data-theme='light'] .sports-provider-live-section {
+    box-shadow: var(--shadow-md), 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
+}
+
+html[data-theme='light'] .sports-provider-game-screen {
+    background: radial-gradient(120% 80% at 50% 0%, rgba(59, 130, 246, 0.05), transparent 52%),
+        var(--color-bg-tertiary);
+}
+
+\n
+
+/* --- GM88 PLAY PAGE OVERHAUL --- */
+body.gm88-play-theme {
+    background: #f4f7fb !important;
+}
+
+/* Use grid to force 2 column layout matching mockup */
+body.gm88-play-theme .sports-provider-content>.container {
+    gap: 20px !important;
+    padding-top: 20px !important;
+    padding-bottom: 40px !important;
+    align-items: flex-start !important;
+}
+
+@media (max-width: 1024px) {
+    body.gm88-play-theme .sports-provider-content>.container {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+            "header"
+            "live"
+            "action"
+            "ranking"
+            "recommended" !important;
+    }
+}
+
+/* Header strip */
+body.gm88-play-theme [class*="name-bar"] {
+    grid-area: header;
+    background: #e0eaf5 !important;
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+    margin-bottom: 0 !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+}
+
+body.gm88-play-theme [class*="name-title"] {
+    color: #1e293b !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 0 !important;
+    font-weight: 700 !important;
+}
+
+/* Big Game Screen */
+body.gm88-play-theme [class*="live-section"] {
+    grid-area: live;
+    background: #0f172a !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 0 !important;
+    min-height: 500px !important;
+    border: 1px solid #1e293b;
+    border-bottom: none;
+}
+
+/* White Action Bar below game */
+body.gm88-play-theme .gm88-game-action-bar {
+    grid-area: action;
+    background: #ffffff;
+    border-radius: 0 0 12px 12px;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: -20px;
+    /* Attach to bottom of live section */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+    border-top: none;
+}
+
+body.gm88-play-theme .gm88-game-action-bar .wallet-balance {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+body.gm88-play-theme .gm88-game-action-bar .wallet-balance .val {
+    color: #2563eb;
+}
+
+body.gm88-play-theme .gm88-game-action-bar .action-btns {
+    display: flex;
+    gap: 12px;
+}
+
+body.gm88-play-theme .gm88-game-action-bar .btn {
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+body.gm88-play-theme .gm88-game-action-bar .btn-primary {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+}
+
+body.gm88-play-theme .gm88-game-action-bar .btn-outline {
+    background: #f8fafc;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+/* Ranking Section */
+body.gm88-play-theme [class*="ranking-section"] {
+    grid-area: ranking;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+}
+
+body.gm88-play-theme .gm88-promo-banners {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+body.gm88-play-theme .promo-banner {
+    flex: 1;
+    background: #f0f7ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 16px 10px;
+    font-weight: 800;
+    color: #1e40af;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* Ranking Table Theme */
+body.gm88-play-theme [class*="ranking-header"] {
+    margin-bottom: 15px !important;
+}
+
+body.gm88-play-theme [class*="ranking-title"] {
+    color: #1e293b !important;
+}
+
+body.gm88-play-theme [class*="ranking-tabs"] button {
+    background: #f1f5f9 !important;
+    color: #64748b !important;
+    border: none !important;
+    border-radius: 6px !important;
+}
+
+body.gm88-play-theme [class*="ranking-tabs"] button.active {
+    background: #3b82f6 !important;
+    color: #fff !important;
+}
+
+body.gm88-play-theme [class*="ranking-table"] th {
+    background: #f8fafc !important;
+    color: #64748b !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 12px !important;
+}
+
+body.gm88-play-theme [class*="ranking-table"] td {
+    color: #334155 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 12px !important;
+}
+
+/* Recommended Games */
+body.gm88-play-theme .provider-games-section.sports-provider-recommended {
+    grid-area: recommended;
+    background: #f8fafc !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+    margin: 0 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+body.gm88-play-theme .provider-games-section.sports-provider-recommended .section-header-unified h2 {
+    color: #1e293b !important;
+}
+
+body.gm88-play-theme .provider-games-section.sports-provider-recommended .view-all-btn-unified {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #3b82f6 !important;
+}
+
+/* Card Light Theme in recommended */
+body.gm88-play-theme .provider-games-section.sports-provider-recommended .game-carousel-track .game-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+body.gm88-play-theme .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info {
+    background: transparent !important;
+}
+
+body.gm88-play-theme .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info h4 {
+    color: #1e293b !important;
+}
+
+body.gm88-play-theme .provider-games-section.sports-provider-recommended .game-carousel-track .game-card .game-info .rtp {
+    color: #64748b !important;
+}
+
+/* Fullscreen handling */
+body.play-fullscreen.gm88-play-theme .gm88-game-action-bar,
+body.play-fullscreen.gm88-play-theme [class*="ranking-section"],
+body.play-fullscreen.gm88-play-theme .provider-games-section.sports-provider-recommended,
+body.play-fullscreen.gm88-play-theme [class*="name-bar"],
+body.play-fullscreen.gm88-play-theme .main-header {
+    display: none !important;
+}
+
+body.play-fullscreen.gm88-play-theme .sports-provider-content>.container {
+    display: block !important;
+    padding: 0 !important;
+}
+
+body.play-fullscreen.gm88-play-theme [class*="live-section"] {
+    border-radius: 0 !important;
+    min-height: 100vh !important;
+    border: none !important;
 }

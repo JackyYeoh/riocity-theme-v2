@@ -1,0 +1,244 @@
+    /* ─── Hot Providers Mobile Redesign (V3 - Stable Grid) ─── */
+    @media (max-width: 768px) {
+        body[data-page="index"] #homeHotProviders {
+            margin-top: 12px;
+            padding: 0 14px;
+        }
+
+        body[data-page="index"] #homeHotProviders .section-header {
+            display: none !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-showcase {
+            display: grid !important;
+            grid-template-columns: 70px 1fr !important;
+            /* Fixed sidebar, flexible content */
+            gap: 8px !important;
+            align-items: flex-start !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+
+        /* 左側分類導航 */
+        body[data-page="index"] #homeHotProviders .hot-provider-side-tabs {
+            width: 70px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-side-tabs .filter-btn {
+            width: 100% !important;
+            height: 70px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: #fff !important;
+            border: 1px solid rgba(0, 0, 0, 0.04) !important;
+            border-radius: 14px !important;
+            padding: 0 !important;
+            color: var(--accent-primary) !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02) !important;
+            transition: all 0.2s !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-side-tabs .filter-btn i {
+            font-size: 20px !important;
+            margin-bottom: 4px !important;
+            color: inherit !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-side-tabs .filter-btn span,
+        body[data-page="index"] #homeHotProviders .hot-provider-side-tabs .filter-btn {
+            font-size: 11px !important;
+            font-weight: 800 !important;
+            text-transform: none !important;
+            line-height: 1.15 !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-side-tabs .filter-btn.active {
+            background: var(--grad-primary) !important;
+            border-color: transparent !important;
+            color: #fff !important;
+            box-shadow: 0 6px 14px rgba(22, 119, 255, 0.3) !important;
+        }
+
+        /* 右側遊戲面板 */
+        body[data-page="index"] #homeHotProviders .hot-provider-panel {
+            min-width: 0 !important;
+            max-width: 100% !important;
+            border-radius: 16px !important;
+            padding: 8px !important;
+            border: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-panel-head {
+            margin-bottom: 0 !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-panel-head h3 {
+            display: none !important;
+        }
+
+        /* 隱藏不需要的過濾器 */
+        body[data-page="index"] #homeHotProviders #homeProviderQuickFilters,
+        body[data-page="index"] #homeHotProviders .hot-provider-chip {
+            display: none !important;
+        }
+
+        /* Search Bar */
+        body[data-page="index"] #homeHotProviders .mobile-search-bar {
+            display: flex !important;
+            align-items: center !important;
+            background: #fff !important;
+            border-radius: 12px !important;
+            min-height: 44px !important;
+            height: 44px !important;
+            padding: 0 12px !important;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06) !important;
+            border: 1px solid rgba(15, 23, 42, 0.06) !important;
+            margin-bottom: 4px !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .mobile-search-bar i {
+            color: #3b82f6 !important;
+            font-size: 14px !important;
+            margin-right: 8px !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .mobile-search-bar input {
+            border: none !important;
+            background: transparent !important;
+            flex: 1 !important;
+            outline: none !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: #1e293b !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .mobile-search-bar input::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        /* 遊戲卡片網格 */
+        body[data-page="index"] #homeHotProviders .hot-provider-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px !important;
+            /* Reduced grid gap */
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card {
+            background: var(--grad-navy) !important;
+            border-radius: 10px !important;
+            border: none !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            height: auto !important;
+            position: relative !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+            padding: 0 !important;
+            min-width: 0 !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-thumb {
+            width: 100% !important;
+            aspect-ratio: 1 / 1.1 !important;
+            overflow: hidden !important;
+            background: #fff !important;
+            position: relative !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-thumb img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        /* Game Card Overlays */
+        body[data-page="index"] #homeHotProviders .mobile-card-badge {
+            display: block !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            background: #fff !important;
+            color: var(--accent-primary) !important;
+            font-size: 10px !important;
+            font-weight: 800 !important;
+            font-style: italic !important;
+            padding: 4px 8px !important;
+            border-bottom-right-radius: 10px !important;
+            z-index: 2 !important;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.06) !important;
+            letter-spacing: -0.2px !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .mobile-card-heart {
+            display: flex !important;
+            position: absolute !important;
+            top: 6px !important;
+            right: 6px !important;
+            width: 28px !important;
+            height: 28px !important;
+            background: rgba(11, 18, 32, 0.3) !important;
+            border-radius: 8px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #fff !important;
+            font-size: 13px !important;
+            z-index: 2 !important;
+            backdrop-filter: blur(4px) !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .mobile-card-heart.active {
+            background: var(--grad-primary) !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-details {
+            padding: 8px 6px !important;
+            text-align: center !important;
+            min-height: 38px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-details h4 {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #fff !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-name {
+            display: none !important;
+        }
+
+        /* Show exactly 4 cards */
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card:nth-child(n+5) {
+            display: none !important;
+        }
+
+        body[data-page="index"] #homeHotProviders .hot-provider-game-card {
+            display: none !important;
+        }
+    }

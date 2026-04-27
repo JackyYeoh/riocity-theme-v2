@@ -319,7 +319,7 @@
         var memberControls = `
             <div class="auth-member-controls">
                 <div class="balance-box" id="headerBalanceTrigger" style="position: relative; cursor: pointer;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2953/2953536.png" class="coin-icon" alt="Coins">
+                    <i class="fa-solid fa-wallet coin-icon" aria-hidden="true"></i>
                     <span class="currency">${Number(auth.wallet && auth.wallet.balance ? auth.wallet.balance : 0).toFixed(2)}</span>
                     <i class="fa-solid fa-chevron-down"></i>
                     <i class="fa-solid fa-rotate balance-refresh"></i>

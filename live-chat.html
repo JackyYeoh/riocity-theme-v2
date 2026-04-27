@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Chat Support - RioCity Casino</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/auth-pages.css">
@@ -32,25 +32,7 @@
         </div>
     </div>
 
-    <!-- Header (Simplified for Chat Page) -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-left">
-                <a href="index.html" class="logo">
-                    <img src="https://pksoftcdn.azureedge.net/media/image%207-202411081421034166.png" alt="RioCity Logo"
-                        class="logo-img">
-                    <span class="logo-icon">◆</span>
-                    <span class="logo-text">RIOCITY</span>
-                </a>
-            </div>
-            <div class="header-right">
-                <button type="button" class="btn btn-ghost theme-toggle-btn" data-theme-toggle aria-label="Toggle theme" title="Switch to light mode">
-                    <i class="fas fa-sun"></i><span data-theme-toggle-label>Light Mode</span>
-                </button>
-                <a href="index.html" class="btn btn-ghost"><i class="fas fa-arrow-left"></i> Back to Home</a>
-            </div>
-        </div>
-    </header>
+    <div id="site-header"></div>
 
     <!-- Main Chat Interface -->
     <main class="chat-main-section">
@@ -146,6 +128,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/live-chat.js"></script>
+    <script src="js/header.js"></script>
 </body>
 
 </html>
