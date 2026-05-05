@@ -1,0 +1,495 @@
+/* ═══════════════════════════════════════════════════════
+   Game Lobby — Shared Design System
+   Used by: live-casino, slots, fish-hunt, poker pages
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ── */
+.glc-page {
+    padding-bottom: 60px;
+}
+
+/* ── Filter Bar ── */
+.glc-filter-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 60px;
+    max-width: 100%;
+}
+
+.glc-filter-btn {
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.glc-filter-btn i {
+    font-size: 13px;
+}
+
+.glc-filter-btn:hover {
+    background: #fff;
+    color: var(--accent-primary);
+    border-color: rgba(22, 119, 255, 0.2);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+
+.glc-filter-btn.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.28);
+}
+
+.glc-filter-btn.glc-btn-hot,
+.glc-filter-btn.glc-btn-new {
+    color: inherit;
+}
+
+.glc-filter-btn.glc-btn-hot:hover,
+.glc-filter-btn.glc-btn-new:hover {
+    background: #fff;
+    color: var(--accent-primary);
+    border-color: rgba(22, 119, 255, 0.2);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+
+.glc-filter-btn.glc-btn-hot.active,
+.glc-filter-btn.glc-btn-new.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.28);
+}
+
+/* ── Toolbar (search + sort) ── */
+.glc-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0 4px;
+}
+
+.glc-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 0 18px;
+    height: 44px;
+    min-width: 220px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: border-color 0.2s;
+}
+
+.glc-search:focus-within {
+    border-color: var(--accent-primary);
+}
+
+.glc-search i {
+    color: #94a3b8;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.glc-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #1e293b;
+    flex: 1;
+    min-width: 0;
+}
+
+.glc-search input::placeholder {
+    color: #94a3b8;
+}
+
+.glc-sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.glc-sort select {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* ── Sections ── */
+.glc-section {
+    padding: 30px 0 0;
+}
+
+.glc-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.glc-section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.glc-section-title i {
+    color: var(--accent-primary);
+    font-size: 17px;
+}
+
+.glc-provider-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.glc-view-all {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s;
+    text-decoration: none;
+}
+
+.glc-view-all:hover {
+    opacity: 0.7;
+}
+
+/* ── Grid ── */
+.glc-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+/* ── Card ── */
+.glc-card {
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.glc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+    border-color: rgba(22, 119, 255, 0.25);
+}
+
+/* Card thumbnail — 1:1 square */
+.glc-card-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f1f5f9;
+    flex-shrink: 0;
+}
+
+.glc-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.glc-card:hover .glc-card-thumb img {
+    transform: scale(1.05);
+}
+
+/* Card body */
+.glc-card-body {
+    padding: 10px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.glc-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+/* Footer row: Live (left) | Enter Lobby + star (right) */
+.glc-card-foot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+}
+
+.glc-card-status {
+    font-size: 12px;
+    font-weight: 600;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.glc-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    flex-shrink: 0;
+    animation: glc-blink 1.6s infinite;
+}
+
+@keyframes glc-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.glc-card-status.glc-maint {
+    color: #9ca3af;
+}
+
+.glc-card-status.glc-maint .glc-live-dot {
+    background: #9ca3af;
+    animation: none;
+}
+
+/* Favourite button */
+.glc-fav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #cbd5e1;
+    font-size: 15px;
+    padding: 2px 0;
+    flex-shrink: 0;
+    transition: color 0.18s;
+    line-height: 1;
+}
+
+.glc-fav-btn:hover,
+.glc-fav-btn.active {
+    color: #f59e0b;
+}
+
+/* Enter Lobby — compact width, 靠右 (grouped with fav via margin-left: auto) */
+.glc-enter-btn {
+    flex: 0 0 auto;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    background: var(--accent-primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 8px rgba(22, 119, 255, 0.22);
+    text-decoration: none;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.glc-enter-btn:hover {
+    background: #1461e0;
+    box-shadow: 0 5px 14px rgba(22, 119, 255, 0.35);
+    color: #fff;
+}
+
+/* ── Maintenance card ── */
+.glc-card.glc-maintenance {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.glc-card.glc-maintenance .glc-enter-btn {
+    background: #94a3b8;
+    box-shadow: none;
+}
+
+/* ── Hidden / filtered out ── */
+.glc-card.glc-hidden {
+    display: none !important;
+}
+
+/* ── No results message ── */
+.glc-no-results {
+    display: none;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 0;
+    color: #94a3b8;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* ── Section divider ── */
+.glc-divider {
+    margin: 32px 0 0;
+    border: none;
+    border-top: 1px solid #f1f5f9;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Game lobby — responsive (all glc-* pages)
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+    .glc-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .glc-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+
+    .glc-section-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .glc-page {
+        padding-bottom: 72px;
+    }
+
+    .glc-filter-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        max-width: 100%;
+        border-radius: 16px;
+        padding: 6px 8px;
+        gap: 6px;
+    }
+
+    .glc-filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .glc-filter-btn {
+        flex-shrink: 0;
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .glc-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .glc-search {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .glc-sort {
+        margin-left: 0;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .glc-sort select {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .glc-section {
+        padding: 20px 0 0;
+    }
+
+    .glc-section-title {
+        font-size: 16px;
+    }
+
+    .glc-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .glc-card-body {
+        padding: 8px 10px 10px;
+    }
+
+    .glc-card-name {
+        font-size: 13px;
+    }
+
+    .glc-card-foot {
+        gap: 6px;
+    }
+
+    .glc-enter-btn {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .glc-grid {
+        grid-template-columns: 1fr;
+    }
+}

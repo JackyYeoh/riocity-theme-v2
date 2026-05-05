@@ -335,12 +335,19 @@ function simulateLoading() {
 document.addEventListener('DOMContentLoaded', () => {
     // Home-only: avoids console noise and work on account-details, etc.
     try {
-        if (document.getElementById('homeProviderSearch') || document.getElementById('homeProviderDropdown')) {
+        if (
+            document.getElementById('homeGamesGrid') &&
+            document.querySelector('.provider-filters .filter-btn')
+        ) {
+            initHomePageGameFilters();
+        } else if (document.getElementById('homeProviderSearch') || document.getElementById('homeProviderDropdown')) {
             initHomePageGameFilters();
         }
     } catch (e) {
         console.error('Failed to initialize Home Page Filters:', e);
     }
+
+    initHomeMobileWalletStrip();
 
     simulateLoading();
     initAuthSystem();
@@ -1052,6 +1059,26 @@ function initCarousel() {
     });
 }
 
+/** Mobile index: balance visibility toggle on the wallet strip (not the drawer). */
+function initHomeMobileWalletStrip() {
+    const strip = document.querySelector('.home-mobile-wallet-strip');
+    if (!strip) return;
+    const btn = strip.querySelector('#hmwBalanceToggle');
+    const valueEl = strip.querySelector('.hmw-value');
+    if (!btn || !valueEl) return;
+    const stored = valueEl.getAttribute('data-balance') || valueEl.textContent.trim();
+    let balanceText = stored;
+    btn.addEventListener('click', () => {
+        const hidden = strip.classList.toggle('hmw-balance-is-hidden');
+        valueEl.textContent = hidden ? '••••' : balanceText;
+        btn.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+        const icon = btn.querySelector('i');
+        if (icon) {
+            icon.className = hidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+        }
+    });
+}
+
 /* ============================================
    HOME PAGE GAME FILTERS (Category + Provider)
    ============================================ */
@@ -1072,6 +1099,7 @@ function initHomePageGameFilters() {
     // Search input is now inside the dropdown menu (replaces the old "All Providers" option row)
     const searchInput = document.getElementById('homeProviderSearch');
     const searchClear = document.getElementById('homeProviderSearchClear');
+    const mobileSearchInput = document.getElementById('homeHotMobileSearch');
 
     if (!filterBtns.length || !gameItems.length) return;
     const hasDropdown = Boolean(dropdown && dropdownTrigger && dropdownItems.length);
@@ -1083,6 +1111,7 @@ function initHomePageGameFilters() {
 
     const categoryLabels = {
         all: 'All',
+        popular: 'Popular',
         slots: 'Slots',
         casino: 'Casino',
         live: 'Live Casino',
@@ -1095,6 +1124,12 @@ function initHomePageGameFilters() {
         jackpot: 'Jackpot'
     };
 
+    function setMobileSearchPlaceholder() {
+        if (!mobileSearchInput) return;
+        const lab = categoryLabels[currentCategory] || 'Providers';
+        mobileSearchInput.placeholder = 'Search in ' + lab + '...';
+    }
+
     function getProviderTextForItem(item) {
         return (
             item.querySelector('.provider-label')?.textContent ||
@@ -1105,13 +1140,56 @@ function initHomePageGameFilters() {
         ).toLowerCase().trim();
     }
 
+    const mobileCategoryBadge = {
+        popular: 'Hot',
+        slots: 'Slots',
+        casino: 'Casino',
+        sports: 'Sports',
+        esports: 'E-Sport',
+        fishing: 'Fishing',
+        lottery: 'Lottery',
+        poker: 'Poker'
+    };
+
+    function updateHotProviderMobileBadges() {
+        gameItems.forEach((item) => {
+            const badge = item.querySelector('.mobile-card-badge');
+            if (!badge) return;
+            const cat = (item.dataset.category || '').toLowerCase();
+            badge.textContent = mobileCategoryBadge[cat] || (cat ? cat.charAt(0).toUpperCase() + cat.slice(1) : '—');
+        });
+    }
+
+    function hpPrefersReducedMotion() {
+        try {
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        } catch {
+            return false;
+        }
+    }
+
+    function hpIsMobileViewport() {
+        try {
+            return window.matchMedia('(max-width: 768px)').matches;
+        } catch {
+            return window.innerWidth <= 768;
+        }
+    }
+
     function updateFilteredGames() {
         const activeCategoryBtn = filterSection.querySelector('.filter-btn.active');
         if (activeCategoryBtn) {
             currentCategory = (activeCategoryBtn.dataset.filter || currentCategory || 'all').toLowerCase();
         }
 
-        let visibleCount = 0;
+        const reduceMotion = hpPrefersReducedMotion();
+        const narrow = hpIsMobileViewport();
+        const entranceDur = reduceMotion ? 0 : narrow ? 0.34 : 0.44;
+        const entranceEase = 'cubic-bezier(0.22, 1, 0.36, 1)';
+        const staggerCap = narrow ? 14 : 16;
+        const staggerStep = narrow ? 0.026 : 0.034;
+
+        const visibleItems = [];
 
         gameItems.forEach((item) => {
             const category = (item.dataset.category || '').toLowerCase();
@@ -1124,16 +1202,30 @@ function initHomePageGameFilters() {
                     : (currentProvider === 'all' || provider === currentProvider);
 
             if (categoryMatch && providerMatch) {
-                item.classList.remove('hidden');
-                item.style.display = '';
+                item.classList.remove('hidden', 'hp-filtered-out');
+                /* Mobile CSS uses display:flex !important; inline display:none does not win — use class + hp-filtered-out removal */
+                item.style.removeProperty('display');
                 item.style.animation = 'none';
-                item.offsetHeight; // force reflow
-                item.style.animation = `fadeInUp 0.4s ease forwards ${visibleCount * 0.05}s`;
-                visibleCount++;
+                visibleItems.push(item);
             } else {
-                item.classList.add('hidden');
-                item.style.display = 'none';
+                item.style.animation = '';
+                item.classList.add('hidden', 'hp-filtered-out');
+                item.style.setProperty('display', 'none', 'important');
             }
+        });
+
+        updateHotProviderMobileBadges();
+
+        void filterSection.offsetHeight;
+
+        visibleItems.forEach((item, idx) => {
+            if (reduceMotion) {
+                item.style.animation = '';
+                return;
+            }
+            const delayIdx = Math.min(idx, staggerCap);
+            const delaySec = delayIdx * staggerStep;
+            item.style.animation = `fadeInUp ${entranceDur}s ${entranceEase} ${delaySec}s both`;
         });
     }
 
@@ -1154,6 +1246,21 @@ function initHomePageGameFilters() {
             if (panelTitle) {
                 panelTitle.textContent = categoryLabels[currentCategory] || 'Providers';
             }
+            /* Switching category: reset text search and provider to match new slice */
+            providerQuery = '';
+            currentProvider = 'all';
+            if (searchInput) searchInput.value = '';
+            if (searchClear) searchClear.style.visibility = 'hidden';
+            if (mobileSearchInput) mobileSearchInput.value = '';
+            if (providerNameSpan) providerNameSpan.textContent = 'All Providers';
+            if (dropdownItems.length) {
+                dropdownItems.forEach((i) => {
+                    const itemValue = (i.dataset.value || 'all').toLowerCase();
+                    i.classList.toggle('active', itemValue === 'all');
+                });
+            }
+            syncProviderChipState();
+            setMobileSearchPlaceholder();
             updateFilteredGames();
         });
     });
@@ -1165,6 +1272,7 @@ function initHomePageGameFilters() {
                 providerQuery = '';
 
                 if (searchInput) searchInput.value = '';
+                if (mobileSearchInput) mobileSearchInput.value = '';
                 if (searchClear) searchClear.style.visibility = 'hidden';
                 if (providerNameSpan) {
                     providerNameSpan.textContent = currentProvider === 'all'
@@ -1185,6 +1293,24 @@ function initHomePageGameFilters() {
         });
     }
 
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('input', () => {
+            providerQuery = (mobileSearchInput.value || '').toLowerCase().trim();
+            currentProvider = 'all';
+            if (searchInput) searchInput.value = '';
+            if (searchClear) searchClear.style.visibility = 'hidden';
+            if (providerNameSpan) providerNameSpan.textContent = 'All Providers';
+            if (dropdownItems.length) {
+                dropdownItems.forEach((i) => {
+                    const itemValue = (i.dataset.value || 'all').toLowerCase();
+                    i.classList.toggle('active', itemValue === 'all');
+                });
+            }
+            syncProviderChipState();
+            updateFilteredGames();
+        });
+    }
+
     // Provider search input (preferred)
     if (hasDropdown && searchInput) {
         const syncClearBtn = () => {
@@ -1196,6 +1322,7 @@ function initHomePageGameFilters() {
 
         searchInput.addEventListener('input', () => {
             providerQuery = (searchInput.value || '').toLowerCase().trim();
+            if (mobileSearchInput) mobileSearchInput.value = '';
             syncClearBtn();
             // When searching, force "All Providers" mode (no specific provider selected)
             currentProvider = 'all';
@@ -1251,6 +1378,7 @@ function initHomePageGameFilters() {
                 // Selecting a provider clears the text-search (so behavior is unambiguous)
                 providerQuery = '';
                 if (searchInput) searchInput.value = '';
+                if (mobileSearchInput) mobileSearchInput.value = '';
                 if (searchClear) searchClear.style.visibility = 'hidden';
 
                 if (providerNameSpan) {
@@ -1287,13 +1415,10 @@ function initHomePageGameFilters() {
     if (panelTitle) {
         panelTitle.textContent = categoryLabels[currentCategory] || 'Providers';
     }
+    setMobileSearchPlaceholder();
 
     syncProviderChipState();
     updateFilteredGames();
-
-    // Re-apply after downstream normalizers mutate card classes/markup.
-    setTimeout(updateFilteredGames, 0);
-    setTimeout(updateFilteredGames, 160);
 
     document.addEventListener('homeGamesGridNormalized', updateFilteredGames);
 }

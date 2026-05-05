@@ -7,13 +7,11 @@
     <title>GM88 - Sports Betting</title>
     <meta name="description" content="Bet on your favorite sports including Football, Basketball, Tennis and Esports with the best odds.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="css/header-redesign.css">
+    <link rel="stylesheet" href="css/game-lobby.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -21,140 +19,303 @@
 
     <div id="site-header"></div>
 
-    <!-- Page Hero (RioCity-style: promo-hero-banner + img, same width as nav) -->
+    <!-- Page Hero -->
     <section class="promo-hero-banner">
         <div class="container">
             <img src="https://pksoftcdn.azureedge.net/media/slots%20(1)-202603041451104842.png" alt="Sports Betting" class="hero-banner-image" loading="lazy">
         </div>
     </section>
 
-    <!-- Sports Providers -->
-    <section class="sp-section">
+    <div class="glc-page">
         <div class="container">
-            <div class="sp-header">
-                <h2 class="sp-title">Sports Providers</h2>
-                <span class="sp-count">12 Providers</span>
+
+            <!-- Filter Tabs -->
+            <div class="glc-filter-bar" id="glcFilters">
+                <button class="glc-filter-btn active" data-filter="all"><i class="fa-solid fa-grip"></i> All</button>
+                <button class="glc-filter-btn" data-filter="football"><i class="fa-solid fa-futbol"></i> Football</button>
+                <button class="glc-filter-btn" data-filter="basketball"><i class="fa-solid fa-basketball"></i> Basketball</button>
+                <button class="glc-filter-btn" data-filter="tennis"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Tennis</button>
+                <button class="glc-filter-btn" data-filter="esports"><i class="fa-solid fa-gamepad"></i> E-Sports</button>
+                <button class="glc-filter-btn" data-filter="horse"><i class="fa-solid fa-horse"></i> Horse Racing</button>
+                <button class="glc-filter-btn glc-btn-hot" data-filter="trending"><i class="fa-solid fa-fire"></i> Trending</button>
             </div>
-            <div class="sp-grid">
-                <a href="sports-provider.html?provider=FB%20Sport" class="sp-card" data-provider="FB Sport">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/fbsports_sports-202601130904031723.png" alt="FB Sport" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">FB Sport</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=AFB%20Sport" class="sp-card sp-maintenance" data-provider="AFB Sport">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_afbsport-202408191304551165.png" alt="AFB Sport" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">AFB Sport</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=World%20Entertainment%20Sport" class="sp-card sp-maintenance" data-provider="World Entertainment Sport">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/worldent_sports-202509081530460143.png" alt="World Entertainment Sport" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">World Ent.</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=United%20Gaming" class="sp-card" data-provider="United Gaming">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_ug-202411150810288002.png" alt="United Gaming" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">United Gaming</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=Lucky%20Sport" class="sp-card" data-provider="Lucky Sport">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_luckysport-202407260917076261-202408060821509512-202410241125136236.png" alt="Lucky Sport" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Lucky Sport</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=CMD%20Sport" class="sp-card" data-provider="CMD Sport">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_cmd-202408081430158831.png" alt="CMD Sport" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">CMD Sport</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=9Wicket" class="sp-card sp-maintenance" data-provider="9Wicket">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/9wicket-202412051339309915.png" alt="9Wicket" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">9Wicket</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=M8Bet" class="sp-card" data-provider="M8Bet">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_m8bet-202410231016035133.png" alt="M8Bet" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">M8Bet</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=Ws%20Sports" class="sp-card" data-provider="Ws Sports">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_ws-sports-202412051335234986.png" alt="Ws Sports" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Ws Sports</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=CR%20Sport" class="sp-card sp-maintenance" data-provider="CR Sport">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/crown%20sports-202505190757384729.png" alt="CR Sport" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">CR Sport</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-                <a href="sports-provider.html?provider=HorseRacing" class="sp-card sp-maintenance" data-provider="HorseRacing">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_horseracing%20(1)-202510131036418324.png" alt="HorseRacing" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">HorseRacing</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
+
+            <!-- Search + Sort -->
+            <div class="glc-toolbar">
+                <div class="glc-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="glcSearch" placeholder="Search providers..." autocomplete="off">
+                </div>
+                <div class="glc-sort">
+                    Sort by:
+                    <select id="glcSort">
+                        <option value="popular">Popular</option>
+                        <option value="az">A – Z</option>
+                        <option value="za">Z – A</option>
+                    </select>
+                </div>
             </div>
+
+            <!-- Featured Providers -->
+            <section class="glc-section" id="featuredProviders">
+                <div class="glc-section-header">
+                    <div class="glc-section-title">
+                        <i class="fa-solid fa-star"></i> Featured Providers
+                    </div>
+                    <a href="#allProviders" class="glc-view-all">View All <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <div class="glc-grid">
+
+                    <div class="glc-card" data-category="football basketball trending" data-name="FB Sport">
+                        <a href="sports-provider.html?provider=FB%20Sport" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/fbsports_sports-202601130904031723.png" alt="FB Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">FB Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=FB%20Sport" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball tennis trending" data-name="United Gaming">
+                        <a href="sports-provider.html?provider=United%20Gaming" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_ug-202411150810288002.png" alt="United Gaming" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">United Gaming</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=United%20Gaming" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball trending" data-name="Lucky Sport">
+                        <a href="sports-provider.html?provider=Lucky%20Sport" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_luckysport-202407260917076261-202408060821509512-202410241125136236.png" alt="Lucky Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">Lucky Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=Lucky%20Sport" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball tennis" data-name="CMD Sport">
+                        <a href="sports-provider.html?provider=CMD%20Sport" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_cmd-202408081430158831.png" alt="CMD Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">CMD Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=CMD%20Sport" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball tennis esports" data-name="M8Bet">
+                        <a href="sports-provider.html?provider=M8Bet" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_m8bet-202410231016035133.png" alt="M8Bet" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">M8Bet</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=M8Bet" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <hr class="glc-divider">
+
+            <!-- All Providers -->
+            <section class="glc-section" id="allProviders">
+                <div class="glc-section-header">
+                    <div class="glc-section-title">
+                        <i class="fa-solid fa-trophy"></i> All Sports Providers
+                    </div>
+                    <span class="glc-provider-count" id="glcCount">11 Providers</span>
+                </div>
+                <div class="glc-grid" id="glcGrid">
+
+                    <div class="glc-card" data-category="football basketball trending" data-name="FB Sport">
+                        <a href="sports-provider.html?provider=FB%20Sport" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/fbsports_sports-202601130904031723.png" alt="FB Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">FB Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=FB%20Sport" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball tennis trending" data-name="United Gaming">
+                        <a href="sports-provider.html?provider=United%20Gaming" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_ug-202411150810288002.png" alt="United Gaming" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">United Gaming</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=United%20Gaming" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball trending" data-name="Lucky Sport">
+                        <a href="sports-provider.html?provider=Lucky%20Sport" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_luckysport-202407260917076261-202408060821509512-202410241125136236.png" alt="Lucky Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">Lucky Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=Lucky%20Sport" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball tennis" data-name="CMD Sport">
+                        <a href="sports-provider.html?provider=CMD%20Sport" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_cmd-202408081430158831.png" alt="CMD Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">CMD Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=CMD%20Sport" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball tennis esports" data-name="M8Bet">
+                        <a href="sports-provider.html?provider=M8Bet" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_m8bet-202410231016035133.png" alt="M8Bet" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">M8Bet</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=M8Bet" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card" data-category="football basketball esports" data-name="Ws Sports">
+                        <a href="sports-provider.html?provider=Ws%20Sports" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_ws-sports-202412051335234986.png" alt="Ws Sports" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">Ws Sports</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                                <a href="sports-provider.html?provider=Ws%20Sports" class="glc-enter-btn">Enter Lobby</a>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="football basketball" data-name="AFB Sport">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_afbsport-202408191304551165.png" alt="AFB Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">AFB Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="football basketball" data-name="World Entertainment">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/worldent_sports-202509081530460143.png" alt="World Entertainment Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">World Ent. Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="football tennis" data-name="9Wicket">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/9wicket-202412051339309915.png" alt="9Wicket" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">9Wicket</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="football basketball" data-name="CR Sport">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/crown%20sports-202505190757384729.png" alt="CR Sport" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">CR Sport</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="horse" data-name="HorseRacing">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_horseracing%20(1)-202510131036418324.png" alt="HorseRacing" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">Horse Racing</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-no-results" id="glcNoResults">No providers found.</div>
+                </div>
+            </section>
+
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
-                <!-- Info Links -->
                 <div class="footer-col">
                     <h4>SITE MAPS</h4>
                     <ul>
@@ -162,14 +323,10 @@
                         <li><a href="#">Responsible Gaming</a></li>
                         <li><a href="#">Banking</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Terms &amp; Condition</a></li>
                     </ul>
-                    <div class="footer-logo-main">
-                        <img src="images/GM88.png" alt="GM88 Logo">
-                    </div>
+                    <div class="footer-logo-main"><img src="images/GM88.png" alt="GM88 Logo"></div>
                 </div>
-
-                <!-- Licences -->
                 <div class="footer-col">
                     <h4>LICENCE</h4>
                     <div class="license-grid">
@@ -181,8 +338,6 @@
                         <div class="license-img"><span>RGA</span></div>
                     </div>
                 </div>
-
-                <!-- Providers Slider Section -->
                 <div class="footer-col footer-providers">
                     <h4>PROVIDERS</h4>
                     <div class="providers-slider-container">
@@ -200,7 +355,6 @@
                 </div>
             </div>
         </div>
-
         <div class="copyright">
             <div class="container">
                 <p>COPYRIGHT &copy; GM88 2021. ALL RIGHTS RESERVED - Redesigned 2026</p>
@@ -210,6 +364,52 @@
 
     <script src="js/header.js"></script>
     <script src="js/main.js"></script>
-</body>
+    <script>
+    (function () {
+        const filters = document.querySelectorAll('#glcFilters .glc-filter-btn');
+        const cards   = document.querySelectorAll('#glcGrid .glc-card');
+        const search  = document.getElementById('glcSearch');
+        const count   = document.getElementById('glcCount');
+        const noRes   = document.getElementById('glcNoResults');
+        let activeFilter = 'all';
 
+        function applyFilter() {
+            const q = search.value.trim().toLowerCase();
+            let visible = 0;
+            cards.forEach(card => {
+                const cats = card.dataset.category || '';
+                const name = (card.dataset.name || '').toLowerCase();
+                const matchFilter = activeFilter === 'all' || cats.split(' ').includes(activeFilter);
+                const matchSearch = !q || name.includes(q);
+                const show = matchFilter && matchSearch;
+                card.classList.toggle('glc-hidden', !show);
+                if (show) visible++;
+            });
+            count.textContent = visible + ' Provider' + (visible !== 1 ? 's' : '');
+            noRes.style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filters.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                applyFilter();
+            });
+        });
+
+        search.addEventListener('input', applyFilter);
+
+        document.querySelectorAll('.glc-fav-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                btn.classList.toggle('active');
+                const icon = btn.querySelector('i');
+                icon.classList.toggle('fa-regular');
+                icon.classList.toggle('fa-solid');
+            });
+        });
+    })();
+    </script>
+</body>
 </html>

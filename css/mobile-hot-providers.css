@@ -147,6 +147,9 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
             padding: 0 !important;
             min-width: 0 !important;
+            transition-property: transform, box-shadow, opacity !important;
+            transition-duration: 0.2s !important;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         }
 
         body[data-page="index"] #homeHotProviders .hot-provider-provider-card .provider-thumb {
@@ -230,8 +233,8 @@
             display: none !important;
         }
 
-        /* Show exactly 4 cards */
-        body[data-page="index"] #homeHotProviders .hot-provider-provider-card:nth-child(n+5) {
+        /* Filtered out by home page JS (must override display:flex !important above) */
+        body[data-page="index"] #homeHotProviders .hot-provider-provider-card.hp-filtered-out {
             display: none !important;
         }
 

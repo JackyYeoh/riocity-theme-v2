@@ -1,0 +1,851 @@
+/* ============================================================
+   VIP FANCY — Additive luxury layer.
+   Loads on top of style.css. Safe to remove (delete this file's
+   <link> + the <script> tag for js/vip-fancy.js in vip.html).
+   ============================================================ */
+
+body[data-page="vip"] {
+  --fx-gold:        #d4af37;
+  --fx-gold-bright: #f5cf3c;
+  --fx-gold-light:  #fce98a;
+  --fx-ruby:        #d4283a;
+}
+
+/* ---------- 1. Drifting gold-dust particle layer ---------- */
+#vipFancyParticles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.3;
+}
+
+/* ---------- 2. Hero background parallax ---------- */
+body[data-page="vip"] .vip-hero-bg-img {
+  transition: transform 0.45s ease-out;
+  will-change: transform;
+}
+
+/* ---------- 3. Hero shield: tier-tinted halo (no float) ---------- */
+body[data-page="vip"] .vip-hero-shield-stack {
+  filter: drop-shadow(0 0 18px rgba(255, 215, 100, 0.35));
+  transition: filter 0.5s ease;
+}
+body[data-page="vip"][data-vip-tier="bronze"]   .vip-hero-shield-stack { filter: drop-shadow(0 0 18px rgba(205,127,50,0.55)); }
+body[data-page="vip"][data-vip-tier="silver"]   .vip-hero-shield-stack { filter: drop-shadow(0 0 18px rgba(190,200,210,0.55)); }
+body[data-page="vip"][data-vip-tier="gold"]     .vip-hero-shield-stack { filter: drop-shadow(0 0 22px rgba(255,215,0,0.6));    }
+body[data-page="vip"][data-vip-tier="platinum"] .vip-hero-shield-stack { filter: drop-shadow(0 0 22px rgba(229,228,226,0.6));  }
+body[data-page="vip"][data-vip-tier="diamond"]  .vip-hero-shield-stack { filter: drop-shadow(0 0 22px rgba(110,220,255,0.55)); }
+body[data-page="vip"][data-vip-tier="ruby"]     .vip-hero-shield-stack { filter: drop-shadow(0 0 22px rgba(212,40,58,0.6));    }
+
+@keyframes vipFxFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* ---------- 4. Tier title: subtle warm-white gold sweep ---------- */
+body[data-page="vip"] .vip-hero-tier-name {
+  background: linear-gradient(
+    90deg,
+    #ffffff              0%,
+    #ffffff              40%,
+    var(--fx-gold-light) 50%,
+    #ffffff              60%,
+    #ffffff              100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: vipFxShimmer 7s linear infinite;
+}
+
+@keyframes vipFxShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---------- 5. Progress bar: gentle gold sheen ---------- */
+body[data-page="vip"] .vip-hero-fill {
+  background: linear-gradient(90deg, #b8892a, #f0cc60, #b8892a) !important;
+  background-size: 220% 100% !important;
+  animation: vipFxShimmer 5s linear infinite;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- 6. Tier sidebar buttons: 3D tilt + per-tier glow ---------- */
+body[data-page="vip"] .vip-level-btn {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.25s ease !important;
+}
+body[data-page="vip"] .vip-level-btn[data-level="bronze"]:hover   { box-shadow: 0 0 24px rgba(205,127,50,0.5)  !important; }
+body[data-page="vip"] .vip-level-btn[data-level="silver"]:hover   { box-shadow: 0 0 24px rgba(190,200,210,0.5) !important; }
+body[data-page="vip"] .vip-level-btn[data-level="gold"]:hover     { box-shadow: 0 0 24px rgba(255,215,0,0.5)   !important; }
+body[data-page="vip"] .vip-level-btn[data-level="platinum"]:hover { box-shadow: 0 0 24px rgba(229,228,226,0.55) !important; }
+body[data-page="vip"] .vip-level-btn[data-level="diamond"]:hover  { box-shadow: 0 0 26px rgba(110,220,255,0.55) !important; }
+body[data-page="vip"] .vip-level-btn[data-level="ruby"]:hover     { box-shadow: 0 0 26px rgba(212,40,58,0.55)   !important; }
+
+/* Active button — blue glow pulse only (sidebar highlight stays brand blue for every tier) */
+body[data-page="vip"] .vip-level-btn.active {
+  animation: vipFxActivePulse 4.5s ease-in-out infinite;
+}
+@keyframes vipFxActivePulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(59,130,246,0.2),  0 4px 16px rgba(22,119,255,0.15); }
+  50%      { box-shadow: 0 0 0 1px rgba(59,130,246,0.32), 0 4px 22px rgba(22,119,255,0.28); }
+}
+
+/* ---------- 7. Info cards ---------- */
+/* (Hover lift / conic border removed — kept static; scroll reveal uses .vip-fx-reveal / .vip-fx-visible in JS.) */
+
+/* ---------- 8. Throne / Priority card: god-rays + floating chair + button shine ---------- */
+body[data-page="vip"] .vip-priority-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -25%;
+  width: 70%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.14) 0%, transparent 65%);
+  animation: vipFxGodRays 9s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes vipFxGodRays {
+  0%, 100% { transform: scale(1) rotate(0); opacity: 0.7; }
+  50%      { transform: scale(1.06) rotate(4deg); opacity: 1; }
+}
+body[data-page="vip"] .vip-priority-img-wrap img {
+  animation: vipFxFloat 5s ease-in-out infinite;
+  filter: drop-shadow(0 6px 14px rgba(212, 175, 55, 0.25));
+}
+body[data-page="vip"] .vip-priority-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s !important;
+}
+body[data-page="vip"] .vip-priority-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+}
+body[data-page="vip"] .vip-priority-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: translateX(-100%);
+  animation: vipFxBtnShine 7s ease-in-out infinite;
+}
+@keyframes vipFxBtnShine {
+  0%   { transform: translateX(-100%); }
+  80%  { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ---------- 9. FAQ cards: lift + 01/02/03 numbers grow on hover ---------- */
+body[data-page="vip"] .vip-faq-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+body[data-page="vip"] .vip-faq-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+body[data-page="vip"] .vip-faq-card::after {
+  transition: color 0.4s ease, transform 0.4s ease;
+  transform-origin: bottom right;
+}
+body[data-page="vip"] .vip-faq-card:hover::after {
+  color: rgba(212, 175, 55, 0.22) !important;
+  transform: scale(1.12) rotate(-2deg);
+}
+
+/* ---------- 10. Section visibility (no scroll-in; matches static reference layout) ---------- */
+body[data-page="vip"] .vip-fx-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+body[data-page="vip"] .vip-fx-reveal.vip-fx-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tabular figures so count-up doesn't jitter */
+body[data-page="vip"] .vip-info-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Mobile: disable expensive effects on touch screens ---------- */
+@media (max-width: 768px) {
+  /* No 3D tilt on sidebar buttons — touch devices don't have hover anyway */
+  body[data-page="vip"] .vip-level-btn {
+    transform-style: flat !important;
+    will-change: auto !important;
+  }
+
+  /* Disable FAQ card hover lift on touch */
+  body[data-page="vip"] .vip-faq-card:hover {
+    transform: none !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04) !important;
+  }
+
+  /* Gold particles: reduce opacity further on mobile for perf */
+  #vipFancyParticles {
+    opacity: 0.15 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Kill particles entirely on very small screens */
+  #vipFancyParticles {
+    display: none !important;
+  }
+
+  /* Simplify priority card god-ray on small screens */
+  body[data-page="vip"] .vip-priority-card::before {
+    display: none !important;
+  }
+
+  /* Blue active pill on small screens (matches desktop reference) */
+  body[data-page="vip"] .vip-level-btn.active {
+    animation: none !important;
+    box-shadow: 0 0 0 1px rgba(59,130,246,0.45), 0 4px 14px rgba(22,119,255,0.22) !important;
+  }
+}
+
+/* ---------- Reduced-motion: kill the constant-loop animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="vip"] .vip-hero-tier-name,
+  body[data-page="vip"] .vip-hero-fill,
+  body[data-page="vip"] .vip-hero-fill::after,
+  body[data-page="vip"] .vip-hero-shield-stack,
+  body[data-page="vip"] .vip-priority-card::before,
+  body[data-page="vip"] .vip-priority-img-wrap img,
+  body[data-page="vip"] .vip-priority-btn::after,
+  body[data-page="vip"] .vip-level-btn.active {
+    animation: none !important;
+  }
+  body[data-page="vip"] .vip-fx-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE — FINAL PASS  (loads last, takes priority)
+   Goal: keep the desktop visual hierarchy on mobile.
+   Cards stay compact, label/value stay side-by-side, and
+   the tier rail scrolls smoothly with all 7 tiers reachable.
+   ============================================================ */
+
+/* ---------- Tablet (≤ 992px): collapse 2-col grids ---------- */
+@media (max-width: 992px) {
+  body[data-page="vip"] .vip-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="vip"] .vip-faq-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* ---------- Phone & small tablet (≤ 768px) ---------- */
+@media (max-width: 768px) {
+
+  /* Container — tighter side padding so cards reach edges nicely */
+  body[data-page="vip"] .container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  /* Page top/bottom rhythm */
+  body[data-page="vip"] .vip-page-main {
+    padding: 14px 0 40px !important;
+  }
+
+  /* Layout: stack sidebar (tier rail) above main content */
+  body[data-page="vip"] .vip-layout {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  body[data-page="vip"] .vip-main {
+    gap: 12px !important;
+  }
+
+  /* ── Hero card ──────────────────────────────────────────── */
+  body[data-page="vip"] .vip-page-main .vip-hero-card {
+    flex-direction: column !important;
+    min-height: auto !important;
+    border-radius: 14px !important;
+    margin-bottom: 4px !important;
+  }
+  body[data-page="vip"] .vip-page-main .vip-hero-left {
+    flex: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 22px 18px !important;
+  }
+  /* The right column is empty in the markup — hide on mobile to remove dead space */
+  body[data-page="vip"] .vip-page-main .vip-hero-right {
+    display: none !important;
+  }
+  /* Background image + overlay should still work on the stacked hero */
+  body[data-page="vip"] .vip-hero-bg-img {
+    object-position: center !important;
+  }
+  body[data-page="vip"] .vip-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 24, 50, 0.92) 0%,
+      rgba(10, 24, 50, 0.86) 60%,
+      rgba(10, 24, 50, 0.80) 100%
+    ) !important;
+  }
+  /* Hero typography — scaled for narrow screens */
+  body[data-page="vip"] .vip-hero-tier-name {
+    font-size: clamp(30px, 8vw, 44px) !important;
+  }
+  body[data-page="vip"] .vip-hero-status,
+  body[data-page="vip"] .vip-hero-progress-txt {
+    font-size: 12.5px !important;
+    max-width: 100% !important;
+  }
+  body[data-page="vip"] .vip-hero-track {
+    max-width: 100% !important;
+  }
+  body[data-page="vip"] .vip-hero-note {
+    max-width: 100% !important;
+    font-size: 11.5px !important;
+    padding: 9px 12px !important;
+  }
+  body[data-page="vip"] .vip-hero-shield-stack {
+    width: 42px !important;
+    height: 50px !important;
+  }
+  body[data-page="vip"] .vip-hero-shield-bg {
+    font-size: 42px !important;
+  }
+  body[data-page="vip"] .vip-hero-shield-crown {
+    font-size: 18px !important;
+  }
+
+  /* ── Tier sidebar — smooth horizontal rail ──────────────── */
+  body[data-page="vip"] .vip-sidebar {
+    width: 100% !important;
+    border-radius: 12px !important;
+    background: #0b1e38 !important;
+    overflow: hidden !important;
+  }
+  body[data-page="vip"] .vip-sidebar-footer {
+    display: none !important;
+  }
+  body[data-page="vip"] #vipLevelSelector {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    scroll-snap-type: x proximity !important;
+    padding: 10px 12px !important;
+    gap: 8px !important;
+    /* Subtle fade only at the very edge so the active tier never gets dimmed */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+            mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+  }
+  body[data-page="vip"] #vipLevelSelector::-webkit-scrollbar {
+    display: none !important;
+  }
+  body[data-page="vip"] .vip-level-btn {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 72px !important;
+    min-width: 72px !important;
+    padding: 10px 6px !important;
+    gap: 4px !important;
+    text-align: center !important;
+    scroll-snap-align: start !important;
+    border-radius: 10px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-rank {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    font-size: 10px !important;
+    color: #4d6a88 !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-medal {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-name {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+    color: #5a7a9a !important;
+  }
+  body[data-page="vip"] .vip-level-btn.active .vip-level-rank {
+    color: #7aabdd !important;
+  }
+  body[data-page="vip"] .vip-level-btn.active .vip-level-name {
+    color: #e8f0ff !important;
+  }
+
+  /* ── Info cards — tighter, single column ────────────────── */
+  body[data-page="vip"] .vip-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  body[data-page="vip"] .vip-info-card {
+    padding: 16px 16px !important;
+    min-height: auto !important;
+    border-radius: 12px !important;
+  }
+  body[data-page="vip"] .vip-info-card-title {
+    font-size: 13.5px !important;
+    margin-bottom: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* CRITICAL: keep label LEFT, value RIGHT on mobile (no vertical stack).
+     This overrides the older 600px column rule and matches desktop hierarchy. */
+  body[data-page="vip"] .vip-info-card .vip-info-row {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    padding: 9px 0 !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    font-size: 12.5px !important;
+    line-height: 1.35 !important;
+    padding: 0 !important;
+    /* allow long labels to wrap to a second line if needed */
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-value {
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    font-size: 12.5px !important;
+    padding: 4px 10px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    background: #f1f5f9 !important;
+    border-radius: 6px !important;
+    min-width: 56px !important;
+  }
+
+  /* ── Priority / throne card — stack body + image cleanly ── */
+  body[data-page="vip"] .vip-priority-card {
+    flex-direction: column !important;
+    min-height: auto !important;
+    border-radius: 12px !important;
+  }
+  body[data-page="vip"] .vip-priority-body {
+    padding: 20px 18px 14px !important;
+  }
+  body[data-page="vip"] .vip-priority-body p {
+    max-width: 100% !important;
+  }
+  body[data-page="vip"] .vip-priority-img-wrap {
+    width: 100% !important;
+    height: 130px !important;
+    flex-shrink: 0 !important;
+    justify-content: flex-end !important;
+    align-items: flex-end !important;
+    padding: 0 18px 0 0 !important;
+  }
+  body[data-page="vip"] .vip-priority-img-wrap img {
+    width: auto !important;
+    height: 100% !important;
+    max-height: 130px !important;
+    object-fit: contain !important;
+    object-position: bottom right !important;
+  }
+
+  /* ── FAQ cards — single column ──────────────────────────── */
+  body[data-page="vip"] .vip-faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  body[data-page="vip"] .vip-faq-card {
+    padding: 16px 16px !important;
+    border-radius: 12px !important;
+  }
+  body[data-page="vip"] .vip-faq-card:last-child {
+    grid-column: auto !important;
+  }
+  body[data-page="vip"] .vip-faq-card h4 {
+    font-size: 13px !important;
+  }
+  body[data-page="vip"] .vip-faq-card p {
+    font-size: 12.5px !important;
+    line-height: 1.55 !important;
+  }
+  body[data-page="vip"] .vip-faq-card::after {
+    font-size: 56px !important;
+    right: 10px !important;
+    bottom: -4px !important;
+  }
+}
+
+/* ---------- Small phones (≤ 480px) ---------- */
+@media (max-width: 480px) {
+  body[data-page="vip"] .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* Hero compaction */
+  body[data-page="vip"] .vip-page-main .vip-hero-left {
+    padding: 18px 14px !important;
+  }
+  body[data-page="vip"] .vip-hero-tier-name {
+    font-size: 30px !important;
+  }
+  body[data-page="vip"] .vip-hero-cur-label {
+    font-size: 9px !important;
+    letter-spacing: 0.14em !important;
+  }
+  body[data-page="vip"] .vip-hero-rank-num {
+    font-size: 11px !important;
+  }
+  body[data-page="vip"] .vip-hero-status,
+  body[data-page="vip"] .vip-hero-progress-txt {
+    font-size: 11.5px !important;
+  }
+  body[data-page="vip"] .vip-hero-note {
+    font-size: 11px !important;
+    padding: 8px 11px !important;
+  }
+  body[data-page="vip"] .vip-hero-shield-stack {
+    width: 36px !important;
+    height: 42px !important;
+  }
+  body[data-page="vip"] .vip-hero-shield-bg {
+    font-size: 36px !important;
+  }
+  body[data-page="vip"] .vip-hero-shield-crown {
+    font-size: 15px !important;
+  }
+  body[data-page="vip"] .vip-hero-badge-row {
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Tier rail — slightly smaller pills so more fit in view */
+  body[data-page="vip"] #vipLevelSelector {
+    padding: 8px 10px !important;
+    gap: 6px !important;
+  }
+  body[data-page="vip"] .vip-level-btn {
+    width: 64px !important;
+    min-width: 64px !important;
+    padding: 8px 4px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-medal {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-name {
+    font-size: 9px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-rank {
+    font-size: 9px !important;
+  }
+
+  /* Info cards */
+  body[data-page="vip"] .vip-info-card {
+    padding: 14px 14px !important;
+  }
+  body[data-page="vip"] .vip-info-card-title {
+    font-size: 13px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-row {
+    padding: 8px 0 !important;
+    gap: 10px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label {
+    font-size: 12px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label i {
+    font-size: 12px !important;
+    width: 13px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-value {
+    font-size: 12px !important;
+    padding: 3px 8px !important;
+    min-width: 48px !important;
+  }
+
+  /* Priority / throne */
+  body[data-page="vip"] .vip-priority-body {
+    padding: 18px 14px 12px !important;
+  }
+  body[data-page="vip"] .vip-priority-body h3 {
+    font-size: 14px !important;
+  }
+  body[data-page="vip"] .vip-priority-body p {
+    font-size: 11.5px !important;
+  }
+  body[data-page="vip"] .vip-priority-btn {
+    padding: 9px 14px !important;
+    font-size: 12px !important;
+  }
+  body[data-page="vip"] .vip-priority-img-wrap {
+    height: 112px !important;
+    padding-right: 14px !important;
+  }
+  body[data-page="vip"] .vip-priority-img-wrap img {
+    max-height: 112px !important;
+  }
+
+  /* FAQ */
+  body[data-page="vip"] .vip-faq-card {
+    padding: 14px 14px !important;
+  }
+  body[data-page="vip"] .vip-faq-card h4 {
+    font-size: 12.5px !important;
+  }
+  body[data-page="vip"] .vip-faq-card p {
+    font-size: 12px !important;
+  }
+  body[data-page="vip"] .vip-faq-card::after {
+    font-size: 44px !important;
+  }
+}
+
+/* ---------- Very small phones (≤ 360px) ---------- */
+@media (max-width: 360px) {
+  body[data-page="vip"] .vip-hero-tier-name {
+    font-size: 26px !important;
+  }
+  body[data-page="vip"] .vip-hero-note {
+    font-size: 10.5px !important;
+  }
+
+  body[data-page="vip"] .vip-level-btn {
+    width: 58px !important;
+    min-width: 58px !important;
+    padding: 7px 3px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-medal {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  /* If labels are very long, allow value to drop below as fallback */
+  body[data-page="vip"] .vip-info-card .vip-info-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label {
+    font-size: 11.5px !important;
+    flex: 1 1 60% !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-value {
+    font-size: 11.5px !important;
+  }
+}
+
+/* ---------- Bottom-nav safe area: keep last card from being hidden ---------- */
+@media (max-width: 768px) {
+  /* The mobile bottom nav is fixed; reserve space so footer/cards don't hide behind it */
+  body[data-page="vip"] {
+    padding-bottom: 72px;
+  }
+}
+
+/* ============================================================
+   READABILITY PASS — bump up small text + fix footer
+   ============================================================ */
+
+/* ---------- Bigger, more readable info content (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  /* Hero status / progress — was 12.5px, a bit tight */
+  body[data-page="vip"] .vip-hero-status,
+  body[data-page="vip"] .vip-hero-progress-txt {
+    font-size: 13px !important;
+  }
+  body[data-page="vip"] .vip-hero-note {
+    font-size: 12.5px !important;
+  }
+
+  /* Tier rail labels */
+  body[data-page="vip"] .vip-level-btn .vip-level-rank {
+    font-size: 12px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-name {
+    font-size: 12.5px !important;
+  }
+  /* Bigger pills with bigger medals */
+  body[data-page="vip"] .vip-level-btn {
+    width: 96px !important;
+    min-width: 96px !important;
+    padding: 12px 8px !important;
+    gap: 6px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-medal {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  body[data-page="vip"] #vipLevelSelector {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+
+  /* Info card title — was 13.5px */
+  body[data-page="vip"] .vip-info-card-title {
+    font-size: 14.5px !important;
+  }
+
+  /* Info rows — bump to 13px so values + labels read like desktop */
+  body[data-page="vip"] .vip-info-card .vip-info-row {
+    padding: 11px 0 !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label {
+    font-size: 13px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label i {
+    font-size: 13px !important;
+    width: 16px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-value {
+    font-size: 13px !important;
+    padding: 5px 12px !important;
+    min-width: 64px !important;
+  }
+
+  /* Priority card body */
+  body[data-page="vip"] .vip-priority-body h3 {
+    font-size: 16px !important;
+  }
+  body[data-page="vip"] .vip-priority-body p {
+    font-size: 13px !important;
+  }
+  body[data-page="vip"] .vip-priority-btn {
+    font-size: 13px !important;
+    padding: 11px 18px !important;
+  }
+
+  /* FAQ */
+  body[data-page="vip"] .vip-faq-card h4 {
+    font-size: 14px !important;
+  }
+  body[data-page="vip"] .vip-faq-card p {
+    font-size: 13px !important;
+  }
+}
+
+/* ---------- ≤ 480px: keep readable but avoid wrap ---------- */
+@media (max-width: 480px) {
+  body[data-page="vip"] .vip-level-btn {
+    width: 86px !important;
+    min-width: 86px !important;
+    padding: 10px 6px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-medal {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-rank {
+    font-size: 11.5px !important;
+  }
+  body[data-page="vip"] .vip-level-btn .vip-level-name {
+    font-size: 12px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-label,
+  body[data-page="vip"] .vip-info-card .vip-info-value {
+    font-size: 12.5px !important;
+  }
+  body[data-page="vip"] .vip-info-card .vip-info-value {
+    padding: 4px 10px !important;
+    min-width: 58px !important;
+  }
+}
+
+/* ============================================================
+   FOOTER — cleaner mobile layout
+   (license grid + provider logos)
+   ============================================================ */
+
+/* License chips — 3 even columns on mobile so 6 chips = 2 tidy rows */
+@media (max-width: 768px) {
+  .footer .license-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .footer .license-img {
+    height: 34px !important;
+    font-size: 12px !important;
+    padding: 0 6px !important;
+    width: 100% !important;
+  }
+
+  /* Provider logos — cleaner sizing, even rows */
+  .footer .providers-slider-container {
+    overflow: hidden;
+  }
+  .footer .logos-slider-page {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 14px 12px !important;
+    padding: 6px 0 !important;
+    align-items: center !important;
+    justify-items: center !important;
+  }
+  .footer .logos-slider-page img {
+    height: 30px !important;
+    max-width: 100% !important;
+    width: auto !important;
+    object-fit: contain !important;
+    filter: none !important;
+  }
+
+  /* Footer column titles & link readability */
+  .footer .footer-col h4 {
+    font-size: 14px !important;
+    margin-bottom: 14px !important;
+  }
+  .footer .footer-col ul li {
+    margin-bottom: 10px !important;
+  }
+  .footer .footer-col ul li a {
+    font-size: 13.5px !important;
+  }
+  .footer .footer-logo-main img {
+    height: 42px !important;
+    width: auto !important;
+  }
+}
+
+/* ≤ 480px: stack license to 2 columns so chips don't squeeze */
+@media (max-width: 480px) {
+  .footer .license-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .footer .license-img {
+    height: 32px !important;
+    font-size: 11.5px !important;
+  }
+  .footer .logos-slider-page img {
+    height: 26px !important;
+  }
+}
+

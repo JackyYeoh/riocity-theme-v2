@@ -346,7 +346,6 @@
                     <i class="fa-solid fa-wallet coin-icon" aria-hidden="true"></i>
                     <span class="currency">${Number(auth.wallet && auth.wallet.balance ? auth.wallet.balance : 0).toFixed(2)}</span>
                     <i class="fa-solid fa-chevron-down"></i>
-                    <i class="fa-solid fa-rotate balance-refresh"></i>
 
                     <!-- Rollover Popover -->
                     <div class="rollover-popover" id="headerRolloverPopover">
@@ -458,11 +457,18 @@
             <header class="top-header">
                 <div class="container top-header-inner">
                     <div class="top-left">
-                        <span class="welcome-text">Welcome <strong>${username}</strong></span>
-                        <div class="notification">
-                            <i class="fa-solid fa-bell"></i>
-                            <span class="badge">0</span>
-                        </div>
+                        <span class="welcome-text">
+                            <i class="fa-regular fa-calendar-check welcome-icon"></i>
+                            Welcome <strong>${username}</strong>
+                        </span>
+                        ${auth.isAuthenticated ? `
+                        <div class="vip-badge">
+                            <i class="fa-solid fa-crown vip-crown"></i>
+                            <span class="vip-tier">VIP Bronze</span>
+                            <span class="vip-level">Lv.2</span>
+                            <span class="vip-progress-circle"></span>
+                            <span class="vip-progress-bar"><span class="vip-progress-fill"></span></span>
+                        </div>` : ''}
                     </div>
                     <div class="top-right">
                         ${auth.isAuthenticated ? memberControls : guestControls}
@@ -477,19 +483,19 @@
             <nav class="main-nav">
                 <div class="container main-nav-inner">
                     <a href="index.html" class="brand-logo">
-                        <img src="images/GM88.png" alt="GM88 Logo" style="height: 55px; width: auto; object-fit: contain; margin-bottom: 8px;">
+                        <img src="images/GM88.png" alt="GM88 Logo">
                     </a>
                     <ul class="nav-links">
-                        <li data-nav="index"><a href="index.html"><i class="fa-solid fa-home"></i><span>HOME</span></a></li>
+                        <li data-nav="index"><a href="index.html"><i class="fa-solid fa-house"></i><span>HOME</span></a></li>
                         <li data-nav="live-casino"><a href="live-casino.html"><i class="fa-solid fa-dice"></i><span>LIVE CASINO</span></a></li>
                         <li data-nav="sports"><a href="sports.html"><i class="fa-solid fa-futbol"></i><span>SPORTS</span></a></li>
                         <li data-nav="slots"><a href="slots.html"><i class="fa-solid fa-table-cells"></i><span>SLOTS</span></a></li>
                         <li data-nav="promotions"><a href="promotions.html"><i class="fa-solid fa-gift"></i><span>PROMOTIONS</span></a></li>
                         <li data-nav="vip"><a href="vip.html"><i class="fa-solid fa-crown"></i><span>VIP</span></a></li>
-                        <li data-nav="games"><a href="games.html"><i class="fa-solid fa-clock-rotate-left"></i><span>RECENT</span></a></li>
+                        <li data-nav="agent"><a href="#"><i class="fa-solid fa-user-tie"></i><span>AGENT</span></a></li>
                         <li data-nav="poker"><a href="poker.html"><i class="fa-solid fa-diamond"></i><span>POKER</span></a></li>
                         <li data-nav="fishing"><a href="fish-hunt.html"><i class="fa-solid fa-fish"></i><span>FISH HUNT</span></a></li>
-                        <li data-nav="rebate"><a href="rebate.html"><i class="fa-solid fa-percent"></i><span>REBATE</span></a></li>
+                        <li data-nav="results"><a href="rebate.html"><i class="fa-solid fa-percent"></i><span>RESULTS</span></a></li>
                     </ul>
                 </div>
             </nav>

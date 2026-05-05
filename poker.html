@@ -7,13 +7,11 @@
     <title>GM88 - Poker</title>
     <meta name="description" content="Play poker with real players. Texas Hold'em, Omaha, tournaments and cash games — all in one place.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="css/header-redesign.css">
+    <link rel="stylesheet" href="css/game-lobby.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -21,70 +19,118 @@
 
     <div id="site-header"></div>
 
-    <!-- Page Hero (same style as Live Casino / Sports / Slots) -->
+    <!-- Page Hero -->
     <section class="promo-hero-banner">
         <div class="container">
             <img src="https://pksoftcdn.azureedge.net/media/slots%20(1)-202603041451104842.png" alt="Poker" class="hero-banner-image" loading="lazy">
         </div>
     </section>
 
-    <!-- Poker Providers (same design as Live Casino / Sports) -->
-    <section class="sp-section">
+    <div class="glc-page">
         <div class="container">
-            <div class="sp-header">
-                <h2 class="sp-title">Poker Providers</h2>
-                <span class="sp-count">4 Providers</span>
-            </div>
-            <div class="sp-grid">
-                <a href="poker-play.html?game=V8%20Poker&provider=V8%20Poker" class="sp-card" data-provider="V8 Poker">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/v8poker_poker-202601191517288267.png" alt="V8 Poker" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">V8 Poker</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="poker-play.html?game=KaiYuan&provider=KaiYuan" class="sp-card sp-maintenance" data-provider="KaiYuan">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/kaiyuan-202504210825061750.png" alt="KaiYuan" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">KaiYuan</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-                <a href="poker-play.html?game=1G%20Poker&provider=1G%20Poker" class="sp-card sp-maintenance" data-provider="1G Poker">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/1g poker-202502191628300100.png" alt="1G Poker" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">1G Poker</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-                <a href="poker-play.html?game=MPoker&provider=MPoker" class="sp-card sp-maintenance" data-provider="MPoker">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/mpoker-202503111448116128.png" alt="MPoker" loading="lazy">
-                        <div class="sp-card-badge"><i class="fa-solid fa-wrench"></i></div>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">MPoker</span>
-                        <span class="sp-card-status sp-maint"><i class="fa-solid fa-wrench"></i> Maintenance</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer (same as Live Casino / Sports / Slots) -->
+            <!-- Filter Tabs -->
+            <div class="glc-filter-bar" id="glcFilters">
+                <button class="glc-filter-btn active" data-filter="all"><i class="fa-solid fa-grip"></i> All</button>
+                <button class="glc-filter-btn" data-filter="holdem"><i class="fa-solid fa-heart"></i> Texas Hold'em</button>
+                <button class="glc-filter-btn" data-filter="omaha"><i class="fa-solid fa-diamond"></i> Omaha</button>
+                <button class="glc-filter-btn" data-filter="tournament"><i class="fa-solid fa-trophy"></i> Tournament</button>
+                <button class="glc-filter-btn glc-btn-hot" data-filter="trending"><i class="fa-solid fa-fire"></i> Trending</button>
+            </div>
+
+            <!-- Search + Sort -->
+            <div class="glc-toolbar">
+                <div class="glc-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="glcSearch" placeholder="Search providers..." autocomplete="off">
+                </div>
+                <div class="glc-sort">
+                    Sort by:
+                    <select id="glcSort">
+                        <option value="popular">Popular</option>
+                        <option value="az">A – Z</option>
+                        <option value="za">Z – A</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- All Providers -->
+            <section class="glc-section" id="allProviders">
+                <div class="glc-section-header">
+                    <div class="glc-section-title">
+                        <i class="fa-solid fa-spade"></i> All Poker Providers
+                    </div>
+                    <span class="glc-provider-count" id="glcCount">4 Providers</span>
+                </div>
+                <div class="glc-grid" id="glcGrid">
+
+                    <div class="glc-card" data-category="holdem omaha tournament trending" data-name="V8 Poker">
+                        <a href="poker-play.html?game=V8%20Poker&provider=V8%20Poker" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/v8poker_poker-202601191517288267.png" alt="V8 Poker" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">V8 Poker</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="poker-play.html?game=V8%20Poker&provider=V8%20Poker" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="holdem omaha" data-name="KaiYuan">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/kaiyuan-202504210825061750.png" alt="KaiYuan" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">KaiYuan</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="holdem tournament" data-name="1G Poker">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/1g poker-202502191628300100.png" alt="1G Poker" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">1G Poker</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-card glc-maintenance" data-category="holdem omaha" data-name="MPoker">
+                        <a href="#" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/mpoker-202503111448116128.png" alt="MPoker" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                            <div class="glc-card-name">MPoker</div>
+                            <div class="glc-card-foot">
+                                <div class="glc-card-status glc-maint"><span class="glc-live-dot"></span> Maintenance</div>
+                                <span class="glc-enter-btn">Unavailable</span>
+                                <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glc-no-results" id="glcNoResults">No providers found.</div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
-                <!-- Info Links -->
                 <div class="footer-col">
                     <h4>SITE MAPS</h4>
                     <ul>
@@ -92,14 +138,10 @@
                         <li><a href="#">Responsible Gaming</a></li>
                         <li><a href="#">Banking</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Terms &amp; Condition</a></li>
                     </ul>
-                    <div class="footer-logo-main">
-                        <img src="images/GM88.png" alt="GM88 Logo">
-                    </div>
+                    <div class="footer-logo-main"><img src="images/GM88.png" alt="GM88 Logo"></div>
                 </div>
-
-                <!-- Licences -->
                 <div class="footer-col">
                     <h4>LICENCE</h4>
                     <div class="license-grid">
@@ -111,8 +153,6 @@
                         <div class="license-img"><span>RGA</span></div>
                     </div>
                 </div>
-
-                <!-- Providers Slider Section -->
                 <div class="footer-col footer-providers">
                     <h4>PROVIDERS</h4>
                     <div class="providers-slider-container">
@@ -130,7 +170,6 @@
                 </div>
             </div>
         </div>
-
         <div class="copyright">
             <div class="container">
                 <p>COPYRIGHT &copy; GM88 2021. ALL RIGHTS RESERVED - Redesigned 2026</p>
@@ -140,6 +179,52 @@
 
     <script src="js/header.js"></script>
     <script src="js/main.js"></script>
-</body>
+    <script>
+    (function () {
+        const filters = document.querySelectorAll('#glcFilters .glc-filter-btn');
+        const cards   = document.querySelectorAll('#glcGrid .glc-card');
+        const search  = document.getElementById('glcSearch');
+        const count   = document.getElementById('glcCount');
+        const noRes   = document.getElementById('glcNoResults');
+        let activeFilter = 'all';
 
+        function applyFilter() {
+            const q = search.value.trim().toLowerCase();
+            let visible = 0;
+            cards.forEach(card => {
+                const cats = card.dataset.category || '';
+                const name = (card.dataset.name || '').toLowerCase();
+                const matchFilter = activeFilter === 'all' || cats.split(' ').includes(activeFilter);
+                const matchSearch = !q || name.includes(q);
+                const show = matchFilter && matchSearch;
+                card.classList.toggle('glc-hidden', !show);
+                if (show) visible++;
+            });
+            count.textContent = visible + ' Provider' + (visible !== 1 ? 's' : '');
+            noRes.style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filters.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                applyFilter();
+            });
+        });
+
+        search.addEventListener('input', applyFilter);
+
+        document.querySelectorAll('.glc-fav-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                btn.classList.toggle('active');
+                const icon = btn.querySelector('i');
+                icon.classList.toggle('fa-regular');
+                icon.classList.toggle('fa-solid');
+            });
+        });
+    })();
+    </script>
+</body>
 </html>

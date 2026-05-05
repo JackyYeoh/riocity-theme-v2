@@ -1,0 +1,423 @@
+/* ==========================================================
+   GM88 Header Redesign — single-row light header + nav
+   Matches the reference: light bg, indigo/purple accent,
+   gold VIP pill, blue active-nav underline.
+   ========================================================== */
+
+:root {
+    /* Brand accents tuned for the redesigned header */
+    --hd-bg: #FFFFFF;
+    --hd-bg-soft: #F6F8FC;
+    --hd-text: #1F2A44;
+    --hd-text-muted: #6B7693;
+    --hd-border: #E6EAF2;
+
+    --hd-purple: #7C5CFF;
+    --hd-purple-2: #6B46FF;
+    --hd-grad-purple: linear-gradient(135deg, #8B6CFF 0%, #6B46FF 100%);
+    --hd-grad-purple-hover: linear-gradient(135deg, #7C5CFF 0%, #5A36F0 100%);
+
+    --hd-active-blue: #4A6CF7;
+    --hd-active-blue-soft: #EEF2FF;
+
+    --hd-gold-1: #F5B544;
+    --hd-gold-2: #E89A21;
+    --hd-gold-soft: #FFF6E2;
+}
+
+/* ---------- Top header bar ---------- */
+.top-header {
+    background: var(--hd-bg) !important;
+    color: var(--hd-text) !important;
+    padding: 8px 0 !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid var(--hd-border);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+}
+
+.top-header .top-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.top-header .top-left,
+.top-header .top-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Welcome pill */
+.top-header .welcome-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--hd-text);
+    font-weight: 600;
+    background: var(--hd-bg-soft);
+    border: 1px solid var(--hd-border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.top-header .welcome-text strong {
+    font-weight: 700;
+    color: var(--hd-purple);
+}
+
+.top-header .welcome-icon {
+    color: var(--hd-purple);
+    font-size: 14px;
+}
+
+/* Hide old notification bell — not in new design */
+.top-header .notification {
+    display: none;
+}
+
+/* ---------- VIP Badge ---------- */
+.vip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--hd-bg-soft);
+    border: 1px solid var(--hd-border);
+    border-radius: 22px;
+    padding: 5px 14px 5px 10px;
+    font-size: 12px;
+    color: var(--hd-text);
+    font-weight: 700;
+}
+
+.vip-crown {
+    color: var(--hd-gold-1);
+    font-size: 14px;
+}
+
+.vip-tier {
+    background: linear-gradient(135deg, var(--hd-gold-1), var(--hd-gold-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.vip-level {
+    color: var(--hd-text-muted);
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.vip-progress-circle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: conic-gradient(var(--hd-gold-1) 0 60%, #E6EAF2 60% 100%);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--hd-border);
+}
+
+.vip-progress-bar {
+    position: relative;
+    flex: 0 0 auto;
+    width: 110px;
+    height: 6px;
+    background: #E6EAF2;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.vip-progress-fill {
+    position: absolute;
+    inset: 0;
+    width: 45%;
+    background: linear-gradient(90deg, var(--hd-gold-1), var(--hd-gold-2));
+    border-radius: 999px;
+}
+
+/* ---------- Balance pill ---------- */
+.top-header .balance-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--hd-bg-soft);
+    color: var(--hd-text);
+    border: 1px solid var(--hd-border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-weight: 700;
+}
+
+.top-header .balance-box .coin-icon {
+    color: var(--hd-purple);
+    font-size: 13px;
+    width: auto;
+    height: auto;
+}
+
+.top-header .balance-box .currency {
+    color: var(--hd-text);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.top-header .balance-box .fa-chevron-down {
+    color: var(--hd-text-muted);
+    font-size: 10px;
+}
+
+/* ---------- FUND MANAGEMENT button (purple gradient pill) ---------- */
+.top-header .btn-fund {
+    background: var(--hd-grad-purple) !important;
+    color: #fff !important;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(108, 70, 255, 0.30);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.top-header .btn-fund:hover {
+    background: var(--hd-grad-purple-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(108, 70, 255, 0.38);
+}
+
+/* ---------- LOGOUT (ghost text button) ---------- */
+.top-header .btn-logout {
+    background: transparent !important;
+    color: var(--hd-text) !important;
+    border: 1px solid transparent;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.top-header .btn-logout:hover {
+    background: var(--hd-bg-soft) !important;
+    color: var(--hd-purple) !important;
+}
+
+/* ---------- LOGIN / REGISTER (guest) ---------- */
+.top-header .btn-login {
+    background: transparent !important;
+    color: var(--hd-text) !important;
+    border: 1px solid var(--hd-border);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.top-header .btn-login:hover {
+    background: var(--hd-bg-soft) !important;
+    color: var(--hd-purple) !important;
+    border-color: var(--hd-purple);
+}
+
+.top-header .btn-register {
+    background: var(--hd-grad-purple) !important;
+    color: #fff !important;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(108, 70, 255, 0.30);
+}
+
+.top-header .btn-register:hover {
+    background: var(--hd-grad-purple-hover) !important;
+    transform: translateY(-1px);
+}
+
+/* ---------- Language selector ---------- */
+.top-header .language-selector {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--hd-text);
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.top-header .language-selector:hover {
+    background: var(--hd-bg-soft);
+    opacity: 1;
+}
+
+.top-header .language-selector img {
+    width: 18px;
+    height: 13px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.top-header .language-selector span {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--hd-text);
+}
+
+.top-header .language-selector .fa-chevron-down {
+    font-size: 10px;
+    color: var(--hd-text-muted);
+}
+
+/* ---------- Main Nav ---------- */
+.main-nav {
+    background: var(--hd-bg) !important;
+    border-bottom: 1px solid var(--hd-border) !important;
+    border-image: none !important;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
+    padding: 6px 0 !important;
+}
+
+.main-nav .main-nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.main-nav .brand-logo {
+    flex: 0 0 auto;
+}
+
+.main-nav .brand-logo img {
+    height: 46px !important;
+    width: auto !important;
+    margin-bottom: 0 !important;
+    object-fit: contain;
+    display: block;
+}
+
+/* Nav links (single row, icon-above-text) */
+.main-nav .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.main-nav .nav-links li {
+    flex: 0 0 auto;
+}
+
+.main-nav .nav-links li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--hd-text-muted);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 10px 14px 12px;
+    border-radius: 10px;
+    background: transparent;
+    position: relative;
+    min-width: 78px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.main-nav .nav-links li a i {
+    font-size: 20px;
+    color: var(--hd-text-muted);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.main-nav .nav-links li a:hover {
+    color: var(--hd-active-blue);
+    background: transparent;
+}
+
+.main-nav .nav-links li a:hover i {
+    color: var(--hd-active-blue);
+    transform: translateY(-2px);
+}
+
+/* Active state — soft blue pill + blue underline */
+.main-nav .nav-links li.active a {
+    color: var(--hd-active-blue) !important;
+    background: var(--hd-active-blue-soft) !important;
+}
+
+.main-nav .nav-links li.active a i {
+    color: var(--hd-active-blue) !important;
+}
+
+.main-nav .nav-links li.active a::after {
+    content: "";
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 2px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--hd-active-blue);
+    box-shadow: 0 2px 8px rgba(74, 108, 247, 0.4);
+}
+
+/* Hide the scrollbar inside the nav row for a cleaner look */
+.main-nav .nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+.main-nav .nav-links {
+    scrollbar-width: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+    .vip-progress-bar {
+        width: 70px;
+    }
+
+    .main-nav .nav-links li a {
+        min-width: 68px;
+        padding: 10px 10px 12px;
+        font-size: 10px;
+    }
+
+    .main-nav .nav-links li a i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 992px) {
+    .top-header .top-header-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .vip-badge .vip-progress-bar {
+        display: none;
+    }
+}

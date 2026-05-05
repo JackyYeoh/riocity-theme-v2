@@ -1,0 +1,618 @@
+/* ============================================================
+   REBATE PAGE — Clean, restrained product design.
+   No shimmer, no god-rays, no gold-on-everything.
+   Loads AFTER style.css → highest precedence.
+   ============================================================ */
+
+body[data-page="rebate"] {
+  --rb-bg:        #f5f7fa;
+  --rb-card:      #ffffff;
+  --rb-border:    #e6eaf0;
+  --rb-border-2:  #f0f3f8;
+  --rb-text:      #0f172a;
+  --rb-text-2:    #475569;
+  --rb-text-3:    #94a3b8;
+  --rb-blue:      #1677ff;
+  --rb-blue-2:    #1461d8;
+  --rb-blue-soft: #eef4ff;
+  --rb-navy:      #0f1f3a;
+
+  background: var(--rb-bg) !important;
+}
+
+body[data-page="rebate"] .rebate-page {
+  background: var(--rb-bg) !important;
+  padding-bottom: 60px;
+}
+body[data-page="rebate"] .rebate-page .page-top {
+  padding-top: 24px !important;
+  padding-bottom: 12px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   1.  HEADER  —  flat white card, two-column
+   ════════════════════════════════════════════════════════════ */
+body[data-page="rebate"] .corporate-rebate-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 32px;
+  background: var(--rb-card);
+  border: 1px solid var(--rb-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+body[data-page="rebate"] .corporate-rebate-header .header-titles {
+  min-width: 0;
+}
+body[data-page="rebate"] .corporate-rebate-header .title {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--rb-text);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+body[data-page="rebate"] .corporate-rebate-header .subtitle {
+  font-size: 14px;
+  color: var(--rb-text-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Right-side claim panel: stats + button */
+body[data-page="rebate"] .corporate-rebate-header .corporate-claim-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+body[data-page="rebate"] .corporate-rebate-header .claim-stats-inline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+body[data-page="rebate"] .corporate-rebate-header .stat-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 0 18px;
+}
+body[data-page="rebate"] .corporate-rebate-header .stat-col:first-child { padding-left: 0; }
+body[data-page="rebate"] .corporate-rebate-header .stat-col:last-child  { padding-right: 0; }
+body[data-page="rebate"] .corporate-rebate-header .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--rb-text-3);
+  white-space: nowrap;
+}
+body[data-page="rebate"] .corporate-rebate-header .stat-val {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--rb-text);
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+  /* clear any old gradient/glow */
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+body[data-page="rebate"] .corporate-rebate-header .stat-val.text-blue {
+  color: var(--rb-blue) !important;
+}
+body[data-page="rebate"] .corporate-rebate-header .vertical-divider {
+  width: 1px;
+  height: 30px;
+  background: var(--rb-border);
+}
+
+/* Claim button — solid blue, no shine */
+body[data-page="rebate"] .corporate-rebate-header .corporate-claim-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--rb-blue);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  box-shadow: none;
+}
+body[data-page="rebate"] .corporate-rebate-header .corporate-claim-btn:hover {
+  background: var(--rb-blue-2);
+}
+body[data-page="rebate"] .corporate-rebate-header .corporate-claim-btn:active {
+  background: #1054be;
+}
+
+/* ════════════════════════════════════════════════════════════
+   2.  TABS  —  underline style (clean, ant-design like)
+   ════════════════════════════════════════════════════════════ */
+body[data-page="rebate"] .rebate-tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid var(--rb-border);
+  margin-bottom: 20px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+body[data-page="rebate"] .rebate-tabs-container::-webkit-scrollbar { display: none; }
+
+body[data-page="rebate"] .rebate-tab {
+  position: relative;
+  padding: 12px 18px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--rb-text-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+/* No icons on the cleaner version */
+body[data-page="rebate"] .rebate-tab::before { content: none !important; }
+body[data-page="rebate"] .rebate-tab:hover {
+  color: var(--rb-text);
+  background: transparent;
+}
+body[data-page="rebate"] .rebate-tab.active {
+  color: var(--rb-blue) !important;
+  background: transparent !important;
+  font-weight: 600;
+  box-shadow: none !important;
+}
+body[data-page="rebate"] .rebate-tab.active::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  bottom: -1px;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  background: var(--rb-blue);
+  border-radius: 0 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   3.  TAB PANES
+   ════════════════════════════════════════════════════════════ */
+body[data-page="rebate"] .rebate-tab-contents .tab-pane {
+  animation: rbFadeIn 0.18s ease;
+}
+@keyframes rbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   4.  RATES TABLE
+   ════════════════════════════════════════════════════════════ */
+body[data-page="rebate"] #tab-rates .table-wrap {
+  background: var(--rb-card) !important;
+  border: 1px solid var(--rb-border) !important;
+  border-radius: 12px !important;
+  overflow: auto !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) !important;
+  margin-bottom: 24px !important;
+}
+body[data-page="rebate"] .rebate-table {
+  width: 100% !important;
+  min-width: 880px !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+body[data-page="rebate"] .rebate-table thead th {
+  background: #fafbfd !important;
+  color: var(--rb-text-2) !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--rb-border) !important;
+  text-align: center !important;
+}
+body[data-page="rebate"] .rebate-table thead th:first-child {
+  text-align: left !important;
+  padding-left: 22px !important;
+}
+/* Drop the tier color dots — too decorative */
+body[data-page="rebate"] .rebate-table thead th::before {
+  content: none !important;
+}
+
+body[data-page="rebate"] .rebate-table tbody td {
+  padding: 16px !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  color: var(--rb-text-2) !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--rb-border-2) !important;
+  background: var(--rb-card) !important;
+  transition: background 0.12s ease !important;
+}
+body[data-page="rebate"] .rebate-table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+body[data-page="rebate"] .rebate-table tbody td:first-child {
+  text-align: left !important;
+  padding-left: 22px !important;
+  font-weight: 600 !important;
+  color: var(--rb-text) !important;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--rb-card) !important;
+  border-right: 1px solid var(--rb-border-2) !important;
+}
+body[data-page="rebate"] .rebate-table tbody tr:hover td {
+  background: #f8fafc !important;
+}
+
+/* Category icon — flat neutral chip with blue icon */
+body[data-page="rebate"] .rebate-table .cat-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  margin-right: 12px !important;
+  font-size: 13px !important;
+  vertical-align: middle !important;
+  color: var(--rb-blue) !important;
+  background: var(--rb-blue-soft) !important;
+  box-shadow: none !important;
+}
+
+/* Top tier cell — subtle blue tint, not gold */
+body[data-page="rebate"] .rebate-table .top-val {
+  color: var(--rb-blue) !important;
+  font-weight: 700 !important;
+  background: rgba(22, 119, 255, 0.04) !important;
+}
+body[data-page="rebate"] .rebate-table .top-val::before { content: none !important; }
+
+/* User's current tier — soft blue column highlight */
+body[data-page="rebate"][data-rb-tier="iron"]     .rebate-table tbody td:nth-child(2),
+body[data-page="rebate"][data-rb-tier="iron"]     .rebate-table thead th:nth-child(2),
+body[data-page="rebate"][data-rb-tier="bronze"]   .rebate-table tbody td:nth-child(3),
+body[data-page="rebate"][data-rb-tier="bronze"]   .rebate-table thead th:nth-child(3),
+body[data-page="rebate"][data-rb-tier="silver"]   .rebate-table tbody td:nth-child(4),
+body[data-page="rebate"][data-rb-tier="silver"]   .rebate-table thead th:nth-child(4),
+body[data-page="rebate"][data-rb-tier="gold"]     .rebate-table tbody td:nth-child(5),
+body[data-page="rebate"][data-rb-tier="gold"]     .rebate-table thead th:nth-child(5),
+body[data-page="rebate"][data-rb-tier="platinum"] .rebate-table tbody td:nth-child(6),
+body[data-page="rebate"][data-rb-tier="platinum"] .rebate-table thead th:nth-child(6),
+body[data-page="rebate"][data-rb-tier="diamond"]  .rebate-table tbody td:nth-child(7),
+body[data-page="rebate"][data-rb-tier="diamond"]  .rebate-table thead th:nth-child(7),
+body[data-page="rebate"][data-rb-tier="ruby"]     .rebate-table tbody td:nth-child(8),
+body[data-page="rebate"][data-rb-tier="ruby"]     .rebate-table thead th:nth-child(8),
+body[data-page="rebate"][data-rb-tier="titanium"] .rebate-table tbody td:nth-child(9),
+body[data-page="rebate"][data-rb-tier="titanium"] .rebate-table thead th:nth-child(9) {
+  background: rgba(22, 119, 255, 0.06) !important;
+  color: var(--rb-text) !important;
+}
+body[data-page="rebate"][data-rb-tier="iron"]     .rebate-table thead th:nth-child(2),
+body[data-page="rebate"][data-rb-tier="bronze"]   .rebate-table thead th:nth-child(3),
+body[data-page="rebate"][data-rb-tier="silver"]   .rebate-table thead th:nth-child(4),
+body[data-page="rebate"][data-rb-tier="gold"]     .rebate-table thead th:nth-child(5),
+body[data-page="rebate"][data-rb-tier="platinum"] .rebate-table thead th:nth-child(6),
+body[data-page="rebate"][data-rb-tier="diamond"]  .rebate-table thead th:nth-child(7),
+body[data-page="rebate"][data-rb-tier="ruby"]     .rebate-table thead th:nth-child(8),
+body[data-page="rebate"][data-rb-tier="titanium"] .rebate-table thead th:nth-child(9) {
+  color: var(--rb-blue) !important;
+  font-weight: 700 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   5.  PROVIDER REBATES
+   ════════════════════════════════════════════════════════════ */
+body[data-page="rebate"] .provider-category-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--rb-text) !important;
+  margin: 6px 0 14px !important;
+  letter-spacing: -0.005em;
+}
+body[data-page="rebate"] .provider-category-title.mt-4 {
+  margin-top: 28px !important;
+}
+body[data-page="rebate"] .provider-category-title i {
+  /* simple inline icon, no chip */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  color: var(--rb-blue) !important;
+  font-size: 15px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body[data-page="rebate"] .provider-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 14px !important;
+  margin-bottom: 24px !important;
+}
+body[data-page="rebate"] .provider-rate-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  padding: 20px 16px 16px !important;
+  background: var(--rb-card) !important;
+  border: 1px solid var(--rb-border) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) !important;
+  min-height: 130px !important;
+  overflow: hidden !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+body[data-page="rebate"] .provider-rate-card::before { content: none !important; }
+body[data-page="rebate"] .provider-rate-card:hover {
+  transform: none !important;
+  border-color: #c7d2e0 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+}
+body[data-page="rebate"] .provider-rate-card .provider-logo {
+  max-width: 130px !important;
+  max-height: 42px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+body[data-page="rebate"] .provider-rate-card .rate-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  padding: 5px 12px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  color: var(--rb-blue) !important;
+  background: var(--rb-blue-soft) !important;
+  border: 1px solid #d8e6ff !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+body[data-page="rebate"] .provider-rate-card .rate-badge::before { content: none !important; }
+
+/* ════════════════════════════════════════════════════════════
+   6.  EMPTY STATE
+   ════════════════════════════════════════════════════════════ */
+body[data-page="rebate"] .empty-history-state {
+  background: var(--rb-card) !important;
+  border: 1px solid var(--rb-border) !important;
+  border-radius: 12px !important;
+  padding: 64px 24px !important;
+  text-align: center !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) !important;
+}
+body[data-page="rebate"] .empty-icon-circle {
+  width: 64px !important;
+  height: 64px !important;
+  margin: 0 auto 16px !important;
+  background: #f1f5f9 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--rb-text-3) !important;
+  font-size: 24px !important;
+  box-shadow: none !important;
+}
+body[data-page="rebate"] .empty-history-state h3 {
+  font-family: "Inter", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--rb-text) !important;
+  margin: 0 0 6px !important;
+}
+body[data-page="rebate"] .empty-history-state p {
+  color: var(--rb-text-3) !important;
+  font-size: 13px !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+  line-height: 1.5 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   7.  RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 992px) {
+  body[data-page="rebate"] .corporate-rebate-header {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px 24px;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .corporate-claim-card {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .corporate-claim-btn {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  body[data-page="rebate"] .container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  /* Header */
+  body[data-page="rebate"] .corporate-rebate-header {
+    border-radius: 12px;
+    padding: 20px 18px;
+    margin-bottom: 16px;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .title {
+    font-size: 22px;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .subtitle {
+    font-size: 13px;
+  }
+
+  /* Stats become full-width row list */
+  body[data-page="rebate"] .corporate-rebate-header .corporate-claim-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .claim-stats-inline {
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--rb-border);
+    border-radius: 10px;
+    background: #fafbfd;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .stat-col {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 12px 14px !important;
+    border-bottom: 1px solid var(--rb-border-2);
+    gap: 12px;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .stat-col:last-child {
+    border-bottom: none;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .stat-label {
+    font-size: 12px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: var(--rb-text-2);
+  }
+  body[data-page="rebate"] .corporate-rebate-header .stat-val {
+    font-size: 15px;
+    text-align: right;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .vertical-divider {
+    display: none;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .corporate-claim-btn {
+    width: 100%;
+    padding: 12px;
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  /* Tabs */
+  body[data-page="rebate"] .rebate-tab {
+    flex: 1;
+    text-align: center;
+    padding: 11px 10px;
+    font-size: 13px;
+  }
+  body[data-page="rebate"] .rebate-tab.active::after {
+    left: 10px;
+    right: 10px;
+  }
+
+  /* Table */
+  body[data-page="rebate"] .rebate-table thead th {
+    padding: 12px 12px !important;
+    font-size: 11px !important;
+  }
+  body[data-page="rebate"] .rebate-table tbody td {
+    padding: 14px 12px !important;
+    font-size: 13px !important;
+  }
+  body[data-page="rebate"] .rebate-table tbody td:first-child {
+    padding-left: 16px !important;
+  }
+  body[data-page="rebate"] .rebate-table .cat-icon {
+    width: 26px !important;
+    height: 26px !important;
+    margin-right: 8px !important;
+  }
+
+  /* Provider cards */
+  body[data-page="rebate"] .provider-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+    gap: 10px !important;
+  }
+  body[data-page="rebate"] .provider-rate-card {
+    min-height: 120px !important;
+    padding: 16px 12px 12px !important;
+  }
+  body[data-page="rebate"] .provider-rate-card .provider-logo {
+    max-width: 110px !important;
+    max-height: 36px !important;
+  }
+
+  /* Empty state */
+  body[data-page="rebate"] .empty-history-state {
+    padding: 44px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body[data-page="rebate"] .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  body[data-page="rebate"] .corporate-rebate-header {
+    padding: 18px 14px;
+  }
+  body[data-page="rebate"] .corporate-rebate-header .title {
+    font-size: 20px;
+  }
+  body[data-page="rebate"] .provider-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  body[data-page="rebate"] .provider-rate-card {
+    min-height: 110px !important;
+    padding: 14px 10px 10px !important;
+  }
+  body[data-page="rebate"] .provider-rate-card .provider-logo {
+    max-width: 90px !important;
+    max-height: 30px !important;
+  }
+  body[data-page="rebate"] .provider-rate-card .rate-badge {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+}
+
+/* Bottom-nav safe area on mobile */
+@media (max-width: 768px) {
+  body[data-page="rebate"] {
+    padding-bottom: 72px;
+  }
+}

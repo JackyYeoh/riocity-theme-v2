@@ -8,7 +8,9 @@
     <meta name="description"
         content="A polished white-label iGaming lobby template with sports betting, live casino, slots, fishing, and reusable shared assets.">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-redesign.css">
     <link rel="stylesheet" href="css/mobile-hot-providers.css">
+    <link rel="stylesheet" href="css/home-hero.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,6 +117,408 @@
         <a href="poker.html" class="cat-card cat-card-poker">
             <img class="cat-art" src="images/cat-banner/poker-cat.png" alt="Poker">
         </a>
+    </section>
+
+    <!-- Hot Providers Section -->
+    <section class="hot-providers-section container hot-providers-mobile-look" id="homeHotProviders">
+        <div class="section-header">
+            <div class="header-left">
+                <i class="fa-solid fa-fire header-icon"></i>
+                <h2>Hot Providers</h2>
+            </div>
+            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <div class="hot-provider-showcase">
+            <div class="provider-filters">
+                <div class="filter-tabs hot-provider-side-tabs">
+                    <button class="filter-btn active" data-filter="popular"><i class="fa-solid fa-fire"></i> Popular</button>
+                    <button class="filter-btn" data-filter="casino"><i class="fa-solid fa-dice"></i> Casino</button>
+                    <button class="filter-btn" data-filter="sports"><i class="fa-solid fa-trophy"></i> Sports</button>
+                    <button class="filter-btn" data-filter="esports"><i class="fa-solid fa-headset"></i> E-Sports</button>
+                    <button class="filter-btn" data-filter="slots"><i class="fa-solid fa-gamepad"></i> Slots</button>
+                    <button class="filter-btn" data-filter="fishing"><i class="fa-solid fa-fish"></i> Fishing</button>
+                    <button class="filter-btn" data-filter="lottery"><i class="fa-solid fa-ticket"></i> Lottery</button>
+                    <button class="filter-btn" data-filter="poker"><i class="fa-solid fa-spade"></i> Poker</button>
+                </div>
+            </div>
+
+            <div class="hot-provider-panel">
+                <div class="hot-provider-panel-head">
+                    <h3 id="homeHotProviderTitle">Popular</h3>
+                </div>
+                
+                <div class="mobile-search-bar d-mobile-only">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="homeHotMobileSearch" placeholder="Search in Popular..." autocomplete="off" aria-label="Search providers in selected category">
+                </div>
+
+                <div class="hot-provider-row" id="homeProviderQuickFilters" aria-label="Provider quick filters">
+                    <button class="hot-provider-chip active" data-provider-value="all" type="button">All</button>
+                    <button class="hot-provider-chip" data-provider-value="royalslot" type="button">Royal Slot</button>
+                    <button class="hot-provider-chip" data-provider-value="xe88" type="button">XE88</button>
+                    <button class="hot-provider-chip" data-provider-value="riocity" type="button">RioCity</button>
+                    <button class="hot-provider-chip" data-provider-value="naga" type="button">Naga</button>
+                    <button class="hot-provider-chip" data-provider-value="kaya" type="button">Kaya</button>
+                    <button class="hot-provider-chip" data-provider-value="918kiss" type="button">918Kiss</button>
+                    <button class="hot-provider-chip" data-provider-value="pussy888" type="button">Pussy888</button>
+                    <button class="hot-provider-chip" data-provider-value="pragmatic" type="button">Pragmatic</button>
+                    <button class="hot-provider-chip" data-provider-value="jili" type="button">JILI</button>
+                    <button class="hot-provider-chip" data-provider-value="cq9" type="button">CQ9</button>
+                    <button class="hot-provider-chip" data-provider-value="spadegaming" type="button">Spade</button>
+                    <button class="hot-provider-chip" data-provider-value="playtech" type="button">Playtech</button>
+                    <button class="hot-provider-chip" data-provider-value="mega888" type="button">Mega888</button>
+                    <button class="hot-provider-chip" data-provider-value="joker" type="button">Joker</button>
+                    <button class="hot-provider-chip" data-provider-value="playngo" type="button">Play&apos;n GO</button>
+                    <button class="hot-provider-chip" data-provider-value="vpower" type="button">VPower</button>
+                    <button class="hot-provider-chip" data-provider-value="evo888" type="button">Evo888</button>
+                    <button class="hot-provider-chip" data-provider-value="pg" type="button">PG</button>
+                    <button class="hot-provider-chip" data-provider-value="ezugi" type="button">Ezugi</button>
+                    <button class="hot-provider-chip" data-provider-value="fbsport" type="button">FB Sport</button>
+                    <button class="hot-provider-chip" data-provider-value="cmd" type="button">CMD</button>
+                    <button class="hot-provider-chip" data-provider-value="jdb" type="button">JDB</button>
+                    <button class="hot-provider-chip" data-provider-value="fachai" type="button">FA Chai</button>
+                </div>
+
+                <div class="game-cards-grid hot-provider-grid" id="homeGamesGrid">
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="royalslot" href="slots.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Pragmatic...</span>
+                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://pksoftcdn.azureedge.net/media/royalslotgaming_slot-202601270943159503.png" alt="Royal Slot Gaming">
+                        </div>
+                        <div class="provider-details">
+                            <h4>Royal Slot Gaming</h4>
+                            <span class="provider-name">Royal Slot</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="xe88" href="sports.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
+                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://pksoftcdn.azureedge.net/media/xe88_slot-202603030743111321.png" alt="XE88">
+                        </div>
+                        <div class="provider-details">
+                            <h4>XE88</h4>
+                            <span class="provider-name">XE88</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="riocity" href="games.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
+                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://riocity-cdn.azureedge.net/riocity/1-202312201452295687%20%281%29-202404091259347153.png" alt="RioCity Provider">
+                        </div>
+                        <div class="provider-details">
+                            <h4>RioCity</h4>
+                            <span class="provider-name">RioCity</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="naga" href="fish-hunt.html">
+                        <div class="provider-thumb">
+                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
+                            <div class="mobile-card-heart d-mobile-only"><i class="fa-solid fa-heart"></i></div>
+                            <img src="https://pksoftcdn.azureedge.net/media/nagagames-202509081536239359.png" alt="Naga Games">
+                        </div>
+                        <div class="provider-details">
+                            <h4>Naga Games</h4>
+                            <span class="provider-name">Naga</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="slots" data-provider="pg" href="slots.html">
+                        <div class="provider-thumb"><img src="https://riocity-cdn.azureedge.net/riocity/pg-202401151452543063.png" alt="PG Provider"></div>
+                        <div class="provider-details">
+                            <h4>PG Provider</h4>
+                            <span class="provider-name">PG</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="kaya" href="live-casino.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_918kaya-202510310816424815.png" alt="918Kaya"></div>
+                        <div class="provider-details">
+                            <h4>918Kaya</h4>
+                            <span class="provider-name">Kaya</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="lottery" data-provider="918kiss" href="games.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_918kiss-202510131021491550.png" alt="918Kiss"></div>
+                        <div class="provider-details">
+                            <h4>918Kiss</h4>
+                            <span class="provider-name">918Kiss</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="poker" data-provider="pussy888" href="poker.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/pussy888_slot-202512051029432232.png" alt="Pussy888"></div>
+                        <div class="provider-details">
+                            <h4>Pussy888</h4>
+                            <span class="provider-name">Pussy888</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="sbo" href="sports.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/sbobet%20(1)-202411061312086718.png" alt="SBO Sports"></div>
+                        <div class="provider-details">
+                            <h4>SBO Sports</h4>
+                            <span class="provider-name">SBO</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="esports" data-provider="ia" href="sports.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/ia-e-sport-202411280954595280.png" alt="E-Sports"></div>
+                        <div class="provider-details">
+                            <h4>IA E-Sport</h4>
+                            <span class="provider-name">IA</span>
+                        </div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="fishing" data-provider="fachai" href="fish-hunt.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/fachai-202411061132262463.png" alt="FA Chai Fishing" loading="lazy"></div>
+                        <div class="provider-details">
+                            <h4>FA Chai</h4>
+                            <span class="provider-name">Fachai</span>
+                        </div>
+                    </a>
+
+                    <!-- Hot providers — extended catalog (grouped by category) -->
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="jili" href="slot-play.html?game=JILI&provider=JILI">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/jili_slot-202602271509028300.png" alt="JILI" loading="lazy"></div>
+                        <div class="provider-details"><h4>JILI</h4><span class="provider-name">JILI</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="pragmatic" href="slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/pragmatic%20play_slot-202602271506064735.png" alt="Pragmatic Play" loading="lazy"></div>
+                        <div class="provider-details"><h4>Pragmatic Play</h4><span class="provider-name">Pragmatic</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="cq9" href="slot-play.html?game=CQ9&provider=CQ9">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/cq9_slot-202602271507112539.png" alt="CQ9" loading="lazy"></div>
+                        <div class="provider-details"><h4>CQ9</h4><span class="provider-name">CQ9</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="spadegaming" href="slot-play.html?game=Spadegaming&provider=Spadegaming">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/spadegaming_slot%20(1)-202603051439084728.png" alt="Spadegaming" loading="lazy"></div>
+                        <div class="provider-details"><h4>Spadegaming</h4><span class="provider-name">Spadegaming</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="mega888" href="slot-play.html?game=Mega888&provider=Mega888">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/mega888h5_slot-202603031651594107.png" alt="Mega888" loading="lazy"></div>
+                        <div class="provider-details"><h4>Mega888</h4><span class="provider-name">Mega888</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="joker" href="slot-play.html?game=Joker&provider=Joker">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/joker_slot-202602271510496758.png" alt="Joker" loading="lazy"></div>
+                        <div class="provider-details"><h4>Joker</h4><span class="provider-name">Joker</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="playtech" href="slot-play.html?game=Playtech&provider=Playtech">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/playtech_slot%20(1)-202603051442217003.png" alt="Playtech" loading="lazy"></div>
+                        <div class="provider-details"><h4>Playtech</h4><span class="provider-name">Playtech</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="vpower" href="slot-play.html?game=VPower&provider=VPower">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/vpower_slot-202602271509251264.png" alt="VPower" loading="lazy"></div>
+                        <div class="provider-details"><h4>VPower</h4><span class="provider-name">VPower</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="evo888" href="slot-play.html?game=Evo888&provider=Evo888">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/evo888h5_slot%20(1)-202603031651151722.png" alt="Evo888" loading="lazy"></div>
+                        <div class="provider-details"><h4>Evo888</h4><span class="provider-name">Evo888</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="pegasus" href="slot-play.html?game=Pegasus&provider=Pegasus">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/pegasus_slot-202602271507504547.png" alt="Pegasus" loading="lazy"></div>
+                        <div class="provider-details"><h4>Pegasus</h4><span class="provider-name">Pegasus</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="richgaming" href="slot-play.html?game=Rich%20Gaming&provider=Rich%20Gaming">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/rich%20gaming_slot-202602271507299608.png" alt="Rich Gaming" loading="lazy"></div>
+                        <div class="provider-details"><h4>Rich Gaming</h4><span class="provider-name">Rich</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="slots" data-provider="playngo" href="slot-play.html?game=Play%27n%20GO&provider=Play%27n%20GO">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/playngo_slot%20(1)-202603091511389938.png" alt="Play&apos;n GO" loading="lazy"></div>
+                        <div class="provider-details"><h4>Play&apos;n GO</h4><span class="provider-name">Play&apos;n GO</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="slots" data-provider="pgsoft" href="slot-play.html?game=PG%20Soft&provider=PG%20Soft">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/pgsoft_slot-202602271501297201.png" alt="PG Soft" loading="lazy"></div>
+                        <div class="provider-details"><h4>PG Soft</h4><span class="provider-name">PG Soft</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="slots" data-provider="cq9" href="slot-play.html?game=CQ9&provider=CQ9">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/cq9_slot-202602271507112539.png" alt="CQ9 Slots" loading="lazy"></div>
+                        <div class="provider-details"><h4>CQ9 Slots</h4><span class="provider-name">CQ9</span></div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="ezugi" href="live-casino-play.html?game=Ezugi&provider=Ezugi">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/ezugi_live%20casino-202601301129516752.png" alt="Ezugi" loading="lazy"></div>
+                        <div class="provider-details"><h4>Ezugi</h4><span class="provider-name">Ezugi</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="gameplay" href="live-casino-play.html?game=Gameplay&provider=Gameplay">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/gameplay_live%20casino-202512051039260548.png" alt="Gameplay" loading="lazy"></div>
+                        <div class="provider-details"><h4>Gameplay</h4><span class="provider-name">Gameplay</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="kh168" href="live-casino-play.html?game=KH168%20Marbula&provider=KH168%20Marbula">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/kh168_marbula2_providericon_200x200px-202510131031035554.png" alt="KH168" loading="lazy"></div>
+                        <div class="provider-details"><h4>KH168 Marbula</h4><span class="provider-name">KH168</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="vgbet" href="live-casino-play.html?game=VeryGoodBet&provider=VeryGoodBet">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/verygoodbet-202509081530583288.png" alt="VeryGoodBet" loading="lazy"></div>
+                        <div class="provider-details"><h4>VeryGoodBet</h4><span class="provider-name">VGBet</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="wcasino" href="live-casino-play.html?game=W%20Casino&provider=W%20Casino">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_wcasino-202408150923091941.png" alt="W Casino" loading="lazy"></div>
+                        <div class="provider-details"><h4>W Casino</h4><span class="provider-name">W Casino</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="afbcasino" href="live-casino-play.html?game=AFB%20Casino&provider=AFB%20Casino">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_afbcasino-202408151024173815-202408151200286014.png" alt="AFB Casino" loading="lazy"></div>
+                        <div class="provider-details"><h4>AFB Casino</h4><span class="provider-name">AFB</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="biggaming" href="live-casino-play.html?game=Big%20Gaming&provider=Big%20Gaming">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_biggaming-202408261242185067.png" alt="Big Gaming" loading="lazy"></div>
+                        <div class="provider-details"><h4>Big Gaming</h4><span class="provider-name">Big Gaming</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="ct855" href="live-casino-play.html?game=CT855&provider=CT855">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/copy%20of%20200x200_providebanner_ct855-202409021031305995.png" alt="CT855" loading="lazy"></div>
+                        <div class="provider-details"><h4>CT855</h4><span class="provider-name">CT855</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="yeebet" href="live-casino-play.html?game=YeeBet&provider=YeeBet">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_yeebet-202411200925016921.png" alt="YeeBet" loading="lazy"></div>
+                        <div class="provider-details"><h4>YeeBet</h4><span class="provider-name">YeeBet</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="allbet" href="live-casino-play.html?game=AllBet&provider=AllBet">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_allbet-202412060921431289.png" alt="AllBet" loading="lazy"></div>
+                        <div class="provider-details"><h4>AllBet</h4><span class="provider-name">AllBet</span></div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="fbsport" href="sports-provider.html?provider=FB%20Sport">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/fbsports_sports-202601130904031723.png" alt="FB Sport" loading="lazy"></div>
+                        <div class="provider-details"><h4>FB Sport</h4><span class="provider-name">FB</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="united" href="sports-provider.html?provider=United%20Gaming">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_ug-202411150810288002.png" alt="United Gaming" loading="lazy"></div>
+                        <div class="provider-details"><h4>United Gaming</h4><span class="provider-name">UG</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="luckysport" href="sports-provider.html?provider=Lucky%20Sport">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_luckysport-202407260917076261-202408060821509512-202410241125136236.png" alt="Lucky Sport" loading="lazy"></div>
+                        <div class="provider-details"><h4>Lucky Sport</h4><span class="provider-name">Lucky</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="cmd" href="sports-provider.html?provider=CMD%20Sport">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_cmd-202408081430158831.png" alt="CMD Sport" loading="lazy"></div>
+                        <div class="provider-details"><h4>CMD Sport</h4><span class="provider-name">CMD</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="m8bet" href="sports-provider.html?provider=M8Bet">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200_providerbanner_m8bet-202410231016035133.png" alt="M8Bet" loading="lazy"></div>
+                        <div class="provider-details"><h4>M8Bet</h4><span class="provider-name">M8Bet</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="sports" data-provider="wssports" href="sports-provider.html?provider=Ws%20Sports">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_ws-sports-202412051335234986.png" alt="Ws Sports" loading="lazy"></div>
+                        <div class="provider-details"><h4>Ws Sports</h4><span class="provider-name">WS</span></div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="esports" data-provider="tfg" href="sports.html">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/ia-e-sport-202411280954595280.png" alt="E-Sports" loading="lazy"></div>
+                        <div class="provider-details"><h4>TFG E-Sport</h4><span class="provider-name">TFG</span></div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="fishing" data-provider="jdb" href="fish-hunt-play.html?game=JDB&provider=JDB">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/jdb_fishing-202602271501108576.png" alt="JDB" loading="lazy"></div>
+                        <div class="provider-details"><h4>JDB</h4><span class="provider-name">JDB</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="fishing" data-provider="cq9" href="fish-hunt-play.html?game=CQ9&provider=CQ9">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/cq9_fishing-202602271506477289.png" alt="CQ9 Fishing" loading="lazy"></div>
+                        <div class="provider-details"><h4>CQ9 Fishing</h4><span class="provider-name">CQ9</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="fishing" data-provider="spadegaming" href="fish-hunt-play.html?game=Spadegaming&provider=Spadegaming">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/spadegaming_fishing%20(1)-202603051440446354.png" alt="Spade Fishing" loading="lazy"></div>
+                        <div class="provider-details"><h4>Spade Fishing</h4><span class="provider-name">Spade</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="fishing" data-provider="jili" href="fish-hunt-play.html?game=JILI&provider=JILI">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/jili_fishing-202602271504479408.png" alt="JILI Fishing" loading="lazy"></div>
+                        <div class="provider-details"><h4>JILI Fishing</h4><span class="provider-name">JILI</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="fishing" data-provider="joker" href="fish-hunt-play.html?game=Joker&provider=Joker">
+                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/joker_fishing-202602271510197439.png" alt="Joker Fishing" loading="lazy"></div>
+                        <div class="provider-details"><h4>Joker Fishing</h4><span class="provider-name">Joker</span></div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="lottery" data-provider="netent" href="slots.html">
+                        <div class="provider-thumb"><img src="images/provider logo/netent-202410220745331179.png" alt="NetEnt" loading="lazy"></div>
+                        <div class="provider-details"><h4>NetEnt</h4><span class="provider-name">NetEnt</span></div>
+                    </a>
+                    <a class="game-item hot-provider-provider-card" data-category="lottery" data-provider="redtiger" href="slots.html">
+                        <div class="provider-thumb"><img src="images/provider logo/redtiger-202402021533126156.png" alt="Red Tiger" loading="lazy"></div>
+                        <div class="provider-details"><h4>Red Tiger</h4><span class="provider-name">Red Tiger</span></div>
+                    </a>
+
+                    <a class="game-item hot-provider-provider-card" data-category="poker" data-provider="allbetcards" href="poker.html">
+                        <div class="provider-thumb"><img src="images/provider logo/allbet-202503131406399821.png" alt="AllBet Poker" loading="lazy"></div>
+                        <div class="provider-details"><h4>AllBet Tables</h4><span class="provider-name">AllBet</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile homepage: balance card + quick links (not drawer; desktop uses sections below) -->
+    <section class="home-mobile-wallet-strip container" aria-label="Account balance and quick links">
+        <div class="hmw-stack">
+            <article class="hmw-balance-card">
+                <div class="hmw-balance-top">
+                    <div class="hmw-wallet-icon" aria-hidden="true"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="hmw-balance-main">
+                        <div class="hmw-balance-label-row">
+                            <span class="hmw-label">Total Balance</span>
+                            <button type="button" class="hmw-eye-btn" id="hmwBalanceToggle" aria-label="Toggle balance visibility" aria-pressed="false">
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <p class="hmw-amount" id="hmwBalanceDisplay">
+                            <span class="hmw-currency">MYR</span>
+                            <span class="hmw-value" data-balance="0.00">0.00</span>
+                        </p>
+                    </div>
+                    <a href="account-details.html#financeSection" class="hmw-wallet-pill">Wallet <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="hmw-stats-row">
+                    <div class="hmw-stat">
+                        <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+                        <span class="hmw-stat-label">Tickets</span>
+                        <span class="hmw-stat-val">0</span>
+                    </div>
+                    <div class="hmw-stat">
+                        <i class="fa-solid fa-gift" aria-hidden="true"></i>
+                        <span class="hmw-stat-label">Bonus</span>
+                        <span class="hmw-stat-val">MYR 0.00</span>
+                    </div>
+                    <div class="hmw-stat">
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <span class="hmw-stat-label">Rewards</span>
+                        <span class="hmw-stat-val">0 pts</span>
+                    </div>
+                </div>
+                <button type="button" class="hmw-daily-checkin" onclick="openBonusModal('dailyCheckinModal');">
+                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                    <span>Daily Check-in</span>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </article>
+            <nav class="hmw-quick-links" aria-label="Quick links">
+                <a href="javascript:void(0)" class="hmw-ql-item" onclick="openBonusModal('spinWheelModal');" role="button">
+                    <span class="hmw-ql-icon"><i class="fa-solid fa-dharmachakra" aria-hidden="true"></i></span>
+                    <span class="hmw-ql-text">Spin &amp; Win</span>
+                </a>
+                <a href="javascript:void(0)" class="hmw-ql-item" onclick="openBonusModal('voucherScratchModal');" role="button">
+                    <span class="hmw-ql-icon"><i class="fa-solid fa-ticket" aria-hidden="true"></i></span>
+                    <span class="hmw-ql-text">Voucher</span>
+                </a>
+                <a href="javascript:void(0)" class="hmw-ql-item" onclick="openBonusModal('prizeBoxModal');" role="button">
+                    <span class="hmw-ql-icon"><i class="fa-solid fa-gift" aria-hidden="true"></i></span>
+                    <span class="hmw-ql-text">Free Box</span>
+                </a>
+                <a href="vip.html" class="hmw-ql-item">
+                    <span class="hmw-ql-icon"><i class="fa-solid fa-crown" aria-hidden="true"></i></span>
+                    <span class="hmw-ql-text">VIP</span>
+                </a>
+                <a href="promotions.html" class="hmw-ql-item">
+                    <span class="hmw-ql-icon"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i></span>
+                    <span class="hmw-ql-text">Promotions</span>
+                </a>
+            </nav>
+        </div>
     </section>
 
     <!-- Daily Check-In banner -->
@@ -366,134 +770,6 @@
         </div>
     </section>
 
-    <!-- Hot Providers Section -->
-    <section class="hot-providers-section container hot-providers-mobile-look" id="homeHotProviders">
-        <div class="section-header">
-            <div class="header-left">
-                <i class="fa-solid fa-fire header-icon"></i>
-                <h2>Hot Providers</h2>
-            </div>
-            <a href="#" class="btn-see-all">See All <i class="fa-solid fa-chevron-right"></i></a>
-        </div>
-
-        <div class="hot-provider-showcase">
-            <div class="provider-filters">
-                <div class="filter-tabs hot-provider-side-tabs">
-                    <button class="filter-btn active" data-filter="popular"><i class="fa-solid fa-fire"></i> Popular</button>
-                    <button class="filter-btn" data-filter="casino"><i class="fa-solid fa-dice"></i> Casino</button>
-                    <button class="filter-btn" data-filter="sports"><i class="fa-solid fa-trophy"></i> Sports</button>
-                    <button class="filter-btn" data-filter="esports"><i class="fa-solid fa-headset"></i> E-Sports</button>
-                    <button class="filter-btn" data-filter="slots"><i class="fa-solid fa-gamepad"></i> Slots</button>
-                    <button class="filter-btn" data-filter="fishing"><i class="fa-solid fa-fish"></i> Fishing</button>
-                    <button class="filter-btn" data-filter="lottery"><i class="fa-solid fa-ticket"></i> Lottery</button>
-                    <button class="filter-btn" data-filter="poker"><i class="fa-solid fa-spade"></i> Poker</button>
-                </div>
-            </div>
-
-            <div class="hot-provider-panel">
-                <div class="hot-provider-panel-head">
-                    <h3 id="homeHotProviderTitle">Popular</h3>
-                </div>
-                
-                <div class="mobile-search-bar d-mobile-only">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search in Popular...">
-                </div>
-
-                <div class="hot-provider-row" id="homeProviderQuickFilters" aria-label="Popular providers">
-                    <button class="hot-provider-chip active" data-provider-value="all" type="button">All</button>
-                    <button class="hot-provider-chip" data-provider-value="royalslot" type="button">Royal Slot</button>
-                    <button class="hot-provider-chip" data-provider-value="xe88" type="button">XE88</button>
-                    <button class="hot-provider-chip" data-provider-value="naga" type="button">Naga</button>
-                    <button class="hot-provider-chip" data-provider-value="kaya" type="button">Kaya</button>
-                    <button class="hot-provider-chip" data-provider-value="918kiss" type="button">918Kiss</button>
-                    <button class="hot-provider-chip" data-provider-value="pussy888" type="button">Pussy888</button>
-                </div>
-
-                <div class="game-cards-grid hot-provider-grid" id="homeGamesGrid">
-                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="royalslot" href="slots.html">
-                        <div class="provider-thumb">
-                            <span class="mobile-card-badge d-mobile-only">Pragmatic...</span>
-                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
-                            <img src="https://pksoftcdn.azureedge.net/media/royalslotgaming_slot-202601270943159503.png" alt="Royal Slot Gaming">
-                        </div>
-                        <div class="provider-details">
-                            <h4>Royal Slot Gaming</h4>
-                            <span class="provider-name">Royal Slot</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="xe88" href="sports.html">
-                        <div class="provider-thumb">
-                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
-                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
-                            <img src="https://pksoftcdn.azureedge.net/media/xe88_slot-202603030743111321.png" alt="XE88">
-                        </div>
-                        <div class="provider-details">
-                            <h4>XE88</h4>
-                            <span class="provider-name">XE88</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="riocity" href="games.html">
-                        <div class="provider-thumb">
-                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
-                            <div class="mobile-card-heart active d-mobile-only"><i class="fa-solid fa-heart"></i></div>
-                            <img src="https://riocity-cdn.azureedge.net/riocity/1-202312201452295687%20%281%29-202404091259347153.png" alt="RioCity Provider">
-                        </div>
-                        <div class="provider-details">
-                            <h4>RioCity</h4>
-                            <span class="provider-name">RioCity</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="popular" data-provider="naga" href="fish-hunt.html">
-                        <div class="provider-thumb">
-                            <span class="mobile-card-badge d-mobile-only">Live Casino</span>
-                            <div class="mobile-card-heart d-mobile-only"><i class="fa-solid fa-heart"></i></div>
-                            <img src="https://pksoftcdn.azureedge.net/media/nagagames-202509081536239359.png" alt="Naga Games">
-                        </div>
-                        <div class="provider-details">
-                            <h4>Naga Games</h4>
-                            <span class="provider-name">Naga</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="slots" data-provider="pg" href="slots.html">
-                        <div class="provider-thumb"><img src="https://riocity-cdn.azureedge.net/riocity/pg-202401151452543063.png" alt="PG Provider"></div>
-                        <div class="provider-details">
-                            <h4>PG Provider</h4>
-                            <span class="provider-name">PG</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="casino" data-provider="kaya" href="live-casino.html">
-                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_918kaya-202510310816424815.png" alt="918Kaya"></div>
-                        <div class="provider-details">
-                            <h4>918Kaya</h4>
-                            <span class="provider-name">Kaya</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="lottery" data-provider="918kiss" href="games.html">
-                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/200x200px_provider_icon_918kiss-202510131021491550.png" alt="918Kiss"></div>
-                        <div class="provider-details">
-                            <h4>918Kiss</h4>
-                            <span class="provider-name">918Kiss</span>
-                        </div>
-                    </a>
-
-                    <a class="game-item hot-provider-provider-card" data-category="poker" data-provider="pussy888" href="poker.html">
-                        <div class="provider-thumb"><img src="https://pksoftcdn.azureedge.net/media/pussy888_slot-202512051029432232.png" alt="Pussy888"></div>
-                        <div class="provider-details">
-                            <h4>Pussy888</h4>
-                            <span class="provider-name">Pussy888</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Recent Payout Gallery (Inspired Design) -->
     <section class="big-wins-section container">
@@ -1025,7 +1301,7 @@
         <div class="bonus-modal dc-modal">
             <div class="bonus-modal-header dc-modal-header">
                 <div class="dc-modal-title-wrap">
-                    <span class="dc-modal-icon"><i class="fa-solid fa-calendar-check"></i></span>
+                    <span class="dc-modal-icon"><i class="fa-solid fa-square-check"></i></span>
                     <h3 class="bonus-modal-title dc-modal-title" id="dailyCheckinTitle">Daily Check-In</h3>
                 </div>
                 <button class="bonus-modal-close" type="button" onclick="closeBonusModal('dailyCheckinModal')" aria-label="Close">
@@ -1559,7 +1835,7 @@
     </footer>
 
     <script src="js/header.js?v=1.0.5"></script>
-    <script src="js/main.js?v=1.0.9"></script>
+    <script src="js/main.js?v=1.0.10"></script>
 </body>
 
 </html>

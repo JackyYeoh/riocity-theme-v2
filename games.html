@@ -4,130 +4,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recent Games - RioCity</title>
+    <title>GM88 - Recent Games</title>
+    <meta name="description" content="Your recently played games — pick up where you left off.">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/header-redesign.css">
+    <link rel="stylesheet" href="css/game-lobby.css">
+    <link rel="stylesheet" href="css/recent-games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="light-theme" data-page="games">
-    <!-- Header Placeholder -->
+
     <div id="site-header"></div>
 
-    <main class="recent-games-page-main">
-        <div class="container--banner-edge">
-            <!-- Breadcrumb Path -->
-            <div class="breadcrumb-nav-corporate">
-                <a href="index.html">Main Lobby</a>
-                <i class="fa-solid fa-angle-right"></i>
-                <span>Recent Activity</span>
+    <div class="glc-page">
+        <div class="container">
+
+            <!-- ── Filter Tabs ── -->
+            <div class="glc-filter-bar" id="recentCategoryTabs">
+                <button class="tab-pill glc-filter-btn active" data-filter="all">
+                    <i class="fa-solid fa-grip"></i> All
+                </button>
+                <button class="tab-pill glc-filter-btn" data-filter="slots">
+                    <i class="fa-solid fa-table-cells"></i> Slots
+                </button>
+                <button class="tab-pill glc-filter-btn" data-filter="live-casino">
+                    <i class="fa-solid fa-circle-dot"></i> Live
+                </button>
+                <button class="tab-pill glc-filter-btn" data-filter="jackpot">
+                    <i class="fa-solid fa-gem"></i> Jackpot
+                </button>
             </div>
 
-            <!-- Original Corporate Header Section -->
-            <div class="account-header-box" id="recentStatsBar">
-                <div class="account-header-top">
-                    <div class="account-title-group">
-                        <h1 id="mainTitle">Recent Activity</h1>
-                        <p id="mainSubtitle">Overview of your most recently played games and sessions</p>
-                    </div>
+            <!-- ── Toolbar ── -->
+            <div class="glc-toolbar recent-toolbar">
 
-                    <div class="header-stats-corporate">
-                        <div class="corp-stat-item">
-                            <span class="corp-stat-label">Total Titles</span>
-                            <span class="corp-stat-value" id="statTotalGames">0</span>
-                        </div>
-                        <div class="corp-stat-item">
-                            <span class="corp-stat-label">Top Favorite</span>
-                            <span class="corp-stat-value" id="statMostPlayed">--</span>
-                        </div>
-                        <div class="corp-stat-item">
-                            <span class="corp-stat-label">Last Played</span>
-                            <span class="corp-stat-value" id="statLastSession">--</span>
-                        </div>
-                    </div>
+                <!-- Search -->
+                <div class="glc-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="recentGamesSearch" placeholder="Search games..." autocomplete="off">
                 </div>
 
-                <!-- Unified Action Bar -->
-                <div class="recent-action-bar">
-                    <!-- Left: Category Tabs as Segmented Control -->
-                    <div class="tab-pill-group" id="recentCategoryTabs">
-                        <button class="tab-pill active" data-filter="all"><i class="fa-solid fa-border-all"></i> All</button>
-                        <button class="tab-pill" data-filter="slots"><i class="fa-solid fa-table-cells"></i> Slots</button>
-                        <button class="tab-pill" data-filter="live-casino"><i class="fa-solid fa-dice"></i> Live</button>
-                        <button class="tab-pill" data-filter="jackpot"><i class="fa-solid fa-trophy"></i> Jackpot</button>
-                    </div>
+                <!-- Time Filter -->
+                <div class="recent-select-wrap">
+                    <i class="fa-regular fa-calendar"></i>
+                    <select id="recentTimeFilter">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
 
-                    <!-- Right: Search, Filter, Actions -->
-                    <div class="header-actions-group">
-                        <!-- Provider Filter -->
-                        <div class="provider-select-group">
-                            <select id="recentProviderFilter" class="provider-select-minimal">
-                                <option value="all">All Providers</option>
-                                <option value="Pragmatic Play">Pragmatic Play</option>
-                                <option value="Evolution">Evolution</option>
-                                <option value="SpadeGaming">SpadeGaming</option>
-                                <option value="JILI">JILI</option>
-                            </select>
-                        </div>
+                <!-- Sort -->
+                <div class="recent-select-wrap">
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    <select id="recentSortFilter">
+                        <option value="lastPlayed">Last Played</option>
+                        <option value="mostPlayed">Most Played</option>
+                        <option value="az">A – Z</option>
+                    </select>
+                </div>
 
-                        <!-- Search Field -->
-                        <div class="search-field-wrapper">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" id="recentGamesSearch" placeholder="Search activity...">
-                        </div>
-                        
-                        <!-- Clear History -->
-                        <button type="button" class="btn-clear-minimal" id="recentClearBtn"
-                            title="Clear all history" aria-label="Clear all recent activity">
-                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                <!-- View Toggle -->
+                <div class="recent-view-toggle">
+                    <button class="recent-view-btn active" id="recentViewGrid" title="Grid view">
+                        <i class="fa-solid fa-border-all"></i>
+                    </button>
+                    <button class="recent-view-btn" id="recentViewList" title="List view">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+                </div>
+
+                <!-- Clear History -->
+                <button class="recent-clear-btn" id="recentClearBtn" title="Clear history">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+            <!-- ── Stats Row (shown by JS when games exist) ── -->
+            <div class="recent-stats-row" id="recentStatsBar" style="display:none;">
+                <div class="recent-stat-chip">
+                    <span class="recent-stat-label">Total Games</span>
+                    <span class="recent-stat-val" id="statTotalGames">0</span>
+                </div>
+                <div class="recent-stat-chip">
+                    <span class="recent-stat-label">Top Favorite</span>
+                    <span class="recent-stat-val" id="statMostPlayed">--</span>
+                </div>
+                <div class="recent-stat-chip">
+                    <span class="recent-stat-label">Last Played</span>
+                    <span class="recent-stat-val" id="statLastSession">--</span>
                 </div>
             </div>
-        </div>
 
-        <!-- Main Grid Section -->
-        <div class="recent-records-wrapper">
+            <!-- ── Games Grid ── -->
             <div class="recent-games-grid" id="recentGamesGrid">
-                <!-- Cards rendered by initRecentGamesPage() -->
+                <!-- Cards injected by game-pages.js / initRecentGamesPage() -->
             </div>
 
-            <!-- Empty State Corporate -->
-            <div class="empty-state-corporate" id="recentEmptyState" style="display:none;">
-                <div class="empty-icon-box">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                </div>
-                <h3>No recent activity found</h3>
-                <p>Start playing your favorite titles to see your history and stats here.</p>
-                <a href="index.html" class="btn btn-corporate-primary">Explore Lobby</a>
+            <!-- ── Empty State ── -->
+            <div class="recent-empty-state" id="recentEmptyState" style="display:none;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <h3>No recent games yet</h3>
+                <p>Start playing your favourite titles — they'll appear here so you can pick up right where you left off.</p>
+                <a href="index.html" class="glc-enter-btn" style="display:inline-flex; padding:12px 28px; font-size:14px; margin-top:4px;">
+                    <i class="fa-solid fa-gamepad"></i>&nbsp; Explore Games
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── Clear History Confirm Modal ── -->
+    <div class="recent-confirm-overlay" id="recentConfirmOverlay">
+        <div class="recent-confirm-modal">
+            <div class="recent-confirm-icon">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <h3>Clear History?</h3>
+            <p>This will permanently remove all your recent game records. This action cannot be undone.</p>
+            <div class="recent-confirm-actions">
+                <button class="recent-btn-cancel" id="recentConfirmCancel">Cancel</button>
+                <button class="recent-btn-danger" id="recentConfirmDelete">Clear Records</button>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Backdrop (Fixed Version) -->
-        <div class="modal-backdrop-fixed" id="recentConfirmOverlay">
-            <div class="modal-card-corporate">
-                <div class="modal-title-row">
-                    <i class="fas fa-exclamation-circle text-warning"></i>
-                    <h3>Clear Activity History?</h3>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h4>SITE MAPS</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Responsible Gaming</a></li>
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms &amp; Condition</a></li>
+                    </ul>
+                    <div class="footer-logo-main"><img src="images/GM88.png" alt="GM88 Logo"></div>
                 </div>
-                <p>Are you sure you want to permanently remove your recent game records? This action cannot be
-                    undone.</p>
-                <div class="modal-actions-corporate">
-                    <button class="btn btn-corporate-ghost" id="recentConfirmCancel">Cancel</button>
-                    <button class="btn btn-corporate-danger" id="recentConfirmDelete">Clear Records</button>
+                <div class="footer-col">
+                    <h4>LICENCE</h4>
+                    <div class="license-grid">
+                        <div class="license-img"><span>EGBA</span></div>
+                        <div class="license-img"><span>18+</span></div>
+                        <div class="license-img"><span>eCOGRA</span></div>
+                        <div class="license-img"><span>MGA</span></div>
+                        <div class="license-img"><span>GAMCARE</span></div>
+                        <div class="license-img"><span>RGA</span></div>
+                    </div>
+                </div>
+                <div class="footer-col footer-providers">
+                    <h4>PROVIDERS</h4>
+                    <div class="providers-slider-container">
+                        <div class="logos-slider-track">
+                            <div class="logos-slider-page">
+                                <img src="images/provider logo/sbobet (1)-202411061312086718.png" alt="SBOBET">
+                                <img src="images/provider logo/pragmaticplay_bk.png" alt="PRAGMATIC">
+                                <img src="images/provider logo/enlogo2-202504210819440598.png" alt="EVOLUTION">
+                                <img src="images/provider logo/pgsoft.png" alt="PG SOFT">
+                                <img src="images/provider logo/JILI.png" alt="JILI">
+                                <img src="images/provider logo/spadegaming-202412121054336747.png" alt="SPADE">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+        <div class="copyright">
+            <div class="container">
+                <p>COPYRIGHT &copy; GM88 2021. ALL RIGHTS RESERVED - Redesigned 2026</p>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Footer Placeholder -->
-    <div id="site-footer"></div>
-
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
     <script src="js/header.js"></script>
-    <script src="js/game-pages.js"></script>
-</body>
+    <script src="js/main.js"></script>
 
+    <!-- ── Demo seed: pre-populate recent games with real data ── -->
+    <script>
+    (function seedRecentGames() {
+        var KEY = 'recentGames';
+        // Always refresh seed so URL fixes take effect
+        var existing = [];
+        try { existing = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) {}
+        // Re-seed if data looks like old seed (images might be stale)
+        var needsSeed = existing.length === 0 || existing.some(function(g){ return !g.image || g.image === ''; });
+        if (!needsSeed) return;
+
+        var CDN = 'https://pksoftcdn.azureedge.net/media/';
+        var now = Date.now();
+        var min = 60000, day = 86400000;
+
+        var games = [
+            { name: 'V8 Poker',      image: CDN+'v8poker_poker-202601191517288267.png',                                                                                              provider: 'V8 Poker',       category: 'slots',       tag: 'HOT',     playUrl: 'poker-play.html?game=V8%20Poker&provider=V8%20Poker',           lastPlayed: now-27*min, playCount: 16 },
+            { name: 'JILI',          image: CDN+'jili_slot-202602271509028300.png',                                                                                                  provider: 'JILI',           category: 'slots',       tag: 'NEW',     playUrl: 'slot-play.html?game=JILI&provider=JILI',                        lastPlayed: now-1*day,  playCount: 3  },
+            { name: 'Pegasus',       image: CDN+'pegasus_slot-202602271507504547.png',                                                                                               provider: 'Pegasus',        category: 'slots',       tag: 'HOT',     playUrl: 'slot-play.html?game=Pegasus&provider=Pegasus',                  lastPlayed: now-4*day,  playCount: 15 },
+            { name: 'W Casino',      image: CDN+'200x200_providerbanner_wcasino-202408150923091941.png',                                                                             provider: 'W Casino',       category: 'live-casino', tag: 'NEW',     playUrl: 'live-casino-play.html?game=W%20Casino&provider=W%20Casino',     lastPlayed: now-4*day,  playCount: 2  },
+            { name: 'Lucky Sport',   image: CDN+'200x200_providerbanner_luckysport-202407260917076261-202408060821509512-202410241125136236.png',                                    provider: 'Lucky Sport',    category: 'sports',      tag: '',        playUrl: 'sports.html',                                                   lastPlayed: now-4*day,  playCount: 2  },
+            { name: 'KH168 Marbula', image: CDN+'kh168_marbula2_providericon_200x200px-202510131031035554.png',                                                                     provider: 'KH168 Marbula',  category: 'live-casino', tag: 'HOT',     playUrl: 'live-casino-play.html?game=KH168%20Marbula&provider=KH168',     lastPlayed: now-5*day,  playCount: 1  },
+            { name: "Play'n GO",     image: CDN+'playngo_slot%20(1)-202603091511389938.png',                                                                                        provider: "Play'n GO",      category: 'slots',       tag: 'JACKPOT', playUrl: "slot-play.html?game=Play%27n%20GO&provider=Play%27n%20GO",      lastPlayed: now-5*day,  playCount: 2  },
+            { name: 'FB Sport',      image: CDN+'fbsports_sports-202601130904031723.png',                                                                                            provider: 'FB Sport',       category: 'sports',      tag: 'HOT',     playUrl: 'sports.html',                                                   lastPlayed: now-5*day,  playCount: 31 },
+            { name: 'Evo888',        image: CDN+'evo888h5_slot%20(1)-202603031651151722.png',                                                                                       provider: 'Evo888',         category: 'slots',       tag: 'NEW',     playUrl: 'slot-play.html?game=Evo888&provider=Evo888',                    lastPlayed: now-6*day,  playCount: 1  },
+            { name: 'CQ9',           image: CDN+'cq9_slot-202602271507112539.png',                                                                                                  provider: 'CQ9',            category: 'slots',       tag: 'JACKPOT', playUrl: 'slot-play.html?game=CQ9&provider=CQ9',                          lastPlayed: now-6*day,  playCount: 11 },
+            { name: 'United Gaming', image: CDN+'200x200_providerbanner_ug-202411150810288002.png',                                                                                  provider: 'United Gaming',  category: 'sports',      tag: 'HOT',     playUrl: 'sports.html',                                                   lastPlayed: now-6*day,  playCount: 11 },
+            { name: 'Rich Gaming',   image: CDN+'rich%20gaming_slot-202602271507299608.png',                                                                                         provider: 'Rich Gaming',    category: 'slots',       tag: 'HOT',     playUrl: 'slot-play.html?game=Rich%20Gaming&provider=Rich%20Gaming',      lastPlayed: now-6*day,  playCount: 42 },
+            { name: 'CMD Sport',     image: CDN+'200x200_providerbanner_cmd-202408081430158831.png',                                                                                 provider: 'CMD Sport',      category: 'sports',      tag: 'JACKPOT', playUrl: 'sports.html',                                                   lastPlayed: now-6*day,  playCount: 23 },
+            { name: 'Ws Sports',     image: CDN+'200x200px_provider_icon_ws-sports-202412051335234986.png',                                                                          provider: 'Ws Sports',      category: 'sports',      tag: 'JACKPOT', playUrl: 'sports.html',                                                   lastPlayed: now-6*day,  playCount: 23 },
+            { name: 'Happy Farm',    image: CDN+'jili_fishing-202602271504479408.png',                                                                                               provider: 'JILI',           category: 'fishhunt',    tag: 'NEW',     playUrl: 'fish-hunt.html',                                                lastPlayed: now-7*day,  playCount: 4  },
+            { name: 'Captain Hook',  image: CDN+'spadegaming_fishing%20(1)-202603051440446354.png',                                                                                 provider: 'Spadegaming',    category: 'fishhunt',    tag: 'HOT',     playUrl: 'fish-hunt.html',                                                lastPlayed: now-14*day, playCount: 4  },
+            { name: 'Atom War',      image: CDN+'fachai-202411061132262463.png',                                                                                                     provider: 'Gameplay',       category: 'slots',       tag: 'HOT',     playUrl: 'slot-play.html?game=Atom%20War&provider=Gameplay',              lastPlayed: now-77*day, playCount: 7  },
+            { name: 'Dragon Tiger',  image: CDN+'cq9_fishing-202602271506477289.png',                                                                                                provider: 'CQ9',            category: 'live-casino', tag: 'JACKPOT', playUrl: 'live-casino-play.html?game=Dragon%20Tiger&provider=CQ9',        lastPlayed: now-79*day, playCount: 4  },
+            { name: 'Pragmatic Play',image: CDN+'pragmatic%20play_slot-202602271506064735.png',                                                                                      provider: 'Pragmatic Play', category: 'slots',       tag: 'HOT',     playUrl: 'slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play', lastPlayed: now-80*day, playCount: 2  },
+            { name: 'Spadegaming',   image: CDN+'spadegaming_slot%20(1)-202603051439084728.png',                                                                                    provider: 'Spadegaming',    category: 'slots',       tag: 'HOT',     playUrl: 'slot-play.html?game=Spadegaming&provider=Spadegaming',          lastPlayed: now-80*day, playCount: 2  },
+            { name: 'PG Soft',       image: CDN+'pgsoft_slot-202602271501297201.png',                                                                                                provider: 'PG Soft',        category: 'slots',       tag: 'NEW',     playUrl: 'slot-play.html?game=PG%20Soft&provider=PG%20Soft',              lastPlayed: now-80*day, playCount: 4  },
+            { name: 'Joker',         image: CDN+'joker_slot-202602271510496758.png',                                                                                                 provider: 'Joker',          category: 'slots',       tag: 'HOT',     playUrl: 'slot-play.html?game=Joker&provider=Joker',                      lastPlayed: now-80*day, playCount: 4  },
+            { name: 'Playtech',      image: CDN+'playtech_slot%20(1)-202603051442217003.png',                                                                                        provider: 'Playtech',       category: 'slots',       tag: '',        playUrl: 'slot-play.html?game=Playtech&provider=Playtech',                lastPlayed: now-83*day, playCount: 7  },
+            { name: 'VPower',        image: CDN+'vpower_slot-202602271509251264.png',                                                                                                provider: 'VPower',         category: 'slots',       tag: 'NEW',     playUrl: 'slot-play.html?game=VPower&provider=VPower',                    lastPlayed: now-83*day, playCount: 4  },
+        ];
+
+        var rtpBase = [97.21,98.13,98.21,96.92,97.41,98.68,97.56,96.06,98.42,98.91,98.33,96.91,96.23,98.65,96.23,97.98,96.84,97.32,96.33,96.84,98.34,97.45,96.84,97.65];
+        games.forEach(function(g, i) { g.rtp = (rtpBase[i] || 97.0).toFixed(2) + '%'; });
+
+        try { localStorage.setItem(KEY, JSON.stringify(games)); } catch(e) {}
+    })();
+    </script>
+
+    <script src="js/game-pages.js"></script>
+    <script>
+    (function () {
+        // ── View toggle: grid ↔ list ──
+        var gridBtn = document.getElementById('recentViewGrid');
+        var listBtn = document.getElementById('recentViewList');
+        var grid    = document.getElementById('recentGamesGrid');
+
+        if (gridBtn && listBtn && grid) {
+            gridBtn.addEventListener('click', function () {
+                gridBtn.classList.add('active');
+                listBtn.classList.remove('active');
+                grid.classList.remove('recent-list-view');
+            });
+            listBtn.addEventListener('click', function () {
+                listBtn.classList.add('active');
+                gridBtn.classList.remove('active');
+                grid.classList.add('recent-list-view');
+            });
+        }
+
+        // ── Sync glc-filter-btn active class with tab-pill ──
+        // (game-pages.js toggles .active on .tab-pill; keep .glc-filter-btn in sync visually)
+        document.querySelectorAll('#recentCategoryTabs .tab-pill').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('#recentCategoryTabs .tab-pill').forEach(function (b) {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+            });
+        });
+    })();
+    </script>
+
+</body>
 </html>

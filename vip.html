@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIP Club - GM88</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="css/header-redesign.css">
+    <link rel="stylesheet" href="css/vip-fancy.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -20,155 +18,217 @@
 
     <div id="site-header"></div>
 
-    <section class="sp-section vip-page-main">
-        <div class="vip-hero" role="region" aria-label="VIP tier status">
-            <div class="vip-hero__bg" aria-hidden="true"></div>
-            <div class="vip-hero__rewards" aria-label="VIP rewards">
-                <a href="promotions.html" class="vip-hero__reward-btn" title="Promotions"><i class="fa-solid fa-gift" aria-hidden="true"></i></a>
-                <a href="promotions.html" class="vip-hero__reward-btn" title="Promotions"><i class="fa-solid fa-gift" aria-hidden="true"></i></a>
-                <a href="promotions.html" class="vip-hero__reward-btn" title="Promotions"><i class="fa-solid fa-gift" aria-hidden="true"></i></a>
-            </div>
-            <div class="vip-hero__panel">
-                <div class="vip-hero__crest">
-                    <span class="vip-hero__crest-label" id="vipHeroRankLabel">01</span>
-                    <div class="vip-hero__crest-badge">
-                        <span class="vip-hero__crest-shield" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
-                        <span class="vip-hero__crest-rank" id="vipHeroRank">01</span>
-                    </div>
-                </div>
-                <h2 class="vip-hero__tier-title" id="vipHeroTierTitle">NORMAL</h2>
-                <p class="vip-hero__line">Your VIP Status: <strong id="vipStatusLineTier">Normal Tier</strong>.</p>
-                <p class="vip-hero__line vip-hero__line--progress">Progress To Next Tier: <strong id="vipProgressPercent">10%</strong></p>
-                <div class="vip-hero__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10" id="vipProgressBar">
-                    <div class="vip-hero__fill" id="vipProgressFill"></div>
-                </div>
-                <p class="vip-hero__note" id="vipProgressNote">Unlock Bronze to access withdrawals and rescue bonuses.</p>
-                <p class="vip-sr-only">Next tier: <span id="vipNextUnlock">Bronze</span></p>
-            </div>
-        </div>
-
+    <section class="vip-page-main">
         <div class="container">
-            <div class="vip-level-selector-wrap">
-                <div class="vip-level-selector" id="vipLevelSelector">
-                    <button class="vip-level-btn active" data-level="normal" data-rank="01" type="button">
-                        <span class="vip-level-rank">01</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/normal mixed bronze 256x256-202603141738357612.png" alt="Normal">
-                            <span class="vip-level-medal-shine"></span>
+
+            <!-- ══════════════════════════════════════
+                 FULL-WIDTH HERO
+            ══════════════════════════════════════ -->
+            <div class="vip-hero-card">
+
+                <!-- Full-bleed background image -->
+                <img src="images/VIP/vip-hero-bg.jpg" alt="" class="vip-hero-bg-img" aria-hidden="true" onerror="this.style.display='none'">
+                <!-- Dark overlay so left text stays readable -->
+                <div class="vip-hero-overlay" aria-hidden="true"></div>
+
+                <div class="vip-hero-left">
+                    <span class="vip-hero-rank-num" id="vipHeroRankLabel">01</span>
+                    <span class="vip-hero-cur-label">YOUR CURRENT TIER</span>
+                    <div class="vip-hero-badge-row">
+                        <span class="vip-hero-shield-stack" aria-hidden="true">
+                            <i class="fa-solid fa-shield vip-hero-shield-bg"></i>
+                            <i class="fa-solid fa-crown vip-hero-shield-crown"></i>
                         </span>
-                        <span class="vip-level-name">Normal</span>
-                    </button>
-                    <button class="vip-level-btn" data-level="bronze" data-rank="02" type="button">
-                        <span class="vip-level-rank">02</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/bronze 256x256-202603141738357706.png" alt="Bronze">
-                            <span class="vip-level-medal-shine"></span>
-                        </span>
-                        <span class="vip-level-name">Bronze</span>
-                    </button>
-                    <button class="vip-level-btn" data-level="silver" data-rank="03" type="button">
-                        <span class="vip-level-rank">03</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/silver 256x256 (2)-202603141738357756.png" alt="Silver">
-                            <span class="vip-level-medal-shine"></span>
-                        </span>
-                        <span class="vip-level-name">Silver</span>
-                    </button>
-                    <button class="vip-level-btn" data-level="gold" data-rank="04" type="button">
-                        <span class="vip-level-rank">04</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/gold 256x256-202603141738357603.png" alt="Gold">
-                            <span class="vip-level-medal-shine"></span>
-                        </span>
-                        <span class="vip-level-name">Gold</span>
-                    </button>
-                    <button class="vip-level-btn" data-level="platinum" data-rank="05" type="button">
-                        <span class="vip-level-rank">05</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/platinum 256x256-202603141738357487.png" alt="Platinum">
-                            <span class="vip-level-medal-shine"></span>
-                        </span>
-                        <span class="vip-level-name">Platinum</span>
-                    </button>
-                    <button class="vip-level-btn" data-level="diamond" data-rank="06" type="button">
-                        <span class="vip-level-rank">06</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/diamond 256x256-202603141738357681.png" alt="Diamond">
-                            <span class="vip-level-medal-shine"></span>
-                        </span>
-                        <span class="vip-level-name">Diamond</span>
-                    </button>
-                    <button class="vip-level-btn" data-level="ruby" data-rank="07" type="button">
-                        <span class="vip-level-rank">07</span>
-                        <span class="vip-level-medal">
-                            <span class="vip-level-medal-ring"></span>
-                            <img src="https://pksoftcdn.azureedge.net/media/ruby 256x256-202603141738357566.png" alt="Ruby">
-                            <span class="vip-level-medal-shine"></span>
-                        </span>
-                        <span class="vip-level-name">Ruby</span>
-                    </button>
+                        <h2 class="vip-hero-tier-name" id="vipHeroTierTitle">NORMAL</h2>
+                    </div>
+                    <p class="vip-hero-status">Your VIP Status: <strong id="vipStatusLineTier">Normal Tier</strong>.</p>
+                    <p class="vip-hero-progress-txt">Progress To Next Tier: <strong id="vipProgressPercent">10%</strong></p>
+                    <div class="vip-hero-track" id="vipProgressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
+                        <div class="vip-hero-fill" id="vipProgressFill"></div>
+                    </div>
+                    <p class="vip-hero-note" id="vipProgressNote">
+                        <i class="fa-solid fa-lock"></i>
+                        Unlock Bronze to access withdrawals and rescue bonuses.
+                    </p>
+                    <span class="vip-sr-only">Next tier: <span id="vipNextUnlock">Bronze</span></span>
                 </div>
+
+                <div class="vip-hero-right"></div>
+
             </div>
 
-            <div class="vip-details-grid">
-                <div class="vip-card vip-card-featured">
-                    <h3 class="vip-card-title">Membership Benefits</h3>
-                    <div class="vip-info-list" id="membershipBenefits"></div>
-                </div>
+            <!-- ══════════════════════════════════════
+                 SIDEBAR + CONTENT
+            ══════════════════════════════════════ -->
+            <div class="vip-layout">
 
-                <div class="vip-card vip-card-featured">
-                    <h3 class="vip-card-title">Member Rebates</h3>
-                    <div class="vip-info-list" id="memberRebates"></div>
-                </div>
+                <!-- LEFT: Tier Sidebar -->
+                <aside class="vip-sidebar">
 
-                <div class="vip-card">
-                    <h3 class="vip-card-title"><i class="fa-solid fa-circle-up"></i> Monthly Level Upgrade Requirement</h3>
-                    <div class="vip-info-list" id="upgradeRequirements"></div>
-                </div>
+                    <div id="vipLevelSelector">
 
-                <div class="vip-card">
-                    <h3 class="vip-card-title">Monthly Level Retention Requirement</h3>
-                    <div class="vip-info-list" id="retentionRequirements"></div>
-                </div>
+                        <button class="vip-level-btn active" data-level="normal" data-rank="01" type="button">
+                            <span class="vip-level-rank">01</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/normal mixed bronze 256x256-202603141738357612.png" alt="Normal">
+                            </span>
+                            <span class="vip-level-name">Normal</span>
+                        </button>
 
-                <div class="vip-card vip-card-full">
-                    <h3 class="vip-card-title">Membership Renewal</h3>
-                    <div class="vip-info-list" id="membershipRenewal"></div>
-                </div>
-            </div>
+                        <button class="vip-level-btn" data-level="bronze" data-rank="02" type="button">
+                            <span class="vip-level-rank">02</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/bronze 256x256-202603141738357706.png" alt="Bronze">
+                            </span>
+                            <span class="vip-level-name">Bronze</span>
+                        </button>
 
-            <div class="vip-concierge-band">
-                <div class="vip-concierge-text">
-                    <h3>Need Priority Assistance?</h3>
-                    <p>Our VIP team is online 24/7 to review tier status, speed up account support, and fast-track qualified members.</p>
-                </div>
-                <div class="vip-concierge-actions">
-                    <a href="#" class="vip-btn-chat"><i class="fa-solid fa-comments"></i> Chat VIP Team</a>
-                    <span class="vip-concierge-note">Invite and account activity review applies.</span>
-                </div>
-            </div>
+                        <button class="vip-level-btn" data-level="silver" data-rank="03" type="button">
+                            <span class="vip-level-rank">03</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/silver 256x256 (2)-202603141738357756.png" alt="Silver">
+                            </span>
+                            <span class="vip-level-name">Silver</span>
+                        </button>
 
-            <div class="vip-faq-grid">
-                <div class="vip-faq-card">
-                    <h4><i class="fa-solid fa-user-check"></i> Membership Assignment</h4>
-                    <p>VIP levels are assigned based on account activity and validated play behavior. Selected members are notified in their account center.</p>
-                </div>
-                <div class="vip-faq-card">
-                    <h4><i class="fa-solid fa-calendar-days"></i> Upgrade Review Cadence</h4>
-                    <p>Tier progression is evaluated continuously with monthly snapshots. Higher levels receive priority reassessment and dedicated support.</p>
-                </div>
-                <div class="vip-faq-card">
-                    <h4><i class="fa-solid fa-rotate"></i> Retention And Renewal</h4>
-                    <p>Retention and renewal are determined by recent deposit volume and ongoing activity. Inactive or restricted accounts may lose VIP privileges.</p>
-                </div>
-            </div>
-        </div>
+                        <button class="vip-level-btn" data-level="gold" data-rank="04" type="button">
+                            <span class="vip-level-rank">04</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/gold 256x256-202603141738357603.png" alt="Gold">
+                            </span>
+                            <span class="vip-level-name">Gold</span>
+                        </button>
+
+                        <button class="vip-level-btn" data-level="platinum" data-rank="05" type="button">
+                            <span class="vip-level-rank">05</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/platinum 256x256-202603141738357487.png" alt="Platinum">
+                            </span>
+                            <span class="vip-level-name">Platinum</span>
+                        </button>
+
+                        <button class="vip-level-btn" data-level="diamond" data-rank="06" type="button">
+                            <span class="vip-level-rank">06</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/diamond 256x256-202603141738357681.png" alt="Diamond">
+                            </span>
+                            <span class="vip-level-name">Diamond</span>
+                        </button>
+
+                        <button class="vip-level-btn" data-level="ruby" data-rank="07" type="button">
+                            <span class="vip-level-rank">07</span>
+                            <span class="vip-level-medal">
+                                <img src="https://pksoftcdn.azureedge.net/media/ruby 256x256-202603141738357566.png" alt="Ruby">
+                            </span>
+                            <span class="vip-level-name">Ruby</span>
+                        </button>
+
+                    </div>
+
+                    <!-- VIP CLUB branding -->
+                    <div class="vip-sidebar-footer">
+                        <i class="fa-solid fa-crown vip-sidebar-crown"></i>
+                        <span class="vip-sidebar-vip">VIP</span>
+                        <div class="vip-sidebar-club-row">
+                            <span class="vip-sidebar-laurel">❧</span>
+                            <span class="vip-sidebar-club">CLUB</span>
+                            <span class="vip-sidebar-laurel vip-sidebar-laurel-r">❧</span>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <!-- RIGHT: Main Content -->
+                <div class="vip-main">
+
+                    <!-- ── Cards Grid ── -->
+                    <div class="vip-cards-grid">
+
+                        <!-- Membership Benefits -->
+                        <div class="vip-info-card">
+                            <h3 class="vip-info-card-title">
+                                <i class="fa-solid fa-gem"></i> Membership Benefits
+                            </h3>
+                            <div id="membershipBenefits"></div>
+                        </div>
+
+                        <!-- Member Rebates -->
+                        <div class="vip-info-card">
+                            <h3 class="vip-info-card-title vip-title-gold">
+                                <i class="fa-solid fa-coins"></i> Member Rebates
+                            </h3>
+                            <div id="memberRebates"></div>
+                        </div>
+
+                        <!-- Monthly Upgrade -->
+                        <div class="vip-info-card">
+                            <h3 class="vip-info-card-title">
+                                <i class="fa-solid fa-circle-up"></i> Monthly Level Upgrade Requirement
+                            </h3>
+                            <div id="upgradeRequirements"></div>
+                        </div>
+
+                        <!-- Monthly Retention -->
+                        <div class="vip-info-card">
+                            <h3 class="vip-info-card-title">
+                                <i class="fa-solid fa-shield-halved"></i> Monthly Level Retention Requirement
+                            </h3>
+                            <div id="retentionRequirements"></div>
+                        </div>
+
+                        <!-- Membership Renewal -->
+                        <div class="vip-info-card">
+                            <h3 class="vip-info-card-title">
+                                <i class="fa-solid fa-infinity"></i> Membership Renewal
+                            </h3>
+                            <div id="membershipRenewal"></div>
+                        </div>
+
+                        <!-- Priority Assistance (dark card) -->
+                        <div class="vip-priority-card">
+                            <div class="vip-priority-body">
+                                <i class="fa-solid fa-crown vip-priority-crown-icon"></i>
+                                <h3>Need Priority Assistance?</h3>
+                                <p>Our VIP team is online 24/7 to review tier status, speed up account support, and fast-track qualified members.</p>
+                                <a href="#" class="vip-priority-btn">
+                                    <i class="fa-solid fa-comments"></i> Chat VIP Team
+                                </a>
+                            </div>
+                            <div class="vip-priority-img-wrap">
+                                <!--
+                                    IMAGE NEEDED — vip-chair.png
+                                    Size: 200 × 220px  (PNG transparent, luxury VIP throne/chair)
+                                    Path: images/VIP/vip-chair.png
+                                -->
+                                <img src="images/VIP/vip-chair.png" alt="" onerror="this.style.display='none'">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ── FAQ Strip ── -->
+                    <div class="vip-faq-grid">
+
+                        <div class="vip-faq-card" data-num="01">
+                            <h4><i class="fa-solid fa-user-check"></i> Membership Assignment</h4>
+                            <p>VIP levels are assigned based on account activity and validated play behavior. Selected members are notified in their account center.</p>
+                        </div>
+
+                        <div class="vip-faq-card" data-num="02">
+                            <h4><i class="fa-solid fa-calendar-days"></i> Upgrade Review Cadence</h4>
+                            <p>Tier progression is evaluated continuously with monthly snapshots. Higher levels receive priority reassessment and dedicated support.</p>
+                        </div>
+
+                        <div class="vip-faq-card" data-num="03">
+                            <h4><i class="fa-solid fa-rotate"></i> Retention &amp; Renewal</h4>
+                            <p>Retention and renewal are determined by recent deposit volume and ongoing activity. Inactive or restricted accounts may lose VIP privileges.</p>
+                        </div>
+
+                    </div>
+
+                </div><!-- /vip-main -->
+            </div><!-- /vip-layout -->
+        </div><!-- /container -->
     </section>
 
     <!-- Footer -->
@@ -182,11 +242,9 @@
                         <li><a href="#">Responsible Gaming</a></li>
                         <li><a href="#">Banking</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Terms &amp; Condition</a></li>
                     </ul>
-                    <div class="footer-logo-main">
-                        <img src="images/GM88.png" alt="GM88 Logo">
-                </div>
+                    <div class="footer-logo-main"><img src="images/GM88.png" alt="GM88 Logo"></div>
                 </div>
                 <div class="footer-col">
                     <h4>LICENCE</h4>
@@ -198,7 +256,7 @@
                         <div class="license-img"><span>GAMCARE</span></div>
                         <div class="license-img"><span>RGA</span></div>
                     </div>
-                    </div>
+                </div>
                 <div class="footer-col footer-providers">
                     <h4>PROVIDERS</h4>
                     <div class="providers-slider-container">
@@ -210,21 +268,22 @@
                                 <img src="images/provider logo/pgsoft.png" alt="PG SOFT">
                                 <img src="images/provider logo/JILI.png" alt="JILI">
                                 <img src="images/provider logo/spadegaming-202412121054336747.png" alt="SPADE">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
                 </div>
             </div>
         </div>
         <div class="copyright">
             <div class="container">
                 <p>COPYRIGHT &copy; GM88 2021. ALL RIGHTS RESERVED - Redesigned 2026</p>
-                </div>
-                    </div>
+            </div>
+        </div>
     </footer>
 
     <script src="js/header.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/vip-fancy.js"></script>
     <script>
         const vipData = {
             normal: {
@@ -398,85 +457,59 @@
         };
 
         const tierMeta = {
-            normal: { title: "Normal", rank: "01", progress: 10, next: "Bronze", note: "Unlock Bronze to access withdrawals and rescue bonuses." },
-            bronze: { title: "Bronze", rank: "02", progress: 24, next: "Silver", note: "Keep depositing consistently to move into Silver and better rebate rates." },
-            silver: { title: "Silver", rank: "03", progress: 40, next: "Gold", note: "Gold unlocks stronger bonus caps and higher support priority." },
-            gold: { title: "Gold", rank: "04", progress: 58, next: "Platinum", note: "Platinum introduces no-limit withdrawals and stronger weekly rescue." },
-            platinum: { title: "Platinum", rank: "05", progress: 76, next: "Diamond", note: "Diamond provides premium perks and higher monthly treatment." },
-            diamond: { title: "Diamond", rank: "06", progress: 90, next: "Ruby", note: "Ruby represents top-tier status with the strongest rebate profile." },
-            ruby: { title: "Ruby", rank: "07", progress: 100, next: "Max Tier", note: "You are in the highest visible tier. Contact VIP team for bespoke offers." }
+            normal:   { title: "Normal",   rank: "01", progress: 10,  next: "Bronze",   note: "Unlock Bronze to access withdrawals and rescue bonuses." },
+            bronze:   { title: "Bronze",   rank: "02", progress: 24,  next: "Silver",   note: "Keep depositing consistently to move into Silver and better rebate rates." },
+            silver:   { title: "Silver",   rank: "03", progress: 40,  next: "Gold",     note: "Gold unlocks stronger bonus caps and higher support priority." },
+            gold:     { title: "Gold",     rank: "04", progress: 58,  next: "Platinum", note: "Platinum introduces no-limit withdrawals and stronger weekly rescue." },
+            platinum: { title: "Platinum", rank: "05", progress: 76,  next: "Diamond",  note: "Diamond provides premium perks and higher monthly treatment." },
+            diamond:  { title: "Diamond",  rank: "06", progress: 90,  next: "Ruby",     note: "Ruby represents top-tier status with the strongest rebate profile." },
+            ruby:     { title: "Ruby",     rank: "07", progress: 100, next: "Max Tier", note: "You are in the highest visible tier. Contact VIP team for bespoke offers." }
         };
-        const tierOrder = ["normal", "bronze", "silver", "gold", "platinum", "diamond", "ruby"];
-        const vipState = { playerTier: "normal" };
 
-        function isValidTier(tier) {
-            return tierOrder.includes(tier);
-        }
+        const tierOrder = ["normal","bronze","silver","gold","platinum","diamond","ruby"];
+        const vipState  = { playerTier: "normal" };
+
+        function isValidTier(t) { return tierOrder.includes(t); }
 
         function setPlayerTierMarkers() {
-            const buttons = document.querySelectorAll('.vip-level-btn');
-            buttons.forEach((btn) => {
+            document.querySelectorAll('.vip-level-btn').forEach(btn => {
                 btn.classList.toggle('player-tier', btn.dataset.level === vipState.playerTier);
             });
         }
 
-        function animatePercent(el, from, to, durationMs) {
+        function animatePercent(el, from, to, ms) {
             if (!el) return;
-
-            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduceMotion || durationMs <= 0) {
-                el.textContent = `${Math.round(to)}%`;
-                return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || ms <= 0) {
+                el.textContent = Math.round(to) + '%'; return;
             }
-
-            const start = performance.now();
-            const delta = to - from;
-
-            function tick(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / durationMs, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const value = from + (delta * eased);
-                el.textContent = `${Math.round(value)}%`;
-
-                if (progress < 1) {
-                    requestAnimationFrame(tick);
-                }
-            }
-
-            requestAnimationFrame(tick);
+            const start = performance.now(), delta = to - from;
+            (function tick(now) {
+                const p = Math.min((now - start) / ms, 1);
+                const e = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(from + delta * e) + '%';
+                if (p < 1) requestAnimationFrame(tick);
+            })(start);
         }
 
         function updateStatusRail(level) {
             const meta = tierMeta[level];
             if (!meta) return;
-
             document.body.setAttribute('data-vip-tier', level);
-            const nextUnlock = document.getElementById('vipNextUnlock');
-            const progressFill = document.getElementById('vipProgressFill');
-            const progressPercent = document.getElementById('vipProgressPercent');
-            const progressNote = document.getElementById('vipProgressNote');
-            const heroRank = document.getElementById('vipHeroRank');
-            const heroRankLabel = document.getElementById('vipHeroRankLabel');
-            const heroTierTitle = document.getElementById('vipHeroTierTitle');
-            const statusLineTier = document.getElementById('vipStatusLineTier');
-            const progressBar = document.getElementById('vipProgressBar');
-
-            if (heroRank) heroRank.textContent = meta.rank;
-            if (heroRankLabel) heroRankLabel.textContent = meta.rank;
-            if (heroTierTitle) heroTierTitle.textContent = meta.title.toUpperCase();
-            if (statusLineTier) statusLineTier.textContent = `${meta.title} Tier`;
-            if (nextUnlock) nextUnlock.textContent = meta.next;
-            if (progressFill) progressFill.style.width = `${meta.progress}%`;
-            if (progressBar) progressBar.setAttribute('aria-valuenow', String(Math.round(meta.progress)));
-            const tierIndex = tierOrder.indexOf(level);
-            const lineProgress = tierIndex <= 0 ? 0 : tierIndex / (tierOrder.length - 1);
-            document.body.style.setProperty('--vip-line-progress', String(lineProgress));
-            if (progressPercent) {
-                const currentValue = Number((progressPercent.textContent || "0").replace("%", "")) || 0;
-                animatePercent(progressPercent, currentValue, meta.progress, 420);
-            }
-            if (progressNote) progressNote.textContent = meta.note;
+            const $ = id => document.getElementById(id);
+            if ($('vipHeroRank'))      $('vipHeroRank').textContent      = meta.rank;
+            if ($('vipHeroRankLabel')) $('vipHeroRankLabel').textContent  = meta.rank;
+            if ($('vipHeroTierTitle')) $('vipHeroTierTitle').textContent  = meta.title.toUpperCase();
+            if ($('vipStatusLineTier'))$('vipStatusLineTier').textContent = meta.title + ' Tier';
+            if ($('vipNextUnlock'))    $('vipNextUnlock').textContent     = meta.next;
+            if ($('vipProgressNote'))  $('vipProgressNote').innerHTML     = '<i class="fa-solid fa-lock"></i> ' + meta.note;
+            if ($('vipProgressFill'))  $('vipProgressFill').style.width   = meta.progress + '%';
+            const bar = $('vipProgressBar');
+            if (bar) bar.setAttribute('aria-valuenow', String(Math.round(meta.progress)));
+            const pct = $('vipProgressPercent');
+            const cur = Number((pct ? pct.textContent : '0').replace('%','')) || 0;
+            animatePercent(pct, cur, meta.progress, 420);
+            const idx = tierOrder.indexOf(level);
+            document.body.style.setProperty('--vip-line-progress', String(idx <= 0 ? 0 : idx / (tierOrder.length - 1)));
         }
 
         function updateVIPContent(level) {
@@ -484,35 +517,31 @@
             if (!data) return;
 
             const renderList = (id, items) => {
-                const container = document.getElementById(id);
-                container.innerHTML = items.map((item, index) => `
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.innerHTML = items.map((item, i) => `
                     <div class="vip-info-row">
-                        <span class="vip-info-label vip-row-enter" style="animation-delay:${index * 40}ms;">
-                            <i class="${item.icon}" aria-hidden="true"></i>
-                            ${item.label}
+                        <span class="vip-info-label vip-row-enter" style="animation-delay:${i*40}ms">
+                            <i class="${item.icon}" aria-hidden="true"></i>${item.label}
                         </span>
-                        <span class="vip-info-value vip-row-enter" style="animation-delay:${index * 40 + 60}ms;">${item.value}</span>
-                    </div>
-                `).join('');
+                        <span class="vip-info-value vip-row-enter" style="animation-delay:${i*40+60}ms">${item.value}</span>
+                    </div>`).join('');
             };
 
             document.body.classList.add('vip-tier-switching');
-            renderList('membershipBenefits', data.benefits);
-            renderList('memberRebates', data.rebates);
-            renderList('upgradeRequirements', data.upgrade);
-            renderList('retentionRequirements', data.retention);
-            renderList('membershipRenewal', data.renewal);
+            renderList('membershipBenefits',  data.benefits);
+            renderList('memberRebates',        data.rebates);
+            renderList('upgradeRequirements',  data.upgrade);
+            renderList('retentionRequirements',data.retention);
+            renderList('membershipRenewal',    data.renewal);
             updateStatusRail(level);
-
-            window.setTimeout(() => {
-                document.body.classList.remove('vip-tier-switching');
-            }, 220);
+            setTimeout(() => document.body.classList.remove('vip-tier-switching'), 220);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.vip-level-btn');
-            const storedPlayerTier = localStorage.getItem('vipTier');
-            vipState.playerTier = isValidTier(storedPlayerTier) ? storedPlayerTier : 'normal';
+            const stored  = localStorage.getItem('vipTier');
+            vipState.playerTier = isValidTier(stored) ? stored : 'normal';
             setPlayerTierMarkers();
 
             buttons.forEach(btn => {
@@ -523,15 +552,10 @@
                 });
             });
 
-            // Initial load
-            const initialTierBtn = document.querySelector(`.vip-level-btn[data-level="${vipState.playerTier}"]`);
-            if (initialTierBtn) {
-                buttons.forEach(b => b.classList.remove('active'));
-                initialTierBtn.classList.add('active');
-            }
+            const initBtn = document.querySelector(`.vip-level-btn[data-level="${vipState.playerTier}"]`);
+            if (initBtn) { buttons.forEach(b => b.classList.remove('active')); initBtn.classList.add('active'); }
             updateVIPContent(vipState.playerTier);
         });
     </script>
 </body>
-
 </html>

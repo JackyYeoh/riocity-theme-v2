@@ -1,0 +1,1932 @@
+/* ============================================================
+   ACCOUNT HUB — UNIFIED CLEAN DESIGN
+   Same fintech vocabulary as rebate-fancy.css.
+   Loads AFTER style.css + account.css → highest precedence.
+   No JS behaviour is touched — only visual overrides.
+   ============================================================ */
+
+body[data-page="account-details"] {
+  --acc-bg:        #f5f7fa;
+  --acc-card:      #ffffff;
+  --acc-border:    #e6eaf0;
+  --acc-border-2:  #f0f3f8;
+  --acc-text:      #0f172a;
+  --acc-text-2:    #475569;
+  --acc-text-3:    #94a3b8;
+  --acc-blue:      #1677ff;
+  --acc-blue-2:    #1461d8;
+  --acc-blue-soft: #eef4ff;
+  --acc-green:     #10b981;
+  --acc-amber:     #f59e0b;
+  --acc-red:       #ef4444;
+
+  background: var(--acc-bg) !important;
+  color: var(--acc-text) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PAGE SHELL
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .account-page {
+  background: var(--acc-bg) !important;
+  padding-top: 90px !important;
+  padding-bottom: 60px !important;
+  animation: none !important;
+  color: var(--acc-text) !important;
+}
+body[data-page="account-details"] .account-container {
+  display: grid !important;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  align-items: start;
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE TOP NAV  (visible <1024px)
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .mobile-account-nav {
+  background: var(--acc-card) !important;
+  border-bottom: 1px solid var(--acc-border) !important;
+  position: sticky;
+  top: 64px;
+  z-index: 50;
+  padding: 8px 0;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .mobile-account-nav-scroll {
+  display: flex;
+  gap: 4px;
+  padding: 0 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+body[data-page="account-details"] .mobile-account-nav-scroll::-webkit-scrollbar { display: none; }
+body[data-page="account-details"] .mobile-account-tab {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 9px 14px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-2) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease !important;
+}
+body[data-page="account-details"] .mobile-account-tab i {
+  font-size: 13px !important;
+  color: inherit !important;
+}
+body[data-page="account-details"] .mobile-account-tab:hover {
+  color: var(--acc-text) !important;
+  background: #f8fafc !important;
+}
+body[data-page="account-details"] .mobile-account-tab.active {
+  color: var(--acc-blue) !important;
+  background: var(--acc-blue-soft) !important;
+  border-color: rgba(22, 119, 255, 0.18) !important;
+  font-weight: 600 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SIDEBAR
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .account-sidebar {
+  position: sticky;
+  top: 88px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ── Profile summary card ── */
+body[data-page="account-details"] .profile-summary-card {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+body[data-page="account-details"] .profile-avatar-large {
+  width: 56px !important;
+  height: 56px !important;
+  background: var(--acc-blue-soft) !important;
+  border: 1px solid rgba(22, 119, 255, 0.18) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--acc-blue) !important;
+  font-size: 22px !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .profile-summary-name-row {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  min-width: 0;
+}
+body[data-page="account-details"] .profile-summary-name {
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  margin: 0 !important;
+  letter-spacing: -0.005em !important;
+}
+body[data-page="account-details"] .profile-summary-id {
+  font-size: 12px !important;
+  color: var(--acc-text-3) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+}
+body[data-page="account-details"] .profile-summary-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+body[data-page="account-details"] .profile-summary-rank-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  font-size: 12px !important;
+  color: var(--acc-text-2) !important;
+}
+body[data-page="account-details"] .profile-rank-label {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 10px !important;
+  background: var(--acc-blue-soft) !important;
+  color: var(--acc-blue) !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(22, 119, 255, 0.18) !important;
+}
+body[data-page="account-details"] .profile-rank-next {
+  font-size: 11px !important;
+  color: var(--acc-text-3) !important;
+}
+body[data-page="account-details"] .profile-rank-next .highlight-bronze,
+body[data-page="account-details"] .highlight-bronze {
+  color: var(--acc-text) !important;
+  font-weight: 600 !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .profile-progress-bar {
+  height: 6px !important;
+  background: #eef2f7 !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .profile-progress-fill {
+  height: 100% !important;
+  background: var(--acc-blue) !important;
+  border-radius: inherit !important;
+  box-shadow: none !important;
+  transition: width 0.4s ease !important;
+}
+body[data-page="account-details"] .profile-progress-percent {
+  font-size: 11px !important;
+  color: var(--acc-text-3) !important;
+}
+
+/* ── Sidebar nav ── */
+body[data-page="account-details"] .account-nav {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 6px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+body[data-page="account-details"] .account-nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-2) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+body[data-page="account-details"] .account-nav-item i:first-child {
+  width: 18px !important;
+  font-size: 14px !important;
+  color: var(--acc-text-3) !important;
+  text-align: center !important;
+  transition: color 0.15s ease !important;
+}
+body[data-page="account-details"] .account-nav-item span {
+  flex: 1 !important;
+  min-width: 0 !important;
+  letter-spacing: 0 !important;
+  font-weight: 500 !important;
+  color: inherit !important;
+}
+body[data-page="account-details"] .account-nav-item .nav-arrow {
+  font-size: 11px !important;
+  color: var(--acc-text-3) !important;
+  margin-left: auto !important;
+  opacity: 0.6 !important;
+}
+body[data-page="account-details"] .account-nav-item:hover {
+  background: #f8fafc !important;
+  color: var(--acc-text) !important;
+}
+body[data-page="account-details"] .account-nav-item:hover i:first-child {
+  color: var(--acc-text-2) !important;
+}
+body[data-page="account-details"] .account-nav-item.active {
+  background: var(--acc-blue-soft) !important;
+  color: var(--acc-blue) !important;
+  font-weight: 600 !important;
+}
+body[data-page="account-details"] .account-nav-item.active i:first-child,
+body[data-page="account-details"] .account-nav-item.active .nav-arrow {
+  color: var(--acc-blue) !important;
+  opacity: 1 !important;
+}
+
+/* ── Secure logout ── */
+body[data-page="account-details"] .secure-logout-wrapper {
+  padding: 0 !important;
+  background: none !important;
+}
+body[data-page="account-details"] .btn-logout-sidebar {
+  width: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 11px 14px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--acc-red) !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, border-color 0.15s ease !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .btn-logout-sidebar:hover {
+  background: #fef2f2 !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+body[data-page="account-details"] .btn-logout-sidebar i {
+  color: inherit !important;
+  font-size: 13px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   MAIN CONTENT
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .account-main-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-width: 0;
+}
+
+/* Section header card (used by Profile, Referral, Finance) */
+body[data-page="account-details"] .account-header-box {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 22px 24px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  margin-bottom: 0 !important;
+}
+body[data-page="account-details"] .account-title-group h1,
+body[data-page="account-details"] .account-title-group #mainTitle {
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  letter-spacing: -0.01em !important;
+  margin: 0 0 4px !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .account-title-group p,
+body[data-page="account-details"] .account-title-group #mainSubtitle {
+  font-size: 13.5px !important;
+  color: var(--acc-text-2) !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* ── Tab pill group (Profile / Referral) ── */
+body[data-page="account-details"] .tab-pill-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  border-bottom: 1px solid var(--acc-border) !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  flex-wrap: wrap !important;
+  margin: 0 !important;
+}
+body[data-page="account-details"] .tab-pill {
+  position: relative !important;
+  padding: 11px 18px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-2) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  transition: color 0.15s ease !important;
+}
+body[data-page="account-details"] .tab-pill:hover {
+  color: var(--acc-text) !important;
+  background: transparent !important;
+}
+body[data-page="account-details"] .tab-pill.active {
+  color: var(--acc-blue) !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+}
+body[data-page="account-details"] .tab-pill.active::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 18px !important;
+  right: 18px !important;
+  bottom: -1px !important;
+  height: 2px !important;
+  background: var(--acc-blue) !important;
+  border-radius: 0 !important;
+}
+
+/* Hide the dual desktop/mobile labels redundancy */
+body[data-page="account-details"] .tab-text-mobile { display: none !important; }
+body[data-page="account-details"] .tab-text-desktop { display: inline !important; }
+
+/* ── Finance toggle (Deposit / Withdrawal segmented) ── */
+body[data-page="account-details"] .finance-nav-toggles {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 4px !important;
+  background: #f5f7fa !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  width: max-content !important;
+  max-width: 100% !important;
+}
+body[data-page="account-details"] .finance-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-2) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 7px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+body[data-page="account-details"] .finance-toggle i {
+  font-size: 12.5px !important;
+  color: inherit !important;
+}
+body[data-page="account-details"] .finance-toggle:hover {
+  color: var(--acc-text) !important;
+}
+body[data-page="account-details"] .finance-toggle.active {
+  background: var(--acc-card) !important;
+  color: var(--acc-blue) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PROFILE SECTION
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .form-section-card {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .profile-overview-title {
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--acc-text-3) !important;
+  margin: 0 0 16px !important;
+}
+
+/* Key/value list */
+body[data-page="account-details"] .profile-kv-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body[data-page="account-details"] .profile-kv-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid var(--acc-border-2) !important;
+}
+body[data-page="account-details"] .profile-kv-row:last-of-type {
+  border-bottom: none !important;
+}
+body[data-page="account-details"] .profile-kv-label {
+  font-size: 13px !important;
+  color: var(--acc-text-2) !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+}
+body[data-page="account-details"] .profile-kv-value {
+  font-size: 13.5px !important;
+  color: var(--acc-text) !important;
+  font-weight: 600 !important;
+  text-align: right !important;
+  margin: 0 !important;
+}
+body[data-page="account-details"] .profile-kv-value.profile-kv-muted {
+  color: var(--acc-text-3) !important;
+  font-weight: 500 !important;
+}
+body[data-page="account-details"] .profile-kv-value-with-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+body[data-page="account-details"] .profile-kv-url {
+  max-width: 220px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: var(--acc-text-2) !important;
+  font-weight: 500 !important;
+}
+body[data-page="account-details"] .profile-kv-row-balance .profile-balance-value,
+body[data-page="account-details"] .profile-balance-value {
+  color: var(--acc-blue) !important;
+  font-family: "Outfit", sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.005em !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  filter: none !important;
+}
+
+/* Inline edit/copy buttons */
+body[data-page="account-details"] .btn-copy-referral,
+body[data-page="account-details"] .btn-copy-referral-overview,
+body[data-page="account-details"] .btn-profile-edit {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 5px 10px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--acc-blue) !important;
+  background: var(--acc-blue-soft) !important;
+  border: 1px solid rgba(22, 119, 255, 0.18) !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .btn-copy-referral:hover,
+body[data-page="account-details"] .btn-profile-edit:hover {
+  background: #dde9ff !important;
+}
+body[data-page="account-details"] .btn-copy-referral i,
+body[data-page="account-details"] .btn-profile-edit i {
+  font-size: 11px !important;
+}
+
+/* Quick actions row */
+body[data-page="account-details"] .profile-quick-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+body[data-page="account-details"] .btn-profile-quick {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 16px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  background: var(--acc-blue) !important;
+  border: 1px solid var(--acc-blue) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .btn-profile-quick:hover {
+  background: var(--acc-blue-2) !important;
+  color: #fff !important;
+}
+body[data-page="account-details"] .btn-profile-quick.btn-profile-quick-outline {
+  background: transparent !important;
+  color: var(--acc-blue) !important;
+  border-color: rgba(22, 119, 255, 0.3) !important;
+}
+body[data-page="account-details"] .btn-profile-quick.btn-profile-quick-outline:hover {
+  background: var(--acc-blue-soft) !important;
+  color: var(--acc-blue) !important;
+}
+
+body[data-page="account-details"] .profile-meta-strip {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  margin-top: 18px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid var(--acc-border-2) !important;
+  font-size: 12px !important;
+  color: var(--acc-text-3) !important;
+}
+body[data-page="account-details"] .profile-meta-strip strong {
+  color: var(--acc-text-2) !important;
+  font-weight: 600 !important;
+  margin-right: 6px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FORM FIELDS  (used everywhere)
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .account-grid-form {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 16px !important;
+}
+body[data-page="account-details"] .account-grid-form .form-group.full-width,
+body[data-page="account-details"] .account-grid-form .form-actions.full-width {
+  grid-column: 1 / -1 !important;
+}
+body[data-page="account-details"] .form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+body[data-page="account-details"] .field-label {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text-2) !important;
+  letter-spacing: 0.01em !important;
+  margin: 0 !important;
+  text-transform: none !important;
+}
+body[data-page="account-details"] .field-input-wrapper {
+  position: relative !important;
+  background: var(--acc-card) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+body[data-page="account-details"] .field-icon {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--acc-text-3) !important;
+  font-size: 13px !important;
+  pointer-events: none !important;
+}
+body[data-page="account-details"] .field-input {
+  width: 100% !important;
+  padding: 11px 14px 11px 38px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text) !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+body[data-page="account-details"] .field-input:hover {
+  border-color: #c7d2e0 !important;
+}
+body[data-page="account-details"] .field-input:focus {
+  border-color: var(--acc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.12) !important;
+}
+body[data-page="account-details"] .field-input[readonly] {
+  background: #fafbfd !important;
+  color: var(--acc-text-2) !important;
+  cursor: not-allowed !important;
+}
+body[data-page="account-details"] .field-select-arrow {
+  position: absolute !important;
+  right: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--acc-text-3) !important;
+  font-size: 11px !important;
+  pointer-events: none !important;
+}
+
+/* Save / submit buttons */
+body[data-page="account-details"] .btn-save,
+body[data-page="account-details"] .btn-next-step,
+body[data-page="account-details"] .btn-withdraw-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 11px 24px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  background: var(--acc-blue) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+body[data-page="account-details"] .btn-save:hover,
+body[data-page="account-details"] .btn-next-step:hover,
+body[data-page="account-details"] .btn-withdraw-action:hover {
+  background: var(--acc-blue-2) !important;
+}
+body[data-page="account-details"] .form-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 8px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FINANCE SECTION
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .finance-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 2-pane workspace */
+body[data-page="account-details"] .finance-workspace {
+  display: grid !important;
+  grid-template-columns: 320px 1fr !important;
+  gap: 16px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  align-items: start !important;
+}
+
+/* Methods pane (left) */
+body[data-page="account-details"] .finance-methods-pane {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  position: sticky;
+  top: 88px;
+}
+body[data-page="account-details"] .finance-pane-head {
+  padding: 4px 6px 14px !important;
+  border-bottom: 1px solid var(--acc-border-2) !important;
+  margin-bottom: 12px !important;
+}
+body[data-page="account-details"] .finance-pane-head h3 {
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  margin: 0 0 4px !important;
+  letter-spacing: -0.005em !important;
+}
+body[data-page="account-details"] .finance-pane-head p {
+  font-size: 12px !important;
+  color: var(--acc-text-3) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* Payment method groups */
+body[data-page="account-details"] .payment-methods-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+body[data-page="account-details"] .payment-group {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  transition: border-color 0.15s ease !important;
+}
+body[data-page="account-details"] .payment-group.expanded,
+body[data-page="account-details"] .payment-group:has(> .payment-group-header.active) {
+  border-color: var(--acc-border) !important;
+  background: #fafbfd !important;
+}
+body[data-page="account-details"] .payment-group-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+body[data-page="account-details"] .payment-group-header:hover {
+  background: #f3f6fb !important;
+}
+body[data-page="account-details"] .payment-group-header.active {
+  background: var(--acc-blue-soft) !important;
+}
+body[data-page="account-details"] .payment-group-icon {
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--acc-blue-soft) !important;
+  color: var(--acc-blue) !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  border: 1px solid rgba(22, 119, 255, 0.14) !important;
+  flex-shrink: 0 !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .payment-group-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  min-width: 0 !important;
+  flex: 1 !important;
+}
+body[data-page="account-details"] .payment-group-title {
+  font-family: "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text) !important;
+  letter-spacing: -0.005em !important;
+}
+body[data-page="account-details"] .payment-group-subtitle {
+  font-size: 11.5px !important;
+  color: var(--acc-text-3) !important;
+  font-weight: 500 !important;
+}
+body[data-page="account-details"] .payment-chevron {
+  color: var(--acc-text-3) !important;
+  font-size: 11px !important;
+  transition: transform 0.2s ease !important;
+}
+body[data-page="account-details"] .payment-group.expanded .payment-chevron,
+body[data-page="account-details"] .payment-group:has(> .payment-group-header.active) .payment-chevron {
+  transform: rotate(90deg) !important;
+}
+body[data-page="account-details"] .payment-group-content {
+  padding: 4px 8px 10px !important;
+}
+
+/* Payment cards (banks etc.) */
+body[data-page="account-details"] .payment-sub-options {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+}
+body[data-page="account-details"] .payment-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 12px 8px !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  text-align: center !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .payment-card:hover {
+  border-color: #c7d2e0 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+}
+body[data-page="account-details"] .payment-card.active {
+  border-color: var(--acc-blue) !important;
+  background: var(--acc-blue-soft) !important;
+  box-shadow: 0 0 0 1px var(--acc-blue) !important;
+}
+body[data-page="account-details"] .bank-logo-box {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 28px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+body[data-page="account-details"] .bank-logo-box img {
+  max-width: 80px !important;
+  max-height: 24px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+body[data-page="account-details"] .bank-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 1px !important;
+}
+body[data-page="account-details"] .bank-name {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+body[data-page="account-details"] .bank-limits {
+  font-size: 10.5px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-3) !important;
+}
+
+/* Action pane (right) */
+body[data-page="account-details"] .finance-action-pane {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  min-width: 0 !important;
+}
+body[data-page="account-details"] .finance-form-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding-bottom: 16px !important;
+  margin-bottom: 16px !important;
+  border-bottom: 1px solid var(--acc-border-2) !important;
+}
+body[data-page="account-details"] .finance-form-header h3 {
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  margin: 0 !important;
+  letter-spacing: -0.005em !important;
+}
+body[data-page="account-details"] .back-to-methods {
+  display: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid var(--acc-border) !important;
+  background: var(--acc-card) !important;
+  border-radius: 8px !important;
+  color: var(--acc-text-2) !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .back-to-methods:hover {
+  background: #f3f6fb !important;
+}
+
+/* Info box (Balance / Min / Notes) */
+body[data-page="account-details"] .info-box-card {
+  background: #fafbfd !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .info-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+body[data-page="account-details"] .info-label {
+  font-size: 12.5px !important;
+  color: var(--acc-text-2) !important;
+  font-weight: 500 !important;
+}
+body[data-page="account-details"] .info-value {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  font-family: "Outfit", sans-serif !important;
+  letter-spacing: -0.005em !important;
+}
+body[data-page="account-details"] .info-notes {
+  margin-top: 4px !important;
+  padding-top: 10px !important;
+  border-top: 1px dashed var(--acc-border) !important;
+}
+body[data-page="account-details"] .notes-label {
+  display: block !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text-2) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+}
+body[data-page="account-details"] .notes-content {
+  font-size: 12.5px !important;
+  color: var(--acc-text-2) !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* Form section title */
+body[data-page="account-details"] .form-section-title {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--acc-text-3) !important;
+  margin: 0 !important;
+}
+
+/* Preset amounts */
+body[data-page="account-details"] .preset-amounts-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+}
+body[data-page="account-details"] .preset-amounts-grid button {
+  padding: 10px 12px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text-2) !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, border-color 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .preset-amounts-grid button:hover {
+  background: var(--acc-blue-soft) !important;
+  border-color: rgba(22, 119, 255, 0.28) !important;
+  color: var(--acc-blue) !important;
+}
+body[data-page="account-details"] .preset-amounts-grid button.active {
+  background: var(--acc-blue-soft) !important;
+  border-color: var(--acc-blue) !important;
+  color: var(--acc-blue) !important;
+}
+
+/* Amount input card */
+body[data-page="account-details"] .amount-entry-card {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  padding: 4px !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+body[data-page="account-details"] .amount-entry-card:focus-within {
+  border-color: var(--acc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1) !important;
+}
+body[data-page="account-details"] .amount-input-group {
+  display: flex !important;
+  align-items: center !important;
+  padding: 6px 8px !important;
+  gap: 10px !important;
+}
+body[data-page="account-details"] .currency-label,
+body[data-page="account-details"] .currency-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 11px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text-2) !important;
+  background: #f3f6fb !important;
+  border-radius: 6px !important;
+  letter-spacing: 0.04em !important;
+}
+body[data-page="account-details"] .amount-main-input,
+body[data-page="account-details"] .amount-input {
+  flex: 1 !important;
+  border: none !important;
+  outline: none !important;
+  padding: 8px 4px !important;
+  font-family: "Outfit", sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  background: transparent !important;
+  letter-spacing: -0.005em !important;
+}
+body[data-page="account-details"] .amount-main-input::placeholder,
+body[data-page="account-details"] .amount-input::placeholder {
+  color: var(--acc-text-3) !important;
+  font-weight: 500 !important;
+}
+body[data-page="account-details"] .amount-range-info {
+  font-size: 11.5px !important;
+  color: var(--acc-text-3) !important;
+  padding: 6px 12px 8px !important;
+  border-top: 1px dashed var(--acc-border) !important;
+  margin-top: 4px !important;
+}
+
+/* Withdrawal form fields */
+body[data-page="account-details"] .withdrawal-form-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  margin-top: 14px !important;
+}
+body[data-page="account-details"] .withdraw-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+body[data-page="account-details"] .withdraw-field-label {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text-2) !important;
+}
+body[data-page="account-details"] .withdraw-input-box {
+  width: 100% !important;
+  padding: 11px 14px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text) !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+body[data-page="account-details"] .withdraw-input-box:focus {
+  border-color: var(--acc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.12) !important;
+}
+body[data-page="account-details"] .amount-input-wrapper {
+  display: flex !important;
+  align-items: stretch !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background: var(--acc-card) !important;
+}
+body[data-page="account-details"] .amount-input-wrapper:focus-within {
+  border-color: var(--acc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.12) !important;
+}
+body[data-page="account-details"] .amount-input-wrapper .currency-tag {
+  border-radius: 0 !important;
+  border-right: 1px solid var(--acc-border) !important;
+  background: #f3f6fb !important;
+}
+body[data-page="account-details"] .amount-input-wrapper .amount-input {
+  border: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: "Inter", sans-serif !important;
+  padding: 11px 14px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   HISTORY SECTION
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .history-container {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .history-container > h3 {
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  margin: 0 0 14px !important;
+  letter-spacing: -0.005em !important;
+  text-transform: none !important;
+}
+body[data-page="account-details"] .date-filter-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+}
+body[data-page="account-details"] .quick-date-buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+body[data-page="account-details"] .date-btn {
+  padding: 7px 14px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-2) !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .date-btn:hover {
+  border-color: #c7d2e0 !important;
+  background: #f8fafc !important;
+}
+body[data-page="account-details"] .date-btn.active {
+  background: var(--acc-blue) !important;
+  border-color: var(--acc-blue) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+/* History table */
+body[data-page="account-details"] .history-table-wrapper {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  overflow: auto !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+body[data-page="account-details"] .history-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+body[data-page="account-details"] .history-table thead th {
+  background: #fafbfd !important;
+  color: var(--acc-text-2) !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  padding: 12px 14px !important;
+  text-align: left !important;
+  border-bottom: 1px solid var(--acc-border) !important;
+}
+body[data-page="account-details"] .history-table tbody td {
+  padding: 14px !important;
+  font-size: 13px !important;
+  color: var(--acc-text-2) !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--acc-border-2) !important;
+  background: var(--acc-card) !important;
+}
+body[data-page="account-details"] .history-table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+body[data-page="account-details"] .history-table tbody tr:hover td {
+  background: #f8fafc !important;
+}
+
+/* Status pills */
+body[data-page="account-details"] .status-completed,
+body[data-page="account-details"] .status-pending,
+body[data-page="account-details"] .status-failed {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 3px 10px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  border-radius: 999px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  border: 1px solid transparent !important;
+}
+body[data-page="account-details"] .status-completed {
+  color: var(--acc-green) !important;
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+body[data-page="account-details"] .status-completed::before {
+  content: "" !important;
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--acc-green) !important;
+  border-radius: 50% !important;
+}
+body[data-page="account-details"] .status-pending {
+  color: var(--acc-amber) !important;
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-color: rgba(245, 158, 11, 0.2) !important;
+}
+body[data-page="account-details"] .status-pending::before {
+  content: "" !important;
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--acc-amber) !important;
+  border-radius: 50% !important;
+}
+body[data-page="account-details"] .status-failed {
+  color: var(--acc-red) !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+body[data-page="account-details"] .status-failed::before {
+  content: "" !important;
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--acc-red) !important;
+  border-radius: 50% !important;
+}
+
+/* Empty state */
+body[data-page="account-details"] .empty-data-state {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 56px 24px !important;
+  background: #fafbfd !important;
+  border-top: 1px solid var(--acc-border-2) !important;
+}
+body[data-page="account-details"] .empty-data-state .empty-icon {
+  width: 56px !important;
+  height: 56px !important;
+  opacity: 0.45 !important;
+  margin-bottom: 12px !important;
+}
+body[data-page="account-details"] .empty-data-state .empty-text {
+  font-family: "Inter", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-3) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   REFERRAL SECTION
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .referral-content-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+/* Share card */
+body[data-page="account-details"] .referral-share-card {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .referral-share-header {
+  margin-bottom: 18px !important;
+}
+body[data-page="account-details"] .referral-share-title {
+  font-family: "Outfit", "Inter", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  margin: 0 0 4px !important;
+  letter-spacing: -0.005em !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .referral-share-subtitle {
+  font-size: 13px !important;
+  color: var(--acc-text-2) !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+body[data-page="account-details"] .share-options-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 14px !important;
+}
+body[data-page="account-details"] .share-option-box {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+body[data-page="account-details"] .share-option-label {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text-2) !important;
+}
+body[data-page="account-details"] .share-input-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  transition: border-color 0.15s ease !important;
+}
+body[data-page="account-details"] .share-input-wrapper:focus-within {
+  border-color: var(--acc-blue) !important;
+}
+body[data-page="account-details"] .share-input-icon {
+  padding-left: 12px !important;
+  color: var(--acc-text-3) !important;
+  font-size: 13px !important;
+}
+body[data-page="account-details"] .share-readonly-input {
+  flex: 1 !important;
+  border: none !important;
+  outline: none !important;
+  padding: 11px 12px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text) !important;
+  background: transparent !important;
+  min-width: 0 !important;
+}
+body[data-page="account-details"] .share-readonly-input.code-input {
+  letter-spacing: 0.1em !important;
+  font-weight: 700 !important;
+}
+body[data-page="account-details"] .btn-share-copy {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 10px 16px !important;
+  margin: 0 !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--acc-blue) !important;
+  background: var(--acc-blue-soft) !important;
+  border: none !important;
+  border-left: 1px solid var(--acc-border) !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .btn-share-copy:hover {
+  background: #dde9ff !important;
+}
+
+/* Social share */
+body[data-page="account-details"] .enhanced-social-share,
+body[data-page="account-details"] .referral-share-card .enhanced-social-share {
+  margin-top: 18px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid var(--acc-border-2) !important;
+  background: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+}
+body[data-page="account-details"] .share-label-glow {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--acc-text-3) !important;
+  text-shadow: none !important;
+  letter-spacing: 0 !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .social-icons-row {
+  display: flex !important;
+  gap: 8px !important;
+}
+body[data-page="account-details"] .social-icon-btn {
+  width: 36px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 8px !important;
+  color: var(--acc-text-2) !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .social-icon-btn:hover {
+  border-color: #c7d2e0 !important;
+  background: #f8fafc !important;
+}
+body[data-page="account-details"] .social-icon-btn.facebook:hover { color: #1877f2 !important; }
+body[data-page="account-details"] .social-icon-btn.telegram:hover { color: #229ed9 !important; }
+body[data-page="account-details"] .social-icon-btn.whatsapp:hover { color: #25d366 !important; }
+
+/* Stat tiles */
+body[data-page="account-details"] .referral-stat-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+}
+body[data-page="account-details"] .referral-stat-tile {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 18px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .stat-icon-bg {
+  width: 38px !important;
+  height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--acc-blue-soft) !important;
+  color: var(--acc-blue) !important;
+  border: 1px solid rgba(22, 119, 255, 0.14) !important;
+  border-radius: 10px !important;
+  font-size: 15px !important;
+  flex-shrink: 0 !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .stat-content-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+}
+body[data-page="account-details"] .referral-stat-tile-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text-2) !important;
+}
+body[data-page="account-details"] .referral-stat-tile-header i {
+  font-size: 11px !important;
+  color: var(--acc-text-3) !important;
+}
+body[data-page="account-details"] .referral-stat-tile-value {
+  font-family: "Outfit", sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--acc-text) !important;
+  letter-spacing: -0.005em !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .referral-stat-tile-note {
+  font-size: 11.5px !important;
+  color: var(--acc-text-3) !important;
+}
+
+/* CTA tile */
+body[data-page="account-details"] .referral-stat-tile-cta {
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(180deg, var(--acc-blue-soft), #f8fafc) !important;
+  border-color: rgba(22, 119, 255, 0.2) !important;
+  padding: 14px !important;
+}
+body[data-page="account-details"] .btn-downlines-wide {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 11px 18px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  background: var(--acc-blue) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .btn-downlines-wide:hover {
+  background: var(--acc-blue-2) !important;
+}
+
+/* Steps */
+body[data-page="account-details"] .passive-income-section {
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 12px !important;
+  padding: 22px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .section-divider-title {
+  display: block !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--acc-text-3) !important;
+  margin: 0 0 16px !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .steps-container {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+  background: none !important;
+}
+body[data-page="account-details"] .step-card {
+  background: #fafbfd !important;
+  border: 1px solid var(--acc-border-2) !important;
+  border-radius: 10px !important;
+  padding: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .enhanced-step-icon {
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--acc-blue-soft) !important;
+  color: var(--acc-blue) !important;
+  border: 1px solid rgba(22, 119, 255, 0.14) !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .enhanced-step-number {
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--acc-text-3) !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body[data-page="account-details"] .enhanced-step-text {
+  font-size: 13px !important;
+  color: var(--acc-text) !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  line-height: 1.45 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   LANGUAGE SECTION
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .language-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+  gap: 12px !important;
+}
+body[data-page="account-details"] .lang-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 18px 12px !important;
+  background: var(--acc-card) !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+body[data-page="account-details"] .lang-card:hover {
+  border-color: #c7d2e0 !important;
+}
+body[data-page="account-details"] .lang-card.active {
+  border-color: var(--acc-blue) !important;
+  background: var(--acc-blue-soft) !important;
+  box-shadow: 0 0 0 1px var(--acc-blue) !important;
+}
+body[data-page="account-details"] .lang-card .flag {
+  font-size: 28px !important;
+  line-height: 1 !important;
+}
+body[data-page="account-details"] .lang-card .lang-name {
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--acc-text) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PASSWORD SECTION
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] #passwordSection .form-section-card {
+  max-width: 560px !important;
+  margin: 0 auto !important;
+}
+body[data-page="account-details"] .password-requirements {
+  background: #fafbfd !important;
+  border: 1px solid var(--acc-border) !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+}
+body[data-page="account-details"] .password-requirements ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+body[data-page="account-details"] .password-requirements li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  font-size: 12.5px !important;
+  color: var(--acc-text-2) !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+}
+body[data-page="account-details"] .password-requirements li i {
+  font-size: 14px !important;
+  color: var(--acc-green) !important;
+  margin-top: 2px !important;
+  flex-shrink: 0 !important;
+}
+body[data-page="account-details"] .toggle-password-visibility {
+  color: var(--acc-text-3) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER NOTE
+   ════════════════════════════════════════════════════════════ */
+body[data-page="account-details"] .account-footer-note {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 14px 16px !important;
+  background: var(--acc-blue-soft) !important;
+  border: 1px solid rgba(22, 119, 255, 0.2) !important;
+  border-radius: 10px !important;
+  margin-top: 8px !important;
+}
+body[data-page="account-details"] .note-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  background: #fff !important;
+  color: var(--acc-blue) !important;
+  border-radius: 8px !important;
+  flex-shrink: 0 !important;
+  font-size: 13px !important;
+  border: 1px solid rgba(22, 119, 255, 0.18) !important;
+  box-shadow: none !important;
+}
+body[data-page="account-details"] .note-text {
+  font-size: 13px !important;
+  color: var(--acc-text-2) !important;
+  line-height: 1.5 !important;
+}
+body[data-page="account-details"] .note-text a {
+  color: var(--acc-blue) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+body[data-page="account-details"] .note-text a:hover {
+  text-decoration: underline !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1023px) {
+  body[data-page="account-details"] .account-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  body[data-page="account-details"] .account-sidebar {
+    display: none !important;
+  }
+  body[data-page="account-details"] .finance-workspace {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="account-details"] .finance-methods-pane {
+    position: static !important;
+  }
+  body[data-page="account-details"] .referral-stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  body[data-page="account-details"] .referral-stat-tile-cta {
+    grid-column: 1 / -1 !important;
+  }
+  body[data-page="account-details"] .steps-container {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Phone */
+@media (max-width: 768px) {
+  body[data-page="account-details"] .account-page {
+    padding-top: 56px !important;
+  }
+  body[data-page="account-details"] .account-container {
+    padding: 0 14px !important;
+  }
+  body[data-page="account-details"] .account-header-box,
+  body[data-page="account-details"] .form-section-card,
+  body[data-page="account-details"] .finance-action-pane,
+  body[data-page="account-details"] .finance-methods-pane,
+  body[data-page="account-details"] .history-container,
+  body[data-page="account-details"] .referral-share-card,
+  body[data-page="account-details"] .passive-income-section {
+    padding: 18px !important;
+  }
+  body[data-page="account-details"] .account-title-group h1,
+  body[data-page="account-details"] .account-title-group #mainTitle {
+    font-size: 18px !important;
+  }
+  body[data-page="account-details"] .account-grid-form {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="account-details"] .share-options-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="account-details"] .referral-stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="account-details"] .date-filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="account-details"] .payment-sub-options {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  body[data-page="account-details"] .preset-amounts-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  body[data-page="account-details"] .profile-kv-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+  }
+  body[data-page="account-details"] .profile-kv-value {
+    text-align: left !important;
+  }
+  body[data-page="account-details"] .profile-kv-url {
+    max-width: 100% !important;
+  }
+  body[data-page="account-details"] .profile-meta-strip {
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+  /* Tabs become full-width */
+  body[data-page="account-details"] .tab-pill {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 11px 10px !important;
+    font-size: 13px !important;
+  }
+  body[data-page="account-details"] .tab-pill.active::after {
+    left: 10px !important;
+    right: 10px !important;
+  }
+  body[data-page="account-details"] .finance-toggle {
+    flex: 1 !important;
+    justify-content: center !important;
+  }
+  body[data-page="account-details"] .finance-nav-toggles {
+    width: 100% !important;
+  }
+  /* History table — horizontal scroll handled by wrapper */
+  body[data-page="account-details"] .history-table {
+    min-width: 480px !important;
+  }
+  /* Bottom-nav safe area */
+  body[data-page="account-details"] {
+    padding-bottom: 72px !important;
+  }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  body[data-page="account-details"] .account-container {
+    padding: 0 12px !important;
+  }
+  body[data-page="account-details"] .account-header-box,
+  body[data-page="account-details"] .form-section-card,
+  body[data-page="account-details"] .finance-action-pane,
+  body[data-page="account-details"] .finance-methods-pane,
+  body[data-page="account-details"] .history-container,
+  body[data-page="account-details"] .referral-share-card,
+  body[data-page="account-details"] .passive-income-section {
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+  body[data-page="account-details"] .account-title-group h1 {
+    font-size: 17px !important;
+  }
+  body[data-page="account-details"] .payment-sub-options {
+    grid-template-columns: 1fr !important;
+  }
+  body[data-page="account-details"] .lang-card {
+    padding: 14px 10px !important;
+  }
+  body[data-page="account-details"] .quick-date-buttons {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  body[data-page="account-details"] .quick-date-buttons::-webkit-scrollbar { display: none; }
+}

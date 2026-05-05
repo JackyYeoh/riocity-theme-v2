@@ -7,13 +7,11 @@
     <title>GM88 - Slots</title>
     <meta name="description" content="Spin and win with thousands of slot games from top providers like Pragmatic Play, PG Soft, and JILI.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="css/header-redesign.css">
+    <link rel="stylesheet" href="css/game-lobby.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -21,170 +19,313 @@
 
     <div id="site-header"></div>
 
-    <!-- Page Hero (RioCity-style: promo-hero-banner + img, same as Sports/Live Casino) -->
+    <!-- Page Hero -->
     <section class="promo-hero-banner">
         <div class="container">
             <img src="https://pksoftcdn.azureedge.net/media/slots%20(1)-202603041451104842.png" alt="Slots" class="hero-banner-image" loading="lazy">
         </div>
     </section>
 
-    <!-- Rio-V2 Game Content -->
-    <section class="sp-section">
+    <div class="glc-page">
         <div class="container">
-            <div class="sp-header">
-                <h2 class="sp-title">Slot Providers</h2>
-                <span class="sp-count">14 Providers</span>
+
+            <!-- Filter Tabs -->
+            <div class="glc-filter-bar" id="glcFilters">
+                <button class="glc-filter-btn active" data-filter="all"><i class="fa-solid fa-grip"></i> All</button>
+                <button class="glc-filter-btn" data-filter="popular"><i class="fa-solid fa-chart-simple"></i> Popular</button>
+                <button class="glc-filter-btn" data-filter="classic"><i class="fa-solid fa-7"></i> Classic</button>
+                <button class="glc-filter-btn" data-filter="jackpot"><i class="fa-solid fa-trophy"></i> Jackpot</button>
+                <button class="glc-filter-btn" data-filter="megaways"><i class="fa-solid fa-expand"></i> Megaways</button>
+                <button class="glc-filter-btn" data-filter="buynow"><i class="fa-solid fa-bolt"></i> Buy Bonus</button>
+                <button class="glc-filter-btn glc-btn-hot" data-filter="trending"><i class="fa-solid fa-fire"></i> Trending</button>
+                <button class="glc-filter-btn glc-btn-new" data-filter="new"><i class="fa-solid fa-star"></i> New</button>
             </div>
-            <div class="sp-grid">
-                <a href="slot-play.html?game=VPower&provider=VPower" class="sp-card" data-provider="VPower">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/vpower_slot-202602271509251264.png" alt="VPower" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">VPower</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Evo888&provider=Evo888" class="sp-card" data-provider="Evo888">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/evo888h5_slot%20(1)-202603031651151722.png" alt="Evo888" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Evo888</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Pegasus&provider=Pegasus" class="sp-card" data-provider="Pegasus">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/pegasus_slot-202602271507504547.png" alt="Pegasus" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Pegasus</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Rich%20Gaming&provider=Rich%20Gaming" class="sp-card" data-provider="Rich Gaming">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/rich%20gaming_slot-202602271507299608.png" alt="Rich Gaming" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Rich Gaming</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=CQ9&provider=CQ9" class="sp-card" data-provider="CQ9">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/cq9_slot-202602271507112539.png" alt="CQ9" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">CQ9</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play" class="sp-card" data-provider="Pragmatic Play">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/pragmatic%20play_slot-202602271506064735.png" alt="Pragmatic Play" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Pragmatic Play</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Spadegaming&provider=Spadegaming" class="sp-card" data-provider="Spadegaming">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/spadegaming_slot%20(1)-202603051439084728.png" alt="Spadegaming" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Spadegaming</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Play'n%20GO&provider=Play'n%20GO" class="sp-card" data-provider="Play'n GO">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/playngo_slot%20(1)-202603091511389938.png" alt="Play'n GO" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Play'n GO</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Joker&provider=Joker" class="sp-card" data-provider="Joker">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/joker_slot-202602271510496758.png" alt="Joker" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Joker</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=JILI&provider=JILI" class="sp-card" data-provider="JILI">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/jili_slot-202602271509028300.png" alt="JILI" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">JILI</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Pussy888&provider=Pussy888" class="sp-card" data-provider="Pussy888">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/pussy888_slot-202602271502313455.png" alt="Pussy888" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Pussy888</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Mega888&provider=Mega888" class="sp-card" data-provider="Mega888">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/mega888h5_slot-202603031651594107.png" alt="Mega888" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Mega888</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=Playtech&provider=Playtech" class="sp-card" data-provider="Playtech">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/playtech_slot%20(1)-202603051442217003.png" alt="Playtech" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">Playtech</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
-                <a href="slot-play.html?game=PG%20Soft&provider=PG%20Soft" class="sp-card" data-provider="PG Soft">
-                    <div class="sp-card-img">
-                        <img src="https://pksoftcdn.azureedge.net/media/pgsoft_slot-202602271501297201.png" alt="PG Soft" loading="lazy">
-                        <span class="sp-card-play"><i class="fa-solid fa-play"></i></span>
-                    </div>
-                    <div class="sp-card-info">
-                        <span class="sp-card-name">PG Soft</span>
-                        <span class="sp-card-status sp-live"><i class="fa-solid fa-circle"></i> Live</span>
-                    </div>
-                </a>
+
+            <!-- Search + Sort -->
+            <div class="glc-toolbar">
+                <div class="glc-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="glcSearch" placeholder="Search providers..." autocomplete="off">
+                </div>
+                <div class="glc-sort">
+                    Sort by:
+                    <select id="glcSort">
+                        <option value="popular">Popular</option>
+                        <option value="az">A – Z</option>
+                        <option value="za">Z – A</option>
+                        <option value="new">Newest</option>
+                    </select>
+                </div>
             </div>
+
+            <!-- Featured Providers -->
+            <section class="glc-section">
+                <div class="glc-section-header">
+                    <div class="glc-section-title">
+                        <i class="fa-solid fa-star"></i> Featured Providers
+                    </div>
+                    <a href="#allProviders" class="glc-view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <div class="glc-grid">
+                    <div class="glc-card" data-category="popular jackpot megaways trending" data-name="Pragmatic Play">
+                        <a href="slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/pragmatic%20play_slot-202602271506064735.png" alt="Pragmatic Play" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Pragmatic Play</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="glc-card" data-category="popular trending new" data-name="JILI">
+                        <a href="slot-play.html?game=JILI&provider=JILI" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/jili_slot-202602271509028300.png" alt="JILI" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">JILI</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=JILI&provider=JILI" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="glc-card" data-category="popular new" data-name="PG Soft">
+                        <a href="slot-play.html?game=PG%20Soft&provider=PG%20Soft" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/pgsoft_slot-202602271501297201.png" alt="PG Soft" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">PG Soft</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=PG%20Soft&provider=PG%20Soft" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="glc-card" data-category="popular trending" data-name="CQ9">
+                        <a href="slot-play.html?game=CQ9&provider=CQ9" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/cq9_slot-202602271507112539.png" alt="CQ9" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">CQ9</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=CQ9&provider=CQ9" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="glc-card" data-category="popular trending" data-name="VPower">
+                        <a href="slot-play.html?game=VPower&provider=VPower" class="glc-card-thumb">
+                            <img src="https://pksoftcdn.azureedge.net/media/vpower_slot-202602271509251264.png" alt="VPower" loading="lazy">
+                        </a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">VPower</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=VPower&provider=VPower" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="glc-divider">
+
+            <!-- All Providers -->
+            <section class="glc-section" id="allProviders">
+                <div class="glc-section-header">
+                    <div class="glc-section-title">
+                        <i class="fa-solid fa-table-cells"></i> All Slot Providers
+                    </div>
+                    <span class="glc-provider-count" id="glcCount">14 Providers</span>
+                </div>
+                <div class="glc-grid" id="glcGrid">
+
+                    <div class="glc-card" data-category="popular trending" data-name="VPower">
+                        <a href="slot-play.html?game=VPower&provider=VPower" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/vpower_slot-202602271509251264.png" alt="VPower" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">VPower</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=VPower&provider=VPower" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular" data-name="Evo888">
+                        <a href="slot-play.html?game=Evo888&provider=Evo888" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/evo888h5_slot%20(1)-202603031651151722.png" alt="Evo888" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Evo888</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Evo888&provider=Evo888" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular" data-name="Pegasus">
+                        <a href="slot-play.html?game=Pegasus&provider=Pegasus" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/pegasus_slot-202602271507504547.png" alt="Pegasus" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Pegasus</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Pegasus&provider=Pegasus" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="classic" data-name="Rich Gaming">
+                        <a href="slot-play.html?game=Rich%20Gaming&provider=Rich%20Gaming" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/rich%20gaming_slot-202602271507299608.png" alt="Rich Gaming" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Rich Gaming</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Rich%20Gaming&provider=Rich%20Gaming" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular trending" data-name="CQ9">
+                        <a href="slot-play.html?game=CQ9&provider=CQ9" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/cq9_slot-202602271507112539.png" alt="CQ9" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">CQ9</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=CQ9&provider=CQ9" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular jackpot megaways trending" data-name="Pragmatic Play">
+                        <a href="slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/pragmatic%20play_slot-202602271506064735.png" alt="Pragmatic Play" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Pragmatic Play</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Pragmatic%20Play&provider=Pragmatic%20Play" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="classic" data-name="Spadegaming">
+                        <a href="slot-play.html?game=Spadegaming&provider=Spadegaming" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/spadegaming_slot%20(1)-202603051439084728.png" alt="Spadegaming" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Spadegaming</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Spadegaming&provider=Spadegaming" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="classic megaways" data-name="Play'n GO">
+                        <a href="slot-play.html?game=Play%27n%20GO&provider=Play%27n%20GO" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/playngo_slot%20(1)-202603091511389938.png" alt="Play'n GO" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Play'n GO</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Play%27n%20GO&provider=Play%27n%20GO" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular classic" data-name="Joker">
+                        <a href="slot-play.html?game=Joker&provider=Joker" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/joker_slot-202602271510496758.png" alt="Joker" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Joker</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Joker&provider=Joker" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular trending new" data-name="JILI">
+                        <a href="slot-play.html?game=JILI&provider=JILI" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/jili_slot-202602271509028300.png" alt="JILI" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">JILI</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=JILI&provider=JILI" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="classic" data-name="Pussy888">
+                        <a href="slot-play.html?game=Pussy888&provider=Pussy888" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/pussy888_slot-202602271502313455.png" alt="Pussy888" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Pussy888</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Pussy888&provider=Pussy888" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular" data-name="Mega888">
+                        <a href="slot-play.html?game=Mega888&provider=Mega888" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/mega888h5_slot-202603031651594107.png" alt="Mega888" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Mega888</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Mega888&provider=Mega888" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular megaways jackpot" data-name="Playtech">
+                        <a href="slot-play.html?game=Playtech&provider=Playtech" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/playtech_slot%20(1)-202603051442217003.png" alt="Playtech" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">Playtech</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=Playtech&provider=Playtech" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-card" data-category="popular new" data-name="PG Soft">
+                        <a href="slot-play.html?game=PG%20Soft&provider=PG%20Soft" class="glc-card-thumb"><img src="https://pksoftcdn.azureedge.net/media/pgsoft_slot-202602271501297201.png" alt="PG Soft" loading="lazy"></a>
+                        <div class="glc-card-body">
+                        <div class="glc-card-name">PG Soft</div>
+                        <div class="glc-card-foot">
+                            <div class="glc-card-status"><span class="glc-live-dot"></span> Live</div>
+                            <a href="slot-play.html?game=PG%20Soft&provider=PG%20Soft" class="glc-enter-btn">Enter Lobby</a>
+                            <button class="glc-fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="glc-no-results" id="glcNoResults">No providers found.</div>
+                </div>
+            </section>
+
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
-                <!-- Info Links -->
                 <div class="footer-col">
                     <h4>SITE MAPS</h4>
                     <ul>
@@ -192,14 +333,10 @@
                         <li><a href="#">Responsible Gaming</a></li>
                         <li><a href="#">Banking</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Terms &amp; Condition</a></li>
                     </ul>
-                    <div class="footer-logo-main">
-                        <img src="images/GM88.png" alt="GM88 Logo">
-                    </div>
+                    <div class="footer-logo-main"><img src="images/GM88.png" alt="GM88 Logo"></div>
                 </div>
-
-                <!-- Licences -->
                 <div class="footer-col">
                     <h4>LICENCE</h4>
                     <div class="license-grid">
@@ -211,8 +348,6 @@
                         <div class="license-img"><span>RGA</span></div>
                     </div>
                 </div>
-
-                <!-- Providers Slider Section -->
                 <div class="footer-col footer-providers">
                     <h4>PROVIDERS</h4>
                     <div class="providers-slider-container">
@@ -230,7 +365,6 @@
                 </div>
             </div>
         </div>
-
         <div class="copyright">
             <div class="container">
                 <p>COPYRIGHT &copy; GM88 2021. ALL RIGHTS RESERVED - Redesigned 2026</p>
@@ -240,6 +374,52 @@
 
     <script src="js/header.js"></script>
     <script src="js/main.js"></script>
-</body>
+    <script>
+    (function () {
+        const filters = document.querySelectorAll('#glcFilters .glc-filter-btn');
+        const cards   = document.querySelectorAll('#glcGrid .glc-card');
+        const search  = document.getElementById('glcSearch');
+        const count   = document.getElementById('glcCount');
+        const noRes   = document.getElementById('glcNoResults');
+        let activeFilter = 'all';
 
+        function applyFilter() {
+            const q = search.value.trim().toLowerCase();
+            let visible = 0;
+            cards.forEach(card => {
+                const cats = card.dataset.category || '';
+                const name = (card.dataset.name || '').toLowerCase();
+                const matchFilter = activeFilter === 'all' || cats.split(' ').includes(activeFilter);
+                const matchSearch = !q || name.includes(q);
+                const show = matchFilter && matchSearch;
+                card.classList.toggle('glc-hidden', !show);
+                if (show) visible++;
+            });
+            count.textContent = visible + ' Provider' + (visible !== 1 ? 's' : '');
+            noRes.style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filters.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                applyFilter();
+            });
+        });
+
+        search.addEventListener('input', applyFilter);
+
+        document.querySelectorAll('.glc-fav-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                btn.classList.toggle('active');
+                const icon = btn.querySelector('i');
+                icon.classList.toggle('fa-regular');
+                icon.classList.toggle('fa-solid');
+            });
+        });
+    })();
+    </script>
+</body>
 </html>

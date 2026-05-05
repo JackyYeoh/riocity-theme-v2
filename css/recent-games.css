@@ -1,0 +1,517 @@
+/* ═══════════════════════════════════════════════════════════
+   Recent Games Page — rio-card design system
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Stats row ── */
+.recent-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0 4px;
+    flex-wrap: wrap;
+}
+
+.recent-stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 50px;
+    padding: 6px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.recent-stat-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.recent-stat-val {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1e293b;
+}
+
+/* ── Toolbar extras ── */
+.recent-toolbar {
+    flex-wrap: wrap;
+}
+
+.recent-select-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 0 16px;
+    height: 44px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    color: #94a3b8;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.recent-select-wrap select {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    padding: 0;
+}
+
+.recent-view-toggle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.recent-view-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 14px;
+    transition: all 0.18s;
+}
+
+.recent-view-btn.active {
+    background: #fff;
+    color: var(--accent-primary);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.recent-clear-btn {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 14px;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    flex-shrink: 0;
+}
+
+.recent-clear-btn:hover {
+    color: #ef4444;
+    border-color: #fecaca;
+    background: #fff5f5;
+}
+
+/* ── Games Grid ── */
+.recent-games-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+/* ── Rio Card ── */
+.rio-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0d1117;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.rio-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+}
+
+.rio-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.rio-card:hover .rio-card-bg {
+    transform: scale(1.06);
+}
+
+/* Bottom gradient overlay for text legibility */
+.rio-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.0) 35%,
+        rgba(0,0,0,0.55) 65%,
+        rgba(0,0,0,0.88) 100%
+    );
+    z-index: 1;
+}
+
+/* ── Top row: badge + multiplier ── */
+.rio-card-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 8px 8px 0;
+    z-index: 3;
+}
+
+/* NEW / HOT / JACKPOT badges */
+.rio-badge {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.rio-badge.new    { background: #10b981; color: #fff; }
+.rio-badge.hot    { background: #f97316; color: #fff; }
+.rio-badge.jackpot{ background: #8b5cf6; color: #fff; }
+
+/* Multiplier top-right */
+.rio-multiplier {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    background: rgba(0,0,0,0.45);
+    border-radius: 5px;
+    padding: 3px 7px;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.rio-multiplier i {
+    color: #f59e0b;
+    font-size: 9px;
+}
+
+/* Time badge (absolutely positioned by JS at top:40px left:10px) */
+.time-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    background: rgba(0,0,0,0.45);
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+/* Play count badge (absolutely positioned by JS at top:40px right:10px) */
+.play-count-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(22,119,255,0.7);
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+/* ── Center play button (shown on hover) ── */
+.rio-play-btn-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    z-index: 4;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(22,119,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 4px 16px rgba(22,119,255,0.5);
+}
+
+.rio-card:hover .rio-play-btn-center {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── Bottom content ── */
+.rio-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 10px 10px;
+    z-index: 2;
+}
+
+.rio-card-title {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    font-family: 'Outfit', sans-serif;
+}
+
+.rio-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.rio-provider {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.rio-rtp-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: #4ade80;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.rio-rtp-tag i {
+    font-size: 9px;
+}
+
+/* ── List view ── */
+.recent-games-grid.recent-list-view {
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.recent-games-grid.recent-list-view .rio-card {
+    aspect-ratio: unset !important;
+    height: 72px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.recent-games-grid.recent-list-view .rio-card-bg {
+    width: 72px;
+    height: 72px;
+    position: relative;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.recent-games-grid.recent-list-view .rio-card-overlay { display: none; }
+.recent-games-grid.recent-list-view .rio-card-top { display: none; }
+.recent-games-grid.recent-list-view .rio-play-btn-center { display: none; }
+
+.recent-games-grid.recent-list-view .rio-card-content {
+    position: relative;
+    flex: 1;
+    padding: 0 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+    border-radius: 0 10px 10px 0;
+}
+
+.recent-games-grid.recent-list-view .rio-card-title {
+    color: #1e293b;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.recent-games-grid.recent-list-view .rio-provider { color: #94a3b8; }
+.recent-games-grid.recent-list-view .rio-rtp-tag { color: #10b981; }
+
+/* ── Empty State ── */
+.recent-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    gap: 12px;
+}
+
+.recent-empty-state i {
+    font-size: 48px;
+    color: #cbd5e1;
+}
+
+.recent-empty-state h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.recent-empty-state p {
+    font-size: 14px;
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* ── Confirm Modal ── */
+.recent-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.recent-confirm-overlay.active {
+    display: flex;
+}
+
+.recent-confirm-modal {
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px 36px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.recent-confirm-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fef2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 24px;
+    color: #ef4444;
+}
+
+.recent-confirm-modal h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 8px;
+}
+
+.recent-confirm-modal p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+
+.recent-confirm-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.recent-btn-cancel {
+    flex: 1;
+    padding: 11px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.recent-btn-cancel:hover { background: #f8fafc; }
+
+.recent-btn-danger {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+    background: #ef4444;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.recent-btn-danger:hover { background: #dc2626; }
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+    .recent-games-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .recent-games-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+}
+
+@media (max-width: 768px) {
+    .recent-games-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .recent-select-wrap { display: none; }
+}
+
+@media (max-width: 480px) {
+    .recent-games-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
+
+/* ── Fallback gradient when image fails to load ── */
+.rio-card { background: #0f1923; }
+.rio-card[data-category="slots"]       { background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%); }
+.rio-card[data-category="live-casino"] { background: linear-gradient(135deg, #0a1a2e 0%, #0e2d4e 100%); }
+.rio-card[data-category="sports"]      { background: linear-gradient(135deg, #0a2010 0%, #0e3d1a 100%); }
+.rio-card[data-category="fishhunt"]    { background: linear-gradient(135deg, #001a2e 0%, #003354 100%); }
+.rio-card[data-category="poker"]       { background: linear-gradient(135deg, #2e0a0a 0%, #4e1010 100%); }
+
+/* Make sure image covers the gradient */
+.rio-card-bg { z-index: 1; }
+.rio-card-overlay { z-index: 2; }
+.rio-card-top { z-index: 3; }
+.rio-play-btn-center { z-index: 4; }
+.rio-card-content { z-index: 3; }
