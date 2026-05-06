@@ -1,0 +1,490 @@
+/* ===============================================================
+   GM88 — Definitive Game Card Style
+   Loaded LAST so its !important overrides win over everything.
+
+   ONE canonical look for every game card variant on the site:
+     .glc-card        provider cards on lobby pages
+     .glp-game-card   JS-injected inline game cards
+     .game-item       home page + fishing recent-game cards
+                      (except .hot-provider-provider-card — different element)
+     .game-card       play-page lobby cards
+     .continue-card   home page "Continue Playing" cards
+
+   Anatomy:
+     +-----------------------------+
+     | [HOT]              [⚡1000X]|  <- thumb 1:1, badge L, multiplier R
+     |                             |
+     |        (game image)         |
+     |                             |
+     |          [hover dim + ▶]    |  <- circular purple play btn
+     +-----------------------------+
+     | Game Name                   |  <- 14px Outfit 700 dark
+     | PROVIDER NAME    [↗ 96.5%]  |  <- 10px uppercase muted + green pill
+     +-----------------------------+
+
+   .glc-card uses the same shell but its body shows
+   "Live" status + "Enter Lobby" button instead.
+   =============================================================== */
+
+:root {
+    --gc-bg:           #FFFFFF;
+    --gc-border:       #E6EAF2;
+    --gc-border-hover: rgba(124, 92, 255, 0.40);
+    --gc-radius:       14px;
+    --gc-shadow:       0 2px 10px rgba(15, 23, 42, 0.05);
+    --gc-shadow-hover: 0 14px 30px rgba(124, 92, 255, 0.18);
+    --gc-text:         #1F2A44;
+    --gc-text-muted:   #6B7693;
+    --gc-purple-grad:  linear-gradient(135deg, #8B6CFF 0%, #6B46FF 100%);
+    --gc-blue:         #4A6CF7;
+    --gc-green:        #10B981;
+    --gc-green-bg:     #ECFDF5;
+    --gc-green-border: #D1FAE5;
+    --gc-gold-grad:    linear-gradient(135deg, #FFD86A 0%, #F5B544 100%);
+    --gc-red-grad:     linear-gradient(135deg, #FF4D6D 0%, #C9184A 100%);
+    --gc-gold-text:    #FBBF24;
+}
+
+/* ----------------------------------------------------------------
+   1. CARD SHELL — applied to every variant
+   ---------------------------------------------------------------- */
+.glc-card,
+.glp-game-card,
+.game-item:not(.hot-provider-provider-card),
+.game-card,
+.continue-card {
+    background: var(--gc-bg) !important;
+    border: 1px solid var(--gc-border) !important;
+    border-radius: var(--gc-radius) !important;
+    box-shadow: var(--gc-shadow) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    text-decoration: none !important;
+    color: var(--gc-text) !important;
+    cursor: pointer !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease !important;
+    isolation: isolate;     /* keep stacking contexts clean */
+}
+
+.glc-card:hover,
+.glp-game-card:hover,
+.game-item:not(.hot-provider-provider-card):hover,
+.game-card:hover,
+.continue-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: var(--gc-border-hover) !important;
+    box-shadow: var(--gc-shadow-hover) !important;
+}
+
+/* Cancel any legacy dark-theme override that bled through.
+   home-refactor.css used to default .game-card to #1a1d29 on mobile. */
+@media (max-width: 767px) {
+    .game-card,
+    .game-item,
+    .continue-card,
+    .glp-game-card,
+    .glc-card {
+        background: var(--gc-bg) !important;
+        border: 1px solid var(--gc-border) !important;
+        border-radius: var(--gc-radius) !important;
+    }
+}
+
+/* ----------------------------------------------------------------
+   2. THUMBNAIL — 1:1 square, image fills, 1.05x zoom on hover
+   ---------------------------------------------------------------- */
+.glc-card .glc-card-thumb,
+.glp-game-card .glp-game-thumb,
+.game-item:not(.hot-provider-provider-card) .game-thumb,
+.continue-card .game-thumb,
+.game-card .game-image {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    background: #F1F5F9 !important;       /* soft tint behind image */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    flex-shrink: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;          /* corners come from the card itself */
+}
+
+.glc-card .glc-card-thumb img,
+.glp-game-card .glp-game-thumb img,
+.game-item .game-thumb img,
+.continue-card .game-thumb img,
+.game-card .game-image img,
+.game-card .game-image .game-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.35s ease !important;
+    /* Sit above .glp-game-fallback (z-index:0 + opaque gradient); otherwise
+       the fallback covered the real thumbnail until hover restacked paints. */
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.glc-card:hover .glc-card-thumb img,
+.glp-game-card:hover .glp-game-thumb img,
+.game-item:hover .game-thumb img,
+.continue-card:hover .game-thumb img,
+.game-card:hover .game-image img,
+.game-card:hover .game-image .game-img {
+    transform: scale(1.05) !important;
+}
+
+/* JS-injected game name fallback layer (when img fails to load) */
+.glp-game-fallback {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    padding: 8px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 14px !important;
+    background: linear-gradient(135deg, #2A1B5C, #6B46FF) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ----------------------------------------------------------------
+   3. BADGE — top-left pill, single badge per card
+   ---------------------------------------------------------------- */
+.glp-game-badge,
+.game-item .game-badge:not(.badge-multiplier),
+.continue-card .game-badge:not(.badge-multiplier),
+.game-card .game-badge:not(.badge-multiplier) {
+    position: absolute !important;
+    top: 8px !important;
+    left: 8px !important;
+    right: auto !important;
+    bottom: auto !important;
+    padding: 3px 9px !important;
+    border-radius: 999px !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+    line-height: 1.3 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+    z-index: 5 !important;
+    color: #fff !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.glp-badge-hot,
+.game-badge.badge-hot,
+.game-badge.hot {
+    background: var(--gc-red-grad) !important;
+    color: #fff !important;
+}
+
+.glp-badge-new,
+.game-badge.badge-new,
+.game-badge.new {
+    background: var(--gc-gold-grad) !important;
+    color: #6B3F00 !important;
+}
+
+.glp-badge-jackpot,
+.game-badge.badge-jackpot,
+.game-badge.jackpot {
+    background: var(--gc-purple-grad) !important;
+    color: #fff !important;
+}
+
+/* ----------------------------------------------------------------
+   4. MULTIPLIER — top-right dark-glass pill
+   ---------------------------------------------------------------- */
+.game-item .game-badge.badge-multiplier,
+.glp-game-card .glp-game-mult,
+.continue-card .game-badge.badge-multiplier,
+.game-card .game-mult {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    left: auto !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    color: var(--gc-gold-text) !important;
+    border: 1px solid rgba(251, 191, 36, 0.35) !important;
+    border-radius: 999px !important;
+    padding: 3px 9px !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+    z-index: 5 !important;
+    backdrop-filter: blur(4px) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    text-transform: uppercase !important;
+}
+
+.game-item .game-badge.badge-multiplier i,
+.glp-game-card .glp-game-mult i,
+.game-card .game-mult i {
+    font-size: 9px !important;
+    color: var(--gc-gold-text) !important;
+}
+
+/* ----------------------------------------------------------------
+   5. HOVER OVERLAY — semi-dark wash + circular purple play button
+   ---------------------------------------------------------------- */
+.glp-game-card .glp-game-overlay,
+.game-item .play-overlay,
+.continue-card .play-overlay,
+.game-card .game-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background: rgba(15, 23, 42, 0.50) !important;
+    backdrop-filter: blur(2px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0 !important;
+    transition: opacity 0.22s ease !important;
+    z-index: 3 !important;
+    padding: 0 !important;
+}
+
+.glp-game-card:hover .glp-game-overlay,
+.game-item:hover .play-overlay,
+.continue-card:hover .play-overlay,
+.game-card:hover .game-overlay {
+    opacity: 1 !important;
+}
+
+/* The play button (icon or text — we recolour both into a circle) */
+.game-item .play-overlay i,
+.continue-card .play-overlay i,
+.game-card .game-overlay .play-btn,
+.glp-game-card .glp-game-overlay .glp-play-btn {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    background: var(--gc-purple-grad) !important;
+    color: #fff !important;
+    border: 3px solid rgba(255, 255, 255, 0.85) !important;
+    box-shadow: 0 8px 22px rgba(108, 70, 255, 0.45) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    text-shadow: none !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+}
+
+.game-card .game-overlay .play-btn .play-btn__ico {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: auto !important;
+    height: auto !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.game-item .play-overlay i,
+.continue-card .play-overlay i,
+.game-card .game-overlay .play-btn i,
+.game-card .game-overlay .play-btn .play-btn__ico i {
+    color: #fff !important;
+    margin-left: 2px;
+}
+
+/* .glp-play-btn is a span containing "Play Now" text — hide text, show icon */
+.glp-game-card .glp-game-overlay .glp-play-btn {
+    font-size: 0 !important;
+}
+.glp-game-card .glp-game-overlay .glp-play-btn::before {
+    content: "\f04b";
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", FontAwesome;
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+    margin-left: 2px;
+}
+
+/* ----------------------------------------------------------------
+   6. CARD BODY — white bg, name + meta row
+   ---------------------------------------------------------------- */
+.glc-card .glc-card-body,
+.glp-game-card .glp-game-body,
+.game-item:not(.hot-provider-provider-card) .game-details,
+.continue-card .game-details,
+.game-card .game-info {
+    background: var(--gc-bg) !important;
+    color: var(--gc-text) !important;
+    padding: 12px 14px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    flex: 1 1 auto !important;
+    border: none !important;
+}
+
+/* Name */
+.glc-card .glc-card-name,
+.glp-game-card .glp-game-name,
+.game-item .game-details h4,
+.continue-card .game-details h4,
+.game-card .game-info h4 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--gc-text) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.3 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    background: transparent !important;
+}
+
+/* Provider name (uppercase muted small caps) */
+.glp-game-card .glp-game-provider-name,
+.game-item .game-details .provider-label,
+.continue-card .game-details .provider-label,
+.game-card .game-info .provider-label,
+.game-card .game-info p:not(.rtp) {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    color: var(--gc-text-muted) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    line-height: 1.4 !important;
+}
+
+/* Meta row — provider + RTP, side-by-side or stacked */
+.glp-game-card .glp-game-body .glp-game-meta {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+}
+
+/* RTP pill — green pill, consistent across variants */
+.game-item .game-details .rtp-badge,
+.continue-card .game-details .rtp-badge,
+.glp-game-card .glp-game-body .glp-game-rtp,
+.game-card .game-info .rtp {
+    align-self: flex-start !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    background: var(--gc-green-bg) !important;
+    color: var(--gc-green) !important;
+    border: 1px solid var(--gc-green-border) !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+
+.game-item .game-details .rtp-badge i,
+.continue-card .game-details .rtp-badge i,
+.glp-game-card .glp-game-body .glp-game-rtp i,
+.game-card .game-info .rtp i {
+    font-size: 9px !important;
+    color: var(--gc-green) !important;
+}
+
+/* ----------------------------------------------------------------
+   7. PROVIDER LOBBY CARDS (.glc-card) — same shell, different body
+   Body shows: Live status + outlined "Enter Lobby" button
+   ---------------------------------------------------------------- */
+.glc-card .glc-card-status {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: var(--gc-green) !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    margin: 0 !important;
+}
+
+.glc-card .glc-live-dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: var(--gc-green) !important;
+    flex-shrink: 0 !important;
+}
+
+.glc-card .glc-enter-btn {
+    background: transparent !important;
+    color: var(--gc-blue) !important;
+    border: 1.5px solid var(--gc-blue) !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    letter-spacing: 0.2px !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.18s ease, color 0.18s ease !important;
+}
+
+.glc-card .glc-enter-btn:hover {
+    background: var(--gc-blue) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 16px rgba(74, 108, 247, 0.30) !important;
+}
+
+/* Hide the legacy fav (heart/star) button — not in the canonical design */
+.glc-card .glc-fav-btn,
+.game-card .fav-btn {
+    display: none !important;
+}

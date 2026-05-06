@@ -15,6 +15,8 @@
         rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/card-unify.css">
+    <link rel="stylesheet" href="css/promotions-redesign.css">
 </head>
 
 <body class="light-theme" data-page="promotions">
@@ -32,18 +34,18 @@
     <section class="container" style="padding-top: 40px;">
         <div class="sp-header">
             <h2 class="sp-title">Exclusive Promotions</h2>
-            <span class="sp-count" id="promoCount">6 Offers</span>
-                </div>
+            <span class="sp-count"><strong id="promoCount">6</strong> promotions</span>
+        </div>
 
         <!-- Filter Bar -->
         <div class="promo-filter-wrap">
             <ul class="promo-filter-list">
-                <li><button class="promo-filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> All</button></li>
-                <li><button class="promo-filter-btn" data-filter="new-member"><i class="fa-solid fa-user-plus"></i> NEW MEMBER / NEW REGISTERS</button></li>
-                <li><button class="promo-filter-btn" data-filter="vip"><i class="fa-solid fa-crown"></i> VIP BENEFIT</button></li>
-                <li><button class="promo-filter-btn" data-filter="invite"><i class="fa-solid fa-users"></i> INVITE FRIENDS PROGRAM</button></li>
-                <li><button class="promo-filter-btn" data-filter="special"><i class="fa-solid fa-star"></i> SPECIAL BONUS</button></li>
-                <li><button class="promo-filter-btn" data-filter="daily"><i class="fa-solid fa-calendar-check"></i> DAILY BONUS / UNLIMITED BONUS</button></li>
+                <li><button class="promo-filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i><span class="promo-pill-text">All</span></button></li>
+                <li><button class="promo-filter-btn" data-filter="new-member"><i class="fa-solid fa-user-plus"></i><span class="promo-pill-text">New Member</span></button></li>
+                <li><button class="promo-filter-btn" data-filter="vip"><i class="fa-solid fa-crown"></i><span class="promo-pill-text">VIP Benefit</span></button></li>
+                <li><button class="promo-filter-btn" data-filter="invite"><i class="fa-solid fa-users"></i><span class="promo-pill-text">Invite Friends</span></button></li>
+                <li><button class="promo-filter-btn" data-filter="special"><i class="fa-solid fa-star"></i><span class="promo-pill-text">Special Bonus</span></button></li>
+                <li><button class="promo-filter-btn" data-filter="daily"><i class="fa-solid fa-calendar-check"></i><span class="promo-pill-text">Daily Bonus</span></button></li>
             </ul>
             </div>
 
@@ -61,7 +63,7 @@
                             <span>Ends: 31/12/2031</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(1)">MORE INFO</button>
+                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(1)"><span class="promo-btn-label">More Info</span><span class="promo-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>
 
@@ -78,7 +80,7 @@
                             <span>Ends: 31/12/2031</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(2)">MORE INFO</button>
+                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(2)"><span class="promo-btn-label">More Info</span><span class="promo-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>
 
@@ -88,14 +90,14 @@
                         <img src="https://wendyyap.com/pngimages/Promotion_banner/Promo03.png" alt="Referral Promotion">
                     </div>
                 <div class="promo-content">
-                    <h3 class="promo-title">Refer & Get up to MYR 2,000</h3>
+                    <h3 class="promo-title">Refer &amp; Get up to MYR 2,000</h3>
                     <div class="promo-meta">
                         <div class="promo-date">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span>Ends: 31/12/2031</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(3)">MORE INFO</button>
+                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(3)"><span class="promo-btn-label">More Info</span><span class="promo-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>
 
@@ -112,7 +114,7 @@
                             <span>Ends: 31/12/2031</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(4)">MORE INFO</button>
+                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(4)"><span class="promo-btn-label">More Info</span><span class="promo-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>
 
@@ -129,7 +131,7 @@
                             <span>Ends: 31/12/2031</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(5)">MORE INFO</button>
+                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(5)"><span class="promo-btn-label">More Info</span><span class="promo-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
                 </div>
 
@@ -139,14 +141,14 @@
                         <img src="https://wendyyap.com/pngimages/Promotion_banner/Promo06.png" alt="Birthday Bonus">
                     </div>
                 <div class="promo-content">
-                    <h3 class="promo-title">Get up to MYR 7,2K Every Birthday</h3>
+                    <h3 class="promo-title">Get up to MYR 7,200 Every Birthday</h3>
                     <div class="promo-meta">
                         <div class="promo-date">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span>Ends: 31/12/2031</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(6)">MORE INFO</button>
+                    <button class="btn btn-primary promo-btn" onclick="openPromotionModal(6)"><span class="promo-btn-label">More Info</span><span class="promo-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span></button>
                 </div>
             </div>
         </div>
@@ -307,7 +309,7 @@
                 `
             },
             6: {
-                title: "Get up to MYR 7,2K Every Birthday",
+                title: "Get up to MYR 7,200 Every Birthday",
                 content: `
                     <p>It's your special day, and we're here to make it even more special! Celebrate your birthday with GM88 and receive an exclusive birthday bonus.</p>
                     <h4 style="color: #0f172a; margin-top: 20px;">How to Claim</h4>
@@ -373,7 +375,7 @@
                     });
 
                     // Update count display
-                    promoCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'Offer' : 'Offers'}`;
+                    promoCount.textContent = visibleCount;
                 });
             });
         }

@@ -1,0 +1,311 @@
+/* ==============================================================
+   GM88 — Promotions Page Redesign
+   Filter pills, clean banner-image cards with purple
+   gradient "MORE INFO" CTAs.
+   ============================================================== */
+
+:root {
+    --pr-bg:        #F6F8FC;
+    --pr-surface:   #FFFFFF;
+    --pr-border:    #E6EAF2;
+    --pr-text:      #1F2A44;
+    --pr-text-2:    #44506A;
+    --pr-text-mute: #6B7693;
+    --pr-purple:    #7C5CFF;
+    --pr-purple-2:  #6B46FF;
+    --pr-purple-soft: #EFEAFF;
+    --pr-grad:      linear-gradient(135deg, #8B6CFF 0%, #6B46FF 100%);
+    --pr-grad-hover:linear-gradient(135deg, #7C5CFF 0%, #5A36F0 100%);
+}
+
+/* ---------- Header ---------- */
+.sp-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin: 0 0 22px !important;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.sp-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: var(--pr-text) !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+.sp-count {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--pr-text-mute) !important;
+}
+
+.sp-count strong {
+    color: var(--pr-purple-2);
+    font-weight: 800;
+    font-size: 18px;
+    margin: 0 4px;
+}
+
+/* ---------- Filter pills (bilingual) ---------- */
+.promo-filter-wrap {
+    margin: 0 0 28px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.promo-filter-list {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 12px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.promo-filter-list li {
+    margin: 0 !important;
+}
+
+.promo-filter-btn {
+    width: 100% !important;
+    background: var(--pr-surface) !important;
+    border: 1px solid var(--pr-border) !important;
+    border-radius: 14px !important;
+    padding: 14px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.22s ease !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    text-align: left !important;
+    color: var(--pr-text) !important;
+    font-family: 'Inter', sans-serif !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    text-transform: none !important;
+}
+
+.promo-filter-btn i {
+    font-size: 14px !important;
+    color: var(--pr-purple) !important;
+    width: 28px !important;
+    height: 28px !important;
+    background: var(--pr-purple-soft) !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    transition: all 0.22s ease !important;
+}
+
+.promo-filter-btn .promo-pill-text {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: var(--pr-text) !important;
+    line-height: 1.2 !important;
+    min-width: 0;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.promo-filter-btn:hover {
+    border-color: rgba(124, 92, 255, 0.4) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(108, 70, 255, 0.12);
+}
+
+.promo-filter-btn.active {
+    background: var(--pr-grad) !important;
+    border-color: transparent !important;
+    box-shadow: 0 8px 22px rgba(108, 70, 255, 0.32) !important;
+}
+
+.promo-filter-btn.active .promo-pill-text {
+    color: #FFFFFF !important;
+}
+
+.promo-filter-btn.active i {
+    background: rgba(255, 255, 255, 0.22) !important;
+    color: #FFFFFF !important;
+}
+
+/* ---------- Promo grid ---------- */
+.promotions-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    margin-bottom: 40px !important;
+}
+
+/* ---------- Promo card ---------- */
+.promo-card {
+    background: var(--pr-surface) !important;
+    border: 1px solid var(--pr-border) !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+}
+
+.promo-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(124, 92, 255, 0.35) !important;
+    box-shadow: 0 16px 36px rgba(124, 92, 255, 0.18) !important;
+}
+
+.promo-card .promo-image {
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #2A1B5C 0%, #4B2A9E 50%, #7C3FE0 100%) !important;
+    position: relative;
+}
+
+.promo-card .promo-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.4s ease !important;
+    display: block !important;
+}
+
+.promo-card:hover .promo-image img {
+    transform: scale(1.04) !important;
+}
+
+.promo-card .promo-content {
+    padding: 18px 20px 20px !important;
+    background: var(--pr-surface) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    flex: 1 1 auto !important;
+    border: none !important;
+}
+
+.promo-card .promo-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: var(--pr-text) !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+    min-height: 0;
+}
+
+.promo-card .promo-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin: 0 !important;
+}
+
+.promo-card .promo-date {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--pr-text-mute) !important;
+}
+
+.promo-card .promo-date i {
+    color: var(--pr-purple) !important;
+    font-size: 12px !important;
+}
+
+/* "MORE INFO" button — purple pill with arrow at right */
+.promo-card .promo-btn {
+    background: var(--pr-grad) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 999px !important;
+    padding: 11px 18px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.4px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 6px 18px rgba(108, 70, 255, 0.30) !important;
+    cursor: pointer !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: auto !important;
+    text-align: left !important;
+    text-decoration: none !important;
+}
+
+.promo-card .promo-btn .promo-btn-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    color: #FFFFFF;
+    line-height: 1.2;
+}
+
+.promo-card .promo-btn .promo-btn-arrow {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 11px;
+    flex-shrink: 0;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.promo-card .promo-btn:hover {
+    background: var(--pr-grad-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(108, 70, 255, 0.40) !important;
+}
+
+.promo-card .promo-btn:hover .promo-btn-arrow {
+    background: rgba(255, 255, 255, 0.32);
+    transform: translateX(2px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .promo-filter-list {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .promotions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .promo-filter-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    .promo-filter-btn {
+        padding: 10px 12px !important;
+    }
+    .promo-filter-btn .promo-pill-text {
+        font-size: 12px !important;
+    }
+    .promotions-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .sp-title { font-size: 22px !important; }
+}
